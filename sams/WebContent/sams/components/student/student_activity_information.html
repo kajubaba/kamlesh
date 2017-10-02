@@ -1,0 +1,352 @@
+
+
+<div ng-controller="student.activity.controller as studActivityCtrl" ng-init="studActivityCtrl.init()">
+      <div class="row">
+      		<div class="col-sm-12">
+      			<div class="panel panel-default">
+      				 <div class="panel-heading panel-header-large"> <span class="glyphicon glyphicon-pencil"></span> Edit Student Current Admission Details
+                		
+                	</div>
+                	<div class="panel-body" >
+                			<ul class="nav nav-tabs">
+							  	
+							  	<li has-permission="ROLE_CHANGE_STUD_CLASS" class="active"><a data-toggle="tab" href="#change_class">Class</a></li>
+							  	<li has-permission="ROLE_CHANGE_STUD_BUS_STOP"><a data-toggle="tab" href="#change_bus_stop">Bus Stop</a></li>
+							  	<li has-permission="ROLE_CHANGE_STUD_ADMN_SCHEME"><a data-toggle="tab" href="#change_admission_scheme">Admission Scheme</a></li>
+							  	<li has-permission="ROLE_CHANGE_STUD_CLASS"><a data-toggle="tab" href="#change_admission_status" ng-click="studActivityCtrl.fetchActiveStudentStatusList();">Admission Status</a></li>
+							  	
+							  	
+							</ul>
+							
+							<div class="tab-content">
+							  	<div has-permission="ROLE_CHANGE_STUD_CLASS" id="change_class" class="tab-pane fade in active" style="padding-top: 25px">
+							    	<div id="personalInfoView">
+							    		
+							    		<div id="error_change_class" class="alert alert-danger" style="display: none;">
+											  <span class="glyphicon glyphicon-warning-sign"></span>
+											&nbsp;&nbsp; 
+											<span id="error_change_class_message"></span>
+										</div>
+										
+										<div id="success_change_class" class="alert alert-success" style="display: none;">
+											  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;
+											  <span id="success_change_class_message"></span>
+										</div>
+							    		
+							    		
+							    		<div class="pull-right" style="margin-bottom: 20px">
+											<a class="btn btn-primary btn-sm" href="javascript:void(0)" ng-click="studActivityCtrl.changeClass()">
+											<i class="fa fa-pencil-square-o"></i> Change Class</a>			
+										</div>
+							    	
+							    	
+							    	<table class="table-responsive table tbl-profile">
+							    		<tbody>
+							    			<tr>
+							    				<td class="profile-label col-md-2">Current Class</td>
+							    				<td ng-bind="studentDetails.currentClass"></td>
+							    				<td></td>
+							    			</tr>
+							    			<tr>
+									    		<td class="profile-label col-md-2">New Affiliation Authority <span class="color-red">*</span></td>
+									    		<td class="col-md-3">
+									    			<select class="form-control" ng-model="auId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities" ng-change="studActivityCtrl.fetchActiveClasses()">
+						                    			<option value="">--- Select Affiliation Authority ---</option>
+						                    		</select>
+									    		</td>
+									    		<td class="col-md-7">
+									    		</td>
+									    	</tr>
+									    	<tr>
+									    		<td class="profile-label col-md-2">New Admission Class <span class="color-red">*</span></td>
+									    		<td class="col-md-3">
+									    			<select class="form-control" ng-model="changeClassForm.newId" ng-options="clazz.classId as clazz.className for clazz in classes">
+						                    			<option value="">--- Select Class ---</option>
+						                    		</select>
+									    		</td>
+									    		<td class="col-md-7">
+									    		</td>
+									    	</tr>
+							    			<tr>
+									    				<td class="profile-label col-md-2">Comments</td>
+									    				<td class="col-md-3">
+									    					<textarea class="form-control" rows="4" ng-model="changeClassForm.comments"></textarea>
+									    				</td>
+									    				<td class="col-md-7">
+									    				</td>
+									    			</tr>
+							    			
+							    		</tbody>
+							    	
+							    	</table>
+							    	 	
+							    		
+							    		
+							    	</div>
+				
+							    	
+							  </div>
+				
+							  	<div has-permission="ROLE_CHANGE_STUD_BUS_STOP" id="change_bus_stop" class="tab-pane" style="padding-top: 25px">
+							    	<div id="parentsInformationView">
+							    	
+							    		<div id="error_change_bus_stop" class="alert alert-danger" style="display: none;">
+											  <span class="glyphicon glyphicon-warning-sign"></span>
+											&nbsp;&nbsp; 
+											<span id="error_change_busstop_message"></span>
+										</div>
+										
+										<div id="success_change_bus_stop" class="alert alert-success" style="display: none;">
+											  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;
+											  <span id="success_change_busstop_message"></span>
+										</div>
+							    	
+							    		<div class="pull-right" style="margin-bottom: 20px">
+											<a class="btn btn-primary btn-sm" href="javascript:void(0)" ng-click="studActivityCtrl.changeBusStop()">
+											<i class="fa fa-pencil-square-o"></i> Change Bus Stop</a>			
+										</div>
+							    	
+									    	<table class=" table-responsive table tbl-profile">
+									    		<tbody>
+									    			<tr>
+									    				<td class="profile-label col-md-2">Current Bus Stop</td>
+									    				<td ng-bind="studentDetails.busStop"></td>
+									    				<td></td>
+									    			</tr>
+									    			
+									    			
+									    			
+									    			<tr>
+									    				<td class="profile-label col-md-2">New Bus Stop </td>
+									    				<td class="col-md-3">
+									    					<select class="form-control" ng-model="changeBusStopForm.newId" ng-options="busStop.id as busStop.name for busStop in activeBusStops">
+						                    					<option value="">--- Select Bus Stop ---</option>
+						                    				</select>
+									    				</td>
+									    				<td class="col-md-7">
+									    				</td>
+									    				
+									    			</tr>
+									    			<tr>
+									    				<td class="profile-label col-md-2">Comments </td>
+									    				<td class="col-md-3">
+									    					<textarea class="form-control" rows="4" ng-model="changeBusStopForm.comments"></textarea>
+									    				</td>
+									    				<td class="col-md-7">
+									    				</td>
+									    			</tr>
+									    			
+									    			
+									    		</tbody>
+									    	</table>
+							    		
+							    		
+							   
+							    		</div>
+							    		
+						
+							  </div>
+							  	
+							  	<div has-permission="ROLE_CHANGE_STUD_ADMN_SCHEME" id="change_admission_scheme" class="tab-pane" style="padding-top: 25px">
+							    	
+							    	<div id="gaurdianInfoView">
+							    		
+							    		<div id="error_change_admission_scheme" class="alert alert-danger" style="display: none;">
+											  <span class="glyphicon glyphicon-warning-sign"></span>
+											&nbsp;&nbsp; 
+											<span id="error_change_admission_scheme_message"></span>
+										</div>
+										
+										<div id="success_change_admission_scheme" class="alert alert-success" style="display: none;">
+											  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;
+											  <span id="success_change_admission_scheme_message"></span>
+										</div>
+							    		
+							    		
+							    		<div class="pull-right" style="margin-bottom: 20px">
+											<a class="btn btn-primary btn-sm" href="javascript:void(0)" ng-click="studActivityCtrl.changeAdmissionScheme()">
+											<i class="fa fa-pencil-square-o"></i> Change Admission Scheme</a>			
+										</div>
+							    	
+									    	<table class="table-responsive table tbl-profile">
+									    		<tbody>
+									    			<tr>
+									    				<td class="profile-label col-md-2">Current Admission Scheme</td>
+									    				<td ng-bind="studentDetails.admissionScheme"></td>
+									    				<td></td>
+									    			</tr>
+									    			<tr>
+									    				<td class="profile-label col-md-2">New Admission Scheme <span class="color-red">*</span></td>
+									    				<td class="col-md-3">
+									    					<select class="form-control" ng-model="changeAdmissionSchemeForm.newId" ng-options="admissionScheme.schemeId as admissionScheme.schemeName for admissionScheme in admissionSchemes">
+						                    					<option value="">--- Select Admission Scheme ---</option>
+						                    				</select>
+									    				
+									    				</td>
+									    				<td class="col-md-7">
+									    				</td>
+									    			</tr>
+									    			<tr>
+									    				<td class="profile-label col-md-2">Comments </td>
+									    				<td class="col-md-3">
+									    					<textarea class="form-control" rows="4" ng-model="changeAdmissionSchemeForm.comments"></textarea>
+									    				</td>
+									    				<td class="col-md-7">
+									    				</td>
+									    			</tr>
+									    		</tbody>
+									    	</table>
+					
+							    		
+							    		</div>
+							    		
+					
+							    		
+							  </div>
+							  
+							  <div has-permission="ROLE_CHANGE_STUD_ADMN_SCHEME" id="change_admission_status" class="tab-pane" style="padding-top: 25px">
+							    	
+							    	<div id="changeStatusView">
+							    		
+							    		<div id="error_change_admission_status" class="alert alert-danger" style="display: none;">
+											  <span class="glyphicon glyphicon-warning-sign"></span>
+											&nbsp;&nbsp; 
+											<span id="error_change_admission_status_message"></span>
+										</div>
+										
+										<div id="success_change_admission_status" class="alert alert-success" style="display: none;">
+											  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;
+											  <span id="success_change_admission_status_message"></span>
+										</div>
+							    		
+							    		<div class="pull-right" style="margin-bottom: 20px">
+											<a class="btn btn-primary btn-sm" href="javascript:void(0)" ng-click="studActivityCtrl.changeStudentStatus()">
+											<i class="fa fa-pencil-square-o"></i> Change Status</a>			
+										</div>
+							    	
+									    	<table class="table-responsive table tbl-profile">
+									    		<tbody>
+									    			<tr>
+									    				<td class="profile-label col-md-2">Current Status</td>
+									    				<td ng-bind="studentDetails.admissionStatus"></td>
+									    				<td></td>
+									    			</tr>
+									    			<tr>
+									    				<td class="profile-label col-md-2">New Status <span class="color-red">*</span></td>
+									    				<td class="col-md-3">
+									    					<select class="form-control" ng-model="changeStudentStatusForm.newId" ng-options="studentStatus.statusId as studentStatus.statusName for studentStatus in studentStatusList">
+						                    					<option value="">--- Select Status ---</option>
+						                    				</select>
+									    				
+									    				</td>
+									    				<td class="col-md-7">
+									    				</td>
+									    			</tr>
+									    			<tr>
+									    				<td class="profile-label col-md-2">Comments </td>
+									    				<td class="col-md-3">
+									    					<textarea class="form-control" rows="4"  ng-model="changeStudentStatusForm.comments"></textarea>
+									    				</td>
+									    				<td class="col-md-7">
+									    				</td>
+									    			</tr>
+									    		</tbody>
+									    	</table>
+					
+							    		
+							    		</div>
+							    		
+					
+							    		
+							  </div>
+							  	
+							  	
+							  	
+							</div>
+							
+                	</div>
+      			</div>
+      		</div>
+      </div>	
+      
+<div class="modal" id="modalForceChangeBusStop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+						<div class="modal-header">
+		        		<h4 class="modal-title color-warning"> 
+		        			 <span class="glyphicon glyphicon-warning-sign color-warning"></span> Warning   
+		        		</h4>
+		        		
+		      		</div>
+				      <div class="modal-body">
+				        
+				        {{busStopChangeErrorMessage}}
+				        
+				        
+				        <h4 class="modal-title color-warning" style="margin-top: 20px;"> 
+				        	Do you want to remove fee adjustments and change the bus stop ?
+				        </h4>
+				         
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" ng-click="studActivityCtrl.closeForceBusStopChangePopup()">No</button>
+				        <button type="button" class="btn btn-primary" ng-click="studActivityCtrl.forceBusStopChange()"><span class="glyphicon glyphicon-trash"/> Yes</button>
+				      </div>
+				    </div>
+				  </div>
+</div> 	      
+
+<div class="modal" id="modalForceChangeClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+						<div class="modal-header">
+		        		<h4 class="modal-title color-warning"> 
+		        			 <span class="glyphicon glyphicon-warning-sign color-warning"></span> Warning   
+		        		</h4>
+		        		
+		      		</div>
+				      <div class="modal-body">
+				        
+				        {{classChangeErrorMessage}}
+				        
+				        
+				        <h4 class="modal-title color-warning" style="margin-top: 20px;"> 
+				        	Do you want to remove fee adjustments and change the class ?
+				        </h4>
+				         
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" ng-click="studActivityCtrl.closeForceClassChangePopup()">No</button>
+				        <button type="button" class="btn btn-primary" ng-click="studActivityCtrl.forceClassChange()"><span class="glyphicon glyphicon-trash"/> Yes</button>
+				      </div>
+				    </div>
+				  </div>
+</div> 	
+      		
+</div>
+
+<script>
+
+$( document ).ready(function() {
+	
+	
+	$('.nav-tabs li a').click(function (e) {
+	    e.preventDefault();
+	    $(this).tab('show');
+	    //$('.tab-content > .tab-pane.active').jScrollPane();
+	});
+    
+	$( "#requiredStudentDOB" ).datepicker({
+		dateFormat:'d-M-yy',
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true
+		
+	})
+
+
+	
+    
+});
+
+</script>

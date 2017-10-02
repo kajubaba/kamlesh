@@ -1,0 +1,59 @@
+<div>
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper"   ng-controller="academicsession.manage.controller as academicSessionCtrl" ng-init="academicSessionCtrl.getAcademicSession()">
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-bus" aria-hidden="true"></i> {{academicSessionForm.name}} - Setup Bus Fee </div>
+			<div class="font-sm">
+				Enter valid bus fee for different bus stops
+			</div>
+		</div>
+		<div ng-controller="academicsession.busstop.controller as ctrl" ng-init="ctrl.initForEdit()">
+			<div ng-include="'sams/components/admin/academic-session/wizard_header.html'"></div>
+			<div>
+				<form name="Update_BusFee_Form">
+					<div class="alert alert-danger"  ng-show="Update_BusFee_Form.$invalid">
+				 			<span class="glyphicon glyphicon-warning-sign"></span>
+				 			<strong>Opps Error !!! </strong> Some of the entered values are not valid. Please correct invalid values before you save the changes.
+					</div>
+					<div class="dataTable_wrapper">
+								<table class="table table-striped table-bordered table-hover"
+									id="datatable-classwise-sections-counts">
+									<thead>
+										<tr>
+											<th>Bus Stop</th>
+											<th>Distance (Km.)</th>
+											<th>Bus Fee (Rs.)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="busFee in academicSessionBusFees">
+											<td ng-bind="busFee.busStopName"></td>
+											<td ng-bind="busFee.distance"></td>
+											<td> <input type="number" min="0" ng-model="busFee.busFee" /> </td>
+										</tr>
+									</tbody>
+								</table>
+				  </div>
+				<div class="row">
+				  	<div class="col-md-12  pull-right">
+						<span style="margin-right: 10px">
+							<a class="btn btn-default btn-sm" href="#/admin/academicsession/{{selectedAcademicSession}}/setup/busstop"><span class="glyphicon glyphicon-circle-arrow-left"></span> Cancel</a>
+						</span>	
+						<span ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" style="margin-right: 10px">
+							<button class="btn btn-primary btn-sm" ng-click="ctrl.saveBusStopFees()" ng-disabled="Update_BusFee_Form.$invalid"> <span class="glyphicon glyphicon-plus-sign"></span> Save </button>
+						</span>
+						<span class="alert alert-success"  ng-show="showSuccessMessage">
+				 			<span class="glyphicon glyphicon-ok"></span> Changes Saved Successfully
+						</span>
+					</div>
+				  
+				  </div>
+				</form>  
+			</div>
+		</div>
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+	</div>
+</div>

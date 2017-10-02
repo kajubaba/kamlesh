@@ -1,0 +1,156 @@
+<div>
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper"   ng-controller="academicsession.manage.controller as academicSessionCtrl" ng-init="academicSessionCtrl.getAcademicSession()">
+		
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-bus" aria-hidden="true"></i> {{academicSessionForm.name}} - Setup Bus Fee Installment(s)</div>
+			<div class="font-sm">
+				Setup Bus Fee installments for all classes 
+			</div>
+		</div>
+		
+		<div  ng-controller="academicsession.busfee.installment.controller as ctrl" ng-init="ctrl.init()">
+			<div ng-include="'sams/components/admin/academic-session/wizard_header.html'"></div>
+			
+			<div style="margin-bottom: 20px">
+				<h4>How you would like to setup the bus fee installments ?</h4>
+				<div><input type="radio" value="Manual" ng-model="busFeeInstallment.setupType" ng-click="ctrl.changeSetupType()">&nbsp;&nbsp;&nbsp;I would like to setup manually</div>
+				
+               <div>
+               		<input type="radio" value="Percentage" ng-model="busFeeInstallment.setupType" ng-click="ctrl.changeSetupType()">&nbsp;&nbsp;&nbsp;I would like to setup in percentage
+               </div>
+			</div>
+			
+			<div ng-show="busFeeInstallment.setupType=='Percentage'">
+	               <form name="bus_fee_installment_form"> 
+			                <div ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" class="row" style="margin-bottom: 20px">
+				                <div class="col-md-2">
+				                	No of Installments :
+				                </div>
+				                <div class="col-md-2 pull-left">
+				                	<select ng-model="busFeeInstallment.installments" ng-options="installment.displayOrder as installment.name for installment in installments" ng-change="ctrl.changePercentageInstallments()">
+				                	</select>
+				                </div>
+				                <div class="col-md-7 pull-right padding-right-none">
+				                	<div>
+				                		<button class="btn btn-primary btn-sm pull-right" ng-disabled="bus_fee_installment_form.$invalid || ctrl.sumFeePercentage() != 100" ng-click="ctrl.savePercentageInstallments()"> <span class="glyphicon glyphicon-plus-sign"></span> Save</button>
+				                	</div>
+				                </div> 
+				                
+			                </div>
+			                 <div class="alert alert-danger"  ng-show="bus_fee_installment_form.$invalid || ctrl.sumFeePercentage() != 100">
+							 			<span class="glyphicon glyphicon-warning-sign"></span>
+							 			<strong>Opps Error !!! </strong> Percentage of installment total must be equal to 100
+							</div>
+			               
+			                
+				                <table class="table table-striped table-bordered table-hover">
+				                  <thead>
+				                    <tr>
+				                      <th>Installment#</th>
+				                      <th>Fee %</th>
+				                    </tr>
+				                  </thead>
+				                  <tbody>
+				                  	<tr ng-repeat="installment in busFeeInstallment.busFeeInstallmentInPercentage">
+				                  		<td ng-bind="installment.installmentName"></td>
+				                  		<td> <input type="number" ng-model="installment.feePercent"> </td>
+				                  	</tr>
+				                  	
+				                  </tbody>
+				                  <tfoot>
+				                  	<tr>
+				                  		<th>Total (%)</th>
+				                  		<th>{{ctrl.sumFeePercentage()}}</th>
+				                  	</tr>
+				                  </tfoot>
+				                </table>
+	                 </form>
+                </div> 
+				<div ng-show="busFeeInstallment.setupType=='Manual'"> 
+		                <div ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" class="row" style="margin-bottom: 20px">
+			                <div class="col-md-2">
+			                	No of Installments :
+			                </div>
+			                <div class="col-md-2 pull-left">
+			                	<select ng-model="busFeeInstallment.installments" ng-options="installment.displayOrder as installment.name for installment in installments" ng-change="ctrl.changeManualBusFeeInstallments()">
+			                	</select>
+			                </div>
+			                <div class="col-md-7 pull-right padding-right-none">
+			                	<div>
+			                		<button class="btn btn-primary btn-sm pull-right" ng-disabled="isSumCorrect ==false" ng-click="ctrl.saveManualBusFeeInstallments()"> <span class="glyphicon glyphicon-plus-sign"></span> Save</button>
+			                	</div>
+			                </div> 
+			                
+		                </div>
+		                <div class="alert alert-danger"  ng-show="isSumCorrect ==false">
+					  		<span class="glyphicon glyphicon-warning-sign"></span>
+							<strong>Opps Error !!! </strong> For some of the bus stops bus fee and installment total is incorrect. Please correct to enable Save button
+						</div>
+		                <table class="table table-striped table-bordered table-hover">
+		                   <thead>
+		                    <tr>
+		                      <th>Bus Stop</th>
+		                      <th>Bus Fee</th>
+		                      <th ng-repeat="installment in installmentArray">Installment -{{installment}}</th>
+		                      <th>Total</th>
+		                    </tr>
+		                  </thead>
+		                  <tbody>
+		                  	<tr ng-repeat="busFee in busFeeInstallment.busStopFees">
+		                  		<td ng-bind="busFee.busStopName"></td>
+		                  		<td ng-bind="busFee.busFee"></td>
+		                  		<td ng-repeat="feeDetail in busFee.busFeeDetails">
+		                  			<input type="number" ng-model="feeDetail.fee" ng-change="ctrl.sumInstallments()"/>
+		                  		</td>
+		                  		<td>{{busFee.installmentTotal}}</td>
+		                  	</tr>
+		                  	
+		                  </tbody>
+		                  
+		                </table>
+		                <div class="alert alert-danger"  ng-show="isSumCorrect ==false">
+					  		<span class="glyphicon glyphicon-warning-sign"></span>
+							<strong>Opps Error !!! </strong> For some of the bus stops bus fee and installment total is incorrect. Please correct to enable Save button
+						</div>
+						<div class="row pull-right padding-right-none">
+			                	
+			                		<button class="btn btn-primary btn-sm pull-right" ng-disabled="isSumCorrect ==false" ng-click="ctrl.saveManualBusFeeInstallments()"> <span class="glyphicon glyphicon-plus-sign"></span> Save</button>
+			                	
+			             </div> 
+                </div>
+		</div>
+		
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

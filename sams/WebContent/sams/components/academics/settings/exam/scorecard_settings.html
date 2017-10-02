@@ -1,0 +1,214 @@
+<div>
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper" ng-controller="academics.exam.setup.scholastic.assessment.controller as ctrl" ng-init="ctrl.init()">
+		<div class="row admin-setting-header">
+			<div class="col-md-8">'{{assessmentType.examPatternName}}' - Setup Scholastic Assessment</div>
+			<div class="col-md-4">
+					<div class="dropdown pull-right">
+						<button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+							<span class="glyphicon glyphicon-tasks"></span>
+						</button>
+						<ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+							<li ><a href="javascript:void(0)" ng-click="ctrl.openNewTermPopup()"><i class="glyphicon glyphicon-plus-sign"></i> New Term</a></li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="stepwizard" style="margin-bottom: 35px">
+		    <div class="stepwizard-row setup-panel">
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/setup/exam-pattern/{{selectedExamPatternId}}/step1" type="button" class="btn btn-default btn-circle .btn-inactive">1</a>
+		        <p>Setup Classes</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/setup/exam-pattern/{{selectedExamPatternId}}/step2" type="button" class="btn btn-primary btn-circle" disabled="disabled">2</a>
+		        <p>Setup Scholastic Assessment</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/setup/exam-pattern/{{selectedExamPatternId}}/step3" type="button" class="btn btn-default btn-circle .btn-inactive" >3</a>
+		        <p>Manage Co-Scholastic Aspects</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/setup/exam-pattern/{{selectedExamPatternId}}/step4" type="button" class="btn btn-default btn-circle .btn-inactive">4</a>
+		        <p>Setup Co-Scholastic Assessments</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/setup/exam-pattern/{{selectedExamPatternId}}/step5" type="button" class="btn btn-default btn-circle .btn-inactive">5</a>
+		        <p>Scorecard Preview</p>
+		      </div>
+		    </div>
+  		</div>
+		
+		
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover" id="dt-exam-patterns">
+						<thead>
+							<tr>
+								<th>Term Name</th>
+								<th>Display Name</th>
+								<th>Display Order</th>
+								<th>Weightage in Final Assesment</th>
+								<th>Assessments</th>
+								
+							</tr>
+						</thead>
+							<tr ng-repeat="term in assessmentType.assessmentTerms">
+								<td> <a href="javascript:void(0)" ng-click="ctrl.openTermPopup(term.id, term.name, term.displayName, term.displayOrder, '', term.weightage)"> {{term.name}}</a></td>
+								<td>{{term.displayName}}</td>
+								<td>{{term.displayOrder}}</td>
+								<td>{{term.weightage}}</td>
+								<td>
+								
+									<div ng-repeat="assessment in term.assessments">
+										
+										<a href="javascript:void(0)" ng-click="ctrl.openUpdateTermAssessmentPopup(assessment.id, assessment.name, assessment.displayName, assessment.displayOrder, assessment.weightage, assessment.isDefault)">
+											{{assessment.name}}
+											<span ng-if="assessment.isDefault == true">(Default)</span>
+										</a>
+									</div>
+								
+								 </td>
+							</tr>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		
+	<div class="row" style="margin-top: 20px">
+				<table class="table-responsive table tbl-profile">
+					<tbody>
+						<tr>
+							<td class="profile-label col-md-2">Grade Scale</td>
+							<td class="col-md-6">
+								<select class="form-control" ng-model="gradeScoreForm.gradeScaleId" ng-options="gradeScale.id as gradeScale.name for gradeScale in gradeScales">
+									<option value="">-- Select Grade --</option>
+									<!-- <option ng-repeat="gradeScale in gradeScales" value="{{gradeScale.id}}">{{gradeScale.name}}</option> -->
+								</select>
+							</td>
+							<td class="col-md-4">
+								
+							</td>
+							
+						</tr>
+			
+		
+						<tr>
+							<td class="profile-label col-md-2">Max. Marks</td>
+							<td class="col-md-6">
+								<input type="text" id="maxMarks" ng-model="gradeScoreForm.maxMarks" class="form-control" />
+							</td>
+							<td class="col-md-4">
+								
+							</td>
+						</tr>
+				</table>
+				<div><button type="button" id="saveBtn" class="btn btn-primary" ng-click="ctrl.saveGradeScaleAndScoringMethod()"><span class="glyphicon glyphicon-plus-sign"></span> Save</button></div>
+		
+		</div>
+	
+	
+	<div class="modal" id="modalAddUpdateTerm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			Add/Update Scholastic Term
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Term Name :</label>
+	            <input type="text" class="form-control" ng-model="termForm.name" ng-change="ctrl.validateForm()">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Term Display Name :</label>
+	            <input type="text" class="form-control" ng-model="termForm.displayName" ng-change="ctrl.validateForm()">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Display Order :</label>
+	            <input type="text" class="form-control" ng-model="termForm.displayOrder" ng-change="ctrl.validateForm()">
+	          </div>
+	          <div class="form-group">
+	            <label> Weightage in Final Assessment :</label>
+	            <input type="text" class="form-control" ng-model="termForm.weightage" ng-change="ctrl.validateForm()">
+	          </div>
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="ctrl.closeTermPopup()">Cancel</button>
+	         <button type="button" id="btnSaveTerm" class="btn btn-primary" ng-click="ctrl.saveEvaluationTerm()"><span class="glyphicon glyphicon-plus-sign" ></span> Save Term</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	
+	
+	
+	<div class="modal" id="modalAddUpdateTermAssessment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			Add/Update Term Assessment
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Assessment Name :</label>
+	            <input type="text" class="form-control" ng-model="assessmentForm.name" ng-change="ctrl.validateAssessmentForm()">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Assessment Display Name :</label>
+	            <input type="text" class="form-control" ng-model="assessmentForm.displayName" ng-change="ctrl.validateAssessmentForm()">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Display Order :</label>
+	            <input type="text" class="form-control" ng-model="assessmentForm.displayOrder" ng-change="ctrl.validateAssessmentForm()">
+	          </div>
+	          <div class="form-group">
+	            <label> Weightage :</label>
+	            <input type="text" class="form-control" ng-model="assessmentForm.weightage" ng-change="ctrl.validateAssessmentForm()">
+	          </div>
+	          <div class="form-group">
+	            
+	            <input type="checkbox" ng-model="assessmentForm.isDefault"> Is Default ? (If yes, it will not be displayed on report card)
+	          </div>
+	          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="ctrl.closeTermAssessmentPopup()">Cancel</button>
+	         <button type="button" id="btnSaveTerm" class="btn btn-primary" ng-click="ctrl.saveTermAssessment()"><span class="glyphicon glyphicon-plus-sign" ></span> Save Term</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	
+	
+
+	</div>
+</div>
+

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ScoreCard_subreport_header" pageWidth="555" pageHeight="233" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c0d549c2-6e93-4467-a8d7-42cf50925269">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="instituteName" class="java.lang.String"/>
+	<parameter name="line1" class="java.lang.String"/>
+	<parameter name="line2" class="java.lang.String"/>
+	<parameter name="line3" class="java.lang.String"/>
+	<parameter name="performanceProfile" class="java.lang.String"/>
+	<parameter name="lblClass" class="java.lang.String"/>
+	<parameter name="className" class="java.lang.String"/>
+	<parameter name="lblSession" class="java.lang.String"/>
+	<parameter name="lblSessionName" class="java.lang.String"/>
+	<parameter name="imagePath" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="233" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="555" height="38" forecolor="#FF0000" uuid="48984a79-dd48-4108-a5b7-42a246c4a4cd"/>
+				<textElement textAlignment="Center">
+					<font size="26" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{instituteName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="41" width="555" height="12" uuid="819a30f1-971c-4cf1-b52e-76c30913a1e3"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{line1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="54" width="555" height="14" uuid="89374f10-ac40-4b5d-b0ef-13bc746cb86a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{line2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="134" width="555" height="20" uuid="53ead2d3-b900-463a-8029-a6383a700593"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{line3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="154" width="555" height="32" forecolor="#FF0000" uuid="23e347d2-5fa8-459a-8298-86cc7b118b12"/>
+				<textElement textAlignment="Center">
+					<font size="16" isItalic="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{performanceProfile}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="186" width="65" height="20" uuid="431e97dd-a867-4762-a2d5-7d0ee5a03276"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblClass}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="186" width="100" height="20" uuid="54ce3d09-51fd-48ec-be8e-22fb839f2973"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{className}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="205" width="65" height="20" uuid="a7ad9500-da85-4d83-a65a-f8e199e95790"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblSession}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="205" width="100" height="20" uuid="9db682c9-b8bc-4c25-8257-f02329dda02f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblSessionName}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="240" y="68" width="124" height="65" uuid="855e0a9b-2ae9-4e01-a92e-c871167a5add"/>
+				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

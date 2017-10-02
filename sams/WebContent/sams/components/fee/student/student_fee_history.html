@@ -1,0 +1,87 @@
+<div>
+		  	   <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12"> Student <small> Fee History</small> </div>
+   
+			</div>
+          </h3>
+        </div>
+      </div>
+    
+      <!-- // Row -1 -->
+      <div ng-include="'sams/components/fee/student/student_brief_info.html'"></div>
+	
+	  <div class="row" ng-controller="student.fee.controller as ctrl" ng-init="ctrl.feeSummary()">
+	  		
+	  		<div class="col-sm-12">
+      			<div class="panel panel-default">
+      				<div class="panel-heading panel-header-large"> <i class="fa fa-info-circle"></i> Fee History 
+      				          <div class="pull-right">
+                
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Fee History View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                     <li><a href="#/fee/studentfee/{{studentId}}/null">Pay Current Class Fee</a></li>
+                     <li><a href="#/fee/student/{{studentId}}/paymenthistory">Payment History</a></li>
+                  </ul>
+                </div>
+              </div>
+      				
+      				</div>
+                		<div class="panel-body">
+                				<div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover responsive">
+                  <thead>
+                    <tr>
+                      
+                      <th>Class</th>
+                      <th>Academic Session</th>
+                      <th>Fee</th>
+                      <th>Bus Fee</th>
+                      <th>Late Fee</th>
+                      <th>Fee Discount</th>
+                      <th>Bus Fee Discount</th>
+                      <th>Late Fee Discount</th>
+                      <th>Total Payable</th>
+                      <th>Paid Fee</th>
+                      <th>Due</th>
+                      <th></th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	<tr ng-repeat="classFee in feeSummary">
+                  		<td>
+                  			<a href="#/fee/studentfee/{{studentId}}/{{classFee.classHistoryId}}">
+                  			{{classFee.className}}
+                  			</a>
+                  		</td>
+                  		<td>{{classFee.academicYearName}}</td>
+                  		<td>{{classFee.academicFeeTotal}}</td>
+                  		<td>{{classFee.busFee}}</td>
+                  		<td>{{classFee.lateFeeTotal}}</td>
+                  		<td>{{classFee.academicFeeDiscount}}</td>
+                  		<td>{{classFee.busFeeDiscount}}</td>
+                  		<td>{{classFee.lateFeeDiscountTotal}}</td>
+                  		<td>{{classFee.totalPayable}}</td>
+                  		<td>{{classFee.paidTotal}}</td>
+                  		<td class="color-red">{{classFee.totalPayable - classFee.paidTotal}}</td>
+                  		<td>
+                  		<a has-permission="ROLE_ADJUST_STUD_ACADEMIC_FEE" href="#/fee/student/customize/{{studentId}}/class/{{classFee.classHistoryId}}"><span class="glyphicon glyphicon-cog" aria-hidden="true" title="Adjust Fee"></span>
+                  			</a>
+                  		</td>
+                  	</tr>
+                  </tbody>
+                  
+                  
+                </table>
+              </div>
+                		</div>
+      			</div>
+      		</div>	
+	
+    	  </div>	
+		
+</div>  

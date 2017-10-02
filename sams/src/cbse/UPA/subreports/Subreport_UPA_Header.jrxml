@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Subreport_UPA_Header" pageWidth="595" pageHeight="120" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="3379be01-f705-4674-b79c-72f415b7466a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="schoolName" class="java.lang.String"/>
+	<parameter name="schoolAddressLine1" class="java.lang.String"/>
+	<parameter name="academicSession" class="java.lang.String"/>
+	<parameter name="cbseLogoPath" class="java.lang.String"/>
+	<parameter name="schoolLogoPath" class="java.lang.String"/>
+	<parameter name="DSHeader" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<detail>
+		<band height="110" splitType="Stretch">
+			<image>
+				<reportElement x="2" y="0" width="60" height="60" isRemoveLineWhenBlank="true" uuid="06f4f171-9226-459d-8dc4-d601541ab36a"/>
+				<imageExpression><![CDATA["D:\\Narendra Private\\My-Software\\Jaspers\\Scorecard-VI-VIII\\CBSE_Logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="495" y="0" width="60" height="60" isRemoveLineWhenBlank="true" uuid="470c040c-f159-4f46-93a7-b700ae09f2c5"/>
+				<imageExpression><![CDATA["D:\\Narendra Private\\My-Software\\Jaspers\\Scorecard-VI-VIII\\Logo_SPIS.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="60" y="10" width="435" height="27" uuid="33962dd4-9cf2-4a60-9869-1dbaeecc748e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{schoolName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="37" width="435" height="13" uuid="df98a936-b16d-436a-94c2-059d5569094b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{schoolAddressLine1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="189" y="68" width="119" height="20" uuid="6809c060-9bef-4a38-90d7-845a2474d88a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Academic Session :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="308" y="68" width="64" height="20" uuid="64396741-75ca-48be-9eaa-c5268839235a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{academicSession}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="88" width="555" height="20" uuid="9e08b8c5-69f8-4d71-bac6-ff09ed9ac4f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Report Card]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="65" width="555" height="1" uuid="9e81a8d1-57ac-4ebe-8e29-9fe32fd8ea8d"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,27 @@
+<div ng-controller="latefeerule.list.controller as ctrl" ng-init="ctrl.init()">
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><span class="glyphicon glyphicon-time"></span> Late Fee Rule(s)</div>
+			<div class="font-sm">Inactive late fee rule(s) will not be available to add apply on fee installments
+			</div>
+		</div>
+		<!-- <div class="row" style="margin-bottom: 20px">
+			<div class="col-md-12 padding-right-none">
+				<a href="#/admin/affiliationauthority/new" class="btn btn-primary btn-sm pull-right"> <span class="glyphicon glyphicon-plus-sign"></span> New Late Fee Rule</a>
+			</div>
+		</div> -->
+		<div class="row">
+			<div ui-grid="gridOptions" 
+				ui-grid-exporter 
+				ui-grid-pagination
+				ui-grid-move-columns 
+				ui-grid-resize-columns 
+				class="myGrid">
+			</div>
+		</div>
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+</div>

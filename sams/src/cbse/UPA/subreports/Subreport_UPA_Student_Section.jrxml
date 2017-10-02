@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Subreport_UPA_Student_Section" pageWidth="595" pageHeight="109" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="f7a712c0-c44c-44fb-8d8e-ab7dfc0e5b63">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="rollNo" class="java.lang.String"/>
+	<parameter name="studentName" class="java.lang.String"/>
+	<parameter name="fatherName" class="java.lang.String"/>
+	<parameter name="motherName" class="java.lang.String"/>
+	<parameter name="dateOfBirth" class="java.lang.String"/>
+	<parameter name="calssSection" class="java.lang.String"/>
+	<parameter name="DSStudentSection" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<detail>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="-1" width="100" height="18" uuid="161db40e-cce7-4a5b-bc66-a06379297ccd"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Roll No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="17" width="100" height="18" uuid="b4ccc2da-595d-48cc-a235-9099bf9ec227"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Student’s Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="100" height="18" uuid="249e18e4-63fc-4838-9424-20351c207d32"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Father’s Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="53" width="100" height="18" uuid="92be9a56-69da-464d-9b1b-d97e2a3523e2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Mother's Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="71" width="100" height="18" uuid="fcb658e9-67ec-4e88-adff-0441c208bf0d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date of Birth]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="89" width="100" height="18" uuid="3085315b-1e28-4c5c-bb4c-2bb9d9dda9b5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Class/Section]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="123" y="-1" width="287" height="18" uuid="a392b029-5396-4e17-b78e-175735e03f42"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{rollNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="17" width="287" height="18" uuid="eef7de14-9ed1-4c26-a53d-dcb2c409e0e6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{studentName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="35" width="287" height="18" uuid="47bb60ca-9f34-4ad5-8908-ca11dcf1ce82"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{fatherName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="53" width="287" height="18" uuid="9310e780-1a3d-4066-99c5-3b396e1e5186"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{motherName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="71" width="287" height="18" uuid="533a1bdc-6aa1-4405-a5d5-a61d3d8a6fe5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{dateOfBirth}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="89" width="287" height="18" uuid="9058af88-4731-4359-870a-c8725395d67d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{calssSection}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="-1" width="23" height="18" uuid="04c6824e-65a0-4186-b553-a1c3d96b5443"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="17" width="23" height="18" uuid="1418ce42-ae0d-4b0b-976a-b0c83da96a18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="35" width="23" height="18" uuid="29a2144d-6c43-4734-9d98-1e93327b3884"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="53" width="23" height="18" uuid="aa308f4c-0815-4613-a9e5-636799bd8773"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="71" width="23" height="18" uuid="db641313-2e45-4b72-8274-ba8403afd49e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="89" width="23" height="18" uuid="5289ded3-2ead-47e4-9b5a-fd436c5ba716"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

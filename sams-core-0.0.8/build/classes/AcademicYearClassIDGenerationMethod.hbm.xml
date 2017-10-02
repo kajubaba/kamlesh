@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYearClassIDGenMethod" table="academic_year_class_id_gen_method">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="academicYearClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="academic_session_class_id" not-null="true"/>
+		<many-to-one name="idGenerationMethod" class="com.narendra.sams.core.domain.IDGenerationMethod" column="id_gen_method_id" not-null="true"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,253 @@
+<div ng-controller="institute.settings.controller as ctrl" ng-init="ctrl.init()">
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	<div id="page-wrapper">
+		
+		<form name="Institute_Setting_Form">
+		
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-gear fa-fw"></i> Institute Settings</div>
+			<div class="font-sm">Please fill all mandatory fields (<span class="color-red">*</span>) before you Save
+			</div>
+		</div>
+
+			<div class="row admin-sub-setting-header">Institute Settings</div>
+			
+			<div>
+				<table class="table-responsive table" style="width: 70%">
+				<tbody>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Institute Name :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.instituteName" required>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Address (Line 1) :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.line1" required>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							Address (Line 2) :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.line2">
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							Affiliation No :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.affiliationNo">
+						</td>
+					</tr>
+					
+				</table>
+			</div>
+			
+			
+			<div class="row admin-sub-setting-header">Admission Settings</div>
+			
+			
+			<div>
+			<table class="table-responsive table" style="width: 70%">
+				<tbody>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Admission Session :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<select class="form-control" ng-model="instituteSetting.admissionSettings.admissionAcademicSessionId" ng-options="academicsession.id as academicsession.name for academicsession in academicsessions" required style="width: 138px">
+								<option value=""> -- Select -- </option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							New Registered Student ID Prefix :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.admissionSettings.registeredStudentIdPrefix"/>
+						</td>
+					</tr>
+					<!-- <tr>
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Student ID Generation Method :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<select class="form-control" ng-model="instituteSetting.admissionSettings.studentIdGenerationMethod" required style="width: 138px">
+								<option value=""> --- Select --- </option>
+								<option value="Incremental"> Incremental </option>
+								<option value="Method_1"> Customized </option>
+							</select>
+						</td>
+					</tr>
+					<tr ng-show="instituteSetting.admissionSettings.studentIdGenerationMethod == 'Method_1'">
+						<td class="col-md-2" style="border: 0px">
+							Confirm Student ID Prefix :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.admissionSettings.confirmStudentIdPrefix"/>
+						</td>
+					</tr>
+					
+					<tr ng-show="instituteSetting.admissionSettings.studentIdGenerationMethod == 'Incremental'">
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Next Student ID :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.admissionSettings.nextStudentId" ng-required="instituteSetting.admissionSettings.studentIdGenerationMethod == 'Incremental'"/>
+						</td>
+					</tr> -->		
+			</table>
+			</div>
+			<div class="row admin-sub-setting-header">Student ID Generation Method</div>
+			<div>
+				<table class="table-responsive table" style="width: 70%">
+				<tbody>
+					<tr>
+						<td class="col-md-5" style="border: 0px" colspan="2">
+							<input type="radio" ng-model="instituteSetting.isIdGenerationMethodSame" value="true"/> Same student ID generation method for all classes. Generate student permanent ID on admission confirmation.
+						</td>
+					</tr>
+					<tr ng-show="instituteSetting.isIdGenerationMethodSame == 'true'">
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Student ID Generation Method :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<select class="form-control" ng-model="instituteSetting.admissionSettings.studentIdGenerationMethod" required style="width: 138px">
+								<option value=""> --- Select --- </option>
+								<option value="Incremental"> Incremental </option>
+								<option value="Method_1"> Customized </option>
+							</select>
+						</td>
+					</tr>
+					<tr ng-show="instituteSetting.isIdGenerationMethodSame == 'true' && instituteSetting.admissionSettings.studentIdGenerationMethod == 'Method_1'">
+						<td class="col-md-2" style="border: 0px">
+							Confirm Student ID Prefix :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.admissionSettings.confirmStudentIdPrefix"/>
+						</td>
+					</tr>
+					
+					<tr ng-show="instituteSetting.isIdGenerationMethodSame == 'true' && instituteSetting.admissionSettings.studentIdGenerationMethod == 'Incremental'">
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Next Student ID :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.admissionSettings.nextStudentId" ng-required="instituteSetting.admissionSettings.studentIdGenerationMethod == 'Incremental'"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-5" style="border: 0px" colspan="2">
+							<input type="radio" ng-model="instituteSetting.isIdGenerationMethodSame" value="false"/> Different student ID generation methods for different classes. Don't generate student permanent ID on admission confirmation.
+						</td>
+					</tr>
+					
+					
+					
+				</table>
+			</div>
+			
+			<div class="row admin-sub-setting-header">Fee Settings</div>
+			
+			<div>
+				<table class="table-responsive table" style="width: 70%">
+				<tbody>
+					
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Fee Receipt Type :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<select class="form-control" ng-model="instituteSetting.feeSettings.receiptType" required style="width: 138px">
+								<option value=""> --- Select --- </option>
+								<option value="SINGLE"> One Copy </option>
+								<option value="DOUBLE"> Two Copy </option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Fee Receipt Start No :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.feeSettings.feeReceiptStartNo" required>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							<span class="color-red">*</span>Last Fee Receipt No :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="text" class="form-control" ng-model="instituteSetting.feeSettings.lastFeeReceiptNo" required>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-5" style="border: 0px" colspan="2">
+							<input type="checkbox" ng-model="instituteSetting.feeSettings.isFeeReceiptNoInCont">
+							Generate academic fee and form issue fee receipt number in continuation
+						</td>
+						
+					</tr>
+					
+				</table>
+			</div>
+			
+			<div class="row admin-sub-setting-header">Enquiry Settings</div>
+			
+				<div>
+					<table class="table-responsive table" style="width: 70%">
+					<tbody>
+						<tr>
+							<td class="col-md-2" style="border: 0px">
+								<span class="color-red">*</span>Enquiry Session :
+							</td>
+							<td class="col-md-3" style="border: 0px">
+								<select class="form-control" ng-model="instituteSetting.enquirySettings.enquiryAcademicSessionId" ng-options="academicsession.id as academicsession.name for academicsession in academicsessions" required style="width: 138px">
+									<option value=""> -- Select -- </option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="col-md-2" style="border: 0px">
+								<span class="color-red">*</span>Next Form Fee Receipt No :
+							</td>
+							<td class="col-md-3" style="border: 0px">
+								<input type="number" class="form-control" ng-model="instituteSetting.enquirySettings.nextFormReceiptNo" required>
+							</td>
+						</tr>
+					<tr>
+						<td class="col-md-2" style="border: 0px">
+							Form Fee (Rs.) :
+						</td>
+						<td class="col-md-3" style="border: 0px">
+							<input type="number" class="form-control" ng-model="instituteSetting.enquirySettings.formFee">
+						</td>
+					</tr>
+						
+					</table>
+			</div>
+			
+			<div class="row" style="margin-top: 20px">
+				<div class="col-md-1">
+					<button class="btn btn-primary btn-sm" ng-disabled="Institute_Setting_Form.$invalid" ng-click="ctrl.saveInstituteSettings()"> Save</button>
+				</div>
+				<div class="col-md-11">
+					<div class="alert alert-success"  ng-show="showSuccessMessage">
+			 			<span class="glyphicon glyphicon-ok"></span> Changes Saved Successfully
+					</div>
+				</div>
+			</div>
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+	</form>
+	</div>
+</div>

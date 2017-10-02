@@ -1,0 +1,102 @@
+
+
+      
+      <div class="row">
+      		<div class="navbar-default sidebar" role="navigation">
+	      		<div class="sidebar-nav navbar-collapse">
+	      			  <ul class="nav" id="side-menu">
+	      			  		<li>
+	                            <a href="#/admin/settings/sms"><i class="fa fa-mobile" aria-hidden="true"></i> SMS</a>
+	                        </li>
+	                        <li>
+	                            <a href="#/admin/busstop/list"><i class="fa fa-bus" aria-hidden="true"></i> Bus Stop</a>
+	                        </li>
+	                        <li>
+	                            <a href="#/admin/feehead/list"><i class="fa fa-money" aria-hidden="true"></i> Fee Head</a>
+	                        </li>
+	                        <li>
+	                            <a href="#/admin/affiliationauthority/list"><i class="fa fa-certificate" aria-hidden="true"></i> Affiliation Authority</a>
+	                        </li>
+	                        
+	                        <li>
+	                            <a href="#/admin/course/list"><span class="glyphicon glyphicon-education"></span> Course</a>
+	                        </li>
+	                        
+	                       <li>
+	                            <a href="#/admin/academicsession/list"><span class="glyphicon glyphicon-flag"></span> Academic Session</a>
+	                        </li> 
+	                        <li>
+	                            <a href="#/admin/settings/core"><i class="fa fa-gear fa-fw"></i> Institute Settings</a>
+	                        </li>
+	                        
+	                        <li>
+	                            <a href="#/admin/latefeerule/list"><span class="glyphicon glyphicon-time"></span> Late Fee Rule</a>
+	                        </li>
+	                        
+	                        <li>
+	                            <a href="#/admin/admissionscheme/list"><span class="glyphicon glyphicon-time"></span> Admission Scheme</a>
+	                        </li>
+	                        <li>
+	                            <a href="#/admin/studentcategory/list"><span class="glyphicon glyphicon-time"></span> Student Category</a>
+	                        </li>
+	                        <li>
+	                            <a href="#/admin/studentstatus/list"><span class="glyphicon glyphicon-time"></span> Student Status</a>
+	                        </li>
+	                        <li>
+	                            <a href="#/admin/enquirystatus/list"><span class="glyphicon glyphicon-time"></span> Enquiry Status</a>
+	                        </li>
+	                        
+	                       
+	      			  		
+	      			  </ul>
+	      		</div>
+    	 </div>
+      </div>
+      
+      
+
+
+<script>
+     
+
+	
+$(function() {
+
+    $('#side-menu').metisMenu();
+
+});
+
+//Loads the correct sidebar on window load,
+//collapses the sidebar on window resize.
+// Sets the min-height of #page-wrapper to window size
+$(function() {
+    $(window).bind("load resize", function() {
+        topOffset = 50;
+        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+            topOffset = 100; // 2-row-menu
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
+
+        height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
+    });
+
+    var url = window.location;
+    var element = $('ul.nav a').filter(function() {
+        return this.href == url || url.href.indexOf(this.href) == 0;
+    }).addClass('active').parent().parent().addClass('in').parent();
+    if (element.is('li')) {
+        element.addClass('active');
+    }
+});	
+	
+	
+	
+    </script>	  

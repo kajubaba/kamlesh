@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.StudentConversation" table="student_conversation">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true"/>
+		<many-to-one name="studentClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="student_class_id" not-null="true"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" not-null="true"/>
+		<many-to-one name="lastModifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id" not-null="true"/>
+		<many-to-one name="conversationType" class="com.narendra.sams.admission.domain.StudentConversationType" column="conversation_type_id"/>
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		
+		<property name="lastModifiedDateTime" column="modified_datetime" not-null="true"/>
+		<property name="createdDateTime" column="created_datetime" not-null="true"/>
+		<property name="conversation" column="conversation" />
+		<property name="conversationWith" column="conversation_with"/>
+		<property name="conversationAgenda" column="conversation_agenda" />
+		<property name="conversationUser" column="conversation_user" />
+		<property name="conversationDate" column="conversation_date" />
+		
+		
+	</class> 
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.exam.domain.EvaluationScheme" table="exam_evaluation">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="schemeName" column="name" not-null="true"/>
+		<property name="isMaster" column="is_master"/>
+		<property name="scorecardTemplate" column="scorecard_template"/>
+		
+		
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id"/>
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		
+		<set name="evaluationTypes" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="evaluation_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.EvaluationType"/>
+		</set>
+		
+		<set name="appliedOnClasses" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="evaluation_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.EvaluationSchemeClass"/>
+		</set>
+		<many-to-one name="createdByUser" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" />
+		<many-to-one name="lastModifiedByUser" class="com.narendra.sams.core.domain.UserView" column="last_modified_by_user_id" />
+		<property name="createdDateTime" column="created_datetime" />
+		<property name="lastModifiedDateTime" column="last_modified_datetime" />
+		
+		
+	</class> 
+</hibernate-mapping>

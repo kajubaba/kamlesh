@@ -1,0 +1,447 @@
+<div ng-controller="transportation.route.plan.controller as routePlanCtrl" ng-init="routePlanCtrl.viewRouteDetail()">
+	  
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	 
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div class="col-md-8" ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()"> 
+              		<i class="fa fa-road" aria-hidden="true"></i> <span ng-bind="admissionAcademicYear"></span> Plan Route
+             </div>
+             <div class="col-md-4">
+					<div class="row">
+						<div class="col-md-12">
+							  <div class="  dropdown pull-right">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									
+								 
+									<li>
+										<a href="javascript:void(0)" ng-click="routePlanCtrl.openImportBusStopModal()">
+											<span class="glyphicon glyphicon-plus-sign"></span> Add Bus Stops to Route
+										</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									
+								
+									<li>
+										<a href="javascript:void(0)" ng-click="routePlanCtrl.openModalToCreateFlipRoute()">
+											<span class="glyphicon glyphicon-plus-sign"></span> Create Flip Route
+										</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="./ws/transportation/routeplan/exportstudents/{{routeInfo.id}}">
+											<span class="glyphicon glyphicon-plus-sign"></span> Export to Excel
+										</a>
+									</li>
+								
+							 </ul>
+							 </div>
+						</div>
+				</div>
+					</div>			
+		</div>
+        
+        
+              <div class="row">
+        <div class="col-md-7">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	<i class="fa fa-bar-chart-o fa-fw"></i>Route Information
+            </div>
+            <div class="panel-body">
+				<table class="table-responsive table tbl-profile">
+					<tbody>
+						<tr>
+							<td class="profile-label col-md-3">Route Name</td>
+							<td ng-bind="routeInfo.name"></td>
+							<td class="profile-label col-md-3">Route Type</td>
+							<td ng-bind="routeInfo.type"></td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">From</td>
+							<td ng-bind="routeInfo.from"></td>
+							<td class="profile-label col-md-3">To</td>
+							<td ng-bind="routeInfo.to"></td>
+
+						</tr>
+					</tbody>
+				</table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	<i class="fa fa-bus"></i> Bus on Route
+           
+            
+            </div>
+            <div class="panel-body">
+				<table class="table-responsive table tbl-profile">
+					<tbody>
+						<tr>
+							<td class="profile-label col-md-3">Bus No</td>
+							<td ng-bind="routeVehicle.vehilceNo"></td>
+							<td class="profile-label col-md-3">Bus Name</td>
+							<!-- <td ng-bind="routeVehicle.vehilceName"> -->
+							<td>
+							
+								<select class="dropdown-white" ng-model="routeVehicle.vehicleId" ng-options="academicSessionVehicle.id as academicSessionVehicle.vehicleName for academicSessionVehicle in academicSessionVehicles" ng-change="routePlanCtrl.updateRouteVehicle()">
+                  						
+                  				</select>
+							
+							</td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">Available Seats</td>
+							<td colspan="3" ng-bind="routeVehicle.vehicleSeatCapacity"></td>
+							
+
+						</tr>
+								</tbody>
+				</table>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+        <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	<i class="fa fa-bar-chart-o fa-fw"></i>Route Bus Stops
+           
+            
+            </div>
+            <div class="panel-body">
+	
+		<div class="custom-accordinan">
+	
+			<uib-accordion>
+			
+			
+				<uib-accordion-group ng-repeat="routeBusStop in routeBusStops">
+      				<uib-accordion-heading >
+      					<div class="row">
+      						<div class="col-md-8"><a href="javascript:void(0)" ng-click="routePlanCtrl.fetchRouteBusStopStudents(routeBusStop.id, routeBusStop.busStopId)"> {{routeBusStop.busStopName}} ({{routeBusStop.assignedStudentCount}})</a></div>
+      						<div class="col-md-2"><em><a href="javascript:void(0)" ng-click="routePlanCtrl.openNotAssignedStudnetsModal(routeBusStop.id, $index, $event)">Unassigned : {{routeBusStop.unAssignedStudenCount}}</a></em></div>
+      						
+                        	
+                        	<div class="col-md-2"><span class="pull-right"><a href="javascript:void(0)" ng-click="routePlanCtrl.removeRouteBusStop(routeBusStop.id, $event)"> <span class="glyphicon glyphicon-trash" style="color:red"></span></a></span></div>
+      					</div>
+      				</uib-accordion-heading>
+      				 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                              <tr>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Class</th>
+                                <th>Gender</th>
+                                <th>Admission Status</th>
+                                <th>Pickup Point</th>
+                                <th>Drop Point</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="student in busStopStudents">
+                                <td ng-bind="student.studentId"></td>
+                                <td ng-bind="student.studentName"></td>
+                                <td ng-bind="student.studentClass"></td>
+                                <td ng-bind="student.studentGender"></td>
+                                <td ng-bind="student.studentStatus"></td>
+                                <td>
+                                	<select class="dropdown-white" ng-model="student.pickupPointId" ng-options="pickupPoint.id as pickupPoint.name for pickupPoint in pickDropPoints.pickupPoints" ng-change="routePlanCtrl.updateStudentPickupPoint({{student.studentDBId}},{{pickDropPoints.busStopId}}, student.pickupPointId)">
+                  						<option value="">-----------------------------</option>
+                  					</select>
+                                </td>
+                                <td>
+                                	<select class="dropdown-white" ng-model="student.dropPointid" ng-options="dropPoint.id as dropPoint.name for dropPoint in pickDropPoints.dropPoints" ng-change="routePlanCtrl.updateStudentDropPoint({{student.studentDBId}},{{pickDropPoints.busStopId}}, student.dropPointid)">
+                  						<option value="">-----------------------------</option>
+                  					</select>
+                                </td>
+                                <td> <a href="javascript:void(0)" ng-click="routePlanCtrl.removeRouteStudent(student.routeStudentId, routeBusStop.id, $parent.$index)"> <span class="glyphicon glyphicon-trash" style="color:red"></span></a></td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+    			</uib-accordion-group>
+				
+			</uib-accordion>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+            </div>
+          </div>
+        </div>
+
+      </div>
+        
+        
+           
+            
+    </div> 
+	  
+	  <!-- Row -1 -->
+      <<!-- div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-8" ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()"> 
+              		<i class="fa fa-bus"></i> <span ng-bind="admissionAcademicYear"></span> Plan Route
+              </div>
+               
+              <div class="col-sm-6 col-md-4">
+                <div class="row">
+	
+					<div class="col-md-12">
+						 <div class="dropdown pull-right">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									
+								 
+									<li>
+										<a href="javascript:void(0)" ng-click="routePlanCtrl.openImportBusStopModal()">
+											<span class="glyphicon glyphicon-plus-sign"></span> Add Bus Stops to Route
+										</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									
+								
+									<li>
+										<a href="javascript:void(0)" ng-click="routePlanCtrl.openModalToCreateFlipRoute()">
+											<span class="glyphicon glyphicon-plus-sign"></span> Create Flip Route
+										</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="./ws/transportation/routeplan/exportstudents/{{routeInfo.id}}">
+											<span class="glyphicon glyphicon-plus-sign"></span> Export to Excel
+										</a>
+									</li>
+								
+							 </ul>
+						</div>
+					</div>
+					<div class="clearfix visible-sm-block visible-md-block"></div>
+				</div>
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div> -->
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      
+
+	  
+	        <!-- Row -3 -->
+      <
+	  
+	  <div class="modal" id="modalImportBusStops" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			
+        			 Import Bus Stop(s)
+        		</h4>
+      		</div>
+	      <div class="modal-body">
+	       
+	       <div class="dataTable_wrapper">
+					<table class="table-responsive table table-bordered">
+						<thead>
+							<th></th>
+							<th>Bus Stop</th>
+							<th>Distance</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="busStop in busStopsToBeAssigned">
+								<td> <input type="checkbox" value="{{busStop.id}}" ng-model="busStop.checked" ng-change="routePlanCtrl.selectedBusStop()"> </td>
+								<td ng-bind="busStop.busStopName"></td>
+								<td ng-bind="busStop.distance"></td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+	         
+          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="routePlanCtrl.closeImportBusStopModal()">Cancel</button>
+	         <button type="button" class="btn btn-primary"  ng-click="routePlanCtrl.import()"><span class="glyphicon glyphicon-plus-sign" ></span> Import</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div>  
+	
+	
+	<div class="modal" id="modalNotAssignedStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			
+        			 Add Student(s) to Route
+        		</h4>
+      		</div>
+	      <div class="modal-body">
+	       
+	       <div class="dataTable_wrapper">
+					<table class="table-responsive table table-bordered">
+						<thead>
+							<th></th>
+							<th>Student ID</th>
+							<th>Student Name</th>
+							<th>Student Class</th>
+							<th>Gender</th>
+							<th>Status</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="student in studentsToBeAssigned">
+								<td> <input type="checkbox" value="{{student.studentDBId}}" ng-model="student.checked" ng-change="routePlanCtrl.selectStudentForRouteAssignment()"> </td>
+								<td ng-bind="student.studentId"></td>
+								<td ng-bind="student.studentName"></td>
+								<td ng-bind="student.studentClass"></td>
+								<td ng-bind="student.studentGender"></td>
+								<td ng-bind="student.studentStatus"></td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+	         
+          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="routePlanCtrl.closeNotAssignedStudnetsModal()">Cancel</button>
+	         <button type="button" class="btn btn-primary"  ng-click="routePlanCtrl.assignStudentToRoute()"><span class="glyphicon glyphicon-plus-sign" ></span> Import</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div>  
+	
+	
+	<div class="modal" id="modalCreateFlipRoute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			
+        			 Create Flip Route
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Creates reversal route by copying bus stops and bus stop students. You can use below two options to customize student copy feature.
+        			
+        		</div>
+      		</div>
+	      <div class="modal-body">
+	       
+	 		<table class="table-responsive table tbl-profile">
+	 			<tbody>
+						<tr>
+							<td class="profile-label col-md-3">
+								Route Name :
+							</td>
+							<td>
+								<input type="text" class="form-control" ng-model="flipRouteInfo.name"> 
+							</td>
+						</tr>		
+						<tr>
+							<td class="profile-label col-md-2">
+								From :
+							</td>
+							<td> <input type="text" class="form-control" ng-model="flipRouteInfo.from"></td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-2">
+								To :
+							</td>
+							<td><input type="text" class="form-control" ng-model="flipRouteInfo.to"></td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-2">
+								Planned Students :
+							</td>
+							<td><input type="text" class="form-control" ng-model="flipRouteInfo.plannedStudents"></td>
+						</tr>
+						<tr>
+							<td class="profile-label" colspan="2">
+								<input type="radio" ng-model="flipRouteInfo.forceCopy" value="true"> Force copy students in this route
+								<div style="font-size: 11px;margin-top: 5px">
+									if any student is already associated with existing route, this option removes such students from existing route and copy into newly created route
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="profile-label" colspan="2">
+								<div>
+									<input type="radio" ng-model="flipRouteInfo.forceCopy" value="false"> Don't copy already associated students in this route
+								</div>
+								<div style="font-size: 11px;margin-top: 5px">
+									if any student is already associated with existing route, this option doesn't copy such students into newly created route
+								</div>
+							</td>
+						</tr>
+				</tbody>		
+	 		</table>
+	         
+          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="routePlanCtrl.closeModalToCreateFlipRoute()">Cancel</button>
+	         <button type="button" class="btn btn-primary"  ng-click="routePlanCtrl.createFlipRoute()"><span class="glyphicon glyphicon-plus-sign" ></span> Create Flip Route</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div>  
+	
+	  </div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+     $(document).ready(function() {
+        $('#dt-route-list').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 0, "asc" ]],
+                "columns": [
+                            
+                            { "data": "name" },
+                            { "data": "type" },
+                            { "data": "from" },
+                            { "data": "to" },
+                            { "data": "plannedStudents" },
+                            { "data": "plannedStudents" },
+                            { "data": "plannedStudents" }
+                        ]
+        });
+    }); 
+	
+    </script>	  

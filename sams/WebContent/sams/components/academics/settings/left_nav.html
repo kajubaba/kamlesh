@@ -1,0 +1,98 @@
+
+
+      
+      <div class="row">
+      		<div class="navbar-default sidebar" role="navigation">
+	      		<div class="sidebar-nav navbar-collapse">
+	      			  <ul class="nav" id="side-menu">
+	      			  		<!-- <li>
+	                            <a href="javascript:void(0)"><i class="fa fa-dashboard fa-fw"></i> Events</a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0)"><i class="fa fa-dashboard fa-fw"></i> Classroom</a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0)"><i class="fa fa-dashboard fa-fw"></i> Teachers</a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0)"><i class="fa fa-dashboard fa-fw"></i> Leave Calendar</a>
+	                        </li> -->
+	      			  		<li has-permission='ROLE_ACADEMICS_MANAGE_CLASS_SUBJECTS'>
+	                            <a href="#/academics/settings/subject/{{AYID}}"><i class="fa fa-dashboard fa-fw"></i> Manage Class Subject</a>
+	                        </li>
+	                        <li has-permission='ROLE_ACADEMICS_MANAGE_CLASS_SECTION'>
+	                            <a href="#/academics/settings/section/{{AYID}}"><i class="fa fa-dashboard fa-fw"></i> Manage Class Section</a>
+	                        </li>
+	                         <!-- <li has-permission='ROLE_ACADEMICS_SETUP_EXAMINATION'> -->
+	                        <li has-permission='ROLE_ACADEMICS_SETUP_EXAMINATION'>
+	                            <a href="#/academics/settings/exam/patterns/{{AYID}}""><i class="fa fa-dashboard fa-fw"></i> Setup Exam</a>
+	                        </li>
+	                        <!-- <li>
+                            	<a href="javascript:void(0)"><i class="fa fa-bar-chart-o fa-fw"></i> Exam<span class="fa arrow"></span></a>
+	                            <ul class="nav nav-second-level">
+	                                <li>
+	                                    <a href="#/academics/settings/exam/patterns/2">Exam Patterns</a>
+	                                </li>
+	                                <li>
+	                                    <a href="javascript:void(0)">Evaluation Type</a>
+	                                </li>
+	                                <li>
+	                                    <a href="javascript:void(0)">Terms</a>
+	                                </li>
+	                                <li>
+	                                    <a href="#/academics/settings/exam/manage/csa">Co-Scholastic Aspect</a>
+	                                </li>
+	                            </ul>
+	                        </li> -->
+	      			  </ul>
+	      		</div>
+    	 </div>
+      </div>
+      
+      
+
+
+<script>
+     
+
+	
+$(function() {
+
+    $('#side-menu').metisMenu();
+
+});
+
+//Loads the correct sidebar on window load,
+//collapses the sidebar on window resize.
+// Sets the min-height of #page-wrapper to window size
+$(function() {
+    $(window).bind("load resize", function() {
+        topOffset = 50;
+        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+            topOffset = 100; // 2-row-menu
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
+
+        height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
+    });
+
+    var url = window.location;
+    var element = $('ul.nav a').filter(function() {
+        return this.href == url || url.href.indexOf(this.href) == 0;
+    }).addClass('active').parent().parent().addClass('in').parent();
+    if (element.is('li')) {
+        element.addClass('active');
+    }
+});	
+	
+	
+	
+    </script>	  

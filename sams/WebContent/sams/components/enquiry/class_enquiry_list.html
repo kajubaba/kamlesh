@@ -1,0 +1,79 @@
+<div ng-controller="sams.enquiry.classwise.student.controller as ctrl" ng-init="ctrl.init()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	<span class="glyphicon glyphicon-user"></span> 
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="ctrl.changeAcademicSession(academicYear.selectedAcademicYear)"></select>
+              	Enquiries  
+              </div>
+              <div class="col-sm-6 col-md-4">
+           <!--   <div class="row">
+			
+					<div class="col-md-12">
+						 <div class="dropdown  pull-right">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul has-permission='ROLE_NEW_REGISTRATION' class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									<li ><a href="#/admissions/new">New Addmision</a></li>
+							   </ul>
+						</div>
+					</div>
+					
+				</div> -->
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row" block-ui="block-studlist">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;
+            
+            		Enquiry For : 
+            		 <select class="dropdown-in-panel-header" ng-model="selectedClassId" ng-change="ctrl.changeClass(selectedClassId)">
+	            		<option ng-repeat="classwiseEnquiry in classwiseEnquiries" value="{{classwiseEnquiry.classId}}">
+	            			{{classwiseEnquiry.className}} ({{classwiseEnquiry.enquiryCount}})
+	            		</option>
+            		</select>
+            
+            
+              <div class="pull-right">
+                
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Students &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#/enquiry/list/classwise/{{selectedAcademicYear}}">Class View</a></li>
+                    <li><a href="#/enquiry/list/statuswise/{{selectedAcademicYear}}">Status View</a></li>
+                    <li><a href="#/enquiry/list/{{selectedAcademicYear}}">Student View</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+	 <new-enquiry/> 
+	  <!-- // Row -2 -->
+	  </div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+  
+	
+    </script>	  

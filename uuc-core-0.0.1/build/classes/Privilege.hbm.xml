@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.uuc.core.domain.Privilege" table="privilege">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="name" column="name" not-null="true" />
+		<property name="displayName" column="display_name" />
+		<property name="active" column="active" />
+		<many-to-one name="application" class="com.narendra.uuc.core.domain.Application"
+			column="application_id" lazy="proxy" />
+
+	</class>
+</hibernate-mapping>

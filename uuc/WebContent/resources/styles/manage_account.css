@@ -1,0 +1,62 @@
+body{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	direction: ltr;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333333;
+}
+
+.ac_header{
+	width: 100%;
+	height: 71px;
+	background: none repeat scroll 0 0 #F1F1F1;
+	border-bottom: 1px solid #E5E5E5;
+	overflow: hidden;
+}
+
+.mabutton{
+	height: 29px;
+    line-height: 25px;
+    width:90px;
+    margin: 0 10px 0 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    vertical-align: middle;
+      background-color: #4D90FE;
+    background-image: -moz-linear-gradient(center top , #4D90FE, #4787ED);
+    border: 1px solid #3079ED;
+    color: #FFFFFF;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    
+    
+     -moz-user-select: none;
+    background-color: #F5F5F5;
+    
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px 2px 2px 2px;
+    
+    cursor: default;
+    font-size: 11px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    min-width: 46px;
+    padding: 0 8px;
+    text-align: center;
+    transition: all 0.218s ease 0s;
+}
+
+.errormsg {
+    color: #DD4B39;
+    display: block;
+    line-height: 17px;
+    margin: 0.5em 0 0;
+}
+
+.secondary {
+    color: #666666;
+    font-size: 11px;
+    line-height: 18px;
+}

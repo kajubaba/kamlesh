@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.CustomizeInstallment" table="student_customize_installment">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true"/>
+		<many-to-one name="academicYearClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="academic_year_class_id" not-null="true"/>
+		<many-to-one name="installment" class="com.narendra.sams.core.domain.Installment" column="installment_id" not-null="true"/>
+		<property name="dueDate" column="due_date" />
+		<many-to-one name="lateFeeRule" class="com.narendra.sams.core.domain.LateFeeRule" column="late_fee_rule_id" />
+		<many-to-one name="academicYearFee" class="com.narendra.sams.core.domain.AcademicYearFee"
+			column="ay_fee_id" />
+		
+		<set name="customizeInstallmentDetails" inverse="true" lazy="true" cascade="save-update,delete">
+			<key column="student_customize_installment_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.CustomizeInstallmentDetail"/>
+		</set>
+		
+		<set name="daysOverdues" inverse="true" lazy="true" cascade="delete">
+			<key column="cust_installment_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.DaysOverdue"/>
+		</set>
+		
+		<set name="feeTransactions" inverse="true" lazy="true" cascade="delete">
+			<key column="cust_installment_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.FeeTransaction"/>
+		</set>
+		
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView"
+			column="created_by_user_id" />
+
+		<property name="createdDate" column="created_datetime" />
+
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView"
+			column="modified_by_user_id" />
+
+		<property name="modifiedDate" column="modified_datetime" />
+	</class> 
+</hibernate-mapping>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.MiscFeeTransaction"
+		table="misc_fee_transaction">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="student"
+					 class="com.narendra.sams.admission.domain.Student" 
+					 column="student_id"
+					 not-null="true" />
+		
+		<many-to-one name="studentClass"
+					 class="com.narendra.sams.core.domain.AcademicYearClass"
+					 column="student_class_id" 
+					 not-null="true" />
+		
+		<set name="miscFeeTransactionDetails" lazy="true" inverse="true" cascade="save-update">
+			<key column="misc_fee_tr_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.MiscFeeTransactionDetail" />
+		</set>
+		
+		<many-to-one name="transactionBy" 
+					 class="com.narendra.sams.core.domain.UserView"
+					 column="user_id" 
+					 not-null="true" />
+			
+		<many-to-one name="feeRecieptHeader"
+					 class="com.narendra.sams.admission.domain.FeeRecieptHeader" 
+					 column="fee_reciept_header_id" />
+
+		<many-to-one name="miscActivityCourseYear" class="com.narendra.sams.academicyear.domain.MiscActivityCourseYear" column="course_year_activity_id" />
+		
+		<property name="comments" column="comments" />
+		<property name="recieptNo" column="reciept_no" />
+		<property name="transactionTime" column="tr_datetime" not-null="true" />
+				
+		
+
+	</class>
+</hibernate-mapping>

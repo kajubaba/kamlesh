@@ -1,0 +1,106 @@
+<div ng-controller="sams.fee.transaction.controller as paidFeeCtrl" ng-init="paidFeeCtrl.getHeadwisePaidFee()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12" ng-controller="fee.sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" 
+              			ng-model="academicYear.selectedAcademicYear" 
+              			ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" 
+              			ng-change="paidFeeCtrl.getAcademicYearHeadwiseFee(academicYear.selectedAcademicYear)">
+              			
+              			
+              			
+              	</select>
+              	Paid Fee<small> Head Wise</small>  
+              </div>
+
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row"  block-ui="block-all-fee-tr-section">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	  Payment Date From : <input type="text" readonly="readonly" class="date-picker" id="fromDate" ng-model="fromDate" ng-change="paidFeeCtrl.filterHeadWiseFee()">&nbsp;&nbsp; To : &nbsp;<input type="text" class="date-picker" id="toDate" ng-model="toDate" ng-change="paidFeeCtrl.filterHeadWiseFee()" readonly="readonly">
+            	  
+            	  <div class="pull-right">
+	                <div class="btn-group">
+	                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Head wise View &nbsp;<span class="caret"></span> </button>
+	                  <ul class="dropdown-menu pull-right" role="menu">
+	                     <li><a href="javascript:void(0)" ng-click="paidFeeCtrl.filterClassWiseFee()">Class wise View</a></li>
+	                     <li><a href="javascript:void(0)" ng-click="paidFeeCtrl.filterTransactions()">Transaction View</a></li>
+	                  </ul>
+	                </div>
+             	 </div>
+             
+            </div>
+            <div class="panel-body">
+              <div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover" id="dt-all-fee-transaction">
+                  <thead>
+                    <tr>
+                      <th>Fee Head</th>
+                      <th>Paid Amount ( <i class="fa fa-inr"></i> )</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	<tr ng-repeat="paidFee in headWisePaidFees">
+                  		<td ng-bind="paidFee.feeHeadName"></td>
+                  		<td>
+                  			<a href="javascript:void(0)" ng-click="paidFeeCtrl.viewStudnetsPaidInHead(paidFee.feeHeadId)">{{paidFee.paidFee}}</a>
+                  		</td>
+                  	</tr>
+                  </tbody>
+                  <tfoot>
+                  	<tr>
+                      <th>Total</th>
+                      <th ng-bind="sumHeadwise"></th>
+                    </tr>
+                  </tfoot>
+                  
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	  </div>
+<script>
+     
+     
+$(function() {
+
+    
+	$( ".date-picker" ).datepicker({
+			dateFormat:'d-M-yy',
+			buttonImageOnly: true,
+			changeMonth: true,
+			changeYear: true
+		})
+
+	})    
+	
+   
+   
+     
+     
+     
+     /*  $(document).ready(function() {
+        $('#dt-all-fee-transaction').DataTable({
+                responsive: true,
+                "bPaginate": false,
+                "order": [[ 1, "desc" ]]
+               
+                
+        });
+    });   */
+	
+    </script>	  

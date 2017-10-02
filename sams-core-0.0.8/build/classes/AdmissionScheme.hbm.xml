@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AdmissionScheme" table="admission_scheme">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="name" column="scheme_name" not-null="true"/>
+		<property name="active" column="active" not-null="true"/>
+		<property name="createdDateTime" column="created_date_time"/>
+		<property name="modifiedDateTime" column="modified_date_time"/>
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id"/>
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id"/>
+		
+	</class>
+</hibernate-mapping>

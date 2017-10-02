@@ -1,0 +1,140 @@
+<div ng-controller="transportation.busstop.controller as busStopCtrl" ng-init="busStopCtrl.getBusStopPickupDropPoints()">
+	
+	
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()"> <i class="fa fa-bus"></i> <span ng-bind="admissionAcademicYear"></span> Manage Pickup/Drop Points </div>
+		</div>
+         
+      	<div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading" style="padding-bottom: 20px"> 
+            	<i class="fa fa-bar-chart-o fa-fw"></i>Bus Stop : <span ng-bind="busStopName"></span>
+           
+           <span class="pull-right">
+				           		 		<a class="btn btn-info btn-sm" href="javascript:void(0)" ng-click="busStopCtrl.openAddPickupDropPointModal()">
+											<span class="glyphicon glyphicon-plus-sign"></span> Add New Pickup/Drop Point</a>
+				           		 	</span>
+            
+            </div>
+            <div class="panel-body">
+	               <div class="row">
+	               		<div class="col-md-6">
+				               <div class="panel panel-default">
+				           		 <div class="panel-heading">Pickup Points</div>
+				            	 <div class="panel-body">
+				     					<div id="noPickupPoint" style="text-align: center;display: none;">
+					     						<a href="" ng-click="busStopCtrl.openAddPickupDropPointModal()"><span class="glyphicon glyphicon-plus-sign" style="font-size:80px;color:#f4f4f4"></span></a>
+					     						<div style="color:#CCCCCC"">No Pickup Points Added</div>
+				     					</div>
+				     					<div class="list-group" > 
+				     						<span class="list-group-item" ng-repeat="pickupPoint in pickupPoints"> 
+					 							{{pickupPoint.name}}
+					 							<span class="pull-right text-muted "><em><span>{{pickupPoint.landmark}}</span></em> </span>
+											</span>
+				     					</div>
+				            	 </div>
+				          	  </div>
+	          	  		</div>
+	          	  	<div class="col-md-6">
+				          	  <div class="panel panel-default">
+			           		 <div class="panel-heading" >Drop Points
+			           		</div>
+			            	 <div class="panel-body">
+			     				<div id="noDropPoint" style="text-align: center;">
+					     			<a href="" ng-click="busStopCtrl.openAddPickupDropPointModal()"><span class="glyphicon glyphicon-plus-sign" style="font-size:80px;color:#f4f4f4"></span></a>
+					     			<div style="color:#CCCCCC"">No Drop Points Added</div>
+				     			</div>
+			     				<div class="list-group">
+			     					<span class="list-group-item" ng-repeat="dropPoint in dropPoints"> 
+					 					{{dropPoint.name}}
+					 					<span class="pull-right text-muted "><em><span>{{dropPoint.landmark}}</span></em> </span>
+									</span> 
+				     			</div>
+			            	 </div>
+			          	  </div>
+          	  		</div>
+          	  </div>
+            </div>
+          </div>
+        </div>
+      </div>   
+         
+         
+         
+         
+         
+          
+           
+    </div>
+	
+	<div class="modal" id="modalAddPickupPoint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form ng-submit="busStopCtrl.createNewPoint()">
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> Add New Pickup/Drop point</h4>
+      		</div>
+	      <div class="modal-body">
+	       
+	       
+	          <div class="form-group">
+	            <label>Point Type:</label>
+	            <select class="form-control" ng-model="newPointFormData.type">
+	              <option selected="selected" value="Pickup">Pickup</option>
+	              <option value="Drop">Drop</option>
+	            </select>
+	          </div>
+	          <div class="form-group">
+	            <label for="email">Point Name:</label>
+	            <input type="text" class="form-control" ng-model="newPointFormData.name">
+	          </div>
+	          
+          <div class="form-group">
+            <label for="pwd">Landmark:</label>
+            <input type="text" class="form-control" ng-model="newPointFormData.ladmark">
+          </div>
+          <div class="checkbox">
+  			<label><input type="checkbox" ng-model="newPointFormData.createReversePoint">Create It's Reverse Point</label>
+		</div>
+        
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="busStopCtrl.closeAddPickupDropPointModal()">Cancel</button>
+	        <button type="submit" class="btn btn-primary"  ><span class="glyphicon glyphicon-plus-sign" ></span> Add Point</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div>  
+	  
+
+</div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+     $(document).ready(function() {
+        $('#dt-busstop-list').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 0, "asc" ]],
+                "columns": [
+                            
+                            { "data": "name" },
+                            { "data": "distance" },
+                            { "data": "pickupPointCount" },
+                            { "data": "dropPointCount" }
+                            
+                        ]
+        });
+    }); 
+	
+    </script>	  

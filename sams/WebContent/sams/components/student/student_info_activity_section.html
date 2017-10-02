@@ -1,0 +1,108 @@
+<div>
+
+      
+      <!-- Row -2 -->
+      <div class="row">
+      		<div class="col-sm-12">
+      			<div class="panel panel-default">
+                	<div id="studentId" style="display: none" ng-bind="studentDetails.id"></div>
+                	
+                	<div class="panel-heading panel-header-large"> <i class="fa fa-info-circle"></i> 
+                		<span ng-bind="studentDetails.studentName"></span>
+                		
+                				<div class="pull-right">
+               <!-- 
+                <a href="#/admissions/studentdetails/{{studentDetails.id}}/edit" style="font-size: 12px">Edit Information</a>
+                 -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Update View&nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                     <li><a href="#/fee/studentfee/{{studentDetails.id}}/null">Fee Detail View</a></li>
+                     <li><a href="#/admissions/studentdetails/{{studentDetails.id}}">Personal Information View</a></li>
+                     <li has-permission = "ROLE_MANAGE_TRANSPORTATION"><a href="#/transportation/student/{{studentDetails.id}}">Transportation View</a></li>
+                     
+                     
+                  </ul>
+                </div>
+              </div>
+                	</div>
+                		<div class="panel-body" >
+                			<div class="row">
+                <div class="col-md-2"> 
+                	<div ng-switch="hasPermission['ROLE_UPDATE_STUD_PIC']">
+                		<div ng-switch-when="true">
+                			<a href="javascript:void(0)" id="std_image">
+                				<img id="studentImage" class="img-circle img-thumbnail img-responsive profile-img" src="sams/assets/img/student_icon.png" alt="" style="width: 170px;height: 170px">
+                			</a>
+                	 		&nbsp;&nbsp;&nbsp;<button ng-click="studCtrl.uploadFile()" class="btn btn-info">Update Pic</button>
+                		</div>
+                		<div ng-switch-default>
+                				<img id="studentImage" class="img-circle img-thumbnail img-responsive profile-img" src="sams/assets/img/student_icon.png" alt="" style="width: 170px;height: 170px">
+                		</div>
+                	</div>
+                	
+                </div>
+                <div class="col-md-5">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">ID :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.studentId"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Current class :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.currentClass"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Current Academic Yr :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.currentAcademicYear"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Admission Status :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.status"></div>
+                    </div>
+                    
+                    
+                    
+                  </form>
+                </div>
+                <div class="col-md-5">
+                  <form class="form-horizontal">
+                       <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Gender :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.gender"></div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Father's Name :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.fatherName"></div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Current Bus Stop :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.busStop"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Admission Scheme :</label>
+                      <div class="col-sm-6" ng-bind="studentDetails.admissionScheme"></div>
+                    </div>
+                  
+                  </form>
+                </div>
+                
+                
+              </div>
+                		</div>
+                </div>
+      		</div>
+ 
+      </div>
+	  
+	
+	  </div>
+<script>
+$( document ).ready(function() {
+	$('#std_image').click(function() {
+	    $('input[type=file]').click();
+	});
+});
+
+    </script>		  
+	  

@@ -1,0 +1,111 @@
+<div ng-controller="transportation.vehicle.controller as vehicleCtrl" ng-init="vehicleCtrl.getAllVehicles()">
+	
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div class="col-md-8"> <i class="fa fa-bus"></i> Vehicles</div>
+			<div class="pull-right">
+				<a href="#/transportation/vehicle/new" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-plus-sign"></span> New Vehicle</a>
+			</div>
+		</div>
+        
+            <div class="row">
+			<div ui-grid="gridOptions" 
+				ui-grid-exporter 
+				ui-grid-pagination
+				ui-grid-move-columns 
+				ui-grid-resize-columns 
+				class="myGrid">
+			</div>
+		</div>
+    </div>
+
+
+
+	  
+	  <div class="modal" id="modalVehicle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			<span ng-show="isAdd">Add New</span>
+        			<span ng-show="isUpdate">Update</span>
+        			 Vehicle
+        		</h4>
+      		</div>
+	      <div class="modal-body">
+	       
+	       
+	          <div class="form-group">
+	            <label>Vehicle No :</label>
+	            <input type="text" class="form-control" ng-model="vehicleFormData.vehicleId">
+	          </div>
+	          <div class="form-group">
+	            <label>Vehicle Name :</label>
+	            <input type="text" class="form-control" ng-model="vehicleFormData.vehicleName">
+	          </div>
+	          <div class="form-group">
+	            <label>Vehicle Type :</label>
+	            <input type="text" class="form-control" ng-model="vehicleFormData.vehicleType">
+	          </div>
+	          <div class="form-group">
+	            <label for="email">Vehicle Manufacturer :</label>
+	            <input type="text" class="form-control" ng-model="vehicleFormData.manufacturer">
+	          </div>
+	          
+          <div class="form-group">
+            <label for="pwd">Manufacturing Year :</label>
+            <input type="text" class="form-control" ng-model="vehicleFormData.manufacturingYear">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Vehicle Color :</label>
+            <input type="text" class="form-control" ng-model="vehicleFormData.vehicleColor">
+          </div>
+          
+          <div class="form-group">
+            <label for="pwd">Seat Capacity :</label>
+            <input type="text" class="form-control" ng-model="vehicleFormData.vehicleSeatCapacity">
+          </div>
+          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="vehicleCtrl.closeVehicleModal()">Cancel</button>
+	         <span ng-show="isAdd">
+	         	<button type="button" class="btn btn-primary"  ng-click="vehicleCtrl.addVehicle()"><span class="glyphicon glyphicon-plus-sign" ></span> Add Vehicle</button>
+	         </span>
+	         <span ng-show="isUpdate">
+	         	<button type="button" class="btn btn-primary"  ng-click="vehicleCtrl.updateVehicle()"><span class="glyphicon glyphicon-plus-sign" ></span> Update Vehicle</button>
+	         </span>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	  </div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+     $(document).ready(function() {
+        $('#dt-vehicle-list').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 0, "asc" ]],
+                "columns": [
+                            
+                            { "data": "vehicleName" },
+                            { "data": "vehicleType" },
+                            { "data": "vehicleId" },
+                            { "data": "manufacturer" },
+                            { "data": "vehicleSeatCapacity" }
+                        ]
+        });
+    }); 
+	
+    </script>	  

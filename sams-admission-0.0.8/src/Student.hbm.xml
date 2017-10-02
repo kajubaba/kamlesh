@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.Student" table="student">
+		
+		<id name="id" 
+		>
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<many-to-one name="academicYearClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="academic_year_class_id" not-null="true"/>
+	
+		<property name="studentId" column="student_id" not-null="true" unique="true"/>
+		
+		<property name="firstName" column="first_name" not-null="true"/>
+		<property name="middleName" column="middle_name" />
+		<property name="lastName" column="last_name"/>
+		<property name="fatherName" column="father_name" />
+		<property name="motherName" column="mother_name" />
+		<property name="fatherOccupation" column="father_occupation" />
+		<property name="fatherAnnualIncome" column="father_annual_income" />
+		<property name="motherOccupation" column="mother_occupation" />
+		<property name="motherAnnualIncome" column="mother_annual_income" />
+		
+		
+		
+		
+		
+		<property name="phone3" column="phone_3" />
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" />
+		<property name="createdDate" column="created_datetime" />
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id" />
+		<property name="modifiedDate" column="modified_datetime" />
+		
+		 <set name="addresses" lazy="true" cascade="save-update,delete">
+			<key column="student_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.Address"/>
+		</set>
+		
+		
+		<property name="fatherContact1" column="father_contact_no_1" />
+		<property name="fatherContact2" column="father_contact_no_2" />
+		<property name="motherContact1" column="mother_contact_no_1" />
+		<property name="motherContact2" column="mother_contact_no_2" />
+		 
+		<set name="classHistories" lazy="true" cascade="save-update,delete">
+			<key column="student_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.ClassHistory"/>
+		</set>
+		<many-to-one name="admissionType" class="com.narendra.sams.core.domain.AdmissionType" column="admission_type_id" not-null="true"/>
+		
+		
+		<set name="studentBankDetails" lazy="true">
+			<key column="student_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.StudentBankDetails"/>
+		</set>
+		
+		<set name="feeTransactions" lazy="true" cascade="save-update">
+			<key column="student_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.FeeTransaction"/>
+		</set>
+		
+		<set name="customizeInstallments" lazy="true" cascade="save-update">
+			<key column="student_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.CustomizeInstallment"/>
+		</set>
+		
+		<property name="admissionConfirmed" column="admission_confirmed" />
+		<many-to-one name="busStop" class="com.narendra.sams.core.domain.BusStop" column="bus_stop_id" />
+		<property name="admissionFormNo" column="admission_form_no" />
+		<many-to-one name="studentStatus" class="com.narendra.sams.core.domain.StudentStatus" column="student_status_id" />
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		<property name="imageName" column="image_name" />
+		<property name="isLocked" column="is_locked" />
+		<many-to-one name="oldBusStop" class="com.narendra.sams.core.domain.BusStop" column="old_bus_stop_id" />
+		
+		<many-to-one name="admissionScheme" class="com.narendra.sams.core.domain.AdmissionScheme" column="admission_scheme" />
+		
+		<set name="gaurdians" lazy="true" cascade="save-update,delete">
+			<key column="student_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.StudentGaurdian"/>
+		</set>
+		
+		<property name="religion" column="religion" />
+		<property name="samagraId" column="samagra_id" />
+		<property name="phone1" column="phone_1" />
+		<property name="phone2" column="phone_2" />
+		<property name="enrollmentNo" column="enrollment_no" />
+		<property name="emailId" column="email_address" />
+		<property name="dob" column="dob"/>
+		<property name="gender" column="gender" />
+		<property name="subCaste" column="sub_caste" />
+		<property name="birthPlace" column="birth_place" />
+		<property name="nationality" column="nationality" />
+		<property name="familyId" column="family_id" />
+		<property name="aadharNo" column="aadhar_no" />
+		<property name="bloodGroup" column="boold_group" />
+		<property name="languagesKnown" column="languages_known" />
+		<many-to-one name="studentCategory" class="com.narendra.sams.core.domain.StudentCategory" column="student_category_id" />
+		<property name="lastRegistrationDate" column="last_registration_date" />
+		<property name="admissionConfirmationDate" column="admission_confirmation_date" />
+		<many-to-one name="classSection" class="com.narendra.sams.admission.domain.ClassSection" column="class_section_id" />
+		<property name="isIdGenerated" column="is_id_generated" />
+		<many-to-one name="enquiry" class="com.narendra.sams.enquiry.domain.Enquiry" column="enquiry_id" />
+		
+		<property name="translatedStudentName" column="name_in_other_lang" />
+		<property name="translatedFatherName" column="father_name_in_other_lang" />
+		<property name="translatedCity" column="address_in_other_lang" />
+		
+	</class> 
+</hibernate-mapping>

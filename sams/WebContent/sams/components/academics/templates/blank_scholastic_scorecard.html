@@ -1,0 +1,25 @@
+<div ng-if="scoreCard.scholasticAssessment.assessmentTerms.length > 0" class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered border">
+			<thead>
+				<tr>
+					<th rowspan="2">Subject</th>
+					<th ng-repeat="assessmentTerm in scoreCard.scholasticAssessment.assessmentTerms" colspan="{{assessmentTerm.assessmentNames.length}}">
+						{{assessmentTerm.name}}
+					</th>
+				</tr>
+				<tr ng-if="!scoreCard.scholasticAssessment.termBasedAssessment">
+					<th ng-repeat="assessmentName in scoreCard.scholasticAssessment.assessmentTerms[0].assessmentNames">{{assessmentName.name}}</th>
+					<th ng-repeat="assessmentName in scoreCard.scholasticAssessment.assessmentTerms[1].assessmentNames">{{assessmentName.name}}</th>
+					<th ng-repeat="assessmentName in scoreCard.scholasticAssessment.assessmentTerms[2].assessmentNames">{{assessmentName.name}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="assessmentSubject in scoreCard.scholasticAssessment.assessmentSubjects">
+					<td>{{assessmentSubject.name}}</td>
+					<td ng-repeat="grade in assessmentSubject.grades track by $index">{{grade}}</td>
+				</tr>
+			</tbody>
+		</table>	 
+	</div>
+</div>

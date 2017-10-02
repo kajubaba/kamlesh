@@ -1,0 +1,227 @@
+.header_border {
+	border: 1px solid #999999;
+}
+
+.customer_name {
+	font: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-style: oblique;
+	color: #FFFFFF;
+	padding-top: 15px;
+	padding-left: 150px
+}
+
+.header_left{background:url(../images/default_theme/header_left.jpg) repeat-x; }
+.header_right{background:url(../images/default_theme/header_right.jpg) repeat-x;}
+#tab1{background:url(../images/default_theme/enquery.jpg) ;width:108px;height:81px;float:left}
+#tab2{background:url(../images/default_theme/registration.jpg) ;width:108px;height:81px;float:left}
+#tab3{background:url(../images/default_theme/addmission.jpg) ;width:108px;height:81px;float:left}
+#tab4{background:url(../images/default_theme/reports.jpg) ;width:108px;height:81px;float:left}
+#tab5{background:url(../images/default_theme/admin.jpg) ;width:108px;height:81px;float:left}
+
+.color_theme_bg{
+	background-color: #F5F5F5;
+}
+
+.color_theme_border{
+	border:1px solid #DBDBDB;
+}
+
+#left_navigation div:hover{
+	background-color: #D6D6D6;
+}
+
+.grid_color_theme_border{
+	border:1px solid #DDDDDD;
+}
+
+.grid_heading_theme{
+background-image:-moz-linear-gradient(#FFFFFF, #F5F5F5);
+	/*background-image:-moz-linear-gradient(#F9F9F9, #F0F1F3);*/
+	
+	border: 1px solid #DDDDDD;
+	color:#003366;
+}
+
+.grid_item{
+	padding-left:10px;
+	border-right:1px solid #DDDDDD;
+}
+
+.grid_last_item{
+	padding-left:10px;
+}
+
+.grid_main_row{
+	background-color: #FFFFFF;
+	height:27px;
+	
+}
+.grid_alt_row{
+	background-color: #F8F9F8;
+	height:27px;
+}
+
+.grid_main_row_plain{
+	background-color: #FFFFFF;
+	height:27px;
+	
+}
+
+.grid_alt_row_plain{
+	background-color: #F8F9F8;
+	height:27px;
+}
+
+
+.grid_main_row:hover{
+	background-color: #D6EDF3;
+}
+.grid_alt_row:hover{
+	background-color: #D6EDF3;
+}
+
+.grid_row_selected{
+	background-color: #93B0BF;
+}
+
+
+.grid_main_row_static{
+	background-color: #FFFFFF;
+	height:27px;
+	
+}
+.grid_alt_row_static{
+	background-color: #F8F9F8;
+	height:27px;
+}
+
+
+.form_heading_color_theme{
+	color:#003366;
+}
+
+.form_header_top_bg{
+	background-image:-moz-linear-gradient(#FFFFFF, #F5F5F5);
+/*		background-image:-moz-linear-gradient(#FFFFFF, #F0F1F3);*/
+	border: 1px solid #DDDDDD;
+}
+
+.form_header_bottom_border{
+	border: 1px solid #DDDDDD;
+	border-top:0px;
+}
+
+.button {
+font-family: Arial;
+color: #041533;
+font-size: 13px;
+padding: 2px;
+text-decoration: none;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border: solid #c7c7c7 1px;
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#e6e6e6));
+background: -moz-linear-gradient(top, #fafafa, #e6e6e6);
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#fafafa, endColorStr=#e6e6e6);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#fafafa, endColorStr=#e6e6e6);
+display:inline-block; /* IE is so silly */
+}
+.button:hover {
+background: #e6e6e6;
+}
+
+.mandatory_mark{
+	color:#FF0000;
+}
+
+.sortable:hover{
+	background-image:-moz-linear-gradient(#F9F9F9, #F0F1F3);
+	cursor:pointer;
+}
+
+.popup{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+	position:fixed;
+	margin-top:0px;
+	margin-left:350px;
+	background:#fff;
+	z-index:999;
+	display:none;
+	border-radius: 6px 6px 6px 6px; 
+	-moz-border-radius: 6px 6px 6px 6px; 
+	-webkit-border-radius: 6px 6px 6px 6px; 
+	border: 1px solid #DDDDDD;
+}
+
+.popup_header{
+	padding:10px 0px 0px 10px ;
+	height: 25px;
+	background-image:-moz-linear-gradient(#F9F9F9, #F0F1F3);
+	border-color: #DDDDDD;
+	border: 1px solid #DDDDDD;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	font-weight: bold;
+}	
+
+.popupBack{
+	position:fixed;
+	display:none;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	opacity:0.3;
+	background:#000000;
+}
+
+.action-button{
+	background-color: transparent;
+    background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #444444;
+    border-radius: 2px 2px 2px 2px;
+    font-size: 11px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    margin-right: 3px;
+    min-width: 54px;
+    outline: 0 none;
+    padding: 0 8px;
+    text-align: center;
+     cursor: default;
+}
+.action-button:focus{
+	border: 1ps solid #4D90FE;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+#dvLoading
+{
+	background:#fff url(../images/ajax-loader.gif) no-repeat center center;
+	height: 11px;
+	width: 43px;
+	position: fixed;
+	z-index: 1000;
+	left: 50%;
+	top: 50%;
+	margin: -25px 0 0 -25px;
+}
+
+#dvLoadingBG{
+	position:fixed;
+	display:none;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	opacity:0.3;
+	background:#ffffff;
+}

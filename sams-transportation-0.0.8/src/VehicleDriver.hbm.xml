@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.transportation.domain.VehicleDriver" table="trans_bus_driver">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="name" column="name"/>
+		<property name="address" column="address" />
+		<property name="primaryContact" column="primary_contact_no"/>
+		<property name="secondaryContact" column="secondary_contact_no" />
+		<property name="licenseNo" column="license_no" />
+		<property name="role" column="role" />
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id" not-null="true"/>
+		<property name="createdDateTime" column="created_date_time"/>
+		<property name="lastUpdatedDateTime" column="last_updated_date_time"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" not-null="true"/>
+		<many-to-one name="lastUpdatedBy" class="com.narendra.sams.core.domain.UserView" column="last_updated_by_user_id" not-null="true"/>
+		
+	</class> 
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.StudentActivity"
+		table="student_activity">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="student"
+			class="com.narendra.sams.admission.domain.Student" column="student_id"
+			not-null="true" />
+		<many-to-one name="academicYear"
+			class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id"
+			not-null="true" />
+		<many-to-one name="academicYearClass"
+			class="com.narendra.sams.core.domain.AcademicYearClass"
+			column="academic_year_class_id" not-null="true" />
+		<many-to-one name="addmissionAction"
+			class="com.narendra.sams.admission.domain.AddmissionActionOld" column="addmision_action_id"
+			not-null="true" />
+		<property name="log" column="log" not-null="true" />
+		<property name="comments" column="comments" />
+		<many-to-one name="createdByUser" class="com.narendra.sams.core.domain.UserView"
+			column="user_id" not-null="true" />
+		<property name="createdDatetime" column="created_date_time"
+			not-null="true" />
+
+	</class>
+</hibernate-mapping>

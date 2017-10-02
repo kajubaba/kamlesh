@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYearCourse" table="academic_year_course">
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="active" column="active" />
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" />
+		<many-to-one name="course" class="com.narendra.sams.core.domain.Course" column="course_id" />
+		
+		<set name="courseYearSettings" cascade="save-update,delete">
+			<key column="academic_year_course_id"></key>
+			<one-to-many class="com.narendra.sams.core.domain.CourseYearSetting"/>
+		</set>
+		
+		
+	</class>
+</hibernate-mapping>

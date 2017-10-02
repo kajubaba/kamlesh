@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+ 		<property name="location">
+			<value>classpath:sams-core_${ENV}.properties</value>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${database.host}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="initialSize" value="15" />
+		<property name="maxActive" value="50" />
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>/hibernate/hbm/</value>
+			</list>
+		</property>
+		 -->
+		 <property name="mappingLocations">
+		 	<list>
+				<value>classpath:AffiliationAuthority.hbm.xml</value>
+				<value>classpath:AcademicYear.hbm.xml</value>
+				<value>classpath:AcademicYearCourse.hbm.xml</value>
+				<value>classpath:AcademicYearClass.hbm.xml</value>
+				<value>classpath:Course.hbm.xml</value>
+				<value>classpath:CourseYear.hbm.xml</value>
+				<value>classpath:CourseYearType.hbm.xml</value>
+				<value>classpath:CourseYearSettings.hbm.xml</value>
+				<value>classpath:Enquiry.hbm.xml</value>
+				
+				
+				<value>classpath:FollowupCommConclusion.hbm.xml</value>
+				<value>classpath:FollowupCommType.hbm.xml</value>
+				<value>classpath:FollowupCommWith.hbm.xml</value>
+				<value>classpath:FollowupNextAction.hbm.xml</value>
+				<value>classpath:FollowupSuggestion.hbm.xml</value>
+				<value>classpath:EnquiryFollowup.hbm.xml</value>
+				
+				
+				
+				<value>classpath:EnquiryAddress.hbm.xml</value>
+				<value>classpath:EnquiryActivity.hbm.xml</value>
+				<value>classpath:StudentCategory.hbm.xml</value>
+				<value>classpath:StudentPrevClass.hbm.xml</value>
+				
+				<value>classpath:State.hbm.xml</value>
+				<value>classpath:Country.hbm.xml</value>
+				<value>classpath:EnquiryStatus.hbm.xml</value>
+				<value>classpath:UserView.hbm.xml</value>
+				
+				
+				
+				<value>classpath:FeeHead.hbm.xml</value>
+				<value>classpath:AcademicYearFee.hbm.xml</value>
+				
+				<value>classpath:BusStop.hbm.xml</value>
+				<value>classpath:BusFee.hbm.xml</value>
+				<value>classpath:Student.hbm.xml</value>
+				<value>classpath:Address.hbm.xml</value>
+				<value>classpath:ClassHistory.hbm.xml</value>
+				<value>classpath:AcademicYearAdmissionCount.hbm.xml</value>
+				<value>classpath:AdmissionType.hbm.xml</value>
+				<value>classpath:AcademicYearFeeDetail.hbm.xml</value>
+				
+				<value>classpath:Installment.hbm.xml</value>
+				<value>classpath:AcademicYearFeeInstallment.hbm.xml</value>
+				<value>classpath:AcademicYearFeeInstallmentDetail.hbm.xml</value>
+				<value>classpath:FeeTransaction.hbm.xml</value>
+				<value>classpath:FeeTransactionDetail.hbm.xml</value>
+				<value>classpath:FeeDiscount.hbm.xml</value>
+				<value>classpath:CustomizeInstallment.hbm.xml</value>
+				<value>classpath:CustomizeInstallmentDetail.hbm.xml</value>
+				<value>classpath:AcademicYearBusFeeInstallment.hbm.xml</value>
+				<value>classpath:AcademicYearBusFeeInstallmentDetail.hbm.xml</value>
+				<value>classpath:DaysOverdue.hbm.xml</value>
+				<value>classpath:FeeCustomizeComments.hbm.xml</value>
+				
+				
+				<value>classpath:StudentActivity.hbm.xml</value>
+				<value>classpath:StudentStatus.hbm.xml</value>
+				<value>classpath:AddmissionStatus.hbm.xml</value>
+				
+				<value>classpath:Company.hbm.xml</value>
+				<value>classpath:Institute.hbm.xml</value>
+				<value>classpath:InstituteSetting.hbm.xml</value>
+				
+				<value>classpath:LateFeeRule.hbm.xml</value>
+				<value>classpath:FeeRecieptHeader.hbm.xml</value>
+				
+				
+				 
+				<value>classpath:AdmissionScheme.hbm.xml</value>
+				<value>classpath:StudentGaurdian.hbm.xml</value>
+				<value>classpath:GaurdianAddress.hbm.xml</value>
+				
+				<value>classpath:Vehicle.hbm.xml</value>
+				<value>classpath:AcademicYearVehicle.hbm.xml</value>
+				<value>classpath:Route.hbm.xml</value>
+				<value>classpath:BusStopPoint.hbm.xml</value>
+				<value>classpath:StudentPickupDropPoint.hbm.xml</value>
+				<value>classpath:ChangeRequest.hbm.xml</value>
+				<value>classpath:StudentActivityLog.hbm.xml</value>
+				<value>classpath:RouteBusStop.hbm.xml</value>
+				<value>classpath:RouteStudent.hbm.xml</value>
+				<value>classpath:VehicleRoute.hbm.xml</value>
+				<value>classpath:StudentBankDetails.hbm.xml</value>
+				<value>classpath:Bank.hbm.xml</value>
+				<value>classpath:ClassSubject.hbm.xml</value>
+				<value>classpath:Document.hbm.xml</value>
+				<value>classpath:StudentDocument.hbm.xml</value>
+				<value>classpath:ClassSection.hbm.xml</value>
+				
+				<value>classpath:InstituteSMSProvider.hbm.xml</value>
+				<value>classpath:SMSSetting.hbm.xml</value> 
+				
+				<value>classpath:EvaluationScheme.hbm.xml</value>
+				<value>classpath:EvaluationSchemeClassMap.hbm.xml</value>
+				<value>classpath:EvaluationType.hbm.xml</value>
+				<value>classpath:EvaluationTerm.hbm.xml</value>
+				<value>classpath:TermAssessment.hbm.xml</value>
+				<value>classpath:ScholasticScore.hbm.xml</value>
+				<value>classpath:CoScholasticActivity.hbm.xml</value>
+				<value>classpath:ActivitySkill.hbm.xml</value>
+				<value>classpath:SkillIndicator.hbm.xml</value>
+				<value>classpath:StudentCoScholasticScore.hbm.xml</value>
+				<value>classpath:GradeScale.hbm.xml</value>
+				<value>classpath:GradeScalePoint.hbm.xml</value>
+				<value>classpath:StudentRollNo.hbm.xml</value>
+				<value>classpath:SkillIndicatorGradePointMap.hbm.xml</value>
+				<value>classpath:SubjectActivity.hbm.xml</value>
+				<value>classpath:SubjectActivityRubric.hbm.xml</value>
+				<value>classpath:StudentAttendance.hbm.xml</value>
+				<value>classpath:StudentConversationType.hbm.xml</value>
+				<value>classpath:StudentConversation.hbm.xml</value>
+				<value>classpath:AcademicYearAdmissionScheme.hbm.xml</value>
+				<value>classpath:BusFeeDetail.hbm.xml</value>
+				<value>classpath:AcademicSessionAdmisionSchemeDetail.hbm.xml</value>
+				<value>classpath:IDGenerationMethod.hbm.xml</value>
+				<value>classpath:AcademicYearClassIDGenerationMethod.hbm.xml</value>
+				<value>classpath:VehicleDriver.hbm.xml</value>
+			</list>
+		 </property>
+		 
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:advice id="txAdvice">
+		<tx:attributes>
+			<tx:method name="add*"       isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="create*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="save*"      isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="update*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="edit*"      isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="change*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="modify*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="delete*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="remove*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="promote*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="pay*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="customize*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="renew*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="admit*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="copy*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="publish*"    isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="*"          isolation="READ_COMMITTED" propagation="SUPPORTS" read-only="true"/>
+			
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:advisor pointcut="execution(* com.narendra.sams.*.service..*Service.*(..))" advice-ref="txAdvice"/>
+	</aop:config>
+
+	<bean id="abstractDAOSupport" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
+	<bean name="instituteDAO" class="com.narendra.sams.core.dao.impl.InstituteDAOImpl" parent="abstractDAOSupport" />
+	<bean name="userViewDAO" class="com.narendra.sams.core.address.dao.impl.UserViewDAOImpl" parent="abstractDAOSupport" />
+	<bean name="admissionSchemeDAO" class="com.narendra.sams.core.dao.impl.AdmissionSchemeDAOImpl" parent="abstractDAOSupport" />
+	<bean name="academicYearAdmissionSchemeDAO" class="com.narendra.sams.core.dao.impl.AcademicYearAdmissionSchemeDAOImpl" parent="abstractDAOSupport" />
+	
+	
+	<bean name="academicYearAdmissionSchemeService" class="com.narendra.sams.core.service.impl.AcademicYearAdmissionSchemeServiceImpl">
+		<property name="academicYearAdmissionSchemeDAO" ref="academicYearAdmissionSchemeDAO" />
+		<property name="admissionSchemeService" ref="admissionSchemeService" />
+	</bean>
+	
+	<bean name="admissionSchemeService" class="com.narendra.sams.core.service.impl.AdmissionSchemeServiceImpl">
+		<property name="admissionSchemeDAO" ref="admissionSchemeDAO" />
+	</bean>
+	
+	<bean name="instituteService" class="com.narendra.sams.core.service.impl.InstituteServiceImpl">
+		<property name="instituteDAO" ref="instituteDAO" />
+	</bean>
+	
+	<bean name="addressDAO"
+		class="com.narendra.sams.core.address.dao.impl.AddressDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	<bean name="addressService"
+		class="com.narendra.sams.core.address.service.impl.AddressServiceImpl">
+		<property name="addressDAO" ref="addressDAO" />
+	</bean>
+
+	<bean name="stopApplicationService" class="com.narendra.sams.core.address.service.StopApplicationService">
+		<property name="stopApplicationAfter" value="${stop.application.after}" />
+	</bean>
+	
+	<bean name="studentCategoryDAO" class="com.narendra.sams.core.dao.impl.StudentCategoryDAOImpl" parent="abstractDAOSupport" />
+	<bean name="studentStatusDAO" class="com.narendra.sams.core.dao.impl.StudentStatusDAOImpl" parent="abstractDAOSupport" />
+	<bean name="bankDAO" class="com.narendra.sams.core.dao.impl.BankDAOImpl" parent="abstractDAOSupport" />
+	<bean name="feeHeadDAO" class="com.narendra.sams.core.dao.impl.FeeHeadDAOImpl" parent="abstractDAOSupport">
+		<property name="userViewDAO" ref="userViewDAO" />
+	</bean>
+	
+	
+	<bean name="studentCategoryService" class="com.narendra.sams.core.service.impl.StudentCategoryServiceImpl">
+		<property name="studentCategoryDAO" ref="studentCategoryDAO" />
+	</bean>
+	
+	
+	<bean name="studentStatusService" class="com.narendra.sams.core.service.impl.StudentStatusServiceImpl">
+		<property name="studentStatusDAO" ref="studentStatusDAO" />
+	</bean>
+	
+	<bean name="bankService" class="com.narendra.sams.core.service.impl.BankServiceImpl">
+		<property name="bankDAO" ref="bankDAO" />
+	</bean>
+	<bean name="feeHeadService" class="com.narendra.sams.core.service.impl.FeeHeadServiceImpl">
+		<property name="feeHeadDAO" ref="feeHeadDAO" />
+	</bean>
+	<bean name="installmentDAO"
+		class="com.narendra.sams.core.dao.impl.InstallmentDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	<bean name="installmentService"
+		class="com.narendra.sams.core.service.impl.InstallmentServiceImpl">
+		<property name="installmentDAO" ref="installmentDAO" />
+	</bean>	
+	
+	<bean name="instituteSettingService"
+		class="com.narendra.sams.core.service.impl.InstituteSettingServiceImpl">
+		<property name="instituteSettingDAO" ref="instituteSettingDAO" />
+	</bean>
+	
+	<bean name="instituteSettingDAO"
+		class="com.narendra.sams.core.dao.impl.InstituteSettingDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	<bean name="affiliationAuthorityDAO"
+		class="com.narendra.sams.core.dao.impl.AffiliationAuthorityDAOImpl"
+		parent="abstractDAOSupport">
+		<property name="userViewDAO" ref="userViewDAO" />
+	</bean>
+
+	<bean name="affiliationAuthorityService"
+		class="com.narendra.sams.core.service.impl.AffiliationAuthorityServiceImpl">
+		<property name="affiliationAuthorityDAO" ref="affiliationAuthorityDAO" />
+	</bean>
+	
+	
+	
+	<bean name="courseDAO"
+		class="com.narendra.sams.core.dao.impl.CourseDAOImpl"
+		parent="abstractDAOSupport">
+		<property name="userViewDAO" ref="userViewDAO" />
+		<property name="affiliationAuthorityDAO" ref="affiliationAuthorityDAO" />
+	</bean>
+	
+	<bean name="courseService"
+		class="com.narendra.sams.core.service.impl.CourseServiceImpl">
+		<property name="courseDAO" ref="courseDAO" />
+	</bean>
+	
+	<bean name="academicYearDAO"
+		class="com.narendra.sams.core.dao.impl.AcademicYearDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	<bean name="academicYearSettingDAO"
+		class="com.narendra.sams.core.dao.impl.AcademicYearSettingDAOImpl"
+		parent="abstractDAOSupport">
+		
+	</bean>
+	
+	<bean name="academicYearFeeDAO"
+		class="com.narendra.sams.core.dao.impl.AcademicYearFeeDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	
+	
+	<bean name="courseYearTypeDAO"
+		class="com.narendra.sams.core.dao.impl.CourseYearTypeDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	<bean name="lateFeeRuleDAO"
+		class="com.narendra.sams.core.dao.impl.LateFeeRuleDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	<bean name="idGenerationMethodDAO"
+		class="com.narendra.sams.core.dao.impl.IdGenerationMethodDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+
+	<bean name="lateFeeRuleService"
+		class="com.narendra.sams.core.service.impl.LateFeeRuleServiceImpl">
+		<property name="lateFeeRuleDAO" ref="lateFeeRuleDAO" />
+	</bean>
+	
+	<bean name="academicYearService"
+		class="com.narendra.sams.core.service.impl.AcademicYearServiceImpl">
+		<property name="academicYearDAO" ref="academicYearDAO" />
+
+		<property name="academicYearSettingService" ref="academicYearSettingService" />
+		<property name="academicYearBusFeeService" ref="academicYearBusFeeService" />
+		<property name="academicYearFeeService" ref="academicYearFeeService" />
+		<property name="academicYearAdmissionSchemeService" ref="academicYearAdmissionSchemeService" />
+	</bean>
+
+	
+	
+	<bean name="academicYearSettingService" class="com.narendra.sams.core.service.impl.AcademicYearSettingServiceImpl">
+		<property name="academicYearSettingDAO" ref="academicYearSettingDAO" />
+		<property name="courseService" ref="courseService" />
+		<property name="courseYearTypeService" ref="courseYearTypeService" />
+	</bean>
+	
+	<bean name="academicYearFeeService" class="com.narendra.sams.core.service.impl.AcademicYearFeeServiceImpl">
+		<property name="academicYearFeeDAO" ref="academicYearFeeDAO" />
+	</bean>
+
+	<bean name="courseYearTypeService" class="com.narendra.sams.core.service.impl.CourseYearTypeServiceImpl">
+		<property name="courseYearTypeDAO" ref="courseYearTypeDAO" />
+	</bean>
+	
+	<bean name="academicYearBusFeeDAO"
+		class="com.narendra.sams.core.dao.impl.AcademicYearBusFeeDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	
+	
+	
+	
+	
+
+	<bean name="academicYearBusFeeService" class="com.narendra.sams.core.service.impl.AcademicYearBusFeeServiceImpl">
+		<property name="academicYearBusFeeDAO" ref="academicYearBusFeeDAO" />
+		<property name="busStopService" ref="busStopService" />
+	</bean>
+	
+	
+		
+	<bean name="academicSessionClassDAO" class="com.narendra.sams.core.dao.impl.AcademicSessionClassDAOImpl" parent="abstractDAOSupport" />
+	
+	
+	<bean name="busStopDAO"
+		class="com.narendra.sams.core.dao.impl.BusStopDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	
+	<bean name="busStopService"
+		class="com.narendra.sams.core.service.impl.BusStopServiceImpl">
+		<property name="busStopDAO" ref="busStopDAO" />
+	</bean>
+	
+	<bean name="leavePlanDAO"
+		class="com.narendra.sams.core.dao.impl.LeavePlanDAOImpl"
+		parent="abstractDAOSupport">
+	</bean>
+	<bean name="leavePlanService" class="com.narendra.sams.core.service.impl.LeavePlanServiceImpl">
+		<property name="leavePlanDAO" ref="leavePlanDAO" />
+	</bean>
+	
+	<bean name="academicSessionClassService" class="com.narendra.sams.core.service.impl.AcademicSessionClassServiceImpl">
+		<property name="academicSessionClassDAO" ref="academicSessionClassDAO" />
+	</bean>
+	
+	<bean name="idGenerationMethodService" class="com.narendra.sams.core.service.impl.IdGenerationMethodServiceImpl">
+		<property name="idGenerationMethodDAO" ref="idGenerationMethodDAO" />
+	</bean>
+
+</beans>

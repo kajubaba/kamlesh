@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Subreport_CoScholastic_6_8" pageWidth="595" pageHeight="802" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="eb015356-5273-49a4-b006-9a1a7b7afba0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DSCoScholastic" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="aspectName" class="java.lang.String"/>
+	<field name="skillName" class="java.lang.String"/>
+	<field name="term1Grade" class="java.lang.String"/>
+	<field name="term2Grade" class="java.lang.String"/>
+	<group name="GRP_Activity">
+		<groupExpression><![CDATA[$F{aspectName}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="10" y="0" width="376" height="18" uuid="30e7102e-81bd-4db7-9bfe-961f7047b5d1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{aspectName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="415" y="0" width="46" height="18" uuid="a6cb1b03-0410-43a9-87d0-ac4f3def411a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Term-1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="506" y="0" width="39" height="18" uuid="382c76bd-a3f4-4943-b6d9-39277a2e19da"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Term-2]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="e4706428-d644-48f7-9390-7af78ae67e05"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="0" y="19" width="555" height="1" uuid="c5aa176d-18da-4c3d-91a7-fef273f57c19"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="1" height="20" uuid="a349b18f-f591-4980-9943-b419fdf8070f"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="555" y="0" width="1" height="20" uuid="942b7b08-ab0a-4e9e-978e-68db3c6a6e81"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="400" y="0" width="1" height="20" uuid="aefae677-5ee0-423f-8ce0-7975fbd825f7"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="482" y="0" width="1" height="20" uuid="090f0ede-19ad-4ec9-9bf7-8f5f22c803e9"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="5"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="0" width="377" height="18" uuid="c2a20366-d900-422a-80b7-0e8953fd31fb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skillName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="46" height="18" uuid="2661e69b-57ca-4790-838e-9e148dc7a70d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{term1Grade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="0" width="39" height="18" uuid="9c266f0a-60d2-45d6-a48a-f23aff4056f7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{term2Grade}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="18" width="555" height="1" uuid="54625acc-7f3f-4baa-b7f8-7e91a25e2256"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="19" uuid="088ec37a-de5d-4068-b64b-d16df9bcc5ea"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="555" y="0" width="1" height="19" uuid="ed3902df-0667-4dbd-9c14-ec7b8072cc32"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="482" y="0" width="1" height="19" uuid="c11268ac-666a-481f-ba98-263e07b8bf38"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="400" y="0" width="1" height="19" uuid="c08658c8-b1d1-4b1a-8758-6746f57d4d29"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

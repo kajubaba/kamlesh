@@ -1,0 +1,87 @@
+<div ng-controller="enquiry.upcoming.follow.controller as ctrl" ng-init="ctrl.init()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	<span class="glyphicon glyphicon-user"></span> 
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="ctrl.changeAcademicSession(academicYear.selectedAcademicYear)"></select>
+              	Upcoming <small>Followups</small>  
+              </div>
+              <div class="col-sm-6 col-md-4">
+             
+              </div>
+           
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+	    <div class="row">
+	    	<div class="col-md-2">
+	            <div class="form-group">
+	            	<label >From :</label>
+	            	<div class="form-group input-group">
+	            		<input type="text" class="form-control date-picker" readonly="readonly" id="fromDate" ng-model="fromDate" ng-change="transCtrl.filterTransactions()" />
+	            		<span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="ctrl.openDatePicker()">
+								<span class="glyphicon glyphicon-calendar"></span> 
+							</button>
+						</span> 
+	            	</div>
+	            </div>
+	            		
+	        </div>
+	        <div class="col-md-2">
+	        	<div class="form-group">
+	            	<label >To :</label>
+	            	<div class="form-group input-group">
+	            		<input type="text" class="form-control date-picker" id="toDate" ng-model="toDate" ng-change="transCtrl.filterTransactions()" readonly="readonly" />
+	            		<span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="ctrl.openDatePicker()">
+								<span class="glyphicon glyphicon-calendar"></span> 
+							</button>
+						</span> 
+	            	</div>
+	            </div>
+	            		
+	        </div>
+	    </div>	
+      <!-- Row -2 -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-bar-chart-o fa-fw"></i>
+            </div>
+            <div class="panel-body">
+              <div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	 <new-enquiry/>  
+	  </div>
+<script>
+     
+$(function() {
+
+    
+	$( ".date-picker" ).datepicker({
+			dateFormat:'d-M-yy',
+			buttonImageOnly: true,
+			changeMonth: true,
+			changeYear: true
+		})
+
+	})   
+     
+   
+     
+     
+     
+  
+	
+    </script>	  

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.transportation.domain.Vehicle" table="trans_vehicle">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="vehicleId" column="vehicle_id"/>
+		<property name="vehicleType" column="vehicle_type" />
+		<property name="vehicleName" column="vehicle_name"/>
+		<property name="manufacturingYear" column="vehicle_manufacturing_yr" />
+		<property name="manufacturer" column="vehicle_manufacturer" />
+		<property name="vehicleColor" column="vehicle_color" />
+		<property name="vehicleSeatCapacity" column="vehicle_seat_capacity" />
+		
+		
+		
+		<property name="chassisNo" column="chassis_no"/>
+		<property name="engineNo" column="engine_no" />
+		<property name="registrationDate" column="reg_date"/>
+		<property name="transferDate" column="transfer_date" />
+		<property name="pucDueDate" column="puc_due_date" />
+		<property name="fitnessDueDate" column="fitness_due_date" />
+		<property name="insuranceDueDate" column="insurance_due_date" />
+		
+		<property name="roadTaxDueDate" column="road_tax_due_date" />
+		<property name="permitDueDate" column="permit_due_date" />
+		
+		
+		
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id" not-null="true"/>
+		
+		<set name="academicYearVehicles" lazy="true" cascade="save-update">
+			<key column="vehicle_id" />
+			<one-to-many class="com.narendra.sams.transportation.domain.AcademicYearVehicle"/>
+		</set>
+		<property name="createdDateTime" column="created_date_time"/>
+		<property name="lastUpdatedDateTime" column="last_updated_date_time"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" not-null="true"/>
+		<many-to-one name="lastUpdatedBy" class="com.narendra.sams.core.domain.UserView" column="last_updated_by_user_id" not-null="true"/>
+		
+	</class> 
+</hibernate-mapping>

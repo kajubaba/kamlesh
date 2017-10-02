@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+
+	<http auto-config="true" use-expressions="true">
+		
+		<!-- 
+		<form-login login-processing-url="/static/j_spring_security_check"
+					login-page="/" 
+					default-target-url="/institute/home"/>
+		 -->
+		 <form-login login-processing-url="/static/j_spring_security_check"
+					login-page="/" 
+					default-target-url="/home"/>
+		<logout logout-url="/static/j_spring_security_logout" 
+				logout-success-url="/"/>
+				
+		<intercept-url pattern="/" filters="none" />
+		<intercept-url pattern="/resources/**" filters="none" />
+		<intercept-url pattern="/sams/**" filters="none" />
+		
+		
+		<!-- 
+		<intercept-url pattern="/enquiry/**" access="hasRole('ROLE_ENQUIRY_TAB')" />
+		 -->
+		
+		<intercept-url pattern="/enquiry/dashboard/**" access="hasRole('ROLE_ENQUIRY_TAB')" />
+		<intercept-url pattern="/enquiry/add" access="hasRole('ROLE_ENQUIRY_ADD_EDIT')" />
+		<intercept-url pattern="/enquiry/update" access="hasRole('ROLE_ENQUIRY_ADD_EDIT')" />
+		<intercept-url pattern="/enquiry/new" access="hasRole('ROLE_ENQUIRY_ADD_EDIT')" />
+		<intercept-url pattern="/enquiryExport/**" access="hasRole('ROLE_ENQUIRY_EXPORT_EXCEL')" />
+		
+		<intercept-url pattern="/enquiryActivity/changeOwner" access="hasRole('ROLE_ENQUIRY_ASSIGN_OWNER')" />
+		<intercept-url pattern="/enquiryActivity/changeAssignee" access="hasRole('ROLE_ENQUIRY_ASSIGN_ASSIGNEE')" />
+		<intercept-url pattern="/enquiryActivity/changeStatus" access="hasRole('ROLE_ENQUIRY_CHANGE_STATUS')" />
+		<intercept-url pattern="/enquiryActivity/follow" access="hasRole('ROLE_ENQUIRY_FOLLOW')" />
+		<intercept-url pattern="/enquiryActivity/viewlog" access="hasRole('ROLE_ENQUIRY_VIEW_ACTIVITY_LOG')" />
+		
+		
+		<!-- 
+		<intercept-url pattern="/course/**" access="hasRole('ROLE_ENQUIRY_TAB')" />
+		 -->
+		
+		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMINISTRATOR')" />
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMINISTRATOR')" />
+		<intercept-url pattern="/addmission/**" access="hasRole('ROLE_ADMISSION')" />
+		<intercept-url pattern="/renewadmission/**" access="hasRole('ROLE_RENEW_ADMISSION')" />
+		
+		<intercept-url pattern="/fee/**" access="hasRole('ROLE_FEE') or hasRole('ROLE_CUST_STUD_FEE')" />
+		<intercept-url pattern="/fee/customize/**" access="hasRole('ROLE_CUST_STUD_FEE')" />
+		
+		
+		<intercept-url pattern="/studentactivity/changeStatus/**" access="hasRole('ROLE_CHANGE_STUDENT_CLASS')" />
+		<intercept-url pattern="/studentactivity/changeClass/**" access="hasRole('ROLE_CUST_STUD_FEE')" />
+		<intercept-url pattern="/studentactivity/changebusstop/**" access="hasRole('ROLE_CHANGE_STUDENT_BUS_STOP')" />
+		
+		
+		<!-- API Security -->
+		<!-- <intercept-url pattern="/import"                                                  access="hasRole('ROLE_UPDATE_STUD_PERSONAL_INFO')" /> -->
+		<intercept-url pattern="/ws/studentinfo/update/**"                                access="hasRole('ROLE_UPDATE_STUD_PERSONAL_INFO')" />
+		<intercept-url pattern="/ws/admission/manage/newregistration"                     access="hasRole('ROLE_NEW_REGISTRATION')" />
+		<intercept-url pattern="/ws/admission/manage/renew"                               access="hasRole('ROLE_RENEW_ADMISSION')" />
+		<intercept-url pattern="/ws/student/activity/changeclass"                         access="hasRole('ROLE_CHANGE_STUD_CLASS')" />
+		<intercept-url pattern="/ws/student/activity/changebusstop"                       access="hasRole('ROLE_CHANGE_STUD_BUS_STOP')" />
+		<intercept-url pattern="/ws/student/activity/changeadmissionscheme"               access="hasRole('ROLE_CHANGE_STUD_ADMN_SCHEME')" />
+		
+		<intercept-url pattern="/ws/fee/report/annual"                                    access="hasRole('ROLE_VIEW_ANNUAL_FEE_REPORT')" />
+		<intercept-url pattern="/ws/fee/report/annual/**"                                 access="hasRole('ROLE_VIEW_ANNUAL_FEE_REPORT')" />
+		<intercept-url pattern="/ws/feereport/due"                                        access="hasRole('ROLE_VIEW_DUE_FEE_REPORT')" />
+		<intercept-url pattern="/ws/feereport/due/**"                                     access="hasRole('ROLE_VIEW_DUE_FEE_REPORT')" />
+		<intercept-url pattern="/ws/fee/student/installment/**"                           access="hasRole('ROLE_STUD_FEE_COLLECT')" />
+		<intercept-url pattern="/ws/fee/student/payFee"                                   access="hasRole('ROLE_STUD_FEE_COLLECT')" />
+		<intercept-url pattern="/ws/fee/customize"                                        access="hasRole('ROLE_ADJUST_STUD_ACADEMIC_FEE')" />
+		<intercept-url pattern="/ws/fee/customize/**"                                     access="hasRole('ROLE_ADJUST_STUD_ACADEMIC_FEE')" />
+		<intercept-url pattern="/ws/feereceipt/print/**"                                  access="hasRole('ROLE_PRINT_DUPLICATE_FEE_RECEIPT') or hasRole('ROLE_STUD_FEE_COLLECT')" />
+		<intercept-url pattern="/ws/fee/adjustlatefee/**"                                 access="hasRole('ROLE_ADJUST_STUD_LATE_FEE')" />
+		
+		<intercept-url pattern="/ws/academics/exam/**"                                    access="hasRole('ROLE_ACADEMICS_SETUP_EXAMINATION') or hasRole('ROLE_ACADEMICS_EXAM_MARKS_COLLECTION')" />
+		<intercept-url pattern="/ws/academics/managesubjects/add"                         access="hasRole('ROLE_ACADEMICS_MANAGE_CLASS_SUBJECTS')" />
+		<intercept-url pattern="/ws/academics/section/add"                                access="hasRole('ROLE_ACADEMICS_MANAGE_CLASS_SECTION')" />
+		<intercept-url pattern="/ws/acad/studentsection/change"                           access="hasRole('ROLE_ACADEMICS_ASSIGN_SECTION_TO_STUDENT')" />
+		<intercept-url pattern="/ws/academics/scorecollection/co-scholastic/score/getStudents"  access="hasRole('ROLE_ACADEMICS_EXAM_MARKS_COLLECTION') or hasRole('ROLE_ACADEMICS_REPORT_CO_SCHOLASTIC_EXAM_COMPLETION')" />
+		<intercept-url pattern="/ws/academics/scorecollection/co-scholastic/score/save"         access="hasRole('ROLE_ACADEMICS_EXAM_MARKS_COLLECTION')" />
+		<intercept-url pattern="/ws/academics/scorecollection/scholastic/score/save/**"         access="hasRole('ROLE_ACADEMICS_EXAM_MARKS_COLLECTION')" />
+		
+		
+		
+	</http>
+
+	<beans:bean id="userDetailService"
+		class="com.narendra.sams.web.auth.UserDetailServiceImpl">
+		<beans:property name="userService" ref="userService" />
+		<beans:property name="stopApplicationService" ref="stopApplicationService" />
+		
+	</beans:bean>
+
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailService" />
+	</authentication-manager>
+
+
+
+
+</beans:beans>

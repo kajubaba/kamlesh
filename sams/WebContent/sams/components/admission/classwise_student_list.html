@@ -1,0 +1,58 @@
+<div ng-controller="sams.admission.studentlist.controller as admnCtrl" ng-init="admnCtrl.getStudentsOfClass()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="admnCtrl.filterClasswiseAdmissionCount(academicYear.selectedAcademicYear)"></select>
+              	Classwise  <small>Admissions</small>  
+              </div>
+             
+              <div class="col-sm-6 col-md-4">
+        
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row" block-ui="block-classstudlist">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	  <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;
+            	  <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> 
+                  	<span id="selectedClass"></span>  
+                  	<span class="caret"></span> 
+                  </button>
+                  <ul class="dropdown-menu scrollable-menu" role="menu" id="classList">
+                  </ul>
+                  <span id="studentStatusType">
+                  </span>
+                </div>
+              <div class="pull-right">
+             
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Class View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                     <li><a href="#/admissions/studentview/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Student View</a></li>
+                    <li><a href="#/admissions/classview/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Class View</a></li>
+                  </ul>
+                </div>
+                
+              </div>
+            </div>
+            <div class="panel-body">
+            	<div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+	   <new-admission/>   
+	  <!-- // Row -2 -->
+	  </div>
+  

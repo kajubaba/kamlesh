@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.domain.GradeScalePoint" table="exam_grade_scale_point">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="marksFrom" column="marks_from"/>
+		<property name="marksTo" column="marks_to"/>
+		<property name="gradPointFrom" column="grade_point_from"/>
+		<property name="gradPointTo" column="grade_point_to"/>
+		<property name="grade" column="grade"/>
+		<property name="gradeMeaning" column="grade_meaning"/>
+		<property name="displaySeqNo" column="display_order"/>
+		<property name="gradePoint" column="grade_point"/>
+		<many-to-one name="gradeScale" class="com.narendra.sams.academics.domain.GradeScale" column="grade_scale_id" not-null="true"/>
+	</class> 
+</hibernate-mapping>

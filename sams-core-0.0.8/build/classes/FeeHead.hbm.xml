@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.FeeHead" table="fee_head">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="name" column="name" not-null="true" />
+		<property name="displayName" column="display_name" />
+		<property name="description" column="description" />
+		<property name="active" column="active" />
+
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView"
+			column="created_by_user_id" />
+
+		<property name="createdDate" column="created_datetime" />
+
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView"
+			column="modified_by_user_id" />
+
+		<property name="modifiedDate" column="modified_datetime" />
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		<property name="systemFeeHead" column="system_fee_head" />
+
+	</class>
+</hibernate-mapping>

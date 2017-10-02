@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.exam.domain.ActivitySkill" table="exam_coscholastic_activity_skill">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		 <property name="skillName" column="skill_name" not-null="true" />
+		 <property name="skillDisplayName" column="skill_display_name"/>
+		 <property name="displaySeqNo" column="display_sequence_no"/>
+		 <!-- <property name="isScorable" column="is_scorable" />
+		 <property name="isDefault" column="is_default" /> -->
+		 <property name="doNotDisplayOnScoreCard" column="do_not_display_on_scorecard" />
+		 <property name="isAdditional" column="is_additional" />
+		 
+ 		 <many-to-one name="parentSkill" class="com.narendra.sams.academics.exam.domain.ActivitySkill" column="parent_skill_id"/>
+		 <many-to-one name="activity" class="com.narendra.sams.academics.exam.domain.CoScholasticActivity" column="activity_id" not-null="true" /> 
+		 
+		<set name="indicators" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="skill_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.SkillIndicator"/>
+		</set>
+	</class>
+</hibernate-mapping>

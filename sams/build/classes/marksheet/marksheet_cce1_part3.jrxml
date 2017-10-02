@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marksheet_cce1_part3" pageWidth="842" pageHeight="1190" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ccdac09c-88fd-473f-ab3b-bb7698e2ff89">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="part3WEdu" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3VisPerfArts" class="java.lang.String"/>
+	<parameter name="part3SugActivies" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3WorkEdu" class="java.lang.String"/>
+	<parameter name="part3WorkEdeDesc" class="java.lang.String"/>
+	<parameter name="part3Vis&amp;PerfArts" class="java.lang.String"/>
+	<parameter name="part3Vis&amp;PerfArtsDes" class="java.lang.String"/>
+	<parameter name="part3AttValues" class="java.lang.String"/>
+	<parameter name="part3DS" class="java.util.List"/>
+	<parameter name="sNoText" class="java.lang.String"/>
+	<parameter name="gradeText" class="java.lang.String"/>
+	<parameter name="desIndText" class="java.lang.String"/>
+	<field name="SNo" class="java.lang.String"/>
+	<field name="descIndicator" class="java.lang.String"/>
+	<field name="grade" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="0" width="271" height="20" uuid="45ab9ef7-e6e8-467a-b302-31ebe143797b"/>
+				<textFieldExpression><![CDATA[$P{part3AttValues}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="38" width="805" height="1" uuid="dc731b98-4b28-4fdf-94fc-27653d391efa"/>
+			</line>
+			<textField>
+				<reportElement x="7" y="37" width="100" height="20" uuid="79332e2c-148c-4ae9-99fd-8338f4ef54aa"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{sNoText}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="37" width="275" height="20" uuid="79a160d9-1f11-4664-81c3-46b3bca47db1"/>
+				<textFieldExpression><![CDATA[$P{desIndText}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="37" width="100" height="20" uuid="71747d32-00de-43d6-b453-b78d6e5cd433"/>
+				<textFieldExpression><![CDATA[$P{gradeText}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="58" width="805" height="1" uuid="a567217f-72d8-477f-909c-74f9ce4751d4"/>
+			</line>
+			<line>
+				<reportElement x="3" y="39" width="1" height="18" uuid="6899385f-cb69-4e2b-9686-9ca77a482f29"/>
+			</line>
+			<line>
+				<reportElement x="808" y="39" width="1" height="18" uuid="4936265b-0f5d-4c7c-b648-7371b907928c"/>
+			</line>
+			<line>
+				<reportElement x="455" y="39" width="1" height="18" uuid="7a4d0249-37e1-4197-b786-cd4ed520d301"/>
+			</line>
+			<line>
+				<reportElement x="106" y="39" width="1" height="20" uuid="5135ae9d-5289-4b0d-8f11-3b6414387ff7"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="1" width="100" height="20" uuid="a296078c-4113-40cd-a746-2f944157d9db"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="1" width="100" height="20" uuid="91262782-b891-4cf8-875a-26fbcc82769b"/>
+				<textFieldExpression><![CDATA[$F{descIndicator}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="561" y="0" width="100" height="20" uuid="9880bfeb-7b96-475d-804b-8e1755a2c275"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{grade}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="19" width="805" height="1" uuid="013f7ea6-de7b-4348-97b2-e66cee47d644"/>
+			</line>
+			<line>
+				<reportElement x="808" y="0" width="1" height="19" uuid="e4cc7c36-a5be-43c6-96e4-24b30427f95e"/>
+			</line>
+			<line>
+				<reportElement x="4" y="-1" width="1" height="19" uuid="2d49be89-fbbf-4767-91d9-5b1cf7f5a5fd"/>
+			</line>
+			<line>
+				<reportElement x="106" y="0" width="1" height="19" uuid="13f13ae5-c918-45b7-a727-28e78e29f94a"/>
+			</line>
+			<line>
+				<reportElement x="455" y="1" width="1" height="19" uuid="0ab46817-81c3-4945-9795-664737a1ace2"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

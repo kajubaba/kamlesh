@@ -1,0 +1,51 @@
+<div ng-controller="transportation.bus.student.controller as ctrl" ng-init="ctrl.getArrivalStudents()">
+      
+    <div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+      
+     <div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div class="col-md-12" ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()"> 
+              		<i class="fa fa-bus"></i> <span ng-bind="admissionAcademicYear"></span> - Bus '{{vehicle.vehicleName}}'
+              		<small>Students</small> 
+             </div>
+		</div>
+           
+          <div class="row">
+		        <div class="col-sm-12">
+		         		<ul class="nav nav-tabs">
+							<li class="active">
+								<a data-toggle="tab" href="tab_arrival_students">Arrival</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#/transportation/bus/{{academicSessionBusId}}/students/departure">Departure</a>
+							</li>
+						</ul>
+		        </div>
+		</div>
+		      <div class="tab-content" style="background-color: #ffffff">
+      		<div id="tab_arrival_students" class="tab-pane fade in active" style="padding: 25px">
+				<div class="row" style="margin-bottom: 30px" ng-show="showDropDown">
+					<div class="col-md-4">
+						Route : <select ng-model="vehicleRouteStudentInfo.routeId" ng-options="route.id as route.name for route in vehicleRouteStudentInfo.routes" ng-change="ctrl.getArrivalRouteStudents()">
+							
+						</select>
+					</div>
+					<div class="col-md-8">
+						<span class="pull-right"><a href="">Switch to Classic View</a></span>
+					</div>
+				</div>
+				<div class="row">
+		              <div ui-grid="arrivalGridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" />
+				</div>
+      		</div>
+      </div>
+    </div>  
+      
+      
+      
+     
+     
+
+</div>
+  

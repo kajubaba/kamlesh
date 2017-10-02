@@ -1,0 +1,23 @@
+<div ng-controller="trans.driver.list.controller as ctrl" ng-init="ctrl.init()">
+	  
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div class="col-md-8"> <i class="fa fa-bus"></i> driver(s)</div>
+			<div class="pull-right">
+				<a href="#/transportation/driver/new" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-plus-sign"></span> New Driver</a>
+			</div>
+		</div>
+            <div class="row">
+			<div ui-grid="gridOptions" 
+				ui-grid-exporter 
+				ui-grid-pagination
+				ui-grid-move-columns 
+				ui-grid-resize-columns 
+				class="myGrid">
+			</div>
+		</div>
+    </div>  
+</div>

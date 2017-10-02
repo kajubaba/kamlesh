@@ -1,0 +1,101 @@
+<div id="myPage" ng-controller="admission.bus.facility.class.view.controller as admnCtrl" ng-init="admnCtrl.fetchAdmissionCount()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	 <select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="admnCtrl.filterStudentCount(academicYear.selectedAcademicYear)"></select>
+              	Bus Adopted  <small>Admissions</small>  
+              </div>
+              
+              <div class="col-sm-6 col-md-4">
+ 
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;<div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default " data-toggle="dropdown"> <span id="studentStatusType">Confirm Admissions</span> &nbsp; <span class="caret"></span> </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#/admissions/busfacility/classwise/admissioncount/status/1/{{selectedAcademicYear}}">Cancelled Admissions</a> </li>
+                    <li><a href="#/admissions/busfacility/classwise/admissioncount/status/5/{{selectedAcademicYear}}">Confirm Admissions</a> </li>
+                    <li><a href="#/admissions/busfacility/classwise/admissioncount/status/3/{{selectedAcademicYear}}">Degree Awarded</a> </li>
+                    <li><a href="#/admissions/busfacility/classwise/admissioncount/status/new/{{selectedAcademicYear}}">New Admissions</a> </li>
+                    <li><a href="#/admissions/busfacility/classwise/admissioncount/status/4/{{selectedAcademicYear}}">New Registrations</a> </li>
+                    <li><a href="#/admissions/busfacility/classwise/admissioncount/status/6/{{selectedAcademicYear}}">Renewed Admissions</a> </li>
+                  </ul>
+                </div>
+              <div class="pull-right">
+                
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default " data-toggle="dropdown"> Class View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#/admissions/busfacility/busstopwise/admissioncount/status/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Bus Stop View</a></li>
+                   
+                    <li><a href="#/admissions/busfacility/students/status/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Student View</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover" id="dt-bus-facility-classwise-admission-count">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>Class</th>
+                      <th>Admissions#</th>
+                    </tr>
+                  </thead>
+                  
+                  
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+         <new-admission/>   
+      </div>
+	  
+<script>
+     $(document).ready(function() {
+        $('#dt-bus-facility-classwise-admission-count').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 0, "asc" ]],
+                "columns": [
+							{ 
+								"data": "academicYearClassId",
+								 "visible": false,
+							},
+							{ 
+								"data": "studentStatusId",
+								 "visible": false,
+							},
+                            { "data": "name" },
+                            { 
+                            	"data"   : "admissionCount",
+                            	"render" : function(data, type, row, meta){
+                            		
+                                        return $('<a>').attr('href', "#/admissions/busfacility/classwise/admissions/"+row['studentStatusId']+"/"+row['academicYearClassId']+"/"+angular.element("#myPage").scope().selectedAcademicYear).text(data).wrap('<div></div>').parent().html();
+
+                                     
+                            	}
+                            }
+                        ]
+        });
+}); 
+	
+</script>	  
+
+	  </div>

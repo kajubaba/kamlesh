@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYearFeeInstallment" table="academic_year_fee_installment">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="installment" class="com.narendra.sams.core.domain.Installment" column="installment_id" />
+		<many-to-one name="academicYearFee" class="com.narendra.sams.core.domain.AcademicYearFee" column="academic_year_fee_id" />
+		<property name="dueDate" column="due_date" />
+		<set name="academicYearFeeInstallmentDetails" lazy="true" inverse="true" cascade="save-update,delete">
+			<key column="academic_year_fee_installment_id"/>
+			<one-to-many class="com.narendra.sams.core.domain.AcademicYearFeeInstallmentDetail"/>
+		</set>
+		<many-to-one name="lateFeeRule" class="com.narendra.sams.core.domain.LateFeeRule" column="late_fee_rule_id" />
+	</class>
+</hibernate-mapping>

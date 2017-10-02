@@ -1,0 +1,95 @@
+<div ng-controller="course.manage.controller as ctrl"
+	 ng-init="ctrl.getCourse()">
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><span class="glyphicon glyphicon-education"></span> Course</div>
+			<div class="font-sm">Please fill all mandatory fields (<span class="color-red">*</span>) before you Save
+			</div>
+		</div>
+		<form name="course_Form">
+		
+		<div class="alert alert-danger"  ng-show="isDuplicateName">
+			 <span class="glyphicon glyphicon-warning-sign"></span>
+			 <strong>Opps Error !!! </strong> Course name already exists. Please choose another name
+		</div>
+		
+		<div class="alert alert-success"  ng-show="showSuccessMessage">
+			 <span class="glyphicon glyphicon-ok"></span> Changes Saved Successfully
+		</div>
+	
+		<table class="table-responsive table tbl-profile">
+			<tbody>
+				
+				<tr>
+					<td class="profile-label col-md-2 align-right"><span class="color-red">*</span> Affiliated To :</td>
+					<td class="col-md-3">
+						<select class="form-control" required ng-model="courseForm.affiliationAuthorityId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities">
+							<option value="">--- Select Affiliation Authority ---</option>
+						</select>
+					</td>
+					<td class="col-md-7">
+					</td>
+					
+				</tr>
+				
+				<tr>
+					<td class="profile-label col-md-2 align-right"><span class="color-red">*</span> Course Name :</td>
+					<td class="col-md-3">
+						<input type="hidden" ng-model="courseForm.id" />
+						<input type="text" class="form-control" ng-model="courseForm.name" ng-maxlength="128" style="width: 500px" ng-trim="true" required/>
+						<div class="font-sm">(Max 128 chars)</div>
+					</td>
+					<td class="col-md-7">
+					</td>
+					
+				</tr>
+				<tr>
+					<td class="profile-label col-md-2 align-right"><span class="color-red">*</span> Display Name :</td>
+					<td class="col-md-3">
+						<input type="text" class="form-control" ng-model="courseForm.displayName" ng-maxlength="128" style="width: 500px" ng-trim="true" required/>
+						<div class="font-sm">(Max 128 chars)</div>
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				<tr ng-show="isActionNew">
+					<td class="profile-label col-md-2 align-right"><span class="color-red">*</span> Duration (Yrs.) :</td>
+					<td class="col-md-3">
+						<select class="form-control" required ng-model="courseForm.duration">
+							<option value="">--- Select Duration ---</option>
+							<option value="1"> 1 </option>
+							<option value="2"> 2 </option>
+							<option value="3"> 3 </option>
+							<option value="4"> 4 </option>
+							<option value="5"> 5 </option>
+						</select>
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				
+				<tr ng-show="!isActionNew">
+					<td class="profile-label col-md-2 align-right"><span class="color-red">*</span> Duration (Yrs.) :</td>
+					<td class="col-md-3">
+						{{courseForm.duration}}
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>	
+		<div style="padding-left: 200px">
+			<span style="margin-right: 10px">
+				<a class="btn btn-default btn-sm" href="#/admin/course/list"><span class="glyphicon glyphicon-circle-arrow-left"></span> Cancel</a>
+			</span>						    			
+			<span>
+				<button class="btn btn-primary btn-sm" ng-click="ctrl.saveCourse()" ng-disabled="course_Form.$invalid"><span class="glyphicon glyphicon-save"></span> Save</button>
+			</span>
+		</div>
+	</form>
+</div>

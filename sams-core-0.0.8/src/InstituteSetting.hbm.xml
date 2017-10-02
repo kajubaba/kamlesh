@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.InstituteSetting" table="institute_settings">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id" lazy="false"/>
+		
+		<component name="enquirySettings" class="com.narendra.sams.core.domain.EnquirySettings">
+			<many-to-one name="activeAcademicYear" class="com.narendra.sams.core.domain.AcademicYear" column="enq_academic_year_id" lazy="false"/>
+	        <property name="enableRegistered" column="show_reg_enq"/>
+	        <property name="enableDuplicateEnq" column="show_check_enq"/>
+	        <property name="enablePreviousClass" column="show_prev_class"/>
+	        <property name="enableInternalExam" column="show_int_exam"/>
+	        <property name="enableCompetitiveExam" column="show_comp_exam"/>
+	        <property name="nextFormReceiptNo" column="next_form_fee_receipt_no"/>
+	        <property name="formFee" column="form_fee"/>
+    	</component>
+		
+		<component name="admissionSettings" class="com.narendra.sams.core.domain.AdmissionSettings">
+			<many-to-one name="activeAcademicYear" class="com.narendra.sams.core.domain.AcademicYear" column="admsn_academic_year_id" lazy="false"/>
+	        <property name="busStopMandatory" column="admsn_show_bus_stop"/>
+	        <property name="formNoMandatory" column="admsn_mandatory_frm"/>
+	        <property name="registeredStudentIdPrefix" column="temp_student_id_prefix"/>
+	        <property name="studentIdGenerationMethod" column="id_generation"/>
+	        <property name="confirmStudentIdPrefix" column="student_id_prefix"/>
+	        <property name="nextStudentId" column="next_student_id"/>
+    	</component>
+    	
+    	<component name="feeSettings" class="com.narendra.sams.core.domain.FeeSettings">
+	        <property name="feeReceiptStartNo" column="fee_receipt_start_no"/>
+	        <property name="lastFeeReceiptNo" column="last_fee_receipt_no"/>
+	        <property name="receiptType" column="fee_receipt_type" not-null="true"/>
+	        <property name="isFeeReceiptNoInCont" column="receipt_no_in_cont"/>
+    	</component>
+    	
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id" lazy="false"/>
+		<property name="modifiedDate" column="modified_datetime"/>
+		<property name="isIdGenerationMethodSame" column="is_id_gen_method_same_for_all_classes"/>
+		
+	</class>
+</hibernate-mapping>

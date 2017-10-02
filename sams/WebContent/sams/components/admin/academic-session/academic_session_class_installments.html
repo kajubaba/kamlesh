@@ -1,0 +1,178 @@
+<div>
+
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+
+	<div id="page-wrapper"
+		ng-controller="academicsession.manage.controller as academicSessionCtrl"
+		ng-init="academicSessionCtrl.getAcademicSession()">
+		<div class="row admin-setting-header">
+			<div>
+				
+				{{academicSessionForm.name}} - Setup Class Installments
+			</div>
+			<div class="font-sm">Setup class installments for new and regular admissions</div>
+		</div>
+		<div
+			ng-controller="academicsession.class.installment.controller as ctrl"
+			ng-init="ctrl.init()">
+			<div
+				ng-include="'sams/components/admin/academic-session/wizard_header.html'"></div>
+			<div>
+
+				<table class="table-responsive table tbl-profile">
+					<tbody>
+						<tr>
+							<td class="profile-label col-md-3">Class Name :</td>
+							<td class="col-md-3">
+							
+								<select ng-model="classDetails.courseYearSettingId" ng-options="clazz.id as clazz.name for clazz in classes" ng-change="ctrl.changeClass()" style="border: 0">
+									
+								</select>
+							
+							</td>
+							<td class="profile-label col-md-3 ">Type :</td>
+							<td class="col-md-3" ng-bind="classDetails.courseType"></td>
+						</tr>
+						
+						<tr>
+							<td class="profile-label col-md-3">Active :</td>
+							<td class="col-md-3" ng-bind="classDetails.isActive"></td>
+							<td class="profile-label col-md-3">Intake :</td>
+							<td class="col-md-3" ng-bind="classDetails.intake"></td>
+						</tr>
+						
+
+
+					</tbody>
+				</table>
+
+				<div style="margin-bottom: 15px" class="pull-right">
+				<a href="#/admin/academicsession/setup/classfee/{{selectedAcademicSession}}/{{classDetails.courseYearSettingId}}">Setup Class Fee</a>
+				</div>
+
+				<ul class="nav nav-tabs">
+					<li ng-class="{'active' : admissionTypeId== '1' }">
+						<a data-toggle="tab" href="#/admin/academicsession/setup/installments/{{selectedAcademicSession}}/{{classDetails.courseYearSettingId}}/1">New Admission Fee</a>
+					</li>
+					<li ng-class="{'active' : admissionTypeId== '2' }">
+						<a data-toggle="tab" href="#/admin/academicsession/setup/installments/{{selectedAcademicSession}}/{{classDetails.courseYearSettingId}}/2">Regular Admission Fee</a>
+					</li>
+				</ul>
+				<div class="tab-content" style="background-color: #ffffff;">
+					<form name="fee_form" style="margin-top: 25px">
+						
+	                	<div style="margin-bottom: 15px">
+	                	No of Installments :
+	                	<select ng-model="selectedInstallment" ng-options="installment.displayOrder as installment.name for installment in installments" ng-change="ctrl.changeClassInstallments()">
+	                	</select>
+						</div>
+						
+						<div class="dataTable_wrapper" >
+							<table class="table table-striped table-bordered table-hover">
+					<thead>
+                    <tr>
+                      <th>Fee Head</th>
+                      <th>Head Fee (<i class="fa fa-inr"></i>)</th>
+                      <th ng-repeat="installmentDetail in classDetails.headwiseInstallments[0].installmentDetailVOs">Inst# {{installmentDetail.installmentId}}</th>
+                      <th>Total</th>
+                      
+                    </tr>
+                  </thead>
+								<tbody>
+									<tr ng-repeat="installment in classDetails.headwiseInstallments">
+										<td ng-bind="installment.feeHeadName"></td>
+										<td ng-bind="installment.amount"></td>
+										<td
+											ng-repeat="installmentDetail in installment.installmentDetailVOs">
+											<input type="number" ng-model="installmentDetail.amount" ng-change="ctrl.feeHeadDistributionSum()" style="width: 80px"/>
+										</td>
+										<td ng-bind="installment.feeHeadInstallmentSum"></td>
+									</tr>
+
+								</tbody>
+				<tfoot>
+									<tr>
+                      <th>Total</th>
+                      <th>{{ctrl.feeHeadSum()}}</th>
+                      <th ng-repeat="installmentDetail in classDetails.headwiseInstallments[0].installmentDetailVOs">
+                      
+                      	{{installmentTotal[installmentDetail.installmentId]}}
+                      </th>
+                      <th>{{ctrl.finalSum()}}</th>
+                      
+                    </tr>
+                    <tr>
+                      <td>Due Date</td>
+                      <td></td>
+                      <td ng-repeat="installmentDueDate in classDetails.installmentDueDates" ng-on-finish-render>
+                      		<input type="text" id="{{installmentDueDate.installmentId}}date" ng-model="installmentDueDate.dueDateStr" readonly="readonly" style="width: 80px" required="required"/>
+                      	
+                      </td>
+                      <td></td>
+                      
+                    </tr>
+                     <tr>
+                      <td>Late Fee Rule</td>
+                      <td></td>
+                      <td ng-repeat="installmentDueDate in classDetails.installmentDueDates">
+                      		
+                      		<select ng-model="installmentDueDate.lateFeeRuleId" ng-options="lateFeeRule.id as lateFeeRule.name for lateFeeRule in lateFeeRules" style="width: 80px" required="required">
+                      			<option value="">--- Select ---</option>
+                      		</select>
+                      	
+                      </td>
+                      <td></td>
+                      
+                    </tr>
+				</tfoot>
+							</table>
+							<button ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" class="btn btn-primary btn-sm" ng-disabled="fee_form.$invalid || ctrl.isFormInvalid()" ng-click="ctrl.saveFeeInstallments()">
+								<span class="glyphicon glyphicon-save" ></span> Save
+							</button>
+							&nbsp;&nbsp;
+							<button ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" class="btn btn-primary btn-sm" ng-disabled="fee_form.$invalid || ctrl.isFormInvalid()" ng-click="ctrl.updateInstallmentDueDateAndLateFeeRule()">
+								<span class="glyphicon glyphicon-save" ></span> Update Due Date & Late Fee Rule
+							</button>
+						</div>
+				</form>
+				</div>
+
+
+
+			</div>
+		</div>
+		<div class="modal" id="modalCanNotUpdateInstallment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  
+	  
+	  <div class="modal-dialog" role="document">
+	   
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> 
+        			<div class="alert alert-danger">	
+        				<span class="glyphicon glyphicon-warning-sign"></span> Opps Error !!! You can not change installment settings
+        			</div>
+        			
+        		</h4>
+        	</div>
+        	
+	      <div class="modal-body">
+			Some of the students has already been taken admission in this class. Either student paid full/partial fee or his/her fee is adjusted.
+			<br/><br/>
+			It's not recommended to change installment settings in this case.	       
+	      
+	 	
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-primary"  data-dismiss="modal"> OK ! Got It</button>
+	      </div>
+	    </div>
+	   
+	  </div>
+	  
+	</div> 	
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+	</div>
+</div>
+

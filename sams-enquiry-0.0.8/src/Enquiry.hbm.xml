@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.enquiry.domain.Enquiry" table="enquiry">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="studentEnquiryId" column="student_enquiry_id" />
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<property name="type" column="enquiry_type"/>
+		<many-to-one name="academicYearClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="class_id" />
+		<property name="studentFirstName" column="student_firstName" not-null="true"/>
+		<property name="studentMiddleName" column="student_middleName" />
+		<property name="studentLastName" column="student_lastName" not-null="true"/>
+		<property name="studentContactNo" column="student_contact_no" />
+		<property name="studentEmailId" column="student_email_id" />
+		<property name="studentDob" column="student_dob" />
+		<property name="studentGender" column="student_gender" not-null="true"/>
+		
+		<property name="studentFatherName" column="student_father_name" />
+		<property name="fatherContactNo" column="student_father_contact_no" />
+		<property name="fatherOccupation" column="father_occupation" />
+		
+		<property name="motherName" column="mother_name" />
+		<property name="motherOccupation" column="mother_occupation" />
+		<property name="motherContactNo" column="student_mother_contact_no" />
+		
+		<property name="formNo" column="form_no" />
+		<property name="formIssueDate" column="form_issue_date" />
+		<property name="formFee" column="registration_fee" />
+		<property name="receiptNo" column="receipt_no" />
+		<many-to-one name="formIssuedBy" class="com.narendra.sams.core.domain.UserView" column="form_issued_by" />
+		
+		
+		
+		
+		<many-to-one name="studentCategory" class="com.narendra.sams.core.domain.StudentCategory" column="student_category_id" />
+		<many-to-one name="studentPrevClass" class="com.narendra.sams.enquiry.domain.StudentPrevClass" column="student_prev_class_info_id" cascade="all"  />
+		
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" />
+		<property name="createdDate" column="created_datetime" />
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id" />
+		<property name="modifiedDate" column="modified_datetime" />
+		
+		
+		
+		<component name="address" class="com.narendra.sams.enquiry.domain.EnquiryAddress">
+	        <property name="line1" column="line1"/>
+	        <property name="line2" column="line2"/>
+	        <property name="city" column="city"/>
+	        <property name="teh" column="teh"/>
+	        <property name="district" column="district"/>
+	        <property name="zipCode" column="zip_code"/>
+    	</component>
+    	
+    	<many-to-one name="state" class="com.narendra.sams.core.address.domain.State" column="state_id" />
+		<many-to-one name="country" class="com.narendra.sams.core.address.domain.Country" column="country_id" />
+		
+		
+		<many-to-one name="enquiryStatus" class="com.narendra.sams.enquiry.domain.EnquiryStatus" column="enquiry_status_id" />
+		<many-to-one name="owner" class="com.narendra.sams.core.domain.UserView" column="owner_user_id" />
+		<many-to-one name="assignee" class="com.narendra.sams.core.domain.UserView" column="assignee_user_id" />
+		
+		<set name="enquiryActivities" cascade="all" lazy="true" inverse="true">
+			<key column="enquiry_id" />
+			<one-to-many class="com.narendra.sams.enquiry.domain.EnquiryActivity" />
+		</set>
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		
+		
+	</class> 
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.exam.domain.EvaluationType" table="exam_evaluation_aspect">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="name" column="aspect_name" not-null="true"/>
+		<property name="displayName" column="aspect_display_name" />
+		<property name="description" column="description" />
+		<property name="isScholastic" column="is_scholastic"/>
+		<property name="isIndicatorBased" column="indicator_based"/>
+		<property name="isSkillBased" column="skill_based"/>
+		<property name="scoringMethod" column="scoring_method"/>
+		<property name="gradeCalculationMethod" column="grade_calculation_method"/>
+		<!-- <property name="maxMarks" column="max_marks"/> -->
+		<property name="isFASABasedExam" column="is_fa_sa_based_exam"/>
+		<property name="isTermBasedAssessment" column="is_term_based_assessment"/>
+		<property name="useAssessmentWeightageAsMaxMarks" column="use_aw_as_max_marks"/>
+		
+		
+		
+		<many-to-one name="evaluationScheme" class="com.narendra.sams.academics.exam.domain.EvaluationScheme" column="evaluation_id" not-null="true"/>
+		<many-to-one name="gradeScale" class="com.narendra.sams.academics.domain.GradeScale" column="grade_scale_id"  cascade="save-update"/>
+		
+		<set name="evaluationTerms" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="evaluation_aspect_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.EvaluationTerm"/>
+		</set>
+		
+		<set name="coScholasticActivities" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="evaluation_aspect_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.CoScholasticActivity"/>
+		</set>
+		
+	</class> 
+</hibernate-mapping>

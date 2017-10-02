@@ -1,0 +1,59 @@
+<div ng-controller="admission.bus.facility.student.view.controller as admnCtrl" ng-init="admnCtrl.listStudents()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	 <select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="admnCtrl.filterStudents(academicYear.selectedAcademicYear)"></select>
+              	Bus Adopted  <small>Admissions</small>  
+              </div>
+              
+              <div class="col-sm-6 col-md-4">
+       
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;<div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default " data-toggle="dropdown"> 
+	                  <span id="studentStatusType">Confirm Admissions</span>  &nbsp;
+	                  <span class="caret"></span> 
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#/admissions/busfacility/students/status/1/{{selectedAcademicYear}}">Cancelled Admissions</a> </li>
+                    <li><a href="#/admissions/busfacility/students/status/5/{{selectedAcademicYear}}">Confirm Admissions</a> </li>
+                    <li><a href="#/admissions/busfacility/students/status/3/{{selectedAcademicYear}}">Degree Awarded</a> </li>
+                    <li><a href="#/admissions/busfacility/students/status/new/{{selectedAcademicYear}}">New Admissions</a> </li>
+                    <li><a href="#/admissions/busfacility/students/status/4/{{selectedAcademicYear}}">New Registrations</a> </li>
+                    <li><a href="#/admissions/busfacility/students/status/6/{{selectedAcademicYear}}">Renewed Admissions</a> </li>
+                  </ul>
+                </div>
+              <div class="pull-right">
+                
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default " data-toggle="dropdown"> Student View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#/admissions/busfacility/busstopwise/admissioncount/status/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Bus Stop View</a></li>
+                    <li><a href="#/admissions/busfacility/classwise/admissioncount/status/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Class View</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+            	<div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+	   <new-admission/>   
+	  <!-- // Row -2 -->
+	  </div>

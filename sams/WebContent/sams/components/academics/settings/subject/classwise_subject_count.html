@@ -1,0 +1,113 @@
+<div ng-controller="sams.academics.settings.controller as settingsCtrl" ng-init="settingsCtrl.init()">
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper" 
+		 ng-controller="academics.manage.subject.controller as subCtrl" ng-init="subCtrl.getClasswiseSubjectCount()">
+		<div class="row admin-setting-header">
+			<div class="col-md-8">Manage Class Subject(s)</div>
+			<div class="col-md-4">
+				<span has-permission='ROLE_ACADEMICS_MANAGE_CLASS_SUBJECTS'>
+					<button type="button" class="btn btn-info btn-sm pull-right" ng-click="subCtrl.openSubjectModal()"> <i class="glyphicon glyphicon-plus-sign"></i> New Subject</button>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+						<div class="dataTable_wrapper">
+							<table class="table table-striped table-bordered table-hover"
+								id="datatable-classwise-subjects">
+								<thead>
+									<tr>
+										<th>Class</th>
+                      					<th>Subjects #</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+			</div>
+		</div>
+	
+	  <div class="modal" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			<span ng-show="isAdd">Add New</span>
+        			<span ng-show="isUpdate">Update</span>
+        			 Subject
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update subject
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> University/Board :</label>
+	            <select class="form-control" ng-model="auId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities" ng-change="subCtrl.fetchActiveClasses()">
+					<option value="">--- Select Affiliation Authority ---</option>
+				</select>
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Class :</label>
+	            <select class="form-control" ng-model="formData.academicYearClassId" ng-options="clazz.classId as clazz.className for clazz in classes" ng-change="subCtrl.enableDisableSaveButton()">
+					<option value="">--- Select Class ---</option>
+				</select>
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Subject Name :</label>
+	            <input type="text" class="form-control" ng-model="formData.subjectName" ng-change="subCtrl.enableDisableSaveButton()">
+	          </div>
+	          <div class="form-group">
+	            <label>Subject Code :</label>
+	            <input type="text" class="form-control" ng-model="formData.subjectCode">
+	          </div>
+	          <div class="form-group">
+	            <label>Display Order :</label>
+	            <input type="text" class="form-control" ng-model="formData.displaySequenceNo">
+	          </div>
+	         
+	      </div>
+	      
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="subCtrl.closeSubjectModal()">Cancel</button>
+	         <span ng-show="isAdd">
+	         	<button type="button" id="saveBtn" class="btn btn-primary"  ng-click="subCtrl.addSubject()"><span class="glyphicon glyphicon-plus-sign" ></span> Add Subject</button>
+	         </span>
+	         <span ng-show="isUpdate">
+	         	<button type="button" id="saveBtn" class="btn btn-primary"  ng-click="subCtrl.updateSubject()"><span class="glyphicon glyphicon-plus-sign" ></span> Update Subject</button>
+	         </span>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+</div>
+</div>
+<script>
+     
+$(document).ready(function() {
+    $('#datatable-classwise-subjects').DataTable({
+            responsive: true,
+            "bPaginate": false,
+            "order": [[ 0, "asc" ]],
+            "columns": [
+                        
+                         {"data": "className"},
+	                     { "data": "subjectCount",
+	                            "render" : function(data, type, row, meta){
+	                                    //return $('<a>').attr('href', "#/admissions/studentdetails/"+row['classId']).text(data).wrap('<div></div>').parent().html();
+	                                    return $('<a>').attr('href', "#/academics/settings/subject/"+row['academicYearId']+"/class/"+row['classId']).text(data).wrap('<div></div>').parent().html();
+	                        	///academics/classsubjectDetails/:academicYearId', {
+	                            }
+	                     }
+                       
+                    ]
+    });
+}); 
+	
+	
+</script>	 

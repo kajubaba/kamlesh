@@ -1,0 +1,55 @@
+<div ng-controller="admission.scheme.manage.controller as ctrl"
+	 ng-init="ctrl.getAdmissionScheme()">
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-certificate" aria-hidden="true"></i> Admission Scheme</div>
+			<div class="font-sm">Please fill all mandatory fields (<span class="color-red">*</span>) before you Save
+			</div>
+		</div>
+		<form name="affiliationAuthority_Form">
+		
+		<div class="alert alert-danger"  ng-show="isDuplicateName">
+			 <span class="glyphicon glyphicon-warning-sign"></span>
+			 <strong>Opps Error !!! </strong> Admission Scheme name already exists. Please choose another name.
+		</div>
+		
+		<div class="alert alert-success"  ng-show="showSuccessMessage">
+			 <span class="glyphicon glyphicon-ok"></span> Changes Saved Successfully
+		</div>
+	
+		<table class="table-responsive table tbl-profile">
+			<tbody>
+				<tr>
+					<td class="profile-label col-md-2 align-right"><span class="color-red">*</span> Name :</td>
+					<td class="col-md-3">
+						<input type="text" class="form-control" ng-model="admissionSchemeForm.schemeName" ng-maxlength="128" style="width: 500px" ng-trim="true" required/>
+						<div class="font-sm">(Max 128 chars)</div>
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="profile-label col-md-2 align-right">Active ? :</td>
+					<td class="col-md-3">
+						<input type="checkbox" ng-model="admissionSchemeForm.active"/>
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		<div style="padding-left: 200px">
+			<span style="margin-right: 10px">
+				<a class="btn btn-default btn-sm" href="#/admin/admissionscheme/list"><span class="glyphicon glyphicon-circle-arrow-left"></span> Cancel</a>
+			</span>						    			
+			<span>
+				<button class="btn btn-primary btn-sm" ng-click="ctrl.saveAdmissionScheme()" ng-disabled="affiliationAuthority_Form.$invalid"><span class="glyphicon glyphicon-save"></span> Save</button>
+			</span>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,106 @@
+<div ng-controller="sams.academics.settings.controller as settingsCtrl" ng-init="settingsCtrl.init()">
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper" 
+		 ng-controller="acad.manage.class.section.controller as secCtrl"
+		 ng-init="secCtrl.getClasswiseSectionCount()">
+		<div class="row admin-setting-header">
+			<div class="col-md-8">Manage Class Section(s)</div>
+			<div class="col-md-4">
+				<span has-permission='ROLE_ACADEMICS_MANAGE_CLASS_SECTION'>
+					<button type="button" class="btn btn-info btn-sm pull-right" ng-click="secCtrl.openSectionModal()"> <i class="glyphicon glyphicon-plus-sign"></i> New Section</button>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+						<div class="dataTable_wrapper">
+							<table class="table table-striped table-bordered table-hover"
+								id="datatable-classwise-sections-counts">
+								<thead>
+									<tr>
+										<th>Class</th>
+										<th>Sections #</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+			</div>
+		</div>
+	
+	<div class="modal" id="modalSection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			<span ng-show="isAdd">Add New</span>
+        			<span ng-show="isUpdate">Update</span>
+        			 Section
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update section
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	           <div class="form-group">
+	            <label><span class="color-red">*</span> University/Board :</label>
+	            <select class="form-control" ng-model="auId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities" ng-change="secCtrl.fetchActiveClasses()">
+					<option value="">--- Select Affiliation Authority ---</option>
+				</select>
+	          </div> 
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Class :</label>
+	            <select class="form-control" ng-model="formData.academicYearClassId" ng-options="clazz.classId as clazz.className for clazz in classes" ng-change="secCtrl.enableDisableSaveButton()">
+					<option value="">--- Select Class ---</option>
+				</select>
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Section Name :</label>
+	            <input type="text" class="form-control" ng-model="formData.sectionName" ng-change="secCtrl.enableDisableSaveButton()">
+	          </div>
+	          <div class="form-group">
+	            <label>Section Code :</label>
+	            <input type="text" class="form-control" ng-model="formData.sectionCode" ng-change="secCtrl.enableDisableSaveButton()">
+	          </div>
+	         
+	      </div>
+	      
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="secCtrl.closeSectionModal()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary disabled"  ng-click="secCtrl.addSection()"><span class="glyphicon glyphicon-plus-sign" ></span> Add Section</button>
+	         
+	         
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+</div>
+</div>
+<script>
+     
+$(document).ready(function() {
+    $('#datatable-classwise-sections-counts').DataTable({
+            responsive: true,
+            "bPaginate": false,
+            "order": [[ 0, "asc" ]],
+            "columns": [
+                        
+                         {"data": "sectionName"},
+	                     { "data": "sectionCount",
+	                            "render" : function(data, type, row, meta){
+	                                   
+	                            	 return $('<a>').attr('href', "#/academics/settings/section/"+row['academicYearId']+"/class/"+row['classId']).text(data).wrap('<div></div>').parent().html();
+	                        	
+	                            }
+	                     }
+                       
+                    ]
+    });
+}); 
+	
+</script>	 

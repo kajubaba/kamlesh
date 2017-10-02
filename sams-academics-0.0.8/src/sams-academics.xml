@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+
+	<bean name="classSubjectService"
+		class="com.narendra.sams.academics.service.impl.ClassSubjectServiceImpl">
+		<property name="examClassSubjectDao" ref="classSubjectDao" />
+	</bean>
+
+	<bean name="classSubjectDao" class="com.narendra.sams.academics.dao.impl.ClassSubjectDaoImpl"
+		parent="abstractDAOSupport">
+	</bean>
+
+	
+	
+	<bean name="classSectionService" class="com.narendra.sams.academics.service.impl.ClassSectionServiceImpl">
+		<property name="classSectionDAO" ref="classSectionDAO" />
+	</bean>
+	
+	<bean name="studentBirthdayService" class="com.narendra.sams.acad.service.impl.StudentBirthdayServiceImpl">
+		<property name="studentBirthdayDAO" ref="studentBirthdayDAO" />
+	</bean>
+	<bean name="studentSectionService" class="com.narendra.sams.acad.service.impl.StudentSectionServiceImpl">
+		<property name="studentSectionDAO" ref="studentSectionDAO" />
+	</bean>
+	<bean name="assessmentTypeService" class="com.narendra.sams.academics.service.impl.AssessmentTypeServiceImpl">
+		<property name="assessmentTypeDAO" ref="assessmentTypeDAO" />
+	</bean>
+	<bean name="evaluationTermService" class="com.narendra.sams.academics.service.impl.EvaluationTermServiceImpl">
+		<property name="evaluationTermDAO" ref="evaluationTermDAO" />
+		<property name="assessmentTypeService" ref="assessmentTypeService" />
+		<property name="assessmentTypeDAO" ref="assessmentTypeDAO" />
+	</bean>
+	<bean name="termAssessmentService" class="com.narendra.sams.academics.service.impl.TermAssessmentServiceImpl">
+		<property name="termAssessmentDAO" ref="termAssessmentDAO" />
+	</bean>
+	<bean name="scholasticScoreService" class="com.narendra.sams.academics.service.impl.ScholasticScoreServiceImpl">
+		<property name="scholasticScoreDAO" ref="scholasticScoreDAO" />
+		<property name="admissionListService" ref="admissionListService" />
+		<property name="classSubjectService" ref="classSubjectService" />
+		<property name="assessmentTypeService" ref="assessmentTypeService" />
+		<property name="studentSectionDAO" ref="studentSectionDAO" />
+	</bean>
+	<bean name="coScholasticAspectService" class="com.narendra.sams.academics.service.impl.CoScholasticAspectServiceImpl">
+		<property name="coScholasticAspectDAO" ref="coScholasticAspectDAO" />
+	</bean>
+	<bean name="examPatternService" class="com.narendra.sams.academics.service.impl.ExamPatternServiceImpl">
+		<property name="examPatternDAO" ref="examPatternDAO" />
+	</bean>
+	
+	<bean name="examPatternClassService" class="com.narendra.sams.academics.service.impl.ExamPatternClassServiceImpl">
+		<property name="examPatternClassDAO" ref="examPatternClassDAO" />
+		<property name="academicYearDAO" ref="academicYearDAO" />
+		<property name="examPatternDAO" ref="examPatternDAO" />
+	</bean>
+	
+	<bean name="studentCoScholasticExamService" class="com.narendra.sams.academics.service.impl.StudentCoScholasticExamServiceImpl">
+		<property name="studentCoScholasticExamDAO" ref="studentCoScholasticExamDAO" />
+		<property name="examPatternClassService" ref="examPatternClassService" />
+		<property name="coScholasticAspectService" ref="coScholasticAspectService" />
+		<property name="studentSectionService" ref="studentSectionService" />
+		
+	</bean>
+	<bean name="gradeService" class="com.narendra.sams.academics.service.impl.GradeServiceImpl">
+		<property name="gradeDAO" ref="gradeDAO" />
+	</bean>
+	<bean name="scoreCardService" class="com.narendra.sams.academics.service.impl.ScoreCardServiceImpl">
+		<property name="examPatternDAO" ref="examPatternDAO" />
+		<property name="studentCoScholasticExamDAO" ref="studentCoScholasticExamDAO" />
+		<property name="examPatternClassService" ref="examPatternClassService" />
+		<property name="classSubjectService" ref="classSubjectService" />
+		<property name="scholasticScoreService" ref="scholasticScoreService" />
+	</bean>
+	<bean name="studentAttendanceService" class="com.narendra.sams.academics.service.impl.StudentAttendanceServiceImpl">
+		<property name="studentAttendanceDAO" ref="studentAttendanceDAO" />
+		<property name="studentSectionDAO" ref="studentSectionDAO" />
+	</bean>
+	
+	<bean name="studentRollNoService" class="com.narendra.sams.academics.service.impl.StudentRollNoServiceImpl">
+		<property name="studentRollNoDAO" ref="studentRollNoDAO" />
+		<property name="studentSectionDAO" ref="studentSectionDAO" />
+	</bean>
+	
+	<bean name="classSectionDAO" class="com.narendra.sams.academics.dao.impl.ClassSectionDAOImpl" parent="abstractDAOSupport"/>
+	
+	
+	<bean name="studentBirthdayDAO" class="com.narendra.sams.acad.dao.impl.StudentBirthdayDAOImpl" parent="abstractDAOSupport" />
+	<bean name="studentSectionDAO" class="com.narendra.sams.acad.dao.impl.StudentSectionDAOImpl" parent="abstractDAOSupport" />
+	<bean name="assessmentTypeDAO" class="com.narendra.sams.academics.dao.impl.AssessmentTypeDAOImpl" parent="abstractDAOSupport" />
+	<bean name="evaluationTermDAO" class="com.narendra.sams.academics.dao.impl.EvaluationTermDAOImpl" parent="abstractDAOSupport" />
+	<bean name="termAssessmentDAO" class="com.narendra.sams.academics.dao.impl.TermAssessmentDAOImpl" parent="abstractDAOSupport" />
+	<bean name="scholasticScoreDAO" class="com.narendra.sams.academics.dao.impl.ScholasticScoreDAOImpl" parent="abstractDAOSupport" />
+	<bean name="coScholasticAspectDAO" class="com.narendra.sams.academics.dao.impl.CoScholasticAspectDAOImpl" parent="abstractDAOSupport" />
+	<bean name="examPatternDAO" class="com.narendra.sams.academics.dao.impl.ExamPatternDAOImpl" parent="abstractDAOSupport" />
+	<bean name="examPatternClassDAO" class="com.narendra.sams.academics.dao.impl.ExamPatternClassDAOImpl" parent="abstractDAOSupport" />
+	<bean name="studentCoScholasticExamDAO" class="com.narendra.sams.academics.dao.impl.StudentCoScholasticExamDAOImpl" parent="abstractDAOSupport" />
+	<bean name="gradeDAO" class="com.narendra.sams.academics.dao.impl.GradeDAOImpl" parent="abstractDAOSupport" />
+	<bean name="studentAttendanceDAO" class="com.narendra.sams.academics.dao.impl.StudentAttendanceDAOImpl" parent="abstractDAOSupport" />
+	<bean name="studentRollNoDAO" class="com.narendra.sams.academics.dao.impl.StudentRollNoDAOImpl" parent="abstractDAOSupport" />
+	
+	
+</beans>

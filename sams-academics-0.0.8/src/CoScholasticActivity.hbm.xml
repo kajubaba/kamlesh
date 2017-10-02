@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.narendra.sams.academics.exam.domain.CoScholasticActivity" table="exam_coscholastic_activity">
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		 <property name="activityName" column="name" not-null="true" />
+		 <property name="activityDisplayName" column="display_name"/>
+		 <property name="displaySeqNo" column="display_sequence_no" />
+		 <!-- <property name="isScorable" column="is_scorable" /> -->
+		 <property name="isSkillBasedAssessment" column="is_skill_based_assessment" />
+		 <many-to-one name="evaluationType" class="com.narendra.sams.academics.exam.domain.EvaluationType" column="evaluation_aspect_id"/>
+		 <many-to-one name="parentActivity" class="com.narendra.sams.academics.exam.domain.CoScholasticActivity" column="parent_activity_id"/>
+		 	 
+		<set name="activitySkills" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="activity_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.ActivitySkill"/>
+		</set>
+		
+		<set name="subActivities" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="parent_activity_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.CoScholasticActivity"/>
+		</set>
+ 		
+		  
+	</class>
+</hibernate-mapping>

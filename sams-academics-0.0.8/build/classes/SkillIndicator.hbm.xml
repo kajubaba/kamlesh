@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.exam.domain.SkillIndicator" table="exam_coscholastic_activity_skill_indicator">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		 <property name="name" column="name" not-null="true" />
+		 <property name="displayName" column="display_name"/>
+		 <property name="displaySeqNo" column="display_sequence_no"/>
+ 		 <many-to-one name="activitySkill" class="com.narendra.sams.academics.exam.domain.ActivitySkill" column="skill_id"/>
+ 		 <set name="skillIndicatorGradePointMaps" lazy="true" cascade="save-update, delete" inverse="true">
+			<key column="skill_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.SkillIndicatorGradePointMap"/>
+		</set>
+	</class>
+</hibernate-mapping>

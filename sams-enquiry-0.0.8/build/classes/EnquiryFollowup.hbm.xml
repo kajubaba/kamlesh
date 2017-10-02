@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.enquiry.domain.EnquiryFolloup" table="enquiry_followup">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="communicationSummary" column="comm_summary"/>
+		<property name="nextFollowupDate" column="followup_date"/>
+		<property name="nextFollowupHr" column="folloup_hr"/>
+		<property name="nextFollowupMin" column="followp_min"/>
+		<property name="amOrPM" column="followup_am_pm"/>
+		
+		
+		<many-to-one name="followupCommType" class="com.narendra.sams.enquiry.domain.FollowupCommType" column="comm_type_id"/>
+		<many-to-one name="followupCommWith" class="com.narendra.sams.enquiry.domain.FollowupCommWith" column="comm_with_id"/>
+		<many-to-one name="followupCommConclusion" class="com.narendra.sams.enquiry.domain.FollowupCommConclusion" column="comm_conclusion_id"/>
+		<many-to-one name="followupNextAction" class="com.narendra.sams.enquiry.domain.FollowupNextAction" column="comm_next_action_id"/>
+		<many-to-one name="followupSuggestion" class="com.narendra.sams.enquiry.domain.FollowupSuggestion" column="comm_suggestion_id"/>
+		<many-to-one name="enquiry" class="com.narendra.sams.enquiry.domain.Enquiry" column="enquiry_id"/>
+		
+		
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" not-null="true"/>
+		<property name="createdOn" column="created_date_time" not-null="true"/>
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id" not-null="true"/>
+		<property name="modifiedOn" column="modified_date_time" not-null="true"/>
+		<property name="followedOn" column="followed_on"/>
+		
+	</class> 
+</hibernate-mapping>

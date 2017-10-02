@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.FeeTransaction" table="student_fee_transaction">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+	
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true"/>
+		<many-to-one name="studentClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="student_class_id" />
+		<property name="transactionId" column="transacton_id" />
+		<property name="transactionTime" column="transaction_time" />
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<set name="feeTransactionDetails" lazy="true" cascade="save-update,delete">
+			<key column="student_fee_transaction_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.FeeTransactionDetail"/>
+		</set>
+		<many-to-one name="user" class="com.narendra.sams.core.domain.UserView" column="user_id" not-null="true" />
+		<property name="comments" column="comments" />
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		<many-to-one name="academicYearFeeInstallment" class="com.narendra.sams.core.domain.AcademicYearFeeInstallment" column="ay_fee_installment_id"/>
+		<many-to-one name="customizeInstallment" class="com.narendra.sams.admission.domain.CustomizeInstallment" column="cust_installment_id"/>
+		<many-to-one name="feeRecieptHeader" class="com.narendra.sams.admission.domain.FeeRecieptHeader" column="fee_reciept_header_id"/>
+		
+		<property name="recieptNo" column="reciept_no" />
+		<property name="depositedBy" column="deposited_by" />
+		<property name="paymentMode" column="payment_mode" />
+		<property name="chequeDDNo" column="cheque_dd_no" />
+		<property name="chequeDDDate" column="cheque_dd_date" />
+		<property name="chequeDDBankName" column="cheque_dd_bank_name" />
+		<property name="bankBranchName" column="cheque_dd_bank_branch_name" />
+		<property name="paymentDate" column="payment_date" />
+		
+		
+	</class> 
+</hibernate-mapping>

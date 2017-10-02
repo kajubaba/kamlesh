@@ -1,0 +1,71 @@
+<div>
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper"   ng-controller="academicsession.manage.controller as academicSessionCtrl" ng-init="academicSessionCtrl.getAcademicSession()">
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-bus" aria-hidden="true"></i> {{academicSessionForm.name}} - Setup Bus Stop(s) & Fee </div>
+			<div class="font-sm">
+				Setup active Bus Stop(s) and Fee. 'Assign Bus Stop(s)' option can be used to activate bus stops in academic session and 'Edit Bus Fee' can be used to edit bus fee.
+			</div>
+		</div>
+		<div  ng-controller="academicsession.busstop.controller as ctrl" ng-init="ctrl.init()">
+			<div ng-include="'sams/components/admin/academic-session/wizard_header.html'"></div>
+			<div>
+				<div ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" class="row" style="margin-bottom: 20px">
+					<div class="dropdown  pull-right">
+						<button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+							<span class="glyphicon glyphicon-tasks"></span>
+						</button>
+						<ul class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+							<li ><a href="#/admin/academicsession/{{selectedAcademicSession}}/assign/busstop"><i class="fa fa-bus" aria-hidden="true"></i> Assign Bus Stop(s)</a></li>
+							<li class="divider"></li>
+							<li ><a href="#/admin/academicsession/{{selectedAcademicSession}}/edit/busfee"><span class="glyphicon glyphicon-edit"></span> Edit Bus Fee </a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div ui-grid="gridOptions" 
+						ui-grid-exporter 
+						ui-grid-pagination
+						ui-grid-move-columns 
+						ui-grid-resize-columns 
+						class="myGrid">
+					</div>
+				</div>
+					<div class="modal" id="modalCanNotDeleteBusStop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  
+	  
+	  <div class="modal-dialog" role="document">
+	   
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> 
+        			<div class="alert alert-danger">	
+        				<span class="glyphicon glyphicon-warning-sign"></span> Opps Error !!! You can not remove bus stop
+        			</div>
+        			
+        		</h4>
+        	</div>
+        	
+	      <div class="modal-body">
+			Some of the students has already been adopted this bus stop.
+			<br/><br/>
+			It's not recommended to remove bus stop once it is adopted by student(s).	       
+	      
+	 	
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-primary"  data-dismiss="modal"> OK ! Got It</button>
+	      </div>
+	    </div>
+	   
+	  </div>
+	  
+	</div> 	
+			</div>
+		</div>
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+	</div>
+</div>

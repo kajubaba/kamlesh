@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ScoreCard_subreport_aatendance_health" pageWidth="555" pageHeight="207" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c6506b4d-7375-460d-9c5b-df84777a884a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="lblAttendance" class="java.lang.String"/>
+	<parameter name="lblTerm1" class="java.lang.String"/>
+	<parameter name="lblTerm2" class="java.lang.String"/>
+	<parameter name="lblTotalAttendance" class="java.lang.String"/>
+	<parameter name="term1Attendance" class="java.lang.String"/>
+	<parameter name="term2Attendance" class="java.lang.String"/>
+	<parameter name="lblWorkingDays" class="java.lang.String"/>
+	<parameter name="term1WorkingDays" class="java.lang.String"/>
+	<parameter name="term2WorkingDays" class="java.lang.String"/>
+	<parameter name="lblHealthStatus" class="java.lang.String"/>
+	<parameter name="lblHeight" class="java.lang.String"/>
+	<parameter name="lblWeight" class="java.lang.String"/>
+	<parameter name="lblBloodGroup" class="java.lang.String"/>
+	<parameter name="height" class="java.lang.String"/>
+	<parameter name="weight" class="java.lang.String"/>
+	<parameter name="bloodGroup" class="java.lang.String"/>
+	<parameter name="lblVision" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="207" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="4" width="100" height="20" forecolor="#FF0000" uuid="f6e79422-b90c-41db-93ea-7b6efbd63440"/>
+				<textElement>
+					<font pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblAttendance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="23" width="100" height="20" forecolor="#FF3300" uuid="2a57ad62-d04e-40d4-9614-8a49c5439570"/>
+				<textFieldExpression><![CDATA[$P{lblTerm1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="23" width="100" height="20" forecolor="#FF3300" uuid="d9c33941-0097-4db6-a368-b113080a79fd"/>
+				<textFieldExpression><![CDATA[$P{lblTerm2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="47" width="138" height="20" uuid="73296607-42d4-4fdb-8a50-049f89acccab"/>
+				<textFieldExpression><![CDATA[$P{lblTotalAttendance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="72" width="138" height="20" uuid="4595539e-4610-47f5-be4c-a2d87260478b"/>
+				<textFieldExpression><![CDATA[$P{lblWorkingDays}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="47" width="100" height="20" uuid="23dbab66-d97a-4821-b479-4bbdd7219303"/>
+				<textFieldExpression><![CDATA[$P{term1Attendance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="47" width="100" height="20" uuid="bac70deb-2288-43ee-93ca-97fdb6680c2d"/>
+				<textFieldExpression><![CDATA[$P{term2Attendance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="72" width="100" height="20" uuid="28f7a4b9-cb16-4eaf-a0fb-68360ef105b1"/>
+				<textFieldExpression><![CDATA[$P{term1WorkingDays}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="72" width="100" height="20" uuid="187a5fb5-d0ea-4d1e-8f04-dc5d3e46d53b"/>
+				<textFieldExpression><![CDATA[$P{term2WorkingDays}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="34" y="113" width="100" height="20" forecolor="#FF0000" uuid="bdbe465f-2bb2-4885-b596-eae13837ddf1"/>
+				<textElement>
+					<font pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblHealthStatus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="141" width="90" height="20" uuid="70a6e0d5-cb67-4ad5-a7e9-9ee41bd9fa7a"/>
+				<textFieldExpression><![CDATA[$P{lblHeight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="141" width="56" height="20" uuid="a73046d8-c4f6-455f-be3d-7d96c0457e9d"/>
+				<textFieldExpression><![CDATA[$P{height}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="141" width="71" height="20" uuid="e9e5aad1-b11a-4ffa-a765-c3a06ba01ff1"/>
+				<textFieldExpression><![CDATA[$P{lblWeight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="141" width="100" height="20" uuid="cf809172-76c7-4d15-8afe-c4a174759179"/>
+				<textFieldExpression><![CDATA[$P{weight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="163" width="56" height="20" uuid="c4d6abd4-09d8-461d-8449-9820911a7bec"/>
+				<textFieldExpression><![CDATA[$P{bloodGroup}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="163" width="90" height="20" uuid="098af2f7-976d-46c3-97de-2754d33f0b3d"/>
+				<textFieldExpression><![CDATA[$P{lblBloodGroup}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="163" width="71" height="20" uuid="46a803b4-bc23-4331-aab6-73962fd06c58"/>
+				<textFieldExpression><![CDATA[$P{lblVision}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="351" y="163" width="144" height="20" uuid="06b90b8d-969f-4375-a5d3-ba8682a89053"/>
+				<text><![CDATA[(L): NA                      (R) : NA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="185" width="88" height="20" uuid="e0133525-df0b-46e2-af03-dbd3354c613b"/>
+				<text><![CDATA[Dental Hygiene]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="185" width="88" height="20" uuid="b5fba40f-7fcf-4f4f-8263-3df8a3239eb6"/>
+				<text><![CDATA[Good]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

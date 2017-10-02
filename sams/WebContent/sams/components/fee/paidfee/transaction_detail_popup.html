@@ -1,0 +1,88 @@
+<div class="modal fade" id="modalTransactionDetail" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					Transaction Details: #<span
+						ng-bind="transactionDetail.transactionNo"></span>
+					<div class="pull-right">
+						Receipt No: <span ng-bind="transactionDetail.receiptNo"></span>
+					</div>
+				</h4>
+			</div>
+			<div class="modal-body">
+
+				<table class="table-responsive table tbl-profile">
+					<tbody>
+						<tr>
+							<td class="profile-label col-md-3">Student Name</td>
+							<td colspan="3">{{transactionDetail.studentName}}
+								({{transactionDetail.studentId}})</td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">Payment Class</td>
+							<td ng-bind="transactionDetail.paymentClass"></td>
+							<td class="profile-label col-md-3">Academic Year</td>
+							<td ng-bind="transactionDetail.paymentAcademicYear"></td>
+
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">Payment Date</td>
+							<td ng-bind="transactionDetail.paymentDate"></td>
+							<td class="profile-label col-md-3">Paid By</td>
+							<td ng-bind="transactionDetail.depositedBy"></td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">Transaction Date</td>
+							<td ng-bind="transactionDetail.transactionDateTime"></td>
+							<td class="profile-label col-md-3">Collected By</td>
+							<td ng-bind="transactionDetail.collectedBy"></td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">Fee Installment</td>
+							<td ng-bind="transactionDetail.feeInstallment"></td>
+							<td class="profile-label col-md-3">Payment Mode</td>
+							<td ng-bind="transactionDetail.paymentMode"></td>
+
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">Payment Remarks</td>
+							<td colspan="3">{{transactionDetail.paymentComments}}</td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-3">Total Paid (<i class="fa fa-inr"></i>)</td>
+							<td colspan="3">{{transactionDetail.paidFee}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+
+				<div class="dataTable_wrapper">
+					<table class="table-responsive table table-bordered">
+						<thead>
+							<th>Fee Head</th>
+							<th>Paid Amount (<i class="fa fa-inr"></i>)</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="paidFee in transactionDetail.paidFees">
+								<td ng-bind="paidFee.feeHeadName"></td>
+								<td ng-bind="paidFee.paidAmount"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" ng-click="popupCtrl.printReceipt()">
+					<span class="glyphicon glyphicon-print"></span> Print Receipt
+				</button>
+			</div>
+		</div>
+
+	</div>
+</div>

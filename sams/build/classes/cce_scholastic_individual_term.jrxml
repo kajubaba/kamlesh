@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marksheet_term1" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="36" bottomMargin="144" isIgnorePagination="true" uuid="90b5e328-b5ca-464f-825b-ddf4649c7ccb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="90"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#E6F3FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="4d8d745a-3bcb-4cd1-9b68-0fd222a6800b"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["G:\\software\\sams_src_code\\latest_sams\\samsrepository\\sams\\sams-web\\src\\main\\resources\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="part2CoSchAreaDS" class="java.util.List" isForPrompting="false"/>
+	<parameter name="overallGrade" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="overallGradeText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part1Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="sNoText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="subText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="term1Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="term2Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="termSumText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FA1Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FA2Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SA1Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FA1FA2SA1Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FA3Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FA4Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SA2Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FA3FA4SA2Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FA1FA2FA3FA4Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SA1SA2Text" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="desIndText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="gradeText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part2: Co-" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="lifeSkillText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="descIndText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3WEdu" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3VisPerfArts" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3SugActivies" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3WorkEdu" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3WorkEdeDesc" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3Vis&amp;PerfArts" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3Vis&amp;PerfArtsDes" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3AttValues" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3DS" class="java.util.List" isForPrompting="false"/>
+	<parameter name="part3A01" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3A02" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3ACoScAct" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3ASkillOption" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3ALit&amp;CrtSkills" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3ALit&amp;CrtSkillsDsc" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3ASciSkills" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3ASciSkillsDsc" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3AInfo&amp;CommTech" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3AInfo&amp;CommTechDesc" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3AOrg&amp;LeadSkills" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3AOrg&amp;LeadSkillsDesc" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3BHeal&amp;PhyEdu" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part3BHeal&amp;PhyEduDesc" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="selfAwareness" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="MyGoals" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Strengths" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="myIntHobbies" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="responsDischargedAch" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AffiliationNo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="NameOfSchool" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="CompleteAddress" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Email" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TelephoneNo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AffiliationNoValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="NameOfSchoolValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="EmailValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="CompleteAddressValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TelephoneNoValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ReportBook" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="CLASSES" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Session" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SessionValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="StudentProfile" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="NameOfStudent" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="NameOfStudentValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Class" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ClassValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AdmissionNo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="AdmissionNoValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="DOB" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="DOBValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="MotherName" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="MotherNameValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FatherName" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FatherNameValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ResidentialAddress" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ResidentialAddressValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="stdTelephoneNo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="stdTelephoneNoValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Attendance" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="totworkDays" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parameter3" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="parameter4" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TotAttstud" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="term1Att" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="term2Att" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="term1WorkDays" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="term2WorkDays" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="signature" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Student" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ClassTeacher" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Principal" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Parent" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Gender" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="GenderValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="Section" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="totWorkDaysText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="totWorkDaysValue" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="attOfStdText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="attOfStdVale" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="imagePath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="sectionText" class="java.lang.String" isForPrompting="false"/>
+	<field name="subject" class="java.lang.String"/>
+	<field name="FA1" class="java.lang.String"/>
+	<field name="FA2" class="java.lang.String"/>
+	<field name="SA1" class="java.lang.String"/>
+	<field name="SA2" class="java.lang.String"/>
+	<field name="sNo" class="java.lang.String"/>
+	<field name="term1Sum" class="java.lang.String"/>
+	<field name="FA3" class="java.lang.String"/>
+	<field name="FA4" class="java.lang.String"/>
+	<field name="term2Sum" class="java.lang.String"/>
+	<field name="sumAllFA" class="java.lang.String"/>
+	<field name="sumAllSA" class="java.lang.String"/>
+	<field name="overAllGrade" class="java.lang.String"/>
+	<field name="part2CoSchList" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="280" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="523" height="280" uuid="4771ad6a-68fe-4253-9a84-15477925a08f"/>
+				<textField>
+					<reportElement x="2" y="69" width="517" height="20" uuid="7165aeb9-6c20-4263-bd63-ba0ace5f449c"/>
+					<textElement textAlignment="Center">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{NameOfSchoolValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="90" width="517" height="20" uuid="c970a27c-dba3-4cca-b2f3-4564ceeef9d5"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{CompleteAddressValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="110" width="517" height="20" uuid="bf78cee2-2e30-4f51-96b0-4a73ad0cfcd4"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{ReportBook}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="177" width="77" height="15" uuid="c1e4f297-7f81-4c2c-88ca-ce8335d874ad"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{NameOfStudent}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="176" width="411" height="15" uuid="36dea7fe-f04a-4cef-824e-9141e448f2f8"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" :   "+$P{NameOfStudentValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="212" width="67" height="15" uuid="c167ffef-b21f-4bd6-a4fc-389d4e4e81fc"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{Class}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="111" y="212" width="127" height="15" uuid="83c7d96b-be4c-4ce5-8761-b99b1ce1a590"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" :   "+$P{ClassValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="111" y="159" width="171" height="15" uuid="a32c1d01-873e-4059-a703-d93f109df0e4"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" :   "+$P{AdmissionNoValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="229" width="76" height="15" uuid="93d169b0-2d00-4ad0-bf37-feba765b5199"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{DOB}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="111" y="229" width="127" height="15" uuid="c00f7a5e-fc3f-4d24-aa68-d9b9adc3e386"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" :   "+$P{DOBValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="194" width="76" height="15" uuid="5e1bc10a-4b45-4392-952c-201123d06b72"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{Gender}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="194" width="100" height="15" uuid="d6c6c574-b7ad-4224-9699-f7fe318434a7"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" :   "+$P{GenderValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="132" width="517" height="20" uuid="71a6e12a-9c47-4a2a-adc7-a8acee5bcd9b"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$P{SessionValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="476" y="212" width="43" height="20" uuid="9e222d23-2d47-426b-b7b7-a7d80b1d963c"/>
+					<textFieldExpression><![CDATA[$P{Section}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1" y="247" width="104" height="20" uuid="dcbf1804-c82a-4191-9309-b5273ae68438"/>
+					<textFieldExpression><![CDATA[$P{totWorkDaysText}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="110" y="247" width="124" height="20" uuid="dcb15af3-3a6c-40e7-a23e-50727745fde4"/>
+					<textFieldExpression><![CDATA[" :   "+$P{totWorkDaysValue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="336" y="212" width="139" height="20" uuid="afe4215c-6254-4347-98cc-6c7c65be20f0"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$P{sectionText}+" :  "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="336" y="247" width="139" height="20" uuid="b7a40a99-2b1b-4bdb-aa83-802d9bb8a93f"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$P{attOfStdText}+" :  "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="476" y="247" width="44" height="20" uuid="8b760f6a-f680-4178-be1e-443dd602a074"/>
+					<textFieldExpression><![CDATA[$P{attOfStdVale}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="342" y="2" width="100" height="20" uuid="c0bb61f6-f85f-4cc1-84c0-301efe59f45c"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{AffiliationNo}+" : "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="446" y="2" width="73" height="20" uuid="e5df263d-ee87-4a7c-bddc-cc69e5811579"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{AffiliationNoValue}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image scaleImage="FillFrame" hAlign="Left">
+				<reportElement mode="Transparent" x="2" y="0" width="57" height="57" uuid="360afb2a-d98f-4dbf-8903-55096f902a32"/>
+				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="2" y="160" width="78" height="15" uuid="bca5ef82-3077-4370-b490-eca82c79269b"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AdmissionNo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="58" splitType="Stretch">
+			<elementGroup>
+				<line>
+					<reportElement x="0" y="1" width="522" height="1" uuid="9f3a9a1e-d0bb-4058-9764-8909533c041a"/>
+				</line>
+				<line>
+					<reportElement x="0" y="1" width="1" height="57" uuid="5ea2de71-36b2-48e9-b769-7f72c8ddce94"/>
+				</line>
+				<line>
+					<reportElement x="522" y="1" width="1" height="55" uuid="33534d87-34f3-4ed2-a8ad-eea47b14b0ff"/>
+				</line>
+				<line>
+					<reportElement x="1" y="57" width="519" height="1" uuid="d209dbb9-67dd-457a-a3b3-3ccc2b3bb7dc"/>
+				</line>
+				<line>
+					<reportElement x="382" y="24" width="1" height="33" uuid="534cd721-65c0-40ef-a609-445474f27b54"/>
+				</line>
+				<line>
+					<reportElement x="84" y="2" width="1" height="56" uuid="653f9d2d-af00-48f2-89c9-3560819cf0b5"/>
+				</line>
+				<line>
+					<reportElement x="284" y="24" width="1" height="32" uuid="0d6881a4-4441-41c6-8e9a-e65bcf251353"/>
+				</line>
+				<line>
+					<reportElement x="84" y="24" width="436" height="1" uuid="30230fa1-c39b-40db-b6c3-18a44c491192"/>
+				</line>
+				<line>
+					<reportElement x="177" y="25" width="1" height="32" uuid="a5e14a09-265b-4912-aac0-04ba3903a8a7"/>
+				</line>
+				<textField>
+					<reportElement x="4" y="14" width="80" height="20" uuid="598b8f12-e02e-40e1-bd5d-0391a44f3ebb"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{subText}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="85" y="5" width="437" height="15" uuid="93d2113b-cc8c-4646-b828-c507daa91ef1"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{term1Text}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="106" y="26" width="35" height="30" uuid="29e63c73-da00-4cdb-8fa1-8a2eee70529e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{FA1Text}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="204" y="26" width="41" height="30" uuid="3bde5bba-872b-4f69-9b9a-daf1608366b0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{FA2Text}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="314" y="26" width="38" height="30" uuid="245b79f6-0891-4e44-9a1d-2db5d3a42120"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{SA1Text}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="401" y="26" width="112" height="30" uuid="53e20d18-36d4-4998-8693-66eeb89864fd"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{FA1FA2SA1Text}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="105" y="0" width="35" height="21" uuid="ae86e4ef-da7a-486e-87a5-1b0979442a95"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FA1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="0" width="35" height="21" uuid="31c331f7-e990-4e11-95c7-9a3377adf279"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FA2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="0" width="35" height="21" uuid="4bf36cf0-c46e-4ac0-88ca-ef7e39f4fe14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SA1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="80" height="21" uuid="6ca6605b-2ab9-4609-8b8d-8431817c2ec9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subject}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="0" width="43" height="21" uuid="6061dd98-fec4-4feb-b091-85870a6ee237"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{term1Sum}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="21" width="520" height="1" uuid="67b5427e-80a4-406f-b8d4-06c49f512356"/>
+			</line>
+			<line>
+				<reportElement x="0" y="-2" width="1" height="23" uuid="8d6bc7e4-0971-475a-ab0c-a62dacc60e81"/>
+			</line>
+			<line>
+				<reportElement x="84" y="-1" width="1" height="22" uuid="dc98515e-bb4b-4ce5-9cb9-57beb56088ef"/>
+			</line>
+			<line>
+				<reportElement x="284" y="-1" width="1" height="22" uuid="c0ee3fc0-f809-4f80-9e93-e326426ffdd3"/>
+			</line>
+			<line>
+				<reportElement x="522" y="-2" width="1" height="24" uuid="b8dfe01a-72aa-464d-90a5-dfe787ee7c0a"/>
+			</line>
+			<line>
+				<reportElement x="177" y="-1" width="1" height="22" uuid="173ad36d-4ce6-4a98-bc96-39e334286926"/>
+			</line>
+			<line>
+				<reportElement x="382" y="0" width="1" height="22" uuid="44080770-fea3-4c30-b566-1615180bef7c"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="18" width="100" height="20" uuid="a2380d43-4e9e-45ac-9567-115a12cfbf09"/>
+				<textFieldExpression><![CDATA[$P{Parent}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="18" width="83" height="20" uuid="e6c40609-a293-4bba-be43-f3d68bdf556e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{ClassTeacher}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="18" width="83" height="20" uuid="db932e25-b124-4d1d-93ce-12654576fc88"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{Principal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="59" splitType="Immediate"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

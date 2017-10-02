@@ -1,0 +1,117 @@
+<div ng-controller="sams.academics.studentlist.controller as admnCtrl" ng-init="admnCtrl.getStudentsOfClass()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="admnCtrl.filterClasswiseAdmissionCount(academicYear.selectedAcademicYear)"></select>
+              	Classwise  <small>Admissions</small>  
+              </div>
+             
+              <div class="col-sm-6 col-md-4">
+                <div class="row">
+			
+					<div class="col-md-12">
+						 <!-- <div class="dropdown  pull-right">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul has-permission='ROLE_NEW_REGISTRATION' class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									<li ><a href="#/admissions/new">New Addmision</a></li>
+							   </ul>
+						</div> -->
+					</div>
+					
+				</div>
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row" block-ui="block-classstudlist">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	  <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;
+            	  <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> 
+                  	<span id="selectedClass"></span>  
+                  	<span class="caret"></span> 
+                  </button>
+                  <ul class="dropdown-menu scrollable-menu" role="menu" id="classList">
+                  </ul>
+                  <span id="studentStatusType">
+                  </span>
+                </div>
+              <div class="pull-right">
+             
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Class View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                     <li><a href="#/academics/studentview/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Student View</a></li>
+                    <li><a href="#/academics/classview/{{selectedStudentStatus}}/{{selectedAcademicYear}}">Class View</a></li>
+                  </ul>
+                </div>
+                
+              </div>
+            </div>
+            <div class="panel-body">
+            	<div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+              <!-- <div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover" id="datatable-classwise-students">
+                  <thead>
+                    <tr>
+                      <th>Student ID#</th>
+                      <th>Student Name</th>
+                      <th>Father's Name</th>
+                      <th>Gender</th>
+                      <th>Current Class</th>
+                    </tr>
+                  </thead>
+                  
+                  
+                  
+                </table>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	  </div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+     /* $(document).ready(function() {
+        $('#datatable-classwise-students').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 1, "asc" ]],
+                "columns": [
+                            
+                             { 
+	                            	"data": "studentId",
+	                            	"render" : function(data, type, row, meta){
+	                                    return $('<a>').attr('href', "#/admissions/studentdetails/"+row['id']).text(data).wrap('<div></div>').parent().html();
+	                        	}
+	                            },
+                            { "data": "name" },
+                            { "data": "guardianName" },
+                            { "data": "gender" },
+                            { "data": "currentClass" }
+                           
+                        ]
+        });
+    });  */
+	
+    </script>	  

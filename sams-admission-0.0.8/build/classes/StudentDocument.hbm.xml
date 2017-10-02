@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.StudentDocument" table="student_documents">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="docName" column="document_name"/>
+		<property name="docPath" column="document_path" />
+		<property name="uploadedOn" column="uploded_on_date_time" />
+		<property name="comments" column="comments" />
+		
+		
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" />
+		<many-to-one name="document" class="com.narendra.sams.admission.domain.Document" column="document_id" />
+		<many-to-one name="docAcademicYear" class="com.narendra.sams.core.domain.AcademicYear" column="doc_academic_year_id" />
+		<many-to-one name="uploadedBy" class="com.narendra.sams.core.domain.UserView" column="uploded_by_user_id" />
+		
+	</class> 
+</hibernate-mapping>

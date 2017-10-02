@@ -1,0 +1,98 @@
+<div ng-controller="student.fee.brief.information.controller as studBriefInfoCtrl" ng-init="studBriefInfoCtrl.fetchStudentBriefInfo()">
+
+      
+      <!-- Row -2 -->
+      <div class="row">
+      		<div class="col-sm-12">
+      			<div class="panel panel-default">
+                	
+                	
+                	<div class="panel-heading panel-header-large"> <i class="fa fa-info-circle"></i> 
+                		<a href="#/fee/studentfee/{{studBriefInfo.id}}/null" >
+                		<span ng-bind="studBriefInfo.studentName"></span>
+                		</a>
+                		<div class="pull-right">
+                
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Fee Detail View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                      <li><a href="#/admissions/studentdetails/{{studBriefInfo.id}}">Personal Information View</a></li>
+                      <li has-permission = "ROLE_MANAGE_TRANSPORTATION"><a href="#/transportation/student/{{studBriefInfo.id}}">Transportation View</a></li>
+                      <li has-any-permission = "ROLE_CHANGE_STUD_CLASS | ROLE_CHANGE_STUD_BUS_STOP | ROLE_CHANGE_STUD_ADMN_SCHEME"><a href="#/student/activityview/{{studBriefInfo.id}}">Update View</a></li>
+                  </ul>
+                </div>
+              </div>
+                	</div>
+                		<div class="panel-body" >
+                			<div class="row">
+                <div class="col-md-2"> 
+                	
+                	
+                		<img id="studentImage" class="img-circle img-thumbnail img-responsive profile-img" src="sams/assets/img/student_icon.png" alt="" style="width: 170px;height: 170px">
+                	
+                	
+                </div>
+                <div class="col-md-4">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">ID :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.studentId"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Class :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.currentClass"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Academic Session :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.currentAcademicYear"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Admission Status :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.status"></div>
+                    </div>
+                    
+                    
+                    
+                  </form>
+                </div>
+                <div class="col-md-4">
+                  <form class="form-horizontal">
+                      <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Gender :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.gender"></div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Father's Name :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.fatherName"></div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Bus Stop :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.busStop"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 text-right-align">Admission Scheme :</label>
+                      <div class="col-sm-6" ng-bind="studBriefInfo.admissionScheme"></div>
+                    </div>
+                  
+                  </form>
+                </div>
+                <div class="col-md-2">
+                	 <form class="form-horizontal">
+	                      <div class="form-group">
+	                      <label class="col-sm-6 text-right-align">Total Due :</label>
+	                      <div class="col-sm-6"><i class="fa fa-inr"></i> <a href="#/fee/student/{{studentId}}/feehistory"><span class="badge" style="background-color: red">{{totalDue}}</span></a></div>
+	                    </div>
+	                 </form> 
+                	
+                </div>
+              </div>
+                		</div>
+                </div>
+      		</div>
+ 
+      </div>
+	  
+	
+</div>
+		  
+	  

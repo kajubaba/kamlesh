@@ -1,0 +1,215 @@
+
+      <div ng-controller="transportation.dashboard.controller as transDBCtrl" ng-init="transDBCtrl.initialize()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()">
+              		<i class="fa fa-dashboard"></i> <span ng-bind="admissionAcademicYear"> </span> Transportation <small>Dashboard</small> 
+              </div>
+              <div class="col-sm-6 col-md-4">
+				 <div class="row">
+			
+					<div class="col-md-12">
+						 <div class="dropdown  pull-right">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									<!-- <li><a href="#/transportation/vehicle/list">Manage Vehicles</a></li> -->
+									<li><a href="#/transportation/settings">Settings</a></li>
+							   </ul>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+     
+	  <!-- Row -2 -->
+      <div class="row">
+        <div class="col-sm-6 col-md-3" block-ui="block-cnfadmn">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <span class="glyphicon glyphicon-user fa-5x"></span> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge" ng-bind="busAdoptedStudentCount"></div>
+                  <div>Students Adopted Bus Facility !</div>
+                </div>
+              </div>
+            </div>
+            <a href="#/transportation/students/busadopted/list">
+            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+            </a> 
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="panel panel-yellow" block-ui="block-newadmn">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <i class="glyphicon glyphicon-plus-sign fa-5x"></i> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge">NA</div>
+                  <div>Students May Adopt Bus Facility !</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+           
+          </div>
+        </div>
+		<div class="clearfix visible-sm-block"></div>
+        <div class="col-sm-6 col-md-3">
+          <div class="panel panel-green">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <i class="fa fa-bus fa-5x"></i> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge">
+                  	{{academicYearBusCount}}
+                  	
+                  	
+                  
+                  </div>
+                  <div>Active Buses !</div> 
+                </div>
+              </div>
+            </div>
+            <a href="#/transportation/academicyearvehicle/list">
+            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+            </a> </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <i class="fa fa-wheelchair fa-5x" aria-hidden="true"></i> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge">
+                  	{{seatCapacity}}
+                  </div>
+                  
+                  <div>Bus Seats !</div>
+                </div>
+              </div>
+            </div>
+           <!-- <a href="#/transportation/academicyearvehicle/list"> -->
+	            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+	              <div class="clearfix"></div>
+	            </div>
+           <!--  </a> -->
+            </div>
+        </div>
+      <div class="clearfix visible-sm-block"></div>
+	  <div class="clearfix visible-md-block"></div>
+	  </div>
+      <!-- // Row -2 -->
+      
+	  <!-- Row -3 -->
+      <div class="row">
+        <div class="col-sm-7 col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Class wise Bus Facility Adopted Admissions
+	
+			</div>
+            <div class="panel-body">
+              Chart will be displayed here
+              <div id="classwiseChartContainer"></div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <span class="glyphicon glyphicon-user"></span> &nbsp; Admissions </div>
+            <div class="panel-body">
+              <div class="list-group" block-ui="block-diffadmns"> 
+              	<a href="#/transportation/busstop/list" class="list-group-item"> <i class="fa fa-minus-square"></i> Active Bus Stops<span class="pull-right text-muted small"><em><span ng-bind="busStopCount">NA</span></em> </span> 
+              	</a>
+              	<a href="#/transportation/route/list" class="list-group-item"> <i class="fa fa-road" aria-hidden="true"></i> Routes <span class="pull-right text-muted small"><em><span ng-bind="routeCount">NA</span></em> </span> 
+              	</a>
+              	<a class="list-group-item"> <span class="glyphicon glyphicon-education"></span> Students Assigned With Bus Stop<span class="pull-right text-muted small"><em><span>NA</span></em> </span> 
+              	</a>
+              	<a class="list-group-item"> <span class="glyphicon glyphicon-link"></span> Students NOT Assigned With Bus Stop <span class="pull-right text-muted small"><em><span>NA</span></em> </span> 
+              	</a>
+              	 
+              	 
+              	 
+              	 
+              	 
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="clearfix visible-sm-block visible-md-block"></div>
+	  </div>
+      <!-- // Row -3 -->	
+	 </div>
+<script>
+
+/* var classwiseChart = new FusionCharts(_appContextPath+'/sams/assets/libs/fusion-charts/FCF_Column3D.swf', "classwiseChart", "800", "250");
+
+function renderClasswiseChart(){
+	 $.ajax({
+		type : 'GET',
+		url : _appContextPath+"/ws/admissions/busadopted/classwisexml/5",
+		success : renderClasswiseChartSuccess
+	});	
+}
+
+function renderClasswiseChartSuccess(response){
+	classwiseChart.setDataXML(response); 
+	classwiseChart.render("classwiseChartContainer");
+}
+
+function updateClassWiseChart(studStatus){
+	 
+	if(studStatus == 5){
+		$("#admissionType").html("Confirm Admissions");
+	}else if(studStatus == 4){
+		$("#admissionType").html("New Registrations");
+	}else if(studStatus == 6){
+		$("#admissionType").html("Rennew Admissions");
+	}else if(studStatus == 1){
+		$("#admissionType").html("Cancelled Admissions");
+	}else if(studStatus == 3){
+		$("#admissionType").html("Degree Awarded");
+	}
+	
+	
+	
+	$.ajax({
+		type : 'GET',
+		url : _appContextPath+"/ws/admissions/busadopted/classwisexml/"+studStatus,
+		success : updateClassWiseChartSuccess
+	});
+	 
+}
+
+function updateClassWiseChartSuccess(response){
+	 updateChartXML("classwiseChart",response);
+}
+
+$(function() {
+	renderClasswiseChart();
+}); */
+
+
+</script>
+ 

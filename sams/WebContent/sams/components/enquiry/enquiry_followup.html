@@ -1,0 +1,170 @@
+<div>
+	
+      <div class="row" ng-controller="enquiry.new.follow.controller as newFollowupCtrl">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-6"> Enquiry Details </div>
+              <div class="col-md-6" >
+              
+              		<div class="dropdown pull-right">
+							  <!-- <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									<li><a href="javascript:void(0)" ng-click="newFollowupCtrl.openFollowupPopup()">Follow</a></li>
+									<li><a href="#/enquiry/new">Change Owner</a></li>
+									<li><a href="#/enquiry/new">Change Assign To</a></li>
+									<li><a href="#/enquiry/new">Change Status</a></li>
+							 </ul> -->
+					</div>
+					
+              </div>
+              
+			</div>
+          </h3>
+          <div ng-include="'sams/components/enquiry/enquiry_activity_popup.html'"></div>
+        </div>
+      </div>
+    
+      <div ng-controller="enquiry.detail.controller as ctrl" ng-init="ctrl.init()">
+	      <div ng-include="'sams/components/enquiry/enquiry_info_section.html'"></div>
+    	  <div class="panel panel-default">
+      				 <div class="panel-heading panel-header-large"> 
+      				 	<i class="fa fa-info-circle"></i> Student Followups
+      				 	 
+                		
+                	</div>
+                	<div class="panel-body" >
+				
+				
+					<ul class="nav nav-tabs">
+						<li ><a data-toggle="tab" href="#/enquiry/{{enquiryDetails.id}}" ng-click="conversationCtrl.loadStudentDetails()">Personal Information</a></li>
+						<li class="active"><a data-toggle="tab" href="javascript:void(0)" ng-click="conversationCtrl.loadStudentDetails()">Followups</a></li>
+					</ul>
+					<div class="tab-content" ng-controller="enquiry.new.follow.controller as newFollowupCtrl" ng-init="newFollowupCtrl.newFollowupInit()">
+						<div class="tab-pane fade in active" style="padding-top: 25px">
+								
+						<h4>Followup:</h4>
+						<form name="enquiry_followup_form">
+						<table class="table-responsive table tbl-profile">
+							<tbody>
+								<tr>
+									<td class="profile-label col-md-2">Communication Type :</td>
+									<td colspan="7">
+										<div class="col-md-3">
+										<select class="form-control" ng-model="formData.commTypeId" ng-options="commType.id as commType.name for commType in commTypes">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+					                    </div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-2">Communication with :</td>
+									<td colspan="7">
+										<div class="col-md-3">
+										<select class="form-control" ng-model="formData.commWithId" ng-options="commWith.id as commWith.name for commWith in commWithList">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+					                    </div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-2">Communication Summary :</td>
+									<td colspan="7">
+										<div class="col-md-6">
+										<textarea class="form-control" rows="3" ng-model="formData.commSummary"></textarea>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-2">Communication Conclusion :</td>
+									<td colspan="7">
+										<div class="col-md-3">
+										<select class="form-control" ng-model="formData.commConclusionId" ng-options="commConclusion.id as commConclusion.name for commConclusion in commConclusions">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+					                    </div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-2">Our Suggestions :</td>
+									<td colspan="7">
+										<div class="col-md-3">
+										<select class="form-control" ng-model="formData.suggestionId" ng-options="suggestion.id as suggestion.name for suggestion in suggestions">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+					                    </div>
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<td class="profile-label col-md-2">Next Action :</td>
+									<td colspan="7">
+										<div class="col-md-3">
+										<select class="form-control" ng-model="formData.nextActionId" ng-options="nextAction.id as nextAction.name for nextAction in nextActions">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+					                    </div>
+									</td>
+								</tr>
+								<tr>
+									<td class="profile-label col-md-2">Next Followup Date:</td>
+									<td class="profile-label">
+										
+											<input id="nextFollowupDate" type="text" ng-model="formData.nextFollowupDate" class="form-control" readonly="readonly"/>
+										
+									</td>
+									<td class="profile-label col-md-1">Time:</td>
+									<td class="profile-label">
+										
+											<select class="form-control" ng-model="formData.nextFollowupHr" ng-options="hr.id as hr.name for hr in hrs">
+											</select>
+										
+									</td>
+									<td class="profile-label">
+										
+									</td>
+									<td class="profile-label">
+										<select class="form-control" ng-model="formData.nextFollowupMin" ng-options="min.id as min.name for min in mins">
+										</select>
+									</td>
+									<td class="profile-label">
+										<select class="form-control" ng-model="formData.amOrPM">
+											<option value="AM">AM</option>
+											<option value="PM">PM</option>
+										</select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>						
+						<a class="btn btn-default" href="#/enquiry/{{enquiryDetails.id}}/followups">Cancel</a>
+						<a class="btn btn-primary" href="javascript:void(0)" ng-click="newFollowupCtrl.saveEnquiryFollowup()">Save Communication</a>			    		    	
+						</div>
+					</div>
+					</div>
+	      </div>
+      </div>
+<new-enquiry/>  
+</div>
+<script type="text/javascript">
+
+$(function() {
+
+    
+$( "#nextFollowupDate" ).datepicker({
+		dateFormat:'d-M-yy',
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "1960:2030"
+	})
+
+})    
+</script>  

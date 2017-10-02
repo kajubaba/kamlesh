@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="part2CoSchArea" pageWidth="842" pageHeight="1190" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="63f983d9-7980-47b5-ac10-9bef80a85e32">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="part2CoSchAreaDS" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="sNoText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="desIndText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="gradeText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="part2: Co-" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="lifeSkillText" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="descIndText" class="java.lang.String" isForPrompting="false"/>
+	<field name="SNo" class="java.lang.String"/>
+	<field name="descIndicator" class="java.lang.String"/>
+	<field name="grade" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="3" y="2" width="805" height="1" uuid="5c45b7db-ff3c-4dcf-9216-86ef453ed328"/>
+			</line>
+			<textField>
+				<reportElement x="3" y="1" width="100" height="20" uuid="b0fc7e17-19f4-4f83-b747-b6d6cc1d722b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{sNoText}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="1" width="275" height="20" uuid="f67442d5-0ba0-45d7-b593-fb1cde381231"/>
+				<textFieldExpression><![CDATA[$P{desIndText}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="559" y="1" width="100" height="20" uuid="ee3f6685-f2ae-471c-ae65-8a4b026bc5b6"/>
+				<textFieldExpression><![CDATA[$P{gradeText}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="22" width="805" height="1" uuid="511af383-dba8-41c3-a6e3-8d3031d2bcb0"/>
+			</line>
+			<line>
+				<reportElement x="4" y="3" width="1" height="18" uuid="f9f446b4-c6f3-4d98-a330-499df8f083ae"/>
+			</line>
+			<line>
+				<reportElement x="807" y="2" width="1" height="18" uuid="e74e85a1-f269-4bc9-aef3-68785752a784"/>
+			</line>
+			<line>
+				<reportElement x="448" y="2" width="1" height="18" uuid="a9a9febe-a1ce-4000-867f-6e2a7d84f762"/>
+			</line>
+			<line>
+				<reportElement x="103" y="3" width="1" height="20" uuid="cbf723ce-d753-4942-a34d-c013e48f9d3a"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="1" width="100" height="20" uuid="4fee1b6f-81ce-4fa5-a601-db6b901ae882"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="1" width="100" height="20" uuid="f3a1e8fd-651c-4974-b8e2-86007d1ae9cc"/>
+				<textFieldExpression><![CDATA[$F{descIndicator}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="559" y="0" width="100" height="20" uuid="82a2c1ac-ef3d-4bbf-a1dd-fab164bb6638"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{grade}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="22" width="805" height="1" uuid="2b719cfc-af23-44d9-a872-d1652bdfe21f"/>
+			</line>
+			<line>
+				<reportElement x="807" y="0" width="1" height="19" uuid="c7410df8-7f05-4f27-8ec3-8ea42d593f86"/>
+			</line>
+			<line>
+				<reportElement x="3" y="0" width="1" height="19" uuid="e843034a-db9a-4565-96b0-a01411fcc387"/>
+			</line>
+			<line>
+				<reportElement x="103" y="-1" width="1" height="19" uuid="efd6f158-0649-495d-879a-ff2a7f26c9d5"/>
+			</line>
+			<line>
+				<reportElement x="448" y="1" width="1" height="19" uuid="9e34ea74-608d-4583-9e42-562ba8210dd4"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

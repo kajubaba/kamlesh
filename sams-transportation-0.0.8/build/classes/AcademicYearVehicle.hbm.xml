@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.transportation.domain.AcademicYearVehicle" table="trans_academic_year_vehicle">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="vehicle" class="com.narendra.sams.transportation.domain.Vehicle" column="vehicle_id" not-null="true"/>
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<many-to-one name="driver" class="com.narendra.sams.transportation.domain.VehicleDriver" column="driver_id"/>
+		<many-to-one name="conductor" class="com.narendra.sams.transportation.domain.VehicleDriver" column="conductor_id"/>
+		
+	</class> 
+</hibernate-mapping>

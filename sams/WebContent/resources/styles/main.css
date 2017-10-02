@@ -1,0 +1,318 @@
+
+body{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:#333333;
+	font-size:11px;
+	margin-top: 0px;
+	
+}
+
+#main_container {
+	margin: 0 auto;
+	width: 1080px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:#333333;
+	font-size:12px;
+	
+	
+}
+
+#header {
+	width: 1080px;
+	height: 81px;
+	border-top: 0px;
+	border-left: 0px;
+}
+
+.header_left {
+	width: 254px;
+	float: left;
+	height: 81px;
+}
+
+.header_right {
+	width: 826px;
+	float: left;
+	height: 81px;
+}
+
+#content_area{
+	
+	
+}
+
+#left_navigation{
+	width: 254px;
+	min-height:450px;
+	float:left;
+	display:inline;
+	border-right: 0px;
+	border-top: 0px;
+	
+}
+
+#left_navigation div{
+	padding-left: 20px;
+	padding-top: 10px;
+	height: 30px;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	
+}
+
+
+
+#footer {
+	height:25px;
+}
+
+#working_area{
+	display: inline;
+	float: right;
+	width: 823px;
+	min-height: 450px;
+	border-top: 0px;
+}
+.working_area_spacer{
+	padding: 20px;
+	padding-top: 10px;
+	/*padding-top: 35px;*/
+}
+
+#wider_working_area{
+	display: inline;
+	float: right;
+	width: 1078px;
+	min-height: 450px;
+	border-top: 0px;
+}
+
+.add_new{
+	float:right;
+}
+
+.grid_above_gap{
+	height:40px;
+}
+
+.grid_info{
+	margin-top: 15px;
+	height: 30px;
+}
+
+.grid{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.grid_heading{
+	height: 25px;
+}
+
+.separatpr_line{
+	border-bottom: 1px solid #DBDBDB;
+	width:100%;
+}
+
+#installment_grid{
+	
+}
+.installment_head_column{
+	display: inline;
+	float: left;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	background-color: #F8F9F8;
+	
+}
+.installment_column{
+	display: inline;
+	float: left;
+	width: 90px;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+}
+.installment_column_header{
+	height: 30px;
+	border-bottom: 1px solid #999999;
+	border-top: 1px solid #999999;
+	text-align: center;
+	padding-top: 5px;
+	background-color: #F5F5F5;
+}
+.installment_cell{
+	height: 30px;
+	width: 90px;
+	text-align: center;
+	padding-top: 5px;
+}
+
+.installment_cell_main_bg{
+	background-color: #FFFFFF;
+}
+.installment_cell_alt_bg{
+	background-color: #FFFFFF;	
+}
+
+.form_heading{
+	font-size:13px;
+	font-weight:bold;
+	padding-left:20px;
+	color: #4873B2;
+}
+
+.form_header_top{
+	width: 100%;
+	height:23px;
+	border-radius: 7px 7px 0px 0px; 
+	-moz-border-radius: 7px 7px 0px 0px; 
+	-webkit-border-radius: 7px 7px 0px 0px; 
+	padding-top:5px;
+}
+
+.form_header_bottom{
+	width: 100%;
+	border-radius: 0px 0px 7px 7px; 
+	-moz-border-radius: 0px 0px 7px 7px; 
+
+-webkit-border-radius: 0px 0px 7px 7px;
+
+	
+}
+.form_container{
+	padding:20px;
+}
+
+.sp_label{
+	font-size:13px;
+	font-weight:bold;
+	color:#003366;
+}
+
+
+
+textarea{
+/*background-color:#FAFAFA;*/
+	background-color:#FDFDFD;
+	border: 1px solid #D5D5D5;
+	color:#000066;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+.label{
+	text-align: right;
+	width: 101px;
+	vertical-align: top;
+}
+	.data_field_width{
+		width:200px;
+	}
+.eg{
+	font-size: 10px;
+}
+
+.red_border_text_box{
+	border-color: #FF0000;
+	
+}
+
+.popup_header:HOVER {
+	cursor: move;
+}
+
+.page_title{
+	margin-top:15px;
+	width: 100%;
+	height:25px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.page_title_text{
+	color: #4873B2;
+	font-weight:bold;
+	font-size: 13px;
+	padding-left: 20px;
+}
+
+.page_title_txt_color{
+	color: #4873B2;
+}
+
+@media print{
+	.feeReciept{
+		display: block;
+		font-size: 12px;
+		width: 800px;
+	}
+	
+	.feeRecieptDuplicate{
+		display: block;
+		font-size: 12px;
+		width: 800px;
+	}
+	
+	.recieptWidth{
+		width:100%;
+	}
+	
+	.feeRecieptH{
+		margin-top:15px;
+		font-size: 25px;
+		text-align: center;
+		
+	}
+	
+	.feeRecieptSH{
+		margin-top: 5px;
+		font-size: 11px;
+		text-align: center;
+	}
+	
+	.labelFeeReciept{
+		margin-top:15px;
+		margin-bottom:10px;
+		font-size: 12px;
+		text-align: center;
+	}
+}
+
+@media screen{
+	
+	.feeReciept{
+		display: none;
+		font-size: 12px;
+		width: 800px;
+	}
+	
+	.feeRecieptDuplicate{
+		display: block;
+		font-size: 12px;
+		width: 800px;
+	}
+	
+	.recieptWidth{
+		width:100%;
+	}
+	
+	.feeRecieptH{
+		margin-top:15px;
+		font-size: 13px;
+		text-align: center;
+		
+	}
+	
+	.feeRecieptSH{
+		margin-top: 5px;
+		font-size: 11px;
+		text-align: center;
+	}
+	
+	.labelFeeReciept{
+		margin-top:15px;
+		margin-bottom:10px;
+		font-size: 12px;
+		text-align: center;
+	}
+}

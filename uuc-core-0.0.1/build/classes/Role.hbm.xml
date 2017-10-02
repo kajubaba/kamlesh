@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.uuc.core.domain.Role" table="role">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="name" column="name" not-null="true" />
+		<property name="active" column="active" />
+		<property name="description" column="description" />
+		
+		<set name="privileges" table="role_privilege" cascade="all" lazy="false">
+			<key column="role_id" />
+			<many-to-many class="com.narendra.uuc.core.domain.Privilege" column="privilege_id"/>
+		</set>
+		
+		<set name="users" table="user_role" cascade="all" inverse="true" lazy="true">
+			<key column="role_id" />
+			<many-to-many class="com.narendra.uuc.core.domain.User" column="user_id"/>
+		</set>
+		
+		<many-to-one name="createdBy" class="com.narendra.uuc.core.domain.User" column="created_by_user_id" lazy="proxy" />
+		<property name="createdDate" column="created_datetime"/>
+		<many-to-one name="modifiedBy" class="com.narendra.uuc.core.domain.User" column="modified_by_user_id" lazy="proxy" />
+		<property name="modifiedDate" column="modified_datetime"/>
+		
+		<many-to-one name="application" class="com.narendra.uuc.core.domain.Application" column="application_id" lazy="proxy" />
+		
+	</class>
+</hibernate-mapping>

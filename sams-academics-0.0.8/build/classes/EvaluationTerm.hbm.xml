@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.exam.domain.EvaluationTerm" table="exam_evaluation_term">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="termName" column="term_name" not-null="true"/>
+		<property name="termDisplayName" column="term_display_name"/>
+		<property name="displayOrder" column="display_order"/>
+		<property name="weightageInFinalAssessment" column="weightage_in_final_assessment"/>
+		<property name="workingDays" column="working_days"/>
+		
+		
+		<many-to-one name="evaluationType" class="com.narendra.sams.academics.exam.domain.EvaluationType" column="evaluation_aspect_id" not-null="true"/>
+		
+		<set name="termAssessments" lazy="true" cascade="save-update,delete" inverse="true">
+			<key column="evaluation_term_id" />
+			<one-to-many class="com.narendra.sams.academics.exam.domain.TermAssessment"/>
+		</set>
+		
+		
+		
+		
+	</class> 
+</hibernate-mapping>

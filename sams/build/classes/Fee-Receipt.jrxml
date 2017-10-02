@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-04-29T08:38:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Fee-Receipt" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="cdfd8481-7f83-4033-9fc1-a400ef94377f">
+	<parameter name="Receipt_Header" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Receipt_Sub_Header" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Payment_Date" class="java.lang.String"/>
+	<parameter name="Receipt_No" class="java.lang.String"/>
+	<parameter name="Student_ID" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="Student_Name" class="java.lang.String"/>
+	<parameter name="Academic_Year" class="java.lang.String"/>
+	<parameter name="Student_Class" class="java.lang.String"/>
+	<parameter name="Paid_Fee_Sum" class="java.lang.String"/>
+	<parameter name="Amount_in_Words" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="feeHeadName" class="java.lang.String"/>
+	<field name="paidAmount" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="43" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="1" width="550" height="19" uuid="8b1bc5c8-eada-4282-84fa-1ec289ef58df"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Receipt_Header}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="21" width="550" height="19" uuid="53cc9160-ccc1-413a-aed8-2f9705893078"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Receipt_Sub_Header}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="110" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="-3" width="550" height="18" uuid="d68c045c-81a9-414d-97a5-3404ac5108bb"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Fee Receipt]]></text>
+			</staticText>
+			<line>
+				<reportElement x="225" y="14" width="107" height="1" uuid="702fb650-7839-4457-b7c4-0c199467a5e7"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="344" y="32" width="80" height="19" uuid="77ae1b1d-e4b7-47b9-8feb-d4718fe89c15">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Receipt No : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="54" width="80" height="19" uuid="e1753651-fcf9-4073-a54b-99a638130775">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Student Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="75" width="80" height="19" uuid="a974ebc1-8eeb-426c-8329-f393f21e1211">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Class : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="32" width="80" height="19" uuid="03399d06-47db-464c-b910-210d82848db0">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Academic Year : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="32" width="94" height="19" uuid="f8ebffd7-2666-4dcc-8be3-ec8ab0b08186">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{Receipt_No}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="54" width="275" height="19" uuid="02950f78-e242-411b-b97d-dd01596019c4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{Student_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="32" width="117" height="19" uuid="1952ee59-2234-46ff-b519-40f4581de07c">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{Academic_Year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="75" width="200" height="19" uuid="2136a6ba-7532-44ae-bd77-761e286fe2fb">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{Student_Class}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="54" width="54" height="18" uuid="898925a4-73a8-45ed-b174-18d55c10686f">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Student Id :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="54" width="96" height="19" uuid="ad12487b-a115-490f-9f49-96cff8f3bceb">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{Student_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement x="77" y="1" width="400" height="22" uuid="7d9e7307-2913-48c9-9a1e-ce386060d0c3"/>
+				<box topPadding="3" bottomPadding="0">
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+			<staticText>
+				<reportElement x="122" y="5" width="160" height="15" uuid="9c584cdf-081f-41af-af9c-c8c3fb533af1"/>
+				<text><![CDATA[Fee Head]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="6" width="112" height="15" uuid="e9e49f93-384c-4138-a30f-31944dabb748"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Paid Amount (Rs.)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="334" y="1" width="82" height="20" uuid="bbd83e08-7fbd-46ae-9691-c6ada48d251a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{paidAmount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="1" width="192" height="20" uuid="bc0b6934-53ad-4bee-a82b-937d8ce2c253"/>
+				<textFieldExpression><![CDATA[$F{feeHeadName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="27" splitType="Immediate">
+			<frame>
+				<reportElement x="75" y="0" width="400" height="22" uuid="8866c6be-b42c-45b8-945a-29793b106a9a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="3" bottomPadding="0">
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="59" y="0" width="91" height="17" uuid="41568c21-3564-4071-8278-9062d8ed72b2"/>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="226" y="0" width="115" height="17" uuid="8bd57513-0376-4ce8-a542-f757a620caa2"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$P{Paid_Fee_Sum}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement x="77" y="5" width="83" height="15" uuid="7957141e-3c66-4d48-bb90-8378aebc1aab"/>
+				<text><![CDATA[Amount in words : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="66" width="140" height="15" uuid="3c713f71-c75e-403d-9ce9-9a80eee1a24c"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[(Authorised Signatory)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="57" width="80" height="20" uuid="a21eb3b0-f207-4ff9-b06f-2607da42fe36"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Payment Date : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="57" width="199" height="20" uuid="1683c534-2148-4a90-8588-739c883ec046">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{Payment_Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="5" width="380" height="16" uuid="04e70dfe-0660-47d0-b9b1-3f5ee3d891bc"/>
+				<textFieldExpression><![CDATA[$P{Amount_in_Words}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,147 @@
+<div>
+	
+    	
+      	   <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12"> Student <small> Fee Detail</small> </div>
+
+			</div>
+          </h3>
+        </div>
+      </div>
+      <div ng-include="'sams/components/fee/student/student_brief_info.html'"></div>
+	
+	  <div class="row" ng-controller="student.fee.controller as ctrl" ng-init="ctrl.fetchStudentFee()">
+	  		
+	  		<div class="col-sm-12">
+      			<div class="panel panel-default">
+      				<div class="panel-heading panel-header-large"> <i class="fa fa-info-circle"></i> Fee Details
+      				  
+      				  &nbsp;&nbsp;&nbsp;
+      				  <i ng-if="classFee.feeCustomized == true" class="fa fa-adjust" aria-hidden="true" style="color: red" title="Fee is adjusted"></i>
+      				  
+      			<div class="pull-right">
+                
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Fee Payment View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                     <li><a href="#/fee/student/{{studentId}}/feehistory">Fee History Summary</a></li>
+                     <li><a href="#/fee/student/{{studentId}}/paymenthistory">Payment History</a></li>
+                     
+                  </ul>
+                </div>
+                <a has-permission="ROLE_ADJUST_STUD_ACADEMIC_FEE" href="#/fee/student/customize/{{studentId}}/class/{{classFee.classHistoryId}}"><span class="glyphicon glyphicon-cog" aria-hidden="true" title="Adjust Fee"></span>
+                </a>
+              </div>
+      				
+      				</div>
+             <div class="panel-body">
+             
+             <div class="pull-right">
+             	<a href="" data-toggle="collapse" data-target="#feeDetail" >Show/Hide Details</a>
+             	
+             </div>
+             
+             <div id="feeDetail" class="collapse">
+	             
+	             <table class="table-responsive table tbl-profile">
+	             	<tbody>
+						<tr>
+							<td class="profile-label col-md-2">Academic Fee</td>
+							<td ng-bind="classFee.academicFeeTotal"></td>
+							<td class="profile-label col-md-2">Bus Fee</td>
+							<td ng-bind="classFee.busFee"></td>
+							<td class="profile-label col-md-2">Late Fee</td>
+							<td ng-bind="classFee.lateFeeTotal"></td>
+						</tr>
+						<tr>
+							<td class="profile-label">Academic Fee Discount</td>
+							<td ng-bind="classFee.academicFeeDiscount"></td>
+							<td class="profile-label">Bus Fee Discount</td>
+							<td ng-bind="classFee.busFeeDiscount"></td>
+							<td class="profile-label">Late Fee Discount</td>
+							<td ng-bind="classFee.lateFeeDiscountTotal"></td>
+						</tr>
+						<tr>
+							<td class="profile-label">Academic Fee Payable</td>
+							<td ng-bind="classFee.academicFeeTotal - classFee.academicFeeDiscount"></td>
+							<td class="profile-label">Bus Fee Payable</td>
+							<td ng-bind="classFee.busFee - classFee.busFeeDiscount"></td>
+							<td class="profile-label">Late Fee Payable</td>
+							<td ng-bind="classFee.lateFeeTotal - classFee.lateFeeDiscountTotal"></td>
+						</tr>
+					</tbody>	
+	             </table>
+	             
+	             
+             
+       </div>
+             
+             
+           
+             
+             
+             
+             
+                		
+                <div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover responsive" id="dt-stud-fee-detail">
+                  <thead>
+                    <tr>
+                      
+                      <th>Installment #</th>
+                      <th>Due Date</th>
+                      <th>Academic Fee ( <i class="fa fa-inr"></i> )</th>
+                      <th>Bus Fee ( <i class="fa fa-inr"></i> )</th>
+                      <th>Late Fee ( <i class="fa fa-inr"></i> )</th>
+                      <th>Total Payable ( <i class="fa fa-inr"></i> )</th>
+                      <th>Paid Fee ( <i class="fa fa-inr"></i> )</th>
+                      <th>Due Fee ( <i class="fa fa-inr"></i> )</th>
+                      <th has-permission="ROLE_STUD_FEE_COLLECT"></th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	<tr ng-repeat="installment in classFee.installmentFees">
+                  		<td>{{installment.installment}}</td>
+                  		<td>{{installment.installmentDueDate}}</td>
+                  		<td>{{installment.academicFee - installment.admissionSchemeDiscount}}</td>
+                  		<td>{{installment.busFee - installment.admissionSchemeDiscountOnBusFee}}</td>
+                  		<td>{{installment.lateFee}}</td>
+                  		<td>{{installment.totalPayable}}</td>
+                  		<td>{{installment.paidFee}}</td>
+                  		<td ng-if="installment.dueFee > 0" class="color-red"> {{installment.dueFee}}</td>
+                  		<td ng-if="installment.dueFee <= 0" > {{installment.dueFee}}</td>
+                  		<td has-permission="ROLE_STUD_FEE_COLLECT">
+                  			<button ng-if="installment.dueFee > 0" type="button" class="btn btn-info btn-sm" ng-click="ctrl.fetchInstallmentFeeDetailsForPayment($index)">Pay</button>
+                  			<button ng-if="installment.dueFee <= 0" type="button" class="btn btn-info btn-sm disabled"">Pay</button>
+                  		</td>
+                  	</tr>
+                  </tbody>
+                  <tfoot>
+                  		<tr>
+                      
+                      <th>Total</th>
+                      <th></th>
+                      <th ng-bind="classFee.academicFeeTotal - classFee.academicFeeDiscount"></th>
+                      <th ng-bind="classFee.busFee - classFee.busFeeDiscount"></th>
+                      <th ng-bind="classFee.lateFeeTotal - classFee.lateFeeDiscountTotal"></th>
+                      <th ng-bind="classFee.totalPayable"></th>
+                      <th ng-bind="classFee.paidTotal"></th>
+                      <th ng-bind="classFee.totalPayable - classFee.paidTotal"></th>
+                      <th has-permission="ROLE_STUD_FEE_COLLECT"></th>
+                      
+                    </tr>
+                  </tfoot>
+                  
+                </table>
+              </div>
+                		</div>
+      			</div>
+      		</div>	
+	
+    	  </div>	
+		
+</div>  

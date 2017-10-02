@@ -1,0 +1,38 @@
+<div>
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper"  ng-controller="academicsession.manage.controller as academicSessionCtrl" ng-init="academicSessionCtrl.getAcademicSession()">
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-bus" aria-hidden="true"></i> {{academicSessionForm.name}} - Assign Bus Stop(s)</div>
+			<div class="font-sm">
+				Below are unassgined active bus stops. Select bus stop(s) that you wanted to make active in academic session, and then click Assign button.
+			</div>
+		</div>
+		<div  ng-controller="academicsession.assign.busstop.controller as ctrl" ng-init="ctrl.getUnAssignedBusStops()">
+			<div ng-include="'sams/components/admin/academic-session/wizard_header.html'"></div>
+			<div>
+				<div ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" class="row" style="margin-bottom: 20px">
+					<div class="col-md-12 padding-right-none">
+						<span class="pull-right">
+						<a class="btn btn-default btn-sm" href="#/admin/academicsession/{{selectedAcademicSession}}/setup/busstop"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</a>
+						<button id="btnAssignBusStops" class="btn btn-primary btn-sm disabled" ng-click="ctrl.assignBusStops()"> <span class="glyphicon glyphicon-plus-sign"></span> Assign</button>
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div ui-grid="gridOptions" 
+						ui-grid-exporter 
+						ui-grid-pagination
+						ui-grid-move-columns 
+						ui-grid-resize-columns
+						ui-grid-selection 
+						class="myGrid">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+	</div>
+</div>	

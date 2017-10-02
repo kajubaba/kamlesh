@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYearFeeInstallmentDetail" table="academic_year_fee_installment_detail">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="academicYearFeeInstallment" class="com.narendra.sams.core.domain.AcademicYearFeeInstallment" column="academic_year_fee_installment_id" />
+		<many-to-one name="feeHead" class="com.narendra.sams.core.domain.FeeHead" column="fee_head_id" />
+		<property name="amount" column="amount" />
+	</class>
+</hibernate-mapping>

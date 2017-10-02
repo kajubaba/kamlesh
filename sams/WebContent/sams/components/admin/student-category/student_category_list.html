@@ -1,0 +1,27 @@
+<div ng-controller="studentcategory.controller as ctrl" ng-init="ctrl.init()">
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><span class="glyphicon glyphicon-time"></span> Student Categories</div>
+			<div class="font-sm">Inactive student categories can not be assign to students
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 20px">
+			<div class="col-md-12 padding-right-none">
+				<a href="#/admin/studentcategory/new" class="btn btn-primary btn-sm pull-right"> <span class="glyphicon glyphicon-plus-sign"></span> New Category</a>
+			</div>
+		</div>
+		<div class="row">
+			<div ui-grid="gridOptions" 
+				ui-grid-exporter 
+				ui-grid-pagination
+				ui-grid-move-columns 
+				ui-grid-resize-columns 
+				class="myGrid">
+			</div>
+		</div>
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+</div>

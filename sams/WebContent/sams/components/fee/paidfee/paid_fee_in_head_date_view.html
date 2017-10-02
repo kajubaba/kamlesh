@@ -1,0 +1,109 @@
+<div ng-controller="sams.paid.fee.headiwse.controller as ctrl" ng-init="ctrl.getDateViewData()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12" ng-controller="fee.sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="ctrl.filterDateVeiwByAcademicYear(academicYear.selectedAcademicYear)" ></select>
+              	
+              	
+              	<span ng-bind="admissionAcademicYear"> </span>Paid Fee <small>In Head '{{feeHeadName}}'</small>  
+              </div>
+  
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row"  block-ui="block-all-fee-tr-section" >
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+             
+             Payment Date From : <input type="text" readonly="readonly" class="date-picker" id="fromDate" ng-model="fromDate" ng-change="ctrl.filterDateView()">&nbsp;&nbsp; To : &nbsp;<input type="text" class="date-picker" id="toDate" ng-model="toDate" ng-change="ctrl.filterDateView()" readonly="readonly">
+             <div class="pull-right">
+	                <div class="btn-group">
+	                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Date View &nbsp;<span class="caret"></span> </button>
+	                  <ul class="dropdown-menu pull-right" role="menu">
+	                     <li><a href="javascript:void(0)" ng-click="ctrl.filterStudnetView()">Student View</a></li>
+	                     <!-- <li><a href="javascript:void(0)" ng-click="transCtrl.filterHeadWiseFee()">Head wise View</a></li>
+	                     <li><a href="javascript:void(0)" ng-click="transCtrl.filterTransactions()">Transaction View</a></li> -->
+	                  </ul>
+	                </div>
+             </div>
+            </div>
+            <div class="panel-body">
+              
+               <div ui-grid="gridDateViewOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+ 
+
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	  </div>
+
+ 	  
+	  
+	  
+<script>
+
+$(function() {
+
+    
+	$( ".date-picker" ).datepicker({
+			dateFormat:'d-M-yy',
+			buttonImageOnly: true,
+			changeMonth: true,
+			changeYear: true
+		})
+
+	})    
+	
+/*      
+$(document).ready(function() {
+    $('#dt-all-fee-transaction').DataTable({
+    	responsive: true,
+        "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+        "order": [[ 4, "desc" ]] 
+            
+    });
+});  
+   
+	*/    
+     
+     
+   /*   $(document).ready(function() {
+        $('#dt-all-fee-transaction').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 5, "desc" ]],
+                "columns": [
+								{ 
+									"data": "studentId",
+	                            	"render" : function(data, type, row, meta){
+	                                    return $('<a>').attr("href", "#/fee/studentfee/"+row['studentDBId']+"/null").text(data).wrap('<div></div>').parent().html();
+	                        		}
+								},
+								{ "data": "studentName"},
+								{ "data": "paymentClass"},
+								
+								{ "data": "receiptNo"},
+								{ "data": "paidFee"},
+								{ "data": "paymentDate"}
+								
+	                        ]
+        });
+    });   */	
+	
+	</script>
+
+
+	
+    

@@ -1,0 +1,341 @@
+<div ng-controller="sams.academics.settings.controller as settingsCtrl" ng-init="settingsCtrl.init()">
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper"
+		ng-controller="academics.manage.exam.controller as csaCtrl"
+		ng-init="csaCtrl.getCSA()">
+		<div class="row admin-setting-header">
+			<div class="col-md-8">'{{examPattern.name}}' - Manage Co-Scholastic Aspect</div>
+			<div class="col-md-4">
+				
+				<div class="dropdown pull-right">
+												  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+													<span class="glyphicon glyphicon-tasks"></span>
+												  </button>
+												   <ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.openActivityModalToAddNewActivity()"><i class="glyphicon glyphicon-plus-sign"></i> Add Co-Scholastic Area</a></li>
+														
+												   </ul>
+				</div>
+				
+				
+			</div>
+		</div>
+		
+		<div class="stepwizard" style="margin-bottom: 35px">
+		    <div class="stepwizard-row setup-panel">
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step1" type="button" class="btn btn-default btn-circle .btn-inactive">1</a>
+		        <p>Setup Classes</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step2" type="button" class="btn btn-default btn-circle .btn-inactive">2</a>
+		        <p>Setup Scholastic Assessment</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="javascript:void(0)" type="button" class="btn btn-primary btn-circle" disabled="disabled">3</a>
+		        <p>Manage Co-Scholastic Aspects</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step4" type="button" class="btn btn-default btn-circle .btn-inactive">4</a>
+		        <p>Setup Co-Scholastic Assessments</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step5" type="button" class="btn btn-default btn-circle .btn-inactive">5</a>
+		        <p>Scorecard Preview</p>
+		      </div>
+		    </div>
+  		</div>
+		
+		
+		<div class="row">
+			<div class="col-md-12">
+				<uib-accordion>
+					<uib-accordion-group ng-repeat="activity in csa.activities">
+						
+						<uib-accordion-heading >
+							[{{activity.displayOrder}}]. {{activity.name}}
+								<div class="dropdown pull-right">
+									  <button type="button" class="btn btn-default btn-xs dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+										<span class="glyphicon glyphicon-tasks glyphicon-sm"></span>
+									  </button>
+									   <ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+											<li ><a href="javascript:void(0)" ng-click="csaCtrl.openUpdateActivityModal(activity.id, activity.name, activity.displayName, activity.displayOrder, activity.isSkillBasedAssessment)"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+											 <li ><a href="javascript:void(0)" ng-click="csaCtrl.deleteActivity(activity.id)"><span class="glyphicon glyphicon-trash"></span> Delete </a></li>
+											<li ng-if="activity.isSkillBasedAssessment == false"><a href="javascript:void(0)" ng-click="csaCtrl.openAddActivityModal(activity.id)"><i class="glyphicon glyphicon-plus-sign"></i> Add Sub-Activity</a></li>
+											<li ng-if="activity.isSkillBasedAssessment == true"><a href="javascript:void(0)" ng-click="csaCtrl.openAddActivitySkillModal(activity.id, activity.name)"><i class="glyphicon glyphicon-plus-sign"></i> Add Skill</a></li>
+									   </ul>
+								</div>
+						</uib-accordion-heading>
+						
+						<uib-accordion>
+							<uib-accordion-group ng-repeat="skill in activity.skills">
+								<uib-accordion-heading >
+									[{{skill.displayOrder}}] {{skill.name}}
+									
+											<div class="dropdown pull-right">
+												  <button type="button" class="btn btn-default btn-xs dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+													<span class="glyphicon glyphicon-tasks glyphicon-sm"></span>
+												  </button>
+												   <ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+														
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.openUpdateActivitySkillModal(skill.id, skill.name, skill.displayName, skill.displayOrder, skill.doNotDisplayOnScoreCard)"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.deleteActivitySkill(skill.id)"><span class="glyphicon glyphicon-trash"></i> </span> Delete</a></li>
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.openAddIndicatorModal(skill.id, skill.name)"><i class="glyphicon glyphicon-plus-sign"></i> Add Indicator</a></li>
+												   </ul>
+											</div>
+									
+								</uib-accordion-heading>
+								
+								<div ng-include="'sams/components/academics/settings/exam/list_evaluation_criteria.html'"></div>
+								
+								
+								
+							</uib-accordion-group>
+						</uib-accordion>			
+						
+						<uib-accordion>
+							<uib-accordion-group ng-repeat="subActivity in activity.subActivities">
+								<uib-accordion-heading >
+									<div class="row">
+										<div class="col-md-8">
+											[{{subActivity.displayOrder}}]. {{subActivity.name}}
+										</div>
+										
+										<div class="col-md-4">
+											
+											<div class="dropdown pull-right">
+												  <button type="button" class="btn btn-default btn-xs dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+													<span class="glyphicon glyphicon-tasks glyphicon-sm"></span>
+												  </button>
+												   <ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.openAddActivitySkillModal(subActivity.id)"><i class="glyphicon glyphicon-plus-sign"></i> Add Skill</a></li>
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.openUpdateActivityModal(subActivity.id, subActivity.name, subActivity.displayName, subActivity.displayOrder)"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.deleteActivity(subActivity.id, $event)"><span class="glyphicon glyphicon-trash"></span> Delete </a></li>
+												   </ul>
+											</div>
+											
+											
+											
+										</div>
+									</div>
+								</uib-accordion-heading>
+									
+									<uib-accordion>
+										<uib-accordion-group ng-repeat="skill in subActivity.skills">
+											<uib-accordion-heading >
+												[{{skill.displayOrder}}]. {{skill.name}}
+											<div class="dropdown pull-right">
+												  <button type="button" class="btn btn-default btn-xs dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+													<span class="glyphicon glyphicon-tasks glyphicon-sm"></span>
+												  </button>
+												   <ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.openUpdateActivitySkillModal(skill.id, skill.name, skill.displayName, skill.displayOrder, skill.doNotDisplayOnScoreCard)"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.deleteActivitySkill(skill.id)"><span class="glyphicon glyphicon-trash"></i> </span> Delete</a></li>
+														<li ><a href="javascript:void(0)" ng-click="csaCtrl.openAddIndicatorModal(skill.id, skill.name)"><i class="glyphicon glyphicon-plus-sign"></i> Add Indicator</a></li>
+												   </ul>
+											</div>
+											</uib-accordion-heading>
+											
+											<div ng-include="'sams/components/academics/settings/exam/list_evaluation_criteria.html'"></div> 
+											
+										</uib-accordion-group>
+									</uib-accordion>		
+									
+										
+							</uib-accordion-group>
+						</uib-accordion>
+						
+						
+					</uib-accordion-group>
+				</uib-accordion>
+			</div>
+		</div>
+
+	
+	
+	<div class="modal" id="modalAddUpdateIndicator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			{{modalTile}}
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) 
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Evaluation Criteria :</label>
+	            <input type="text" class="form-control" ng-model="skillIndicatorForm.name">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Display Name :</label>
+	            <input type="text" class="form-control" ng-model="skillIndicatorForm.displayName">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Display Order :</label>
+	            <input type="text" class="form-control" ng-model="skillIndicatorForm.displayOrder">
+	          </div>
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="csaCtrl.closeAddUpdateIndicatorModal()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary" ng-click="csaCtrl.saveSkillIndicator()"><span class="glyphicon glyphicon-plus-sign" ></span> Save</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	
+	
+	
+	<div class="modal" id="modalAddUpdateActivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			{{modalTile}}
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Name :</label>
+	            <input type="text" class="form-control" ng-model="activityForm.name">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Display Name :</label>
+	            <input type="text" class="form-control" ng-model="activityForm.displayName">
+	          </div>
+	          <div class="form-group">
+	            <label>Display Order :</label>
+	            <input type="text" class="form-control" ng-model="activityForm.displayOrder">
+	          </div>
+	          
+	          <div class="form-group">
+	            <input type="radio" ng-model="activityForm.isSkillBasedAssessment" value="1"> Is Skill Based Assessment ?
+	            <br/>
+	            <span style="font-size: 12px">If yes, then you can add skills in this co-scholastic area and then further can add criteria/indicator in skill</span>
+	          </div>
+	          
+	          <div class="form-group">
+	            <input type="radio" ng-model="activityForm.isSkillBasedAssessment" value="0"> Is Sub-Activity Based Assessment ?
+	            <br/>
+	            <span style="font-size: 12px">If yes, then you can add sub-activities in this co-scholastic area and then further can add skills and then criteria/indicator</span>
+	          </div>
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="csaCtrl.closeAddUpdateActivityModal()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary" ng-click="csaCtrl.saveActivity()"><span class="glyphicon glyphicon-plus-sign" ></span> Save</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	
+	
+	<div class="modal" id="modalAddUpdateSkill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			<span ng-show="isAdd">Add New Skill in '{{activityName}}' Area</span>
+        			<span ng-show="isUpdate">Update Skill</span>
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Skill Name :</label>
+	            <input type="text" class="form-control" ng-model="skillForm.name">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Skill Display Name :</label>
+	            <input type="text" class="form-control" ng-model="skillForm.displayName">
+	          </div>
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Display Order :</label>
+	            <input type="text" class="form-control" ng-model="skillForm.displayOrder">
+	          </div>
+	          
+	          <div class="form-group">
+	            <input type="checkbox" ng-model="skillForm.doNotDisplayOnScorecard"> Do Not Display On Scorecard
+	            <br/>
+	            <span style="font-size: 12px">If this skill has only one criteria to assess, then you may choose this option to not display this skill on Scoreacrd. If this option is selected then criteria/indicator under this skill will directly be displayed on the Scoreacrd.</span>
+	            
+	          </div>
+	          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="csaCtrl.closeAddUpdateSkillModal()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary" ng-click="csaCtrl.saveSkill()"><span class="glyphicon glyphicon-plus-sign" ></span> Save Skill</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+
+
+	<div class="modal" id="modalAddUpdateOverallIndicator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> 
+	        		<span class="glyphicon glyphicon-plus-sign">
+	        			Add/Update Overall Indicator
+	        		</span> 
+        		</h4>
+        		
+      		</div>
+      		
+	      <div class="modal-body">
+	       	<table class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Grade</th>
+			<th>Overall Indicator</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="indicator in gradeIndicatorListForm.skillGradeIndicatorForms">
+			<td>{{indicator.grade}}</td>
+			<td>
+				<input type="text" class="form-control" ng-model="indicator.overallIndicator"/>
+			</td>
+			
+			
+		</tr>
+	</tbody>
+</table>
+	          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="csaCtrl.closeOverallIndicatorPopup()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary" ng-click="csaCtrl.saveGradeToIndicatoryMapping()"><span class="glyphicon glyphicon-plus-sign" ></span> Save Overall Indicator</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+
+	</div>
+</div>
+<script>
+
+</script>

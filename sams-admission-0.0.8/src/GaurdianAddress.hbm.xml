@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.GaurdianAddress" table="gaurdian_address">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="line1" column="line_1"/>
+		<property name="line2" column="line_2"/>
+		<property name="city" column="city"/>
+		<property name="teh" column="teh"/>
+		<property name="district" column="dist"/>
+		<property name="zipCode" column="zip_code"/>
+		<property name="addressType" column="address_type"/>
+		
+		
+		<many-to-one name="state" class="com.narendra.sams.core.address.domain.State" column="state_id"/>
+		<many-to-one name="country" class="com.narendra.sams.core.address.domain.Country" column="country_id"/>
+		<many-to-one name="studentGaurdian" class="com.narendra.sams.admission.domain.StudentGaurdian" column="gaurdian_id" not-null="true" />
+		
+	</class> 
+</hibernate-mapping>

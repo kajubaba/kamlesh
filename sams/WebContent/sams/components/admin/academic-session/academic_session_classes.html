@@ -1,0 +1,129 @@
+<div>
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper"   ng-controller="academicsession.manage.controller as academicSessionCtrl" ng-init="academicSessionCtrl.getAcademicSession()">
+		<div class="row admin-setting-header">
+			<div>{{academicSessionForm.name}} - Setup Classes </div>
+			<div class="font-sm">
+				Setup academic session classes. Only active classes will be available for new admision and admission renewal
+			</div>
+		</div>
+		
+		<div  ng-controller="academicsession.class.controller as ctrl" ng-init="ctrl.init()">
+		
+			<div ng-include="'sams/components/admin/academic-session/wizard_header.html'"></div>
+		<div class="row">
+			<div class="col-md-12 pull-right padding-right-none" style="margin-bottom: 15px;">
+	                	<div>
+	                		<button class="btn btn-primary btn-sm pull-right" ng-click="ctrl.openPopup()"> <span class="glyphicon glyphicon-import"></span> Import Course(s)</button>
+	                	</div>
+	                </div>
+		</div>	
+			<div>
+				
+				<div class="row">
+					<div ui-grid="gridOptions" 
+						ui-grid-exporter 
+						ui-grid-pagination
+						ui-grid-move-columns 
+						ui-grid-resize-columns 
+						class="myGrid">
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal" id="modalImportCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	   
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-import"></span> 
+        			 Import Course(s)
+        		</h4>
+        	</div>
+	      <div class="modal-body">
+	       
+	 		<table class="table-responsive table tbl-profile">
+	 			<tbody>
+	 				<div ui-grid="notAddedCourseGridOptions" 
+						ui-grid-exporter 
+						ui-grid-move-columns 
+						ui-grid-resize-columns 
+						ui-grid-selection
+						class="myGrid">
+					</div>
+				</tbody>		
+	 		</table>
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="ctrl.closePopup()">Cancel</button>
+	         <button id="btnImportCourses" type="button" class="btn btn-primary disabled"  ng-click="ctrl.importCourses()"><span class="glyphicon glyphicon-import" ></span> Import</button>
+	      </div>
+	    </div>
+	   
+	  </div>
+	</div> 
+	<div class="modal" id="modalUpdateCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  
+	  <form name="formUpdateCourse">
+	  <div class="modal-dialog" role="document">
+	   
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			 Edit Course Details - {{courseName}}
+        		</h4>
+        		<div class="font-sm">Please fill all mandatory fields (<span class="color-red">*</span>) before you Save
+        	</div>
+        </div>	
+	      <div class="modal-body">
+	       <div class="alert alert-danger" ng-show="!statusCanBeChange">
+			  	<span class="glyphicon glyphicon-warning-sign"></span>
+				<strong>Opps Sorry !!! </strong>Some of the students are already been taken admission or enquire for admission in this class. Class type can not be changed until those students are removed from system. 
+			</div>
+	       <table class="table-responsive table tbl-profile">
+	       		<tbody>
+					<tr>
+						<td class="profile-label col-md-1 align-right"><span class="color-red">*</span> Type :</td>
+						<td class="col-md-3">
+							<select class="form-control" ng-model="updateCourseForm.courseYearTypeId" required ng-options="type.id as type.name for type in typeArray">
+								<option value="">--- Select Type ---</option>
+								
+							</select>
+						</td>		
+					</tr>
+					<tr>
+						<td class="profile-label col-md-1 align-right"><span class="color-red">*</span> Intake :</td>
+						<td class="col-md-3">
+							<input type="number" class="form-control" ng-model="updateCourseForm.intake" required/>
+						</td>
+					</tr>
+					<tr>
+						<td class="profile-label col-md-1 align-right">Active ? :</td>
+							<td class="col-md-3">
+								<input type="checkbox" ng-model="updateCourseForm.active"/>
+							</td>
+					</tr>
+				</tbody>	
+	       </table>
+	 	
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="ctrl.closeCoursePopup()">Cancel</button>
+	         <button ng-disabled="formUpdateCourse.$invalid" type="button" class="btn btn-primary"  ng-click="ctrl.updateCourseyearDetails()"><span class="glyphicon glyphicon-plus-sign" ></span> Save</button>
+	      </div>
+	    </div>
+	   
+	  </div>
+	  </form>
+	</div> 		
+		</div>
+		
+		<div ng-include="'sams/components/admin/admin_footer.html'"></div>
+	</div>
+	
+	 	
+	
+</div>

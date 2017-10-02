@@ -1,0 +1,161 @@
+<div>
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8"> <span class="glyphicon glyphicon-transfer"></span> Renew Admission</div>
+              <div class="col-sm-6 col-md-4">
+                <div class="row">
+					<div class="col-sm-10 col-md-10" ng-controller="student.quick.search.controller as searchCtrl" ng-init="searchCtrl.init()">
+						  <div class="form-group input-group ">
+							  <input id="txtBoxsearchStud" type="text" class="form-control" placeholder="Enter Student ID or Name to renew admission">
+							  <span class="input-group-btn" >
+								<button class="btn btn-default" type="button"><i class="fa fa-search"></i> </button>
+							  </span> 
+						 </div>
+					</div>
+					<div class="col-sm-2 col-md-2">
+						 <div class="dropdown">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul class="dropdown-menu pull-left" aria-labelledby="dropdownMenu1">
+									<li><a href="admission_new.html">New Addmision</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#">Renew Addmision</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#">Promote Admission</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+							 </ul>
+						</div>
+					</div>
+					<div class="clearfix visible-sm-block visible-md-block"></div>
+				</div>
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+     <div ng-controller="student.controller as studCtrl" ng-init="studCtrl.fetchStudentDetails()">
+      <!-- // Row -1 -->
+      <div ng-include="'sams/components/student/student_info_section.html'"></div>
+           <!-- Admission Information -->
+      <div ng-controller="admission.renew.controller as ctrl" ng-init="ctrl.isStudentEligibleForRenewal()">   
+      
+         <div ng-if="!isEligibleForRenew">
+      	<div class="row">
+	   		<div class="col-md-12">
+		   		<div class="alert alert-danger" >
+				  <i class="fa fa-ban fa-2x"></i>
+				  <strong>Can't renewed !!! </strong> This student has already been renewed in current academic season. You can navigate <a href="#/admissions/toberenewed" style="text-decoration: underline;">back</a> to search another student for admission renewal.
+				</div>
+			</div>
+	 	</div>
+      </div>	
+      
+      <div ng-if="isEligibleForRenew">
+      
+      <div class="row" ng-init="ctrl.initializeScreen()">
+      <form id="admissionForm" ng-submit="ctrl.renewAdmission()">
+      		<div class="col-sm-12 col-md-12">
+      			<div class="panel panel-default">
+                	<div class="panel-heading"> <i class="fa fa-info-circle"></i> Admission Renewal Information </div>
+                		<div class="panel-body" block-ui="block-renew-section">
+                			<div class="row">
+                				
+                				<div class="col-md-3">
+                					<div class="form-group" id="requiredFormNo">
+					                    <label >Form No #</label>
+					                    <input type="text" ng-model="formData.formNo" class="form-control" >
+		                  			</div>
+		                  			
+                				</div>
+                				<div class="col-md-3">
+                					<div class="form-group .required" id="requiredAffiliationAuthority" >
+					                    <label >Affiliation Authority <span class="color-red">*</span></label> 
+					                    <select id="affAuth" class="form-control" ng-model="formData.affiliationAuthorityId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities" ng-change="ctrl.fetchActiveClasses()">
+					                      	<option value="">--- Select Affiliation Authority ---</option>
+					                      	
+					                    </select>
+                  					</div>
+                				</div>
+                				
+                				<div class="col-md-3">
+                					<div class="form-group" id="requiredClass">
+					                    <label >Admission Class <span class="color-red">*</span></label>
+					                    <select class="form-control" id="drpDwnAcademicYearClass" ng-model="formData.academicYearClassId" ng-change="ctrl.validateClassRequired()">
+					                      	<option value="">--- Select Class ---</option>
+					                    </select>
+				                 	 </div>
+                				</div>
+                				
+                				<div class="col-md-3">
+                					<div class="form-group">
+					                    <label >Admission Scheme</label>
+					                    <select class="form-control" ng-model="formData.admissionSchemeId" ng-options="admissionScheme.schemeId as admissionScheme.schemeName for admissionScheme in admissionSchemes">
+					                      <option value="">--- Select Admission Scheme ---</option>
+					                    </select>
+				                  	</div>
+				                  	
+					                <div class="form-group">
+						                    <label >Bus Stop</label>
+						                     <select id="drpDwnBusStop" ng-model="formData.busStopId" class="form-control" ng-options="busStop.id as busStop.name for busStop in busStops">
+						                    	<option value="">--- Select Bus Stop ---</option>
+						                    
+						                    </select>
+                 					</div>
+                 					
+                				 </div>
+                			</div>
+                			<div class="row" id="alert-error" style="display:none">
+						   		<div class="col-md-12">
+							   		<div class="alert alert-danger" >
+									  <span class="glyphicon glyphicon-warning-sign"></span>
+									  <strong>Opps Error !!! </strong> Mandatory fields are not filled up by you. Please fill all mandatory fields (*) before you renew admission
+									</div>
+								</div>
+							</div>
+                			
+                		</div>
+                		
+                		
+                		<div class="panel-footer" style="background-color: #ffffff">
+							        <div class="text-center">
+							        	<a class="btn btn-info" href="#/admissions/toberenewed"><span class="glyphicon glyphicon-arrow-left" ></span> Cancel</a>
+							        	<button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-save"></span> Renew</button>
+							        </div>
+      					</div>
+                		
+                		
+                </div>
+      		</div>
+      		 </form>
+      </div>
+     
+       <!-- // Admission Information -->
+	 
+	  <!-- Modal -->
+	<div class="modal" id="modalRenewalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      
+	      <div class="modal-body">
+	        <span class="glyphicon glyphicon-user"></span> Student <!-- '<span id="plcHorderStudentName"></span>' --> admission is successfully renewed
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-info" ng-click="ctrl.showAdmissionsPendingForRenewal()">Renew another student</button>
+	      </div>
+	    </div>
+	  </div>
+	</div> 
+	  </div>   
+</div>
+</div>
+</div>
+<script>
+     
+
+    </script>	  

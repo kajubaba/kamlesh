@@ -1,0 +1,101 @@
+<div class="row">
+			<div class="col-md-12">
+				<div ng-repeat="activity in scoreCard.coScholasticAssessment.assessmentActivities">
+					<div style="margin-bottom: 25px;margin-top:25px; font-size: 17px;">{{activity.name}}</div>
+						
+						<div ng-if="scoreCard.coScholasticAssessment.gradeConversionMethod == 'AVERAGE'">
+							<div class="dataTable_wrapper">
+								<table class="table table-bordered border">
+									<thead>
+										<tr>
+											<th style="width: 30%">Area of Assessment</th>
+											<th style="width: 10%" ng-if="scoreCard.coScholasticAssessment.assessmentNames.length > 0"  ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames">{{assessmentName.name}}</th>
+											<th style="width: 60%">Descriptive Indicators</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="assessmentSkill in activity.assessmentSkills">
+											<td>{{assessmentSkill.name}}</td>
+											<td ng-if="assessmentSkill.scores.length > 0" style="width: 10%" ng-repeat="grade in assessmentSkill.scores track by $index">
+												{{grade}}
+											</td>
+											
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div ng-if="scoreCard.coScholasticAssessment.gradeConversionMethod != 'AVERAGE'">
+							
+							<div ng-if="activity.subActivities.length > 0">
+								<div ng-repeat="subActivity in activity.subActivities" style="margin-top: 25px">
+									<div class="dataTable_wrapper">
+										<table class="table table-bordered border" style="margin-bottom: 0px">
+											<thead>
+												<tr>
+													<th style="width: 40%">{{subActivity.name}}</th>
+													<th style="width: 20%" ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames">{{assessmentName.name}}</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+									<div ng-repeat="assessmentSkill in subActivity.assessmentSkills">
+										<div ng-if="!assessmentSkill.doNotDisplayOnScoreCard">
+											<div style="height: 35px; margin-top: 0px;border-left: 1px solid #f4f4f4;border-right: 1px solid #f4f4f4;padding: 10px;">{{assessmentSkill.name}}</div>
+											<div class="dataTable_wrapper">
+												<table class="table table-bordered border" style="margin-bottom: 0px">
+													<tbody>
+														<tr ng-repeat="criteria in assessmentSkill.assessmentCriterias">
+															<td style="width: 40%;padding-left: 40px;">{{criteria.name}}</td>
+															<td style="width: 20%" ng-if="!scoreCard.coScholasticAssessment.isMarkBasedAssessment" ng-repeat="score in criteria.gradeBasedScores track by $index">{{score}}</td>
+															<td  style="width: 20%" ng-if="scoreCard.coScholasticAssessment.isMarkBasedAssessment" ng-repeat="score in criteria.markBasedScores track by $index">{{score}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div ng-if="assessmentSkill.doNotDisplayOnScoreCard" style="margin-top: 0px">
+											
+											<div class="dataTable_wrapper">
+												<table class="table table-bordered border"; style="border-top: 0px;margin-bottom: 0px">
+													<tbody>
+														<tr ng-repeat="criteria in assessmentSkill.assessmentCriterias">
+															<td style="width: 40%;padding-left: 20px;">{{criteria.name}}</td>
+															<td style="width: 20%" ng-if="!scoreCard.coScholasticAssessment.isMarkBasedAssessment" ng-repeat="score in criteria.gradeBasedScores track by $index">{{score}}</td>
+															<td style="width: 20%" ng-if="scoreCard.coScholasticAssessment.isMarkBasedAssessment" ng-repeat="score in criteria.markBasedScores track by $index">{{score}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div div class="dataTable_wrapper" ng-repeat="assessmentSkill in activity.assessmentSkills">
+								<table class="table table-bordered border">
+									<thead>
+										<tr>
+											<th style="width: 40%">{{assessmentSkill.name}}</th>
+											<th style="width: 20%" ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames">{{assessmentName.name}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="criteria in assessmentSkill.assessmentCriterias">
+											<td style="width: 40%">{{criteria.name}}</td>
+											<td style="width: 20%" ng-if="!scoreCard.coScholasticAssessment.isMarkBasedAssessment" ng-repeat="score in criteria.gradeBasedScores track by $index">{{score}}</td>
+											<td style="width: 20%" ng-if="scoreCard.coScholasticAssessment.isMarkBasedAssessment" ng-repeat="score in criteria.markBasedScores track by $index">{{score}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							
+						</div>
+						
+						
+				</div>
+			</div>
+		</div>

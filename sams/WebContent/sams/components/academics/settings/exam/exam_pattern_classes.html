@@ -1,0 +1,130 @@
+<div ng-controller="sams.academics.settings.controller as settingsCtrl" ng-init="settingsCtrl.init()">
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper" ng-controller="academics.exam.pattern.class.controller as classCtrl" ng-init="classCtrl.init()">
+		<div class="row admin-setting-header">
+			<div class="col-md-8">'{{examPattern.name}}' - Setup Classes</div>
+			<div class="col-md-4">
+					<div class="dropdown pull-right">
+						<button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+							<span class="glyphicon glyphicon-tasks"></span>
+						</button>
+						<ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+							<li ><a href="javascript:void(0)" ng-click="classCtrl.getNotAddedClasses()"><i class="glyphicon glyphicon-plus-sign"></i> Import Classes</a></li>
+														
+						</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="stepwizard" style="margin-bottom: 35px">
+		    <div class="stepwizard-row setup-panel">
+		      <div class="stepwizard-step">
+		        <a href="javascript:void(0)" type="button" class="btn btn-primary btn-circle" disabled="disabled"">1</a>
+		        <p>Setup Classes</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step2" type="button" class="btn btn-default btn-circle .btn-inactive">2</a>
+		        <p>Setup Scholastic Assessment</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step3" type="button" class="btn btn-default btn-circle .btn-inactive" >3</a>
+		        <p>Manage Co-Scholastic Aspects</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step4" type="button" class="btn btn-default btn-circle .btn-inactive">4</a>
+		        <p>Setup Co-Scholastic Assessments</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step5" type="button" class="btn btn-default btn-circle .btn-inactive">5</a>
+		        <p>Scorecard Preview</p>
+		      </div>
+		    </div>
+  		</div>
+		
+		
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover" id="dt-exam-patterns">
+						<thead>
+							<tr>
+								<th>Class Name</th>
+								<th></th>
+							</tr>
+						</thead>
+							<tr ng-repeat="clazz in addedClasses">
+								<td>{{clazz.className}}</td>
+								<td> <!-- <a href="javascript:void(0)" ng-click="classCtrl.deleteClass(clazz.classId)"><span class="glyphicon glyphicon-trash"></span></a> --> </td>
+							</tr>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal" id="modalImportClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			Import Classes
+        		</h4>
+        		
+      		</div>
+      		
+	      <div class="modal-body">
+	      		 <div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover" id="dt-exam-patterns">
+						<thead>
+							<tr>
+								<th>  </th>
+								<th>Class Name</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="class in notAddedClasses">
+								<td><input type="checkbox" value="{{class.classId}}" ng-model="class.checked" ng-change="classCtrl.selectClass()"/></td>
+								<td>{{class.className}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="classCtrl.closeImportModal()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary" ng-click="classCtrl.importClasses()"><span class="glyphicon glyphicon-plus-sign" ></span> Import</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	
+
+	</div>
+</div>
+<script>
+/* $(document).ready(function() {
+    $('#dt-exam-patterns').DataTable({
+            responsive: true,
+            "bPaginate": false,
+            "order": [[ 0, "asc" ]],
+            "columns": [
+                        
+                         {"data": "name"},
+	                     { "data": "evaluationAspectCount"},
+	                     { "data": "appliedOnClassesCount"}
+                       
+                    ]
+    });
+});  */
+</script>

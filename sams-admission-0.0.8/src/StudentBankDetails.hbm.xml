@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.StudentBankDetails" table="student_bank_details">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="bankAcNo" column="ac_no"/>
+		<property name="branchName" column="branch_name"/>
+		<property name="ifsc" column="ifsc"/>
+		<many-to-one name="bank" class="com.narendra.sams.core.domain.Bank" column="bank_id" />
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id"/>
+		<many-to-one name="modifiedByUser" class="com.narendra.sams.core.domain.UserView" column="last_modified_by_user_id" />
+		<property name="lastModifiedDateTime" column="last_modified_date_time" />
+		
+	</class> 
+</hibernate-mapping>

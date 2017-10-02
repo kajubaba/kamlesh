@@ -1,0 +1,14 @@
+package com.narendra.sams.enquiry.dao;
+
+import com.narendra.sams.enquiry.domain.EnquiryFolloup;
+import java.util.List;
+
+public interface EnquiryFollowupDAO {
+    Long addFollowup(EnquiryFolloup enquiryFolloup, Long l);
+
+    List<EnquiryFolloup> getEnquiryFollowups(Long l);
+
+    EnquiryFolloup getFollowup(Long l);
+
+    void updateFollowup(EnquiryFolloup enquiryFolloup, Long l);
+}

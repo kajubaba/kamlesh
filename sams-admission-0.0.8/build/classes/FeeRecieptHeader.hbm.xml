@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.FeeRecieptHeader" table="fee_reciept_print_header">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="header" column="header" />
+		<property name="subHeader" column="sub_header" />
+		<property name="isActive" column="active" />
+		<property name="isDefault" column="default" />
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id" not-null="true"/>
+		<property name="displayName" column="display_name" />
+		
+		
+		
+		
+	</class> 
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.transportation.domain.BusStopPoint" table="trans_bus_stop_pickup_drop_location">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="locationName" column="point_name"/>
+		<property name="type" column="point_type"/>
+		<property name="landmark" column="landmark"/>
+		<property name="createdDateTime" column="created_date_time"/>
+		<property name="lastUpdatedDateTime" column="last_updated_date_time"/>
+		
+		<many-to-one name="busFee" class="com.narendra.sams.core.domain.BusFee" column="academic_year_bus_stop_id" not-null="true"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" not-null="true"/>
+		<many-to-one name="lastUpdatedBy" class="com.narendra.sams.core.domain.UserView" column="last_updated_by_user_id" not-null="true"/>
+		
+		
+	</class> 
+</hibernate-mapping>

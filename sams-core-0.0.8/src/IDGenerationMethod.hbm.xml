@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.IDGenerationMethod" table="id_generation_method">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" not-null="true"/>
+		<property name="idPrefix" column="id_prefix"/>
+		<property name="nextNo" column="next_no" not-null="true"/>
+		<property name="lastModifiedOn" column="last_modified_on" not-null="true"/>
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id" not-null="true"/>
+		<many-to-one name="lastModifiedBy" class="com.narendra.sams.core.domain.UserView" column="last_modified_by" not-null="true"/>
+		<set name="academicYearClassIDGenMethods" lazy="true" inverse="true">
+			<key column="id_gen_method_id" />
+			<one-to-many class="com.narendra.sams.core.domain.AcademicYearClassIDGenMethod"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

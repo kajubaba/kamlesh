@@ -1,0 +1,140 @@
+<div>
+
+	<div class="modal" id="modalEnquiryFollowup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<span class="glyphicon glyphicon-upload"></span> Enquiry Followup
+					</h4>
+					<div style="font-size: 12px; margin-top: 5px">
+						Please provide mandatory fields (<span class="color-red">*</span> before you save the changes
+					</div>
+				</div>
+				<div class="modal-body">
+					<form name="enquiry_followup_form">
+						<table class="table-responsive table tbl-profile">
+							<tbody>
+								<tr>
+									<td class="profile-label col-md-4">Communication Type :</td>
+									<td colspan="7">
+										<select class="form-control" ng-model="formData.commTypeId" ng-options="commType.id as commType.name for commType in commTypes">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-4">Communication with :</td>
+									<td colspan="7">
+										<select class="form-control" ng-model="formData.commWithId" ng-options="commWith.id as commWith.name for commWith in commWithList">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-4">Communication Summary :</td>
+									<td colspan="7">
+										<textarea class="form-control" rows="3" ng-model="formData.commSummary"></textarea>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-4">Communication Conclusion :</td>
+									<td colspan="7">
+										<select class="form-control" ng-model="formData.commConclusionId" ng-options="commConclusion.id as commConclusion.name for commConclusion in commConclusions">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="profile-label col-md-4">Our Suggestions :</td>
+									<td colspan="7">
+										<select class="form-control" ng-model="formData.suggestionId" ng-options="suggestion.id as suggestion.name for suggestion in suggestions">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<td class="profile-label col-md-4">Next Action :</td>
+									<td colspan="7">
+										<select class="form-control" ng-model="formData.nextActionId" ng-options="nextAction.id as nextAction.name for nextAction in nextActions">
+					                    	<option value="">----- Select -----</option>
+					                    </select>
+									</td>
+								</tr>
+								<tr>
+									<td class="profile-label col-md-4">Next Followup Date:</td>
+									<td class="profile-label">
+										<input type="text" ng-model="formData.nextFollowupDate" class="form-control" />
+									</td>
+									<td class="profile-label col-md-1">Time:</td>
+									<td class="profile-label">
+										<select class="form-control" ng-model="formData.nextFollowupHr">
+											<option value=""></option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+										</select>
+									</td>
+									<td class="profile-label">
+										
+									</td>
+									<td class="profile-label">
+										<select class="form-control" ng-model="formData.nextFollowupMin">
+											<option value="0">00</option>
+											<option value="5">05</option>
+											<option value="10">10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+											<option value="25">25</option>
+											<option value="30">30</option>
+											<option value="35">35</option>
+											<option value="40">40</option>
+											<option value="45">45</option>
+											<option value="50">50</option>
+											<option value="55">55</option>
+											
+										</select>
+									</td>
+									<td class="profile-label">
+										<select class="form-control" ng-model="formData.amOrPM">
+											<option value="AM">AM</option>
+											<option value="PM">PM</option>
+										</select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="newFollowupCtrl.closeFollowupPopup()">Cancel</button>
+					<button type="button" id="btnUploadStudentDocument"
+						class="btn btn-primary"
+						ng-click="studCtrl.uploadstudentDocument()">
+						<span class="glyphicon glyphicon-upload"></span> Save Communication
+					</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+

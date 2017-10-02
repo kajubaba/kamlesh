@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.ChangeRequest" table="change_request">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="studentId" column="student_id"/>
+		<property name="academicYearId" column="academic_year_id" />
+		<property name="fromId" column="from_id"/>
+		<property name="toId" column="to_id" />
+		<property name="requestedByUserId" column="created_by_user_id" />
+		<property name="requestedOnDateTime" column="created_date_time" />
+		<property name="requestorComments" column="requestor_comments" />
+		<property name="requestStatus" column="status" />
+		<property name="requestType" column="request_type" />
+		
+	</class> 
+</hibernate-mapping>

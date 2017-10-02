@@ -1,0 +1,65 @@
+<div>
+	
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-6"> Enquiry Details </div>
+              <div class="col-md-6" >
+              
+              		<!-- <div class="dropdown pull-right">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									
+									<li><a href="#/enquiry/new">Change Owner</a></li>
+									<li><a href="#/enquiry/new">Change Assign To</a></li>
+									<li><a href="#/enquiry/new">Change Status</a></li>
+							 </ul>
+					</div> -->
+					
+              </div>
+              
+			</div>
+          </h3>
+         
+        </div>
+      </div>
+    
+      <div ng-controller="enquiry.detail.controller as ctrl" ng-init="ctrl.init()">
+	      <div ng-include="'sams/components/enquiry/enquiry_info_section.html'"></div>
+    	  <div class="panel panel-default" ng-controller="enquiry.followup.list.controller as followupListCtrl" ng-init="followupListCtrl.init()">
+      				 <div class="panel-heading panel-header-large"> 
+      				 	<i class="fa fa-info-circle"></i> Student Followups
+      				 	 
+                		
+                	</div>
+                	<div class="panel-body" >
+				
+				
+					<ul class="nav nav-tabs">
+						<li ><a data-toggle="tab" href="#/enquiry/{{enquiryDetails.id}}" ng-click="conversationCtrl.loadStudentDetails()">Personal Information</a></li>
+						<li class="active"><a data-toggle="tab" href="javascript:void(0)" ng-click="conversationCtrl.loadStudentDetails()">Followups</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade in active">
+							<div class="row" style="margin-top: 20px;padding-right: 20px">
+								<div class="pull-right">
+									<a class="btn btn-primary btn-sm" href="#/enquiry/{{enquiryDetails.id}}/newfollowup">New Followup</a>
+								</div>
+							</div>
+							<div style="margin-top: 20px">
+							
+								<div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+							</div>
+							
+									    		    	
+						</div>
+					</div>
+					</div>
+	      </div>
+      </div>
+<new-enquiry/>  
+</div>
+  

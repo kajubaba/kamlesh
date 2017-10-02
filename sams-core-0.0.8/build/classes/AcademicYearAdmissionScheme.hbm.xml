@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYearAdmissionScheme" table="academic_year_admission_scheme">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id"/>
+		<many-to-one name="admissionScheme" class="com.narendra.sams.core.domain.AdmissionScheme" column="admission_scheme_id"/>
+		<property name="createdDateTime" column="created_date_time"/>
+		<property name="modifiedDateTime" column="modified_date_time"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id"/>
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id"/>
+		
+		<set name="schemeDetails" lazy="true" cascade="save-update,delete,delete-orphan" inverse="true">
+			<key column="academic_session_admission_scheme_id" />
+			<one-to-many class="com.narendra.sams.core.domain.AcademicSessionAdmisionSchemeDetail"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

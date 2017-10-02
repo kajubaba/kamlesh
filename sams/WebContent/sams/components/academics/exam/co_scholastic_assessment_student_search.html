@@ -1,0 +1,153 @@
+<div ng-controller="academics.exam.coscholastic.stud.search.controller as ctrl" ng-init="ctrl.init()">
+	
+	<div class="row" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+		<div class="col-md-12" >
+			<h3 class="page-header">
+						<select class="dropdown-in-page-header"
+								ng-model="academicYear.selectedAcademicYear"
+								ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears"
+								ng-change="ctrl.changeAcademicYear(academicYear.selectedAcademicYear)">
+						</select>
+						Assessment <small>Collect Exam Marks</small>
+			</h3>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+	
+	
+		<ul class="nav nav-tabs">
+			<li>
+				<a data-toggle="tab" href="#/academics/assessment/sch/{{selectedAcademicYearId}}">Scholastic Assessment</a>
+			</li>
+			<li class="active">
+				<a data-toggle="tab" href="#">Co-Scholastic Assessment</a>
+			</li>
+		</ul>
+	</div>	
+	</div>
+		<div class="tab-content" style="background-color: #ffffff">
+			<div id="tab_scholastic_assessment" class="tab-pane fade in active" style="padding-top: 25px">
+				<!-- //End of row-1 -->
+				<div class="row">
+					<div class="col-md-12">
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Affiliation Authority</label> 
+								<select class="form-control" 
+										ng-model="filterCrt.auId"
+										ng-change="ctrl.selectAU()">
+									<option value="">--- Select Affiliation Authority ---</option>
+									<option ng-repeat="affiliationAuthority in affiliationAuthorities" value="{{affiliationAuthority.id}}">{{affiliationAuthority.displayName}}</option>
+									
+									
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Class</label> 
+									<select class="form-control"
+											ng-model="filterCrt.classId"
+											ng-change="ctrl.selectClass()">
+										<option value="">--- Select Class ---</option>
+										<option ng-repeat="clazz in classes" value="{{clazz.classId}}">{{clazz.className}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Class Section</label> 
+								<select class="form-control"
+										ng-model="filterCrt.sectionId"
+										ng-change="ctrl.reloadPage()">
+									<option value="">--- Select	Section ---</option>
+									<option ng-repeat="section in sectionList" value="{{section.id}}">{{section.sectionName}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Term</label> 
+								<select class="form-control"
+										ng-model="filterCrt.evaluationTermId"
+										ng-change="ctrl.reloadPage()">
+									<option value="">--- Select Term ---</option>
+									<option ng-repeat="evaluationTerm in evaluationTerms" value="{{evaluationTerm.id}}">{{evaluationTerm.name}}</option>
+									
+								</select>
+							</div>
+						</div>
+				
+						
+					</div>
+				</div>
+				<!-- //End of row-1 -->
+				
+
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<i class="fa fa-bar-chart-o fa-fw"></i>Student List
+							</div>
+							<div class="panel-body">
+					
+					
+								<div class="dataTable_wrapper">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												
+												<th>Student ID</th>
+												<th>Student Name</th>
+												<th>Father Name</th>
+												<th>Gender</th>
+												<th>Completion %</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+					
+											<tr ng-repeat="student in students">
+												
+												<td><a href="#/academics/student/scorecard/{{student.studentId}}">{{student.studentAssignedId}}</a></td>
+												<td ng-bind="student.studentName"></td>
+												<td ng-bind="student.studentFatherName"></td>
+												<td ng-bind="student.studentGender"></td>
+												<td>
+												
+													
+													<div class="progress">
+													  <div class="progress-bar .progress-bar-success" role="progressbar" aria-valuenow=" {{student.percent}}"
+													  aria-valuemin="0" aria-valuemax="100" style="width: {{student.percent}}%">
+													    {{student.percent}}%
+													  </div>
+													</div>
+												
+												</td>
+												<td><a href="#/academics/assessment/co-sch/stud/{{student.studentId}}/{{filterCrt.classId}}/{{filterCrt.evaluationTermId}}">Collect Marks</a></td>
+											</tr>
+					
+										</tbody>
+					
+					
+									</table>
+								</div>
+					
+					
+							</div>
+	</div>
+		</div>		
+			</div>
+			</div>
+		</div>
+	
+</div>

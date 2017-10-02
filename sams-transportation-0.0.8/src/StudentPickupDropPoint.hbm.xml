@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.transportation.domain.StudentPickupDropPoint" table="trans_student_pickup_drop_point">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		
+		
+		<property name="lastModifiedDateTime" column="last_modified_date_time"/>
+		
+		
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true"/>
+		<many-to-one name="academicYearBusStop" class="com.narendra.sams.core.domain.BusFee" column="academic_year_bus_stop_id" />
+		<many-to-one name="pickupPoint" class="com.narendra.sams.transportation.domain.BusStopPoint" column="pick_up_point_id" />
+		<many-to-one name="dropPoint" class="com.narendra.sams.transportation.domain.BusStopPoint" column="drop_point_id" />
+		<many-to-one name="lastModifiedBy" class="com.narendra.sams.core.domain.UserView" column="last_modified_by_user_id"/>
+		
+		
+	</class> 
+</hibernate-mapping>

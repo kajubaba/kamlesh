@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYearFee" table="academic_year_fee">
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true" />
+		<many-to-one name="courseYear" class="com.narendra.sams.core.domain.CourseYear" column="course_year_id" not-null="true" />
+		<many-to-one name="courseYearSetting" class="com.narendra.sams.core.domain.CourseYearSetting" column="course_year_setting_id" not-null="true" />
+		<many-to-one name="admissionType" class="com.narendra.sams.core.domain.AdmissionType" column="admission_type_id" not-null="true" />
+		<set name="academicYearFeeDetails" lazy="true" inverse="true" cascade="save-update,delete">
+			<key column="academic_year_fee_id"/>
+			<one-to-many class="com.narendra.sams.core.domain.AcademicYearFeeDetail"/>
+		</set>
+		<set name="academicYearFeeInstallments" lazy="true" inverse="true" cascade="save-update,delete">
+			<key column="academic_year_fee_id"/>
+			<one-to-many class="com.narendra.sams.core.domain.AcademicYearFeeInstallment"/>
+		</set>
+	</class>
+</hibernate-mapping>

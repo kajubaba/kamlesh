@@ -1,0 +1,125 @@
+<div ng-controller="admission.manage.renewal.controller as admnCtrl" ng-init="admnCtrl.fetchClassAdmissionsToBeRenewed()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8"> <span class="glyphicon glyphicon-transfer"></span> Admissions Pening for Renewal </div>
+              <div class="col-sm-6 col-md-4">
+     
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	<i class="fa fa-list"></i>&nbsp;&nbsp;
+            		  <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> 
+                  	<span id="selectedClass"></span>  
+                  	<span class="caret"></span> 
+                  </button>
+                  <ul class="dropdown-menu scrollable-menu" role="menu" id="classList">
+                  </ul>
+                  Pending for Renewal
+                </div>
+            	
+            	
+            	     <div class="pull-right">
+                	
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Student View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#/admissions/toberenewed/classwise">Class View</a></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+            <div class="panel-body">
+            	
+	            	<div  style="margin-bottom: 40px">
+	            	<a id="btnOpenAdmnRenewPopup" class="btn btn-primary btn-sm pull-right disabled" href="javascript:void(0)" ng-click="admnCtrl.openAdmissionRenewalPopup()">
+					<i class="fa fa-retweet"></i> Renew Admission</a>
+					</div>
+				 
+            	 <div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns ui-grid-selection class="myGrid" ></div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	 
+ 
+ <div>
+ 	 <div class="modal" id="modalAdmissionRenew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <i class="fa fa-retweet"></i> 
+        			Renew Admission
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">Please select renewal class <span class="color-red">*</span>. Optionally you can choose options to copy student's current bus stop and admission scheme in new academic year</div>
+      		</div>
+	      <div class="modal-body">
+	       		
+	       		
+	       		
+	       		<table class="table-responsive table tbl-profile">
+	       			<tbody>
+						<tr>
+							<td class="profile-label col-md-4">Affiliation Authority <span class="color-red">*</span> :</td>
+							<td>
+								 <select class="form-control" ng-model="renewForm.affiliationAuthorityId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities" ng-change="admnCtrl.fetchActiveClasses()">
+								<option value="">--- Select Affiliation Authority ---</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-4">Renewal Class <span class="color-red">*</span> :</td>
+							<td>
+								  <select class="form-control" ng-model="renewForm.academicYearClassId" ng-options="clazz.classId as clazz.className for clazz in classes" ng-change="admnCtrl.onClassSelect()">
+									<option value="">--- Select Class ---</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="profile-label col-md-4" colspan="2"><input type="checkbox" ng-model="renewForm.copyBusStop"> Copy Student Current Bus Stop 
+								<div style="font-size: 12px;margin-top: 10px">
+									This option will copy student's current bus stop in new academic year
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td class="profile-label col-md-4" colspan="2">
+								<input type="checkbox" ng-model="renewForm.copyAdmissionScheme"> Copy Student Current Admission Scheme
+								<div style="font-size: 12px;margin-top: 10px">This option will copy student's current admission scheme in new academic year</div> 
+							</td>
+							
+						</tr>
+					</tbody>	
+	       		</table>
+	       
+	          
+	         
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="admnCtrl.canceRenewSelectedAdmissions()">Cancel</button>
+	         <button type="button" id="button-renew-admission" class="btn btn-primary disabled"  ng-click="admnCtrl.renewSelectedAdmissions()"><i class="fa fa-retweet"></i> Renew Admission</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+ </div> 
+  <new-admission/>   
+  </div>

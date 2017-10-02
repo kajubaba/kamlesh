@@ -1,0 +1,41 @@
+<div class="stepwizard" style="margin-bottom: 35px" ng-controller="academicsession.select.wizard.controller as wizardCtl" ng-init="wizardCtl.init()">
+	<div class="stepwizard-row setup-panel">
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/admin/academicsession/{{selectedAcademicSession}}/setup/classes" type="button" ng-class="setupClasses == true ? 'btn btn-primary btn-circle' : 'btn btn-default btn-circle'">1</a>
+				<p>Classes</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="javascript:void(0)" type="button" ng-class="setupFee == true ? 'btn btn-primary btn-circle' : 'btn btn-default btn-circle'">2</a>
+				<p>Class Fee</p>
+		      </div>
+		      <div class="stepwizard-step">
+		        <a href="javascript:void(0)" type="button" ng-class="setupInstallments == true ? 'btn btn-primary btn-circle' : 'btn btn-default btn-circle'">3</a>
+				<p>Fee Installments</p>
+		      </div>
+		      <div class="stepwizard-step">
+		        <a href="#/admin/academicsession/{{selectedAcademicSession}}/setup/busstop" type="button" ng-class="setupBusFee == true ? 'btn btn-primary btn-circle' : 'btn btn-default btn-circle'">4</a>
+		        <p>Bus Stop(s) & Fee</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/admin/academicsession/{{selectedAcademicSession}}/setup/busfee/installments" type="button" ng-class="setupBusFeeInstallments == true ? 'btn btn-primary btn-circle' : 'btn btn-default btn-circle'" >5</a>
+		        <p>Bus Fee Installment</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/admin/academicsession/{{selectedAcademicSession}}/setup/admissionschemes" type="button" ng-class="setupAdmissionSchemes == true ? 'btn btn-primary btn-circle' : 'btn btn-default btn-circle'" >6</a>
+		        <p>Admission Scheme</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/admin/academicsession/{{selectedAcademicSession}}/setup/documents" type="button" ng-class="setupDocuments == true ? 'btn btn-primary btn-circle' : 'btn btn-default btn-circle'" >7</a>
+		        <p>Documents</p>
+		      </div>
+		      
+		      
+		      
+		      
+		    </div>
+</div>

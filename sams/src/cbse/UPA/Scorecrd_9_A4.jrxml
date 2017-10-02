@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Scorecrd_9_A4" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="20" bottomMargin="20" uuid="fb7207c3-66aa-4a4a-9927-1a36dfd2499c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="11"/>
+	<parameter name="schoolName" class="java.lang.String"/>
+	<parameter name="schoolAddressLine1" class="java.lang.String"/>
+	<parameter name="academicSession" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rollNo" class="java.lang.String"/>
+	<parameter name="studentName" class="java.lang.String"/>
+	<parameter name="fatherName" class="java.lang.String"/>
+	<parameter name="motherName" class="java.lang.String"/>
+	<parameter name="dateOfBirth" class="java.lang.String"/>
+	<parameter name="calssSection" class="java.lang.String"/>
+	<parameter name="cbseLogoPath" class="java.lang.String"/>
+	<parameter name="schoolLogoPath" class="java.lang.String"/>
+	<parameter name="DSScholastic" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="DSHeader" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="DSStudentSection" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="DSFooter" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="DSCoScholastic" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="subjectName" class="java.lang.String"/>
+	<parameter name="assessment1" class="java.lang.String"/>
+	<parameter name="assessment2" class="java.lang.String"/>
+	<parameter name="assessment3" class="java.lang.String"/>
+	<parameter name="assessment4" class="java.lang.String"/>
+	<parameter name="marksObtained" class="java.lang.String"/>
+	<parameter name="grade" class="java.lang.String"/>
+	<parameter name="termName" class="java.lang.String"/>
+	<parameter name="assessment1Marks" class="java.lang.String"/>
+	<parameter name="assessment2Marks" class="java.lang.String"/>
+	<parameter name="assessment3Marks" class="java.lang.String"/>
+	<parameter name="assessment4Marks" class="java.lang.String"/>
+	<parameter name="marksObtainedMarks" class="java.lang.String"/>
+	<parameter name="SUB_DIR_COMMON_SUB_REPORT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".\\subreports\\"]]></defaultValueExpression>
+	</parameter>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="110" uuid="ac1b2d50-a31c-4224-8abc-fa6fbf5e5095"/>
+				<subreportParameter name="schoolName">
+					<subreportParameterExpression><![CDATA[$P{schoolName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbseLogoPath">
+					<subreportParameterExpression><![CDATA[$P{cbseLogoPath}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DSHeader">
+					<subreportParameterExpression><![CDATA[$P{DSHeader}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="schoolAddressLine1">
+					<subreportParameterExpression><![CDATA[$P{schoolAddressLine1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="academicSession">
+					<subreportParameterExpression><![CDATA[$P{academicSession}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="schoolLogoPath">
+					<subreportParameterExpression><![CDATA[$P{schoolLogoPath}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSHeader}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUB_DIR_COMMON_SUB_REPORT}+"Subreport_UPA_Header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="115">
+			<subreport>
+				<reportElement x="0" y="2" width="595" height="109" uuid="9592b594-e65a-4d00-9d49-77d1db7cc2a3"/>
+				<subreportParameter name="dateOfBirth">
+					<subreportParameterExpression><![CDATA[$P{dateOfBirth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="calssSection">
+					<subreportParameterExpression><![CDATA[$P{calssSection}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="motherName">
+					<subreportParameterExpression><![CDATA[$P{motherName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DSStudentSection">
+					<subreportParameterExpression><![CDATA[$P{DSStudentSection}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rollNo">
+					<subreportParameterExpression><![CDATA[$P{rollNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="studentName">
+					<subreportParameterExpression><![CDATA[$P{studentName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fatherName">
+					<subreportParameterExpression><![CDATA[$P{fatherName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSStudentSection}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUB_DIR_COMMON_SUB_REPORT}+"Subreport_UPA_Student_Section.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="185" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="5" width="595" height="100" isPrintInFirstWholeBand="true" uuid="0bcdffaa-324c-4ab1-9f15-fd0109224fae"/>
+				<subreportParameter name="termName">
+					<subreportParameterExpression><![CDATA[$P{termName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment4">
+					<subreportParameterExpression><![CDATA[$P{assessment4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment3">
+					<subreportParameterExpression><![CDATA[$P{assessment3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment2">
+					<subreportParameterExpression><![CDATA[$P{assessment2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="subjectName">
+					<subreportParameterExpression><![CDATA[$P{subjectName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="marksObtained">
+					<subreportParameterExpression><![CDATA[$P{marksObtained}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="grade">
+					<subreportParameterExpression><![CDATA[$P{grade}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment1">
+					<subreportParameterExpression><![CDATA[$P{assessment1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="marksObtainedMarks">
+					<subreportParameterExpression><![CDATA[$P{marksObtainedMarks}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment1Marks">
+					<subreportParameterExpression><![CDATA[$P{assessment1Marks}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment4Marks">
+					<subreportParameterExpression><![CDATA[$P{assessment4Marks}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DSScholastic">
+					<subreportParameterExpression><![CDATA[$P{DSScholastic}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment3Marks">
+					<subreportParameterExpression><![CDATA[$P{assessment3Marks}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="assessment2Marks">
+					<subreportParameterExpression><![CDATA[$P{assessment2Marks}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSScholastic}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Subreport_UPA_Scholastic_9.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="112" width="595" height="70" isPrintInFirstWholeBand="true" uuid="1d7b1fbe-5d89-4551-9f7d-315554f714ba"/>
+				<dataSourceExpression><![CDATA[$P{DSCoScholastic}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Subreport_UPA_CoScholastic_9.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="100">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="100" uuid="e711d54b-245f-430f-ae8f-ac59e678e600"/>
+				<subreportParameter name="DSFooter">
+					<subreportParameterExpression><![CDATA[$P{DSFooter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSFooter}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUB_DIR_COMMON_SUB_REPORT}+ "Subreport_UPA_Footer.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

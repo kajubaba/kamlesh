@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.enquiry.domain.StudentPrevClass" table="enquiry_student_prev_class_info">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="className" column="class_name" />
+		<property name="instituteName" column="institute_name" />
+		<property name="city" column="city" />
+		<property name="studentStatus" column="student_status" />
+		<property name="board" column="board" />
+		<property name="percentage" column="percentage" />
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<div ng-controller="sams.admission.studentlist.controller as admnCtrl" ng-init="admnCtrl.getUnderSchemeStudents()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              
+              <div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="admnCtrl.filterUnderSchemeAdmisions(academicYear.selectedAcademicYear)"></select>
+              	Admissions  <small>Under Scheme</small>  
+              </div>
+              
+              
+              <div class="col-sm-6 col-md-4">
+
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row" block-ui="block-studlist">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;<div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> <span id="admissionType"></span>  &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#/admission/underscheme/1/{{selectedAcademicYear}}">Cancelled Admissions</a> </li>
+                    <li><a href="#/admission/underscheme/5/{{selectedAcademicYear}}">Confirm Admissions</a> </li>
+                    <li><a href="#/admission/underscheme/3/{{selectedAcademicYear}}">Degree Awarded</a> </li>
+                    <li><a href="#/admission/underscheme/new/{{selectedAcademicYear}}">New Admissions</a> </li>
+                    <li><a href="#/admission/underscheme/4/{{selectedAcademicYear}}">New Registrations</a> </li>
+                    <li><a href="#/admission/underscheme/6/{{selectedAcademicYear}}">Renewed Admissions</a> </li>
+                  </ul>
+                </div>
+          
+            </div>
+            <div class="panel-body">
+            		<div ui-grid="gridOptionsUS" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+	   <new-admission/>   
+	  <!-- // Row -2 -->
+	  </div>

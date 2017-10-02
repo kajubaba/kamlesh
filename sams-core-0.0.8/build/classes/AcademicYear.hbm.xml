@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYear" table="academic_year">
+
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="name" column="name" not-null="true" unique="true"/>
+		<property name="fromDate" column="from_date" />
+		<property name="toDate" column="to_date" />
+		<property name="orderNo" column="order_no" />
+		<!-- <property name="activeFee" column="active_fee" /> -->
+		
+		<property name="description" column="description"/>
+		<property name="status" column="status"/>
+		<set name="courses" lazy="true" cascade="save-update" inverse="true">
+			<key column="academic_year_id" />
+			<one-to-many class="com.narendra.sams.core.domain.AcademicYearCourse"/>
+		</set>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" />
+		<property name="createdDate" column="created_datetime"/>
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id"/>
+		<property name="modifiedDate" column="modified_datetime"/>
+		<many-to-one name="institute" class="com.narendra.sams.core.domain.Institute" column="institute_id"/>
+		
+	</class>
+</hibernate-mapping>

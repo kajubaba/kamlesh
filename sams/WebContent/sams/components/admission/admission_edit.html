@@ -1,0 +1,257 @@
+<div ng-controller="admission.editadmission.controller as ctrl" ng-init="ctrl.loadStudentDetails()">
+       <!-- Row -1 -->
+      
+    <form id="admissionForm" ng-submit="ctrl.submitForm()">   
+     
+     
+     <!-- Page header --> 
+     <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-sm-6 col-md-8">
+              	<span class="glyphicon glyphicon-user"></span>&nbsp; Update Student Information 
+              </div>
+              <div class="col-sm-6 col-md-4">
+				 <div class="dropdown pull-right">
+					  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+						<span class="glyphicon glyphicon-tasks"></span>
+					  </button>
+					 <ul class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									<li><a href="#/admissions/new">New Addmision</a></li>
+							 </ul>
+				</div>
+              </div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- //Page header -->
+      
+      <!-- Admission Information -->
+      <div class="row">
+      		<div class="col-sm-12 col-md-12">
+      			<div class="panel panel-default">
+                	<div class="panel-heading"> <i class="fa fa-bar-chart-o fa-fw"></i> Admission Information </div>
+                		<div class="panel-body">
+                			<div class="row">
+                				
+                				<div class="col-md-3">
+                					<div class="form-group" id="requiredFormNo">
+					                    <label >Form No #</label>
+					                    <input type="text" ng-model="formData.formNo" class="form-control" >
+		                  			</div>
+		                  			<div class="form-group" id="requiredStudentName">
+					                    <label >Student Full Name <span class="color-red">*</span></label>
+					                    <input type="text" class="form-control" ng-model="formData.studentName" ng-change="ctrl.validateStudentNameRequired()">
+					                 </div>
+					                 <div class="form-group">
+						                <label >Stduent Mobile No #</label>
+						                <input type="text" ng-model="formData.studentContactNo" class="form-control" >
+                  					</div>
+                				</div>
+                				
+                				<div class="col-md-3">
+                					<div class="form-group .required" id="requiredAffiliationAuthority" >
+					                    <label >Affiliation Authority <span class="color-red">*</span></label> 
+					                    <select id="affAuth" class="form-control" ng-model="formData.affiliationAuthorityId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities" ng-change="ctrl.fetchActiveClasses()">
+					                      	<option value="">--- Select Affiliation Authority ---</option>
+					                      	
+					                    </select>
+                  					</div>
+                  					<div class="form-group" id="requiredGender" >
+					                    <label >Gender <span class="color-red">*</span></label>
+					                    <select  ng-model="formData.gender" class="form-control" ng-change="ctrl.validateGenderRequired()">
+					                      <option value="">--- Select Gender ---</option>
+					                      <option value="male">Male</option>
+					                      <option value="female">Female</option>
+					                    </select>
+					                 </div>
+					                 <div class="form-group">
+					                    <label >Email @</label>
+					                    <input type="text" ng-model="formData.emailId" class="form-control" >
+					                  </div>
+                				</div>
+                				
+                				<div class="col-md-3">
+                					<div class="form-group" id="requiredClass" block-ui="block-select-class">
+					                    <label >Admission Class <span class="color-red">*</span></label>
+					                    <select class="form-control" id="drpDwnAcademicYearClass" ng-model="formData.academicYearClassId" ng-options="academicYearClass.classId as academicYearClass.className for academicYearClass in formData.academicYearClasses" ng-change="ctrl.validateClassRequired()">
+					                      	<option value="">--- Select Class ---</option>
+					                      
+					                    </select>
+				                 	 </div>
+				                 	 
+		                 	      	 <div class="form-group">
+					                    <label >Date of Birth <span class="color-red">*</span></label>
+					                    <div class="form-group input-group " id="requiredDOB">
+											<input id="admissionDOB" type="text" ng-model="formData.dobStr" class="form-control" >
+											<span class="input-group-btn">
+												  <button class="btn btn-default" type="button" ng-click="ctrl.openDatePicker()">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span> 
+										</div>
+				                     </div>
+				                      <div class="form-group">
+					                    <label >Enrollment/Scholor No #</label>
+					                    <input type="text" ng-model="formData.enrollmentNo" class="form-control" >
+                 					 </div>
+                				</div>
+                				
+                				<div class="col-md-3">
+                					<div class="form-group">
+					                    <label >Admission Scheme</label>
+					                    <select class="form-control" ng-model="formData.admissionSchemeId" ng-options="admissionScheme.schemeId as admissionScheme.schemeName for admissionScheme in formData.admissionSchemes">
+					                      <option value="">--- Select Admission Scheme ---</option>
+					                      
+					                    </select>
+				                  	</div>
+				                  	   <div class="form-group">
+					                    <label >Admission Category</label>
+					                    <select id="drpDwnStudentCategory" ng-model="formData.studentCategoryId" class="form-control" ng-options="admissionCategory.id as admissionCategory.name for admissionCategory in formData.admissionCategories">
+					                      <option value="">--- Select Category ---</option>
+					                    </select>
+					                  </div>
+					                    <div class="form-group">
+						                    <label >Bus Stop</label>
+						                    <select id="drpDwnBusStop" ng-model="formData.busStopId" class="form-control" ng-options="busStop.id as busStop.name for busStop in formData.busStops">
+						                    	<option value="">--- Select Bus Stop ---</option>
+						                    </select>
+                 						</div>
+                				 </div>
+                			</div>
+                		</div>
+                </div>
+      		</div>
+      </div>
+       <!-- // Admission Information -->
+       
+      <div class="row">
+      		<div class="col-md-12">
+      			<div class="row">
+	      			<div class="col-md-6">
+	      					<div class="panel panel-default">
+				                <div class="panel-heading"> <span class="glyphicon glyphicon-user"></span> &nbsp; Current Address</div>
+				                <div class="panel-body">
+				                  <div class="row">
+				                  		
+				                  		<div class="col-md-6">
+				                  			<div class="form-group">
+							                    <label >Address</label>
+							                    <textarea style="height: 108px" class="form-control" ng-model="formData.line1"></textarea>
+				                  			</div>
+				                  			 <div class="form-group">
+							                    <label >Village/Town/Area</label>
+							                    <input type="text" ng-model="formData.line2" class="form-control" >
+				                 			 </div>
+				                 
+				                  		</div>
+				                  		
+				                  		<div class="col-md-6">
+				                  			<div class="form-group">
+							                    <label >City</label>
+							                    <input type="text" ng-model="formData.city" class="form-control" >
+				                  			</div>
+				                  			<div class="form-group">
+							                    <label >State</label>
+							                    <select class="form-control" id="drpDwnState" ng-model="formData.stateId" ng-options="state.id as state.name for state in formData.states">
+							                      	<option value="">--- Select State ---</option>
+							                    </select>
+				                  			</div>
+							                 <div class="form-group">
+							                    <label >Zip Code</label>
+							                    <input type="text" ng-model="formData.zipCode" class="form-control" >
+							                 </div>
+				                  		</div>
+				                  		
+				                  </div>
+				                </div>
+             				 </div>
+	      			</div>
+	      			
+	      			<div class="col-md-3">
+			              <div class="panel panel-default">
+			                <div class="panel-heading"> <span class="glyphicon glyphicon-user"></span> &nbsp; Parents Information </div>
+			                <div class="panel-body">
+			                  <div class="form-group">
+			                    <label >Father's Name</label>
+			                    <input type="text" ng-model="formData.fatherName" class="form-control" >
+			                  </div>
+			                  <div class="form-group">
+			                    <label >Mother's Name</label>
+			                    <input type="text" ng-model="formData.motherName" class="form-control" >
+			                  </div>
+			                 
+			                  <div class="form-group">
+			                    <label >Contact No#</label>
+			                    <input type="text" ng-model="formData.fatherContact1" class="form-control" >
+			                  </div>
+			                </div>
+			              </div>
+           			</div>
+            
+                     <div class="col-md-3">
+			              <div class="panel panel-default">
+			                <div class="panel-heading"> <span class="glyphicon glyphicon-user"></span> &nbsp; Other information </div>
+			                <div class="panel-body">
+			                  
+			                  <div class="form-group">
+			                    <label >Samagra Id</label>
+			                    <input type="text" class="form-control" ng-model="formData.samagraId" >
+			                  </div>
+			                </div>
+			              </div>
+            		</div>
+	      			
+      			</div>
+      		</div>
+      </div>
+      
+      <div class="row" id="alert-error" style="display:none">
+   		<div class="col-md-12">
+	   		<div class="alert alert-danger" >
+			  <span class="glyphicon glyphicon-warning-sign"></span>
+			  <strong>Opps Error !!! </strong> Mandatory fields are not filled up by you. Please fill all mandatory fields (*) before you update student information.
+			</div>
+		</div>
+	 </div>
+	
+      <div class="row">
+        <div class="col-md-7">
+        	<span class=" pull-right">
+        	<a class="btn btn-info" href="#/admissions/studentview/4"><span class="glyphicon glyphicon-arrow-left" ></span> Cancel</a>
+        	<button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-save"></span> Save Changes</button>
+        	</span>
+        </div>
+        <div class="col-md-5">
+        	<div class="alert alert-success" id="infoUpdatedSuccessfully" style="display: none">
+			  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp; Student details have been updated successfully.
+			</div>
+        </div>
+        </div>
+       
+      
+</form>
+
+     
+</div>
+<script type="text/javascript">
+
+$(function() {
+
+    
+$( "#admissionDOB" ).datepicker({
+		dateFormat:'d-M-yy',
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true,
+		onSelect: function(dateText) {
+			$("#requiredDOB").removeClass("has-error");
+			
+		  }
+	})
+
+})    
+</script>
+    

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ScoreCard" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="ca8f7262-8d88-4027-a465-abc4189efe32">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituteName" class="java.lang.String"/>
+	<parameter name="line1" class="java.lang.String"/>
+	<parameter name="line2" class="java.lang.String"/>
+	<parameter name="line3" class="java.lang.String"/>
+	<parameter name="performanceProfile" class="java.lang.String"/>
+	<parameter name="lblClass" class="java.lang.String"/>
+	<parameter name="className" class="java.lang.String"/>
+	<parameter name="lblSession" class="java.lang.String"/>
+	<parameter name="lblSessionName" class="java.lang.String"/>
+	<parameter name="DSHeader" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="lblStudentProfile" class="java.lang.String"/>
+	<parameter name="lblAdmissionNo" class="java.lang.String"/>
+	<parameter name="lblClassAndSection" class="java.lang.String"/>
+	<parameter name="lblRollNo" class="java.lang.String"/>
+	<parameter name="lblStudentName" class="java.lang.String"/>
+	<parameter name="lblDOB" class="java.lang.String"/>
+	<parameter name="lblFatherName" class="java.lang.String"/>
+	<parameter name="lblMotherName" class="java.lang.String"/>
+	<parameter name="lblContactNo" class="java.lang.String"/>
+	<parameter name="lblAddress" class="java.lang.String"/>
+	<parameter name="admissionNo" class="java.lang.String"/>
+	<parameter name="classAndSection" class="java.lang.String"/>
+	<parameter name="rollNo" class="java.lang.String"/>
+	<parameter name="studentName" class="java.lang.String"/>
+	<parameter name="dob" class="java.lang.String"/>
+	<parameter name="fatherName" class="java.lang.String"/>
+	<parameter name="motherName" class="java.lang.String"/>
+	<parameter name="address" class="java.lang.String"/>
+	<parameter name="contactNo" class="java.lang.String"/>
+	<parameter name="DSStudentProfile" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="lblAttendance" class="java.lang.String"/>
+	<parameter name="lblTerm1" class="java.lang.String"/>
+	<parameter name="lblTerm2" class="java.lang.String"/>
+	<parameter name="lblWorkingDays" class="java.lang.String"/>
+	<parameter name="lblTotalAttendance" class="java.lang.String"/>
+	<parameter name="lblHealthStatus" class="java.lang.String"/>
+	<parameter name="lblHeight" class="java.lang.String"/>
+	<parameter name="lblWeight" class="java.lang.String"/>
+	<parameter name="lblBloodGroup" class="java.lang.String"/>
+	<parameter name="term1Attendance" class="java.lang.String"/>
+	<parameter name="term2Attendance" class="java.lang.String"/>
+	<parameter name="term1WorkingDays" class="java.lang.String"/>
+	<parameter name="term2WorkingDays" class="java.lang.String"/>
+	<parameter name="height" class="java.lang.String"/>
+	<parameter name="weight" class="java.lang.String"/>
+	<parameter name="bloodGroup" class="java.lang.String"/>
+	<parameter name="DSAttendanceAndHealthStatus" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="DSScholastic" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="part1" class="java.lang.String"/>
+	<parameter name="lblOverallTerm" class="java.lang.String"/>
+	<parameter name="lblSubject" class="java.lang.String"/>
+	<parameter name="lblFA1" class="java.lang.String"/>
+	<parameter name="lblFA2" class="java.lang.String"/>
+	<parameter name="lblSA1" class="java.lang.String"/>
+	<parameter name="lblSA2" class="java.lang.String"/>
+	<parameter name="lblTerm1Total" class="java.lang.String"/>
+	<parameter name="lblTerm2Total" class="java.lang.String"/>
+	<parameter name="lblOverallFA" class="java.lang.String"/>
+	<parameter name="lblOverallSA" class="java.lang.String"/>
+	<parameter name="lblOverallGrade" class="java.lang.String"/>
+	<parameter name="lblGP" class="java.lang.String"/>
+	<parameter name="lblFA3" class="java.lang.String"/>
+	<parameter name="lblFA4" class="java.lang.String"/>
+	<parameter name="lblAreaOfAssessment" class="java.lang.String"/>
+	<parameter name="lblGrade" class="java.lang.String"/>
+	<parameter name="lblDescriptiveIndicator" class="java.lang.String"/>
+	<parameter name="DSCoScholastic" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="part2" class="java.lang.String"/>
+	<parameter name="DSFooter" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="lblResult" class="java.lang.String"/>
+	<parameter name="lblSessionBeginOn" class="java.lang.String"/>
+	<parameter name="sessionBeginOn" class="java.lang.String"/>
+	<parameter name="lblNote" class="java.lang.String"/>
+	<parameter name="lblStudent" class="java.lang.String"/>
+	<parameter name="lblClassTeacher" class="java.lang.String"/>
+	<parameter name="lblPrincipal" class="java.lang.String"/>
+	<parameter name="result" class="java.lang.String"/>
+	<parameter name="lblVision" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<subreport isUsingCache="false">
+				<reportElement x="0" y="0" width="555" height="233" uuid="8caf196d-4fd1-4270-9f7b-464103bb5477"/>
+				<subreportParameter name="lblSessionName">
+					<subreportParameterExpression><![CDATA[$P{lblSessionName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblClass">
+					<subreportParameterExpression><![CDATA[$P{lblClass}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="className">
+					<subreportParameterExpression><![CDATA[$P{className}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="performanceProfile">
+					<subreportParameterExpression><![CDATA[$P{performanceProfile}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="line1">
+					<subreportParameterExpression><![CDATA[$P{line1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="instituteName">
+					<subreportParameterExpression><![CDATA[$P{instituteName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblSession">
+					<subreportParameterExpression><![CDATA[$P{lblSession}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="line3">
+					<subreportParameterExpression><![CDATA[$P{line3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="line2">
+					<subreportParameterExpression><![CDATA[$P{line2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSHeader}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +"ScoreCard_subreport_header.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="242" width="555" height="272" uuid="56339bb5-1422-4459-aeaa-bb96cde3e0d0"/>
+				<subreportParameter name="motherName">
+					<subreportParameterExpression><![CDATA[$P{motherName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblFatherName">
+					<subreportParameterExpression><![CDATA[$P{lblFatherName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblRollNo">
+					<subreportParameterExpression><![CDATA[$P{lblRollNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="classAndSection">
+					<subreportParameterExpression><![CDATA[$P{classAndSection}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblMotherName">
+					<subreportParameterExpression><![CDATA[$P{lblMotherName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblClassAndSection">
+					<subreportParameterExpression><![CDATA[$P{lblClassAndSection}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="admissionNo">
+					<subreportParameterExpression><![CDATA[$P{admissionNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAdmissionNo">
+					<subreportParameterExpression><![CDATA[$P{lblAdmissionNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblStudentProfile">
+					<subreportParameterExpression><![CDATA[$P{lblStudentProfile}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rollNo">
+					<subreportParameterExpression><![CDATA[$P{rollNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblStudentName">
+					<subreportParameterExpression><![CDATA[$P{lblStudentName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="address">
+					<subreportParameterExpression><![CDATA[$P{address}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblContactNo">
+					<subreportParameterExpression><![CDATA[$P{lblContactNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dob">
+					<subreportParameterExpression><![CDATA[$P{dob}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="studentName">
+					<subreportParameterExpression><![CDATA[$P{studentName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="contactNo">
+					<subreportParameterExpression><![CDATA[$P{contactNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAddress">
+					<subreportParameterExpression><![CDATA[$P{lblAddress}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fatherName">
+					<subreportParameterExpression><![CDATA[$P{fatherName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblDOB">
+					<subreportParameterExpression><![CDATA[$P{lblDOB}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSStudentProfile}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ScoreCard_subreport_student_profile.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="522" width="555" height="207" uuid="7c298b8f-8766-48ad-add6-f5f3887274de"/>
+				<subreportParameter name="lblTotalAttendance">
+					<subreportParameterExpression><![CDATA[$P{lblTotalAttendance}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="term1Attendance">
+					<subreportParameterExpression><![CDATA[$P{term1Attendance}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblHeight">
+					<subreportParameterExpression><![CDATA[$P{lblHeight}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="weight">
+					<subreportParameterExpression><![CDATA[$P{weight}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="term1WorkingDays">
+					<subreportParameterExpression><![CDATA[$P{term1WorkingDays}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblWorkingDays">
+					<subreportParameterExpression><![CDATA[$P{lblWorkingDays}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bloodGroup">
+					<subreportParameterExpression><![CDATA[$P{bloodGroup}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblTerm2">
+					<subreportParameterExpression><![CDATA[$P{lblTerm2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblWeight">
+					<subreportParameterExpression><![CDATA[$P{lblWeight}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="term2Attendance">
+					<subreportParameterExpression><![CDATA[$P{term2Attendance}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="term2WorkingDays">
+					<subreportParameterExpression><![CDATA[$P{term2WorkingDays}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="height">
+					<subreportParameterExpression><![CDATA[$P{height}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblBloodGroup">
+					<subreportParameterExpression><![CDATA[$P{lblBloodGroup}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblVision">
+					<subreportParameterExpression><![CDATA[$P{lblVision}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAttendance">
+					<subreportParameterExpression><![CDATA[$P{lblAttendance}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblTerm1">
+					<subreportParameterExpression><![CDATA[$P{lblTerm1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblHealthStatus">
+					<subreportParameterExpression><![CDATA[$P{lblHealthStatus}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSAttendanceAndHealthStatus}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ScoreCard_subreport_aatendance_health.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="429" y="755" width="100" height="33" uuid="ebca962f-22c0-45a8-902f-073534697252"/>
+				<text><![CDATA[Specimen Signature
+(Parents/Guardian)]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="296">
+			<subreport>
+				<reportElement x="0" y="9" width="555" height="100" uuid="62193314-04b4-4dce-b3d3-ea033e363555"/>
+				<subreportParameter name="lblOverallTerm">
+					<subreportParameterExpression><![CDATA[$P{lblOverallTerm}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblSubject">
+					<subreportParameterExpression><![CDATA[$P{lblSubject}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblFA3">
+					<subreportParameterExpression><![CDATA[$P{lblFA3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblFA4">
+					<subreportParameterExpression><![CDATA[$P{lblFA4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblGP">
+					<subreportParameterExpression><![CDATA[$P{lblGP}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblTerm2">
+					<subreportParameterExpression><![CDATA[$P{lblTerm2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblFA1">
+					<subreportParameterExpression><![CDATA[$P{lblFA1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblFA2">
+					<subreportParameterExpression><![CDATA[$P{lblFA2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblRollNo">
+					<subreportParameterExpression><![CDATA[$P{lblRollNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="instituteName">
+					<subreportParameterExpression><![CDATA[$P{instituteName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblOverallFA">
+					<subreportParameterExpression><![CDATA[$P{lblOverallFA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblOverallSA">
+					<subreportParameterExpression><![CDATA[$P{lblOverallSA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="part1">
+					<subreportParameterExpression><![CDATA[$P{part1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblTerm2Total">
+					<subreportParameterExpression><![CDATA[$P{lblTerm2Total}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rollNo">
+					<subreportParameterExpression><![CDATA[$P{rollNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblSessionName">
+					<subreportParameterExpression><![CDATA[$P{lblSessionName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblTerm1">
+					<subreportParameterExpression><![CDATA[$P{lblTerm1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="studentName">
+					<subreportParameterExpression><![CDATA[$P{studentName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblSA2">
+					<subreportParameterExpression><![CDATA[$P{lblSA2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblSA1">
+					<subreportParameterExpression><![CDATA[$P{lblSA1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblTerm1Total">
+					<subreportParameterExpression><![CDATA[$P{lblTerm1Total}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblOverallGrade">
+					<subreportParameterExpression><![CDATA[$P{lblOverallGrade}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSScholastic}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ScoreCard_subreport_Scholastic.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="121" width="555" height="87" uuid="ad86caf5-7877-4215-bf1b-f8de7d17c4f9"/>
+				<subreportParameter name="part2">
+					<subreportParameterExpression><![CDATA[$P{part2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAreaOfAssessment">
+					<subreportParameterExpression><![CDATA[$P{lblAreaOfAssessment}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblGrade">
+					<subreportParameterExpression><![CDATA[$P{lblGrade}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblDescriptiveIndicator">
+					<subreportParameterExpression><![CDATA[$P{lblDescriptiveIndicator}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSCoScholastic}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ScoreCard_subreport_coscholastic.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="220" width="555" height="76" uuid="7832c3f4-185d-4472-bf61-dd59282c039d"/>
+				<subreportParameter name="result">
+					<subreportParameterExpression><![CDATA[$P{result}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblPrincipal">
+					<subreportParameterExpression><![CDATA[$P{lblPrincipal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblNote">
+					<subreportParameterExpression><![CDATA[$P{lblNote}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblClassTeacher">
+					<subreportParameterExpression><![CDATA[$P{lblClassTeacher}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblResult">
+					<subreportParameterExpression><![CDATA[$P{lblResult}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblStudent">
+					<subreportParameterExpression><![CDATA[$P{lblStudent}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblSessionBeginOn">
+					<subreportParameterExpression><![CDATA[$P{lblSessionBeginOn}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sessionBeginOn">
+					<subreportParameterExpression><![CDATA[$P{sessionBeginOn}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSFooter}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ScoreCard_subreport_footer.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

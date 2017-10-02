@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="sams">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes/" source-path="/ImportedClasses"/>
+        <dependent-module archiveName="sams-transportation-0.0.8.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/sams-transportation-0.0.8/sams-transportation-0.0.8">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sams-enquiry-0.0.8.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/sams-enquiry-0.0.8/sams-enquiry-0.0.8">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sams-communication-0.0.8.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/sams-communication-0.0.8/sams-communication-0.0.8">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sams-fee-0.0.8.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/sams-fee-0.0.8/sams-fee-0.0.8">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sams-academics-0.0.8.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/sams-academics-0.0.8/sams-academics-0.0.8">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sams-core-0.0.8.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/sams-core-0.0.8/sams-core-0.0.8">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sams-admission-0.0.8.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/sams-admission-0.0.8/sams-admission-0.0.8">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="uuc-core-0.0.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/uuc-core-0.0.1/uuc-core-0.0.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="sams"/>
+        <property name="java-output-path" value="/sams/build/classes"/>
+    </wb-module>
+</project-modules>

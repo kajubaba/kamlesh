@@ -1,0 +1,179 @@
+<div ng-controller="student.conversation.controller as conversationCtrl" ng-init="conversationCtrl.getConversations()">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-heading panel-header-large">
+					<i class="fa fa-info-circle"></i> Student Conversation(s)
+					<div has-permission="ROLE_UPDATE_STUD_PERSONAL_INFO" class="pull-right" style="padding-top: 0px">
+								<a id="btn-add-conversation" class="btn btn-primary btn-sm" href="javascript:void(0)"	ng-click="conversationCtrl.showAddConversationForm()"> 
+									<span class="glyphicon glyphicon-upload"></span> Add Conversation
+								</a>
+							</div>
+				</div>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+						<li><a data-toggle="tab" href="javascript:void(0)" ng-click="conversationCtrl.loadStudentDetails()">Student Information</a></li>
+						<li><a data-toggle="tab" href="javascript:void(0)" ng-click="conversationCtrl.loadStudentDetails()">Parents Information</a></li>
+						<li><a data-toggle="tab" href="javascript:void(0)" ng-click="conversationCtrl.loadStudentDetails()">Gaurdian Information</a></li>
+						<li><a data-toggle="tab" href="javascript:void(0)" ng-click="conversationCtrl.loadStudentDetails()">Bank Account Details</a></li>
+						<li><a data-toggle="tab" href="javascript:void(0)" ng-click="conversationCtrl.loadStudentDetails()">Documents</a></li>
+						<li has-any-permission ="ROLE_STUDENT_CONVERSATION_READ_ONLY| ROLE_STUDENT_CONVERSATION_READ_ADD_UPDATE_DELETE" class="active"><a data-toggle="tab" href="javascript:void(0)">Conversation</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="student_conversation" class="tab-pane fade in active" style="padding-top: 25px">
+						  <div id="div-list-conversations">
+							
+							
+							
+							<div>
+								<ul class="timeline">
+
+									<li ng-repeat="conversation in studentConversations" ng-class="{'timeline-inverted' : $odd}">
+
+										<div ng-if="$even" class="timeline-badge">
+											<i class="fa fa-clock-o"></i>
+										</div>
+
+										<div ng-if="$odd" class="timeline-badge warning">
+											<i class="fa fa-clock-o"></i>
+										</div>
+
+										<div class="timeline-panel">
+											<div class="timeline-heading">
+												<h4 class="timeline-title">
+													{{conversation.conversationType}}
+													<a href="javascript:void(0)" ng-click="conversationCtrl.editConversation(conversation.id, conversation.conversationTypeId, conversation.conversationAgenda, conversation.conversationWith, conversation.conversation, conversation.conversationUser)">
+														<span class="glyphicon glyphicon-pencil pull-right"></span>
+													</a>
+												</h4>
+												<small class="text-muted"> 
+													<i class="fa fa-clock-o"></i>
+													On {{conversation.conversationDate}} &nbsp;&nbsp;By
+													&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>
+													{{conversation.conversationUser}} &nbsp;&nbsp;With <span
+													class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{conversation.conversationWith}}
+													<br />
+												
+												</small>
+											</div>
+											<div class="timeline-body" style="margin-top: 10px">
+												<p>{{conversation.conversation}}</p>
+											</div>
+										</div>
+									</li>
+
+								</ul>
+							</div>
+						  </div>
+						  
+						  <div id="div-add-conversation" style="display: none;">
+						  	<form name="conversationForm1">
+						  	   <span class="font-sm">
+						  	   		Please fill all mandatory fields <span class="color-red">*</span> to enable Save button
+						  	   </span>	
+						  	   <div class="pull-right" style="margin-bottom: 20px">
+										<button class="btn btn-default btn-sm" ng-click="conversationCtrl.cancelChanges()">
+											<i class="fa fa-pencil-square-o"></i> Cancel</button>
+										<button class="btn btn-primary btn-sm"  
+												ng-click="conversationCtrl.saveConversation()"
+												ng-disabled="conversationForm1.$invalid">
+											<i class="fa fa-pencil-square-o"></i> Save
+										</button>			
+								</div>
+						  		
+						  
+							<table class="table-responsive table tbl-profile">
+							<tbody>
+								<tr>
+									<td class="profile-label col-md-2">
+										<span class="color-red">*</span> Conversation Type :
+									</td>
+									<td>
+										<select ng-model="conversationForm.conversationType" required  class="form-control" ng-options="type.id as type.name for type in conversationTypes">
+										      <option value="">--- Select Conversation Type ---</option>
+										      
+										</select>
+										
+										
+									</td>
+									<td class="col-md-6"></td>
+								</tr>
+								<tr>
+									<td class="profile-label col-md-2">
+										<span class="color-red">*</span> Conversation Topic :
+									</td>
+									<td class="col-md-4">
+										<input type="text" required  class="form-control" ng-model="conversationForm.conversationAgenda" />
+									</td>
+									<td class="col-md-6"></td>
+								</tr>
+								<tr>
+									<td class="profile-label col-md-4">
+										<span class="color-red">*</span> Conversation With :
+									</td>
+									<td class="col-md-4">
+										<input type="text" required="required" class="form-control" ng-model="conversationForm.conversationWith" />
+									</td>
+									<td class="col-md-6"></td>
+								</tr>
+								<tr>
+									<td class="profile-label col-md-4">
+										 Conversation User :
+									</td>
+									<td class="col-md-4">
+										<div>
+											<input type="radio" ng-model="conversationForm.isSelf" value="1"> Self 
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" ng-model="conversationForm.isSelf" value="0"> Other
+										</div>
+										<div style="margin-top: 10px" ng-show="conversationForm.isSelf == 0">
+											<span style="font-size: 12px">Please mention name of user who communicated actually</span>
+											<input type="text" class="form-control" ng-model="conversationForm.conversationUser" />
+										</div>
+									</td>
+									<td class="col-md-6"></td>
+								</tr>
+								<!-- <tr>
+									<td class="profile-label col-md-4">
+										<span class="color-red">*</span> Conversation Date & Time :
+									</td>
+									<td class="col-md-4">
+										<input type="datetime-local" required="required" placeholder="yyyy-MM-ddTHH:mm:ss" class="form-control" ng-model="conversationForm.conversationDate" />
+										
+									</td>
+									<td class="col-md-6"></td>
+								</tr> -->
+								<tr>
+									<td class="profile-label col-md-4"><span class="color-red">*</span> Conversation :</td>
+									<td class="col-md-4">
+										<textarea required="required" class="form-control" rows="6" ng-model="conversationForm.conversation"></textarea>
+									</td>
+									<td class="col-md-6"></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+						  	
+						  
+						  </div>
+						  	
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+</script>

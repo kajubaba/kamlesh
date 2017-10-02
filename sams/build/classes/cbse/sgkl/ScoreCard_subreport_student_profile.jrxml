@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ScoreCard_subreport_student_profile" pageWidth="555" pageHeight="272" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="255985df-45d1-440d-9ecd-3143a1ba6c43">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="lblStudentProfile" class="java.lang.String"/>
+	<parameter name="lblAdmissionNo" class="java.lang.String"/>
+	<parameter name="lblClassAndSection" class="java.lang.String"/>
+	<parameter name="lblRollNo" class="java.lang.String"/>
+	<parameter name="lblStudentName" class="java.lang.String"/>
+	<parameter name="lblDOB" class="java.lang.String"/>
+	<parameter name="lblFatherName" class="java.lang.String"/>
+	<parameter name="lblMotherName" class="java.lang.String"/>
+	<parameter name="lblContactNo" class="java.lang.String"/>
+	<parameter name="lblAddress" class="java.lang.String"/>
+	<parameter name="admissionNo" class="java.lang.String"/>
+	<parameter name="classAndSection" class="java.lang.String"/>
+	<parameter name="rollNo" class="java.lang.String"/>
+	<parameter name="studentName" class="java.lang.String"/>
+	<parameter name="dob" class="java.lang.String"/>
+	<parameter name="fatherName" class="java.lang.String"/>
+	<parameter name="motherName" class="java.lang.String"/>
+	<parameter name="address" class="java.lang.String"/>
+	<parameter name="contactNo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="272" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="0" width="100" height="20" forecolor="#FF0000" uuid="5124c541-3aa6-4f68-b0bb-eb4e58022e09"/>
+				<textElement>
+					<font pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblStudentProfile}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="36" width="160" height="20" uuid="9f843120-34ba-49c6-99b3-164a5cbdf392"/>
+				<textFieldExpression><![CDATA[$P{lblAdmissionNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="61" width="160" height="20" uuid="cd24c2f3-dccf-4058-9b87-1161db9c5c1e"/>
+				<textFieldExpression><![CDATA[$P{lblClassAndSection}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="86" width="160" height="20" uuid="2e7d1366-9c29-477b-aba0-1c2d4da9a72a"/>
+				<textFieldExpression><![CDATA[$P{lblRollNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="111" width="160" height="20" uuid="265c2fa9-e04e-4d84-834b-1f5b576c5bd8"/>
+				<textFieldExpression><![CDATA[$P{lblStudentName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="136" width="160" height="20" uuid="07f67ceb-539b-4402-8541-85c8d0a2c4e6"/>
+				<textFieldExpression><![CDATA[$P{lblDOB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="186" width="160" height="20" uuid="a3c94627-ef48-4aaf-a3de-b3c6140d3fbe"/>
+				<textFieldExpression><![CDATA[$P{lblFatherName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="161" width="160" height="20" uuid="684fd94f-627f-488b-b8cd-8fc8ec570ca4"/>
+				<textFieldExpression><![CDATA[$P{lblMotherName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="211" width="160" height="20" uuid="31f1cdbd-f36b-4405-a552-fd8835f1b869"/>
+				<textFieldExpression><![CDATA[$P{lblContactNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="236" width="160" height="20" uuid="ac92f4a9-727e-449d-8975-a0d8b778d366"/>
+				<textFieldExpression><![CDATA[$P{lblAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="36" width="160" height="20" uuid="990a560c-3eec-4c8d-b5b1-45e8855aa81a"/>
+				<textFieldExpression><![CDATA[$P{admissionNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="61" width="160" height="20" uuid="76832010-b6c0-4143-88f6-b5685e0aa866"/>
+				<textFieldExpression><![CDATA[$P{classAndSection}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="86" width="160" height="20" uuid="a6cf5e61-7560-4b9e-b3b4-a9d60670a312"/>
+				<textFieldExpression><![CDATA[$P{rollNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="111" width="160" height="20" uuid="f165c1b7-b7cb-48f7-a454-45414d72cbb1"/>
+				<textFieldExpression><![CDATA[$P{studentName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="136" width="160" height="20" uuid="8fbdbd71-3d03-4ceb-9cbf-8ad3f991da67"/>
+				<textFieldExpression><![CDATA[$P{dob}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="186" width="160" height="20" uuid="3b64e93e-296e-412d-88b2-0e5e5ee02b7c"/>
+				<textFieldExpression><![CDATA[$P{fatherName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="161" width="160" height="20" uuid="9feeb5e3-705f-47c7-a98c-effe14fadf99"/>
+				<textFieldExpression><![CDATA[$P{motherName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="236" width="160" height="20" uuid="fe1aaa6e-d99b-4814-be7f-03445471b430"/>
+				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="211" width="160" height="20" uuid="7d1512ae-54b2-4b34-b7f3-9671cceb6634"/>
+				<textFieldExpression><![CDATA[$P{contactNo}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="430" y="0" width="100" height="107" uuid="287a8686-a778-401d-a143-b44f63bbde3c"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+</jasperReport>

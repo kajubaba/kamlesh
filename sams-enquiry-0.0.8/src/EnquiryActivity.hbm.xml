@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.enquiry.domain.EnquiryActivity" table="enquiry_activity">
+		
+		<id name="enquiryActivityId">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="enquiry" class="com.narendra.sams.enquiry.domain.Enquiry" column="enquiry_id" />
+		<property name="createdDateTime" column="created_datetime" not-null="true"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" not-null="true"/>
+		<property name="activityType" column="activity_type" not-null="true" />
+		<many-to-one name="ownerFrom" class="com.narendra.sams.core.domain.UserView" column="owner_id_from" />
+		<many-to-one name="ownerTo" class="com.narendra.sams.core.domain.UserView" column="owner_id_to" />
+		<many-to-one name="assigneeFrom" class="com.narendra.sams.core.domain.UserView" column="assignee_id_from" />
+		<many-to-one name="assigneeTo" class="com.narendra.sams.core.domain.UserView" column="assignee_id_to" />
+		<many-to-one name="statusFrom" class="com.narendra.sams.enquiry.domain.EnquiryStatus" column="enq_status_id_from" />
+		<many-to-one name="statusTo" class="com.narendra.sams.enquiry.domain.EnquiryStatus" column="enq_status_id_to" />
+		<property name="comments" column="comments" />
+		<property name="followupActivity" column="followup_activity" />
+		
+				
+	</class>
+</hibernate-mapping>

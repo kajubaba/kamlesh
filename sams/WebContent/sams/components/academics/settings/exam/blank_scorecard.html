@@ -1,0 +1,153 @@
+<div ng-controller="sams.academics.settings.controller as settingsCtrl" ng-init="settingsCtrl.init()">
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper" ng-controller="academics.exam.review.scorecard.controller as ctrl" ng-init="ctrl.init()">
+		<div class="row admin-setting-header">
+			<div class="col-md-12">'{{examPattern.name}}' - Review Scorecard</div>
+			<!-- <div class="col-md-4">
+					<div class="dropdown pull-right">
+						<button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+							<span class="glyphicon glyphicon-tasks"></span>
+						</button>
+						<ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+							<li ><a href="javascript:void(0)" ng-click="ctrl.openNewTermPopup()"><i class="glyphicon glyphicon-plus-sign"></i> New Term</a></li>
+														
+						</ul>
+				</div>
+			</div> -->
+		</div>
+		
+		
+		<div class="stepwizard" style="margin-bottom: 35px">
+		    <div class="stepwizard-row setup-panel">
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step1" type="button" class="btn btn-default btn-circle .btn-inactive">1</a>
+		        <p>Setup Classes</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step2" type="button" class="btn btn-default btn-circle .btn-inactive">2</a>
+		        <p>Setup Scholastic Assessment</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step3" type="button" class="btn btn-default btn-circle .btn-inactive" >3</a>
+		        <p>Manage Co-Scholastic Aspects</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="#/academics/settings/{{AYID}}/setup/exam-pattern/{{selectedExamPatternId}}/step4" type="button" class="btn btn-default btn-circle .btn-inactive">4</a>
+		        <p>Setup Co-Scholastic Assessments</p>
+		      </div>
+		      
+		      <div class="stepwizard-step">
+		        <a href="javascript:void(0)" type="button" class="btn btn-primary btn-circle" disabled="disabled">5</a>
+		        <p>Scorecard Preview</p>
+		      </div>
+		    </div>
+  		</div>
+		
+		
+		<div ng-include="'sams/components/academics/templates/blank_scholastic_scorecard.html'"></div>
+		
+		
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div ng-repeat="activity in scoreCard.coScholasticAssessment.assessmentActivities">
+					<div style="margin-bottom: 25px;margin-top:25px; font-size: 17px;">{{activity.name}}</div>
+						
+						<div ng-if="scoreCard.coScholasticAssessment.gradeConversionMethod == 'AVERAGE'">
+							<div class="dataTable_wrapper">
+								<table class="table table-bordered border">
+									<thead>
+										<tr>
+											<th style="width: 30%">Area of Assessment</th>
+											<th style="width: 15%" ng-if="scoreCard.coScholasticAssessment.assessmentNames.length > 0"  ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames">{{assessmentName.name}}</th>
+											<th>Descriptive Indicators</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="assessmentSkill in activity.assessmentSkills">
+											<td>{{assessmentSkill.name}}</td>
+											<th style="width: 15%" ng-if="scoreCard.coScholasticAssessment.assessmentNames.length > 0"  ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames"></th>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div ng-if="scoreCard.coScholasticAssessment.gradeConversionMethod != 'AVERAGE'">
+							
+							<div ng-if="activity.subActivities.length > 0">
+								<div ng-repeat="subActivity in activity.subActivities" style="margin-top: 25px">
+									<div class="dataTable_wrapper">
+										<table class="table table-bordered border" style="margin-bottom: 0px">
+											<thead>
+												<tr>
+													<th style="width: 30%">{{subActivity.name}}</th>
+													<th ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames">{{assessmentName.name}}</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+									<div ng-repeat="assessmentSkill in subActivity.assessmentSkills">
+										<div ng-if="!assessmentSkill.doNotDisplayOnScoreCard">
+											<div style="height: 35px; margin-top: 0px;border-left: 1px solid #f4f4f4;border-right: 1px solid #f4f4f4;padding: 10px;">{{assessmentSkill.name}}</div>
+											<div class="dataTable_wrapper">
+												<table class="table table-bordered border" style="margin-bottom: 0px">
+													<tbody>
+														<tr ng-repeat="criteria in assessmentSkill.assessmentCriterias">
+															<td style="width: 30%;padding-left: 40px;">{{criteria.name}}</td>
+															<td ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames"></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div ng-if="assessmentSkill.doNotDisplayOnScoreCard" style="margin-top: 0px">
+											
+											<div class="dataTable_wrapper">
+												<table class="table table-bordered border"; style="border-top: 0px;margin-bottom: 0px">
+													<tbody>
+														<tr ng-repeat="criteria in assessmentSkill.assessmentCriterias">
+															<td style="width: 30%;padding-left: 20px;">{{criteria.name}}</td>
+															<td ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames"></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div div class="dataTable_wrapper" ng-repeat="assessmentSkill in activity.assessmentSkills">
+								<table class="table table-bordered border">
+									<thead>
+										<tr>
+											<th style="width: 30%">{{assessmentSkill.name}}</th>
+											<th ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames">{{assessmentName.name}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="criteria in assessmentSkill.assessmentCriterias">
+											<td>{{criteria.name}}</td>
+											<td ng-repeat="assessmentName in scoreCard.coScholasticAssessment.assessmentNames"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							
+						</div>
+						
+						
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+

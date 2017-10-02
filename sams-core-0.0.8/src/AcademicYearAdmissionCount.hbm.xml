@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.core.domain.AcademicYearAdmissionCount" table="academic_year_admission_count">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="admissionCount" column="admission_count" />
+		<property name="tempAdmissionCount" column="temp_admission_count" />
+		<property name="transactionCount" column="transaction_count" />
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<property name="feeRecieptNo" column="fee_reciept_no" />
+		<property name="feeRecieptStart" column="fee_reciept_start" />
+		<property name="miscFeeRecieptStart" column="misc_fee_reciept_start" />
+		<property name="miscFeeRecieptNo" column="misc_fee_reciept_no" />
+		
+		
+	</class> 
+</hibernate-mapping>

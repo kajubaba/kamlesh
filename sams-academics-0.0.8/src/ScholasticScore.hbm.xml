@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.exam.domain.ScholasticScore" table="exam_student_scholastic_score">
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+	
+		<property name="marksObtained" column="marks_obtained" />
+		
+		 <many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true" />
+		 <many-to-one name="studentClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="student_exam_class_id" not-null="true" />
+		 <many-to-one name="classSubject" class="com.narendra.sams.academics.domain.ClassSubject" column="class_subject_id" not-null="true" />
+		 <many-to-one name="termAssessment" class="com.narendra.sams.academics.exam.domain.TermAssessment" column="term_assessment_id" not-null="true" /> 
+	</class>
+	
+</hibernate-mapping>

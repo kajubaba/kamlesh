@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<bean id="enquiryDAO" class="com.narendra.sams.enquiry.dao.impl.EnquiryDAOImpl"
+		parent="abstractDAOSupport">
+		<property name="addressDAO" ref="addressDAO" />
+		<property name="userViewDAO" ref="userViewDAO" />
+	</bean>
+	
+	<bean id="followupCommConclusionDAO" class="com.narendra.sams.enquiry.dao.impl.FollowupCommConclusionDAOImpl" parent="abstractDAOSupport" />
+	<bean id="followupCommTypeDAO" class="com.narendra.sams.enquiry.dao.impl.FollowupCommTypeDAOImpl" parent="abstractDAOSupport" />
+	<bean id="followupCommWithDAO" class="com.narendra.sams.enquiry.dao.impl.FollowupCommWithDAOImpl" parent="abstractDAOSupport" />
+	<bean id="followupNextActionDAO" class="com.narendra.sams.enquiry.dao.impl.FollowupNextActionDAOImpl" parent="abstractDAOSupport" />
+	<bean id="followupSuggestionDAO" class="com.narendra.sams.enquiry.dao.impl.FollowupSuggestionDAOImpl" parent="abstractDAOSupport" />
+	<bean id="enquiryFollowupDAO" class="com.narendra.sams.enquiry.dao.impl.EnquiryFollowupDAOImpl" parent="abstractDAOSupport" />
+	<bean id="enquiryFollowupListDAO" class="com.narendra.sams.enquiry.dao.impl.EnquiryFollowupListDAOImpl" parent="abstractDAOSupport" />
+		
+	
+
+	<bean id="enquiryActivityDAO"
+		class="com.narendra.sams.enquiry.dao.impl.EnquiryActivityDAOImpl"
+		parent="abstractDAOSupport">
+		<property name="userViewDAO" ref="userViewDAO" />
+		<property name="enquiryDAO" ref="enquiryDAO" />
+	</bean>
+
+	<bean id="enquiryStatusDAO" class="com.narendra.sams.enquiry.dao.impl.EnquiryStatusDAOImpl"
+		parent="abstractDAOSupport" />
+
+	<bean id="enquiryService" class="com.narendra.sams.enquiry.service.impl.EnquiryServiceImpl">
+		<property name="enquiryDAO" ref="enquiryDAO" />
+		<property name="enquiryStatusDAO" ref="enquiryStatusDAO" />
+	</bean>
+
+	<bean id="enquiryActivityService"
+		class="com.narendra.sams.enquiry.service.impl.EnquiryActivityServiceImpl">
+		<property name="enquiryActivityDAO" ref="enquiryActivityDAO" />
+		<property name="instituteSettingService" ref="instituteSettingService" />
+		<property name="enquiryDAO" ref="enquiryDAO" />
+		<property name="enquiryStatusDAO" ref="enquiryStatusDAO" />
+		<property name="enquiryActivityService" ref="enquiryActivityService" />
+	</bean>
+	<bean id="enquiryStatusService"
+		class="com.narendra.sams.enquiry.service.impl.EnquiryStatusServiceImpl">
+		<property name="enquiryStatusDAO" ref="enquiryStatusDAO" />
+	</bean>
+	
+	
+	<bean id="followupCommConclusionService" class="com.narendra.sams.enquiry.service.impl.FollowupCommConclusionServiceImpl">
+		<property name="followupCommConclusionDAO" ref="followupCommConclusionDAO" />
+	</bean>
+	
+	<bean id="followupCommTypeService" class="com.narendra.sams.enquiry.service.impl.FollowupCommTypeServiceImpl">
+		<property name="followupCommTypeDAO" ref="followupCommTypeDAO" />
+	</bean>
+	
+	<bean id="followupCommWithService" class="com.narendra.sams.enquiry.service.impl.FollowupCommWithServiceImpl">
+		<property name="followupCommWithDAO" ref="followupCommWithDAO" />
+	</bean>
+	
+	<bean id="followupNextActionService" class="com.narendra.sams.enquiry.service.impl.FollowupNextActionServiceImpl">
+		<property name="followupNextActionDAO" ref="followupNextActionDAO" />
+	</bean>
+	
+	<bean id="followupSuggestionService" class="com.narendra.sams.enquiry.service.impl.FollowupSuggestionServiceImpl">
+		<property name="followupSuggestionDAO" ref="followupSuggestionDAO" />
+	</bean>
+	
+	<bean id="enquiryFollowupService" class="com.narendra.sams.enquiry.service.impl.EnquiryFollowupServiceImpl">
+		<property name="enquiryFollowupDAO" ref="enquiryFollowupDAO" />
+	</bean>
+	
+	<bean id="enquiryFollowupListService" class="com.narendra.sams.enquiry.service.impl.EnquiryFollowupListServiceImpl">
+		<property name="enquiryFollowupListDAO" ref="enquiryFollowupListDAO" />
+	</bean>
+	
+</beans>

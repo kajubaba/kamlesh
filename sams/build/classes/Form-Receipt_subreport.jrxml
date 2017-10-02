@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Form-Receipt_subreport" pageWidth="555" pageHeight="360" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c294c904-c55d-44b9-83f5-fd9c7541ece9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="lblFeeHead" class="java.lang.String"/>
+	<parameter name="lblPaidAmount" class="java.lang.String"/>
+	<parameter name="lblReceiptName" class="java.lang.String"/>
+	<parameter name="lblTotal" class="java.lang.String"/>
+	<parameter name="valPaidSum" class="java.lang.String"/>
+	<parameter name="lblAmountInWords" class="java.lang.String"/>
+	<parameter name="valAmountInWords" class="java.lang.String"/>
+	<parameter name="lblPaymentDate" class="java.lang.String"/>
+	<parameter name="valPaymentDate" class="java.lang.String"/>
+	<parameter name="lblAuthorisedSignatory" class="java.lang.String"/>
+	<parameter name="lblAffiliationNo" class="java.lang.String"/>
+	<parameter name="valAffiliationNo" class="java.lang.String"/>
+	<parameter name="valInstituteName" class="java.lang.String"/>
+	<parameter name="valLine1" class="java.lang.String"/>
+	<parameter name="valLine2" class="java.lang.String"/>
+	<parameter name="lblAcademicSession" class="java.lang.String"/>
+	<parameter name="valAcademicSession" class="java.lang.String"/>
+	<parameter name="lblClass" class="java.lang.String"/>
+	<parameter name="valClass" class="java.lang.String"/>
+	<parameter name="lblName" class="java.lang.String"/>
+	<parameter name="valName" class="java.lang.String"/>
+	<parameter name="lblReceiptNo" class="java.lang.String"/>
+	<parameter name="valReceiptNo" class="java.lang.String"/>
+	<parameter name="imagePath" class="java.lang.String"/>
+	<field name="feeHeadName" class="java.lang.String"/>
+	<field name="paidFee" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="84" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="26" width="553" height="20" uuid="9a878ad8-3881-4134-b83f-205829328a44"/>
+				<textElement textAlignment="Center">
+					<font size="14" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valInstituteName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="50" width="555" height="11" uuid="c4b82777-1515-4bcc-8615-324f88b1971a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valLine1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="64" width="555" height="13" uuid="09058973-5856-45a8-b59a-96bce2aeead5"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valLine2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="419" y="8" width="100" height="18" uuid="b1af9b79-0289-474a-b358-7a87f5993a9c"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblAffiliationNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="520" y="8" width="33" height="18" uuid="a614cc1c-d090-4bfb-9f05-d276994c5a69"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valAffiliationNo}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="30" y="2" width="70" height="70" uuid="1e3b7d5b-2764-4916-b619-7a0276a37bda"/>
+				<imageExpression><![CDATA[$P{imagePath}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="114" splitType="Stretch">
+			<textField>
+				<reportElement x="62" y="36" width="100" height="20" uuid="b78db4fc-105d-47fe-906e-7047544e6e4e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblAcademicSession}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="36" width="125" height="20" uuid="b88bbe26-7d62-4333-aaa5-5cef3472dfd3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valAcademicSession}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="82" width="100" height="20" uuid="10cc5f4c-2e69-47bb-8919-730e2489b05d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblClass}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="82" width="340" height="20" uuid="6d3e7170-5d3a-438b-a4f1-933fdcf9aa33"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valClass}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="59" width="100" height="20" uuid="88a348cc-78b7-4c7a-b553-217b071543a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="59" width="340" height="20" uuid="1eef6f16-69c5-4843-9459-cdb69418956d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="36" width="82" height="20" uuid="4adb083f-f7ed-4488-9753-1799cd2974bf"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblReceiptNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="498" y="36" width="40" height="20" uuid="01b4307c-2c55-4516-b57b-288287e1d12e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valReceiptNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="555" height="20" uuid="d2529761-9931-4fc3-bb36-66e7c7083a1c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblReceiptName}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="215" y="22" width="124" height="1" uuid="e8df388a-dbe1-47b0-b001-505528df43f0"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="169" y="59" width="8" height="20" uuid="01c97f15-2c12-4e06-9083-7e13b2615cf5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="36" width="8" height="20" uuid="7c69db99-c3f7-4434-a80f-211fd62a76aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="36" width="8" height="20" uuid="5b7859b2-8dcc-4a0d-b105-02a2e53de551"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="82" width="8" height="20" uuid="96dc4ffa-843e-41c5-86a7-48e2c3615a59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="132" y="1" width="100" height="20" uuid="c1be4ef1-2aec-46f0-8bdb-ed85b8409e0b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblFeeHead}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="328" y="1" width="109" height="20" uuid="f5a225c3-b18d-44b8-838a-a8bd36353279"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblPaidAmount}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="78" y="1" width="392" height="1" uuid="3469abec-71f0-458a-8790-b77f228d1b23"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="78" y="21" width="392" height="1" uuid="e16ad0db-c255-4287-a061-00f2209566e5"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="132" y="5" width="100" height="20" uuid="3b9317cd-1ad0-4a2c-8433-a4a29f06ef5f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{feeHeadName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="328" y="5" width="91" height="20" uuid="d27a6e53-34cd-4f97-aa2b-0d3c90577eec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{paidFee}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="132" y="0" width="100" height="20" uuid="15a31558-08b4-4862-998c-2b343034577e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblTotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="328" y="2" width="91" height="20" uuid="6bf66fef-966f-40ac-a6eb-95164300f3b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valPaidSum}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="78" y="2" width="392" height="1" uuid="7d342c8b-1115-437c-91c9-f8d8476901a9"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="78" y="21" width="392" height="1" uuid="78480151-874c-4269-a6ce-85239f6fb257"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="80" splitType="Stretch">
+			<textField>
+				<reportElement x="78" y="0" width="84" height="20" uuid="dde83bda-2d66-446c-893b-d986e07f021b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblAmountInWords}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="166" y="0" width="353" height="20" uuid="95e81250-de84-44dd-bffd-9cd814938dbc"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valAmountInWords}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="78" y="45" width="84" height="20" uuid="cc0e98e7-4c15-4c46-b3a8-fb87644c8d5f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{lblPaymentDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="162" y="45" width="100" height="20" uuid="94d0c279-ea32-4180-9b80-22a6429d850d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{valPaymentDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="59" width="140" height="20" uuid="852e5eab-3e95-4f2c-9b94-5ceb0beccaa0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblAuthorisedSignatory}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.domain.ClassSubject" table="exam_class_subject">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="academicYearClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="academic_year_class_id" not-null="true"/>
+		<property name="subjectName" column="subject_name" not-null="true"/>
+		<property name="subjectCode" column="subject_code" />
+		<property name="maxMarks" column="max_marks" />
+		<property name="displaySequenceNo" column="display_sequence_no"/>
+		<property name="isOptional" column="is_optional"/>
+	</class> 
+</hibernate-mapping>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Form-Receipt_A4_Portrait_1_Copy" pageWidth="595" pageHeight="400" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c9e0fca1-1bdb-47af-bb71-23a34502c979">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Narendra Private\\My-Software\\Jaspers\\Form-Receipt\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="lblReceiptName" class="java.lang.String"/>
+	<parameter name="lblFeeHead" class="java.lang.String"/>
+	<parameter name="lblPaidAmount" class="java.lang.String"/>
+	<parameter name="lblTotal" class="java.lang.String"/>
+	<parameter name="lblAmountInWords" class="java.lang.String"/>
+	<parameter name="lblPaymentDate" class="java.lang.String"/>
+	<parameter name="lblAuthorisedSignatory" class="java.lang.String"/>
+	<parameter name="lblAffiliationNo" class="java.lang.String"/>
+	<parameter name="lblAcademicSession" class="java.lang.String"/>
+	<parameter name="lblClass" class="java.lang.String"/>
+	<parameter name="lblName" class="java.lang.String"/>
+	<parameter name="lblReceiptNo" class="java.lang.String"/>
+	<parameter name="valPaidSum" class="java.lang.String"/>
+	<parameter name="valAmountInWords" class="java.lang.String"/>
+	<parameter name="valPaymentDate" class="java.lang.String"/>
+	<parameter name="valReceiptNo" class="java.lang.String"/>
+	<parameter name="valClass" class="java.lang.String"/>
+	<parameter name="valName" class="java.lang.String"/>
+	<parameter name="valAcademicSession" class="java.lang.String"/>
+	<parameter name="valInstituteName" class="java.lang.String"/>
+	<parameter name="valLine1" class="java.lang.String"/>
+	<parameter name="valLine2" class="java.lang.String"/>
+	<parameter name="valAffiliationNo" class="java.lang.String"/>
+	<parameter name="DSFeeHeads1" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="DSFeeHeads2" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false"/>
+	<parameter name="imagePath" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="367" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="350" uuid="b224e993-e1b8-4810-87a3-156654146fb7"/>
+				<subreportParameter name="valInstituteName">
+					<subreportParameterExpression><![CDATA[$P{valInstituteName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblPaidAmount">
+					<subreportParameterExpression><![CDATA[$P{lblPaidAmount}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblTotal">
+					<subreportParameterExpression><![CDATA[$P{lblTotal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAffiliationNo">
+					<subreportParameterExpression><![CDATA[$P{lblAffiliationNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="imagePath">
+					<subreportParameterExpression><![CDATA[$P{imagePath}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valClass">
+					<subreportParameterExpression><![CDATA[$P{valClass}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valAmountInWords">
+					<subreportParameterExpression><![CDATA[$P{valAmountInWords}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAcademicSession">
+					<subreportParameterExpression><![CDATA[$P{lblAcademicSession}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblFeeHead">
+					<subreportParameterExpression><![CDATA[$P{lblFeeHead}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAuthorisedSignatory">
+					<subreportParameterExpression><![CDATA[$P{lblAuthorisedSignatory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblName">
+					<subreportParameterExpression><![CDATA[$P{lblName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valReceiptNo">
+					<subreportParameterExpression><![CDATA[$P{valReceiptNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valAcademicSession">
+					<subreportParameterExpression><![CDATA[$P{valAcademicSession}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblReceiptName">
+					<subreportParameterExpression><![CDATA[$P{lblReceiptName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblAmountInWords">
+					<subreportParameterExpression><![CDATA[$P{lblAmountInWords}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblPaymentDate">
+					<subreportParameterExpression><![CDATA[$P{lblPaymentDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valLine1">
+					<subreportParameterExpression><![CDATA[$P{valLine1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valLine2">
+					<subreportParameterExpression><![CDATA[$P{valLine2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valPaymentDate">
+					<subreportParameterExpression><![CDATA[$P{valPaymentDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblClass">
+					<subreportParameterExpression><![CDATA[$P{lblClass}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valAffiliationNo">
+					<subreportParameterExpression><![CDATA[$P{valAffiliationNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valName">
+					<subreportParameterExpression><![CDATA[$P{valName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valPaidSum">
+					<subreportParameterExpression><![CDATA[$P{valPaidSum}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="lblReceiptNo">
+					<subreportParameterExpression><![CDATA[$P{lblReceiptNo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{DSFeeHeads1}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Form-Receipt_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

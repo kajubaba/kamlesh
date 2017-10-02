@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Subreport_UPA_Footer" pageWidth="595" pageHeight="802" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="a9c5b64a-6f32-46d8-85ee-56c6767e0ad9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DSFooter" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="marksRange" class="java.lang.String"/>
+	<field name="grade" class="java.lang.String"/>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="36" width="42" height="18" uuid="30a2d935-ccf0-444b-a0a3-388aa74adaf7"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Place :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="36" width="148" height="18" uuid="1914d801-1bce-4389-b24a-c988d87ccc34"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Signature of Class Teacher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="36" width="105" height="18" uuid="f09b37ee-1258-41f1-8cd0-19403a680d11"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Signature of Principal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="18" width="239" height="18" uuid="63a5a3fe-b04b-4818-b15a-fcb356b4a62f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Promoted to Class:...............................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="36" width="42" height="18" uuid="6da16f02-009f-4209-a0bf-30ba9b538ebe"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="239" height="18" uuid="ca370f84-a8fc-47dd-b982-7f1992cd1e0a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Class Teacher’s remarks :………………………]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="55" width="555" height="1" uuid="8bfd047d-14dd-4cc8-97e2-35b582afb7fa"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="18" uuid="7a1d2d6d-9ffd-4824-8635-c0dfc447bc10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Instructions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="150" height="17" uuid="68615bac-f9bb-4439-9e97-f4449603d95d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Grading scale for scholastic areas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="16" width="308" height="17" uuid="eb8673f9-e9f0-4c81-add3-854652d75e24"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Grades are awarded on a 8- point grading scale as follows –]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="167" y="0" width="77" height="16" uuid="4bad8e03-e128-46b1-bd02-b7f3b7367462"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[MARKS RANGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="0" width="158" height="16" uuid="49503d2c-81af-46af-972e-2ac4a9d66a26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[GRADE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="149" y="0" width="1" height="17" uuid="10878788-572d-4dd8-ae06-5e3afb3831df"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="248" y="0" width="1" height="17" uuid="4825a365-7e2c-43d0-8447-8828c9794c4e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="422" y="0" width="1" height="17" uuid="97297037-e403-4b54-bb32-275a4db1dbe8"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="149" y="16" width="273" height="1" uuid="4c883108-817b-49f5-b7e7-821a3520ff40"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="149" y="0" width="273" height="1" uuid="dba4d7c7-df19-4563-b56e-050a579b2742"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="167" y="0" width="77" height="16" uuid="8874c1a0-f77a-4e42-8a47-5090625a5f92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marksRange}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="0" width="158" height="16" uuid="2968a671-e364-4dc1-9ed7-ee4a5edab4eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grade}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="149" y="0" width="1" height="17" uuid="60a15a6c-9ad9-479d-8f81-9211cc08a923"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="248" y="0" width="1" height="17" uuid="bfbc58f6-55b1-448b-817c-38e99244f563"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="422" y="0" width="1" height="17" uuid="ee1746cf-d82e-4c9e-a201-8a017cfa84a1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="149" y="16" width="273" height="1" uuid="50e82a3d-6ed5-454a-9229-42286066016d"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,233 @@
+<div ng-controller="sams.fee.transaction.controller as transCtrl" ng-init="transCtrl.renderTransactions('todays')">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12" ng-controller="fee.sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="transCtrl.getAcademicYearTransactions(academicYear.selectedAcademicYear)" ></select>
+              	
+              	
+              	<span ng-bind="admissionAcademicYear"> </span> Fee <small>Payments</small>  
+              </div>
+    
+          
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row"  block-ui="block-all-fee-tr-section" >
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+             
+             Payment Date From : <input type="text" readonly="readonly" class="date-picker" id="fromDate" ng-model="fromDate" ng-change="transCtrl.filterTransactions()">&nbsp;&nbsp; To : &nbsp;<input type="text" class="date-picker" id="toDate" ng-model="toDate" ng-change="transCtrl.filterTransactions()" readonly="readonly">
+             <div class="pull-right">
+	                <div class="btn-group">
+	                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Transaction View &nbsp;<span class="caret"></span> </button>
+	                  <ul class="dropdown-menu pull-right" role="menu">
+	                     <li><a href="javascript:void(0)" ng-click="transCtrl.filterClassWiseFee()">Class wise View</a></li>
+	                     <li><a href="javascript:void(0)" ng-click="transCtrl.filterHeadWiseFee()">Head wise View</a></li>
+	                  </ul>
+	                </div>
+             </div>
+            </div>
+            <div class="panel-body">
+              
+              <div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid" ></div>
+             <div class="modal fade" id="modalTransactionDetail" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					Transaction Details: #<span
+						ng-bind="transactionDetail.transactionNo"></span>
+					<div class="pull-right">
+						Receipt No: <span ng-bind="transactionDetail.receiptNo"></span>
+					</div>
+				</h4>
+			</div>
+							<div class="modal-body">
+				
+								<table class="table-responsive table tbl-profile">
+									<tbody>
+										<tr>
+											<td class="profile-label col-md-3">Student Name</td>
+											<td colspan="3">{{transactionDetail.studentName}}
+												({{transactionDetail.studentId}})</td>
+										</tr>
+										<tr>
+											<td class="profile-label col-md-3">Payment Class</td>
+											<td ng-bind="transactionDetail.paymentClass"></td>
+											<td class="profile-label col-md-3">Academic Year</td>
+											<td ng-bind="transactionDetail.paymentAcademicYear"></td>
+				
+										</tr>
+										<tr>
+											<td class="profile-label col-md-3">Payment Date</td>
+											<td ng-bind="transactionDetail.paymentDate"></td>
+											<td class="profile-label col-md-3">Paid By</td>
+											<td ng-bind="transactionDetail.depositedBy"></td>
+										</tr>
+										<tr>
+											<td class="profile-label col-md-3">Transaction Date</td>
+											<td ng-bind="transactionDetail.transactionDate"></td>
+											<td class="profile-label col-md-3">Collected By</td>
+											<td ng-bind="transactionDetail.collectedBy"></td>
+										</tr>
+										<tr>
+											<td class="profile-label col-md-3">Fee Installment</td>
+											<td ng-bind="transactionDetail.feeInstallment"></td>
+											<td class="profile-label col-md-3">Payment Mode</td>
+											<td ng-bind="transactionDetail.paymentMode"></td>
+				
+										</tr>
+										<tr>
+											<td class="profile-label col-md-3">Payment Remarks</td>
+											<td colspan="3">{{transactionDetail.paymentComments}}</td>
+										</tr>
+										<tr>
+											<td class="profile-label col-md-3">Total Paid (<i class="fa fa-inr"></i>)</td>
+											<td colspan="3">{{transactionDetail.paidFee}}</td>
+										</tr>
+									</tbody>
+								</table>
+				
+				
+				
+								<div class="dataTable_wrapper">
+									<table class="table-responsive table table-bordered">
+										<thead>
+											<th>Fee Head</th>
+											<th>Paid Amount (<i class="fa fa-inr"></i>)</th>
+										</thead>
+										<tbody>
+											<tr ng-repeat="paidFee in transactionDetail.paidFees">
+												<td ng-bind="paidFee.feeHeadName"></td>
+												<td ng-bind="paidFee.paidAmount"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+				
+				
+				
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" ng-click="popupCtrl.printReceipt()">
+									<span class="glyphicon glyphicon-print"></span> Print Receipt
+								</button>
+							</div>
+						</div>
+				
+					</div>
+				</div>
+
+              
+              <!-- <div class="dataTable_wrapper" ng-controller="sams.fee.transaction.detail.popup.controller as popupCtrl">
+                <table datatable="ng" class="table table-striped table-bordered table-hover" id="dt-all-fee-transaction">
+                  <thead>
+                    <tr>
+                      <th>Student ID</th>
+                      <th>Student Name</th>
+                      <th>Payment Class</th>
+                      <th>Installment</th> 
+                      <th>Receipt No</th>
+                      <th>Paid Amount (<i class="fa fa-inr"></i>)</th>
+                      <th>Payment Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  		
+                  		
+                  		<tr ng-repeat="feeTransaction in feeTransactions">
+                  			<td>
+                  				<a href="#/fee/studentfee/{{feeTransaction.studentDBId}}/null">
+                  				{{feeTransaction.studentId}}
+                  				</a>
+                  			</td>
+                  			<td ng-bind="feeTransaction.studentName"></td>
+                  			<td ng-bind="feeTransaction.paymentClass"></td>
+                  			<td ng-bind="feeTransaction.feeInstallment"></td>
+                  			<td ng-bind="feeTransaction.receiptNo"></td>
+                  			<td>
+                  				<a href="" ng-click="popupCtrl.getFeeTransactionDetail(feeTransaction.transactionId)">{{feeTransaction.paidFee}}</a>
+                  			</td>
+                  			<td ng-bind="feeTransaction.paymentDate"></td>
+                  		</tr>
+                  		
+                  </tbody>
+                  
+                  
+                </table>
+                <transaction-detail></transaction-detail>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	  </div>
+
+ 	  
+	  
+	  
+<script>
+
+$(function() {
+
+    
+	$( ".date-picker" ).datepicker({
+			dateFormat:'d-M-yy',
+			buttonImageOnly: true,
+			changeMonth: true,
+			changeYear: true
+		})
+
+	})    
+	
+/*      
+$(document).ready(function() {
+    $('#dt-all-fee-transaction').DataTable({
+    	responsive: true,
+        "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+        "order": [[ 4, "desc" ]] 
+            
+    });
+});  
+   
+	*/    
+     
+     
+   /*   $(document).ready(function() {
+        $('#dt-all-fee-transaction').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 5, "desc" ]],
+                "columns": [
+								{ 
+									"data": "studentId",
+	                            	"render" : function(data, type, row, meta){
+	                                    return $('<a>').attr("href", "#/fee/studentfee/"+row['studentDBId']+"/null").text(data).wrap('<div></div>').parent().html();
+	                        		}
+								},
+								{ "data": "studentName"},
+								{ "data": "paymentClass"},
+								
+								{ "data": "receiptNo"},
+								{ "data": "paidFee"},
+								{ "data": "paymentDate"}
+								
+	                        ]
+        });
+    });   */	
+	
+	</script>
+
+
+	
+    

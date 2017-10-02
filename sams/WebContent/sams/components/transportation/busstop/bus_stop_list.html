@@ -1,0 +1,21 @@
+<div ng-controller="transportation.busstop.controller as busStopCtrl" ng-init="busStopCtrl.getAllBusStops()">
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()"> <i class="fa fa-bus"></i> <span ng-bind="admissionAcademicYear"></span> Pickup Drop Points </div>
+		</div>
+          
+            <div class="row">
+			<div ui-grid="gridOptions" 
+				ui-grid-exporter 
+				ui-grid-pagination
+				ui-grid-move-columns 
+				ui-grid-resize-columns 
+				class="myGrid">
+			</div>
+		</div>
+    </div>
+	  
+</div>
+  

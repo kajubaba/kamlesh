@@ -1,0 +1,312 @@
+<div ng-controller="admission.newadmission.controller as ctrl" ng-init="ctrl.initializeScreen()">
+       <!-- Row -1 -->
+      
+    <form name="admissionForm" ng-submit="ctrl.submitForm()">   
+     
+     
+     <!-- Page header --> 
+     <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-10" ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()">
+              	<span class="glyphicon glyphicon-user"></span> <span ng-bind="admissionAcademicYear"> </span> New Admission 
+              </div>
+              <div class="col-md-2">
+              	 <div class="form-group input-group">
+				<input type="text" class="form-control" ng-model="formNo" placeholder="Enter Admission Form No"/>
+											<span class="input-group-btn">
+												  <button class="btn btn-default" type="button"  ng-click="ctrl.getAdmissionByFormNo()">
+												  	<span class="glyphicon glyphicon-search"></span> 
+												  </button>
+											</span> 
+										</div>
+              	
+              </div>
+      
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- //Page header -->
+      
+      <!-- Admission Information -->
+      <div class="row">
+      		<div class="col-sm-9 col-md-9">
+      			<div class="panel panel-default">
+                	<div class="panel-heading"> <span class="glyphicon glyphicon-menu-hamburger"></span> Admission Details </div>
+                		<div class="panel-body">
+                			<div class="row">
+                				
+                				<div class="col-md-4">
+                					<div class="form-group" id="requiredFormNo">
+					                    <label >Form No # <span class="color-red">*</span></label>
+					                    <input type="text" ng-model="formData.formNo" class="form-control" readonly="readonly" required>
+		                  			</div>
+		                  			<div class="form-group" id="requiredStudentName">
+					                    <label >Student Name <span class="color-red">*</span></label>
+					                    <input type="text" class="form-control" ng-model="formData.studentName" required>
+					                 </div>
+					                 <div class="form-group">
+						                <label >Student Mobile No #</label>
+						                <input type="text" ng-model="formData.studentContactNo" class="form-control" >
+                  					</div>
+                				</div>
+                				
+                				<div class="col-md-4">
+                					<div class="form-group .required" id="requiredAffiliationAuthority" >
+					                    <label >Affiliation Authority <span class="color-red">*</span></label> 
+					                    <select id="affAuth" class="form-control" ng-model="formData.affiliationAuthorityId" ng-change="ctrl.fetchActiveClasses()" ng-options="authority.id as authority.displayName for authority in authorities" required>
+					                      	<option value="" selected="selected">--- Select Affiliation Authority ---</option>
+					                    </select>
+                  					</div>
+                  					<div class="form-group" id="requiredGender" >
+					                    <label >Gender <span class="color-red">*</span></label>
+					                    <select  ng-model="formData.gender" class="form-control" ng-options="gender.id as gender.name for gender in genderList" required>
+					                      <option value="">--- Select Gender ---</option>
+					                      
+					                    </select>
+					                 </div>
+					                 <div class="form-group">
+					                    <label >Email @</label>
+					                    <input type="text" ng-model="formData.emailId" class="form-control" >
+					                  </div>
+                				</div>
+                				
+                				<div class="col-md-4">
+                					<div class="form-group" id="requiredClass" block-ui="block-select-class">
+					                    <label >Admission Class <span class="color-red">*</span></label>
+					                    <select class="form-control" id="drpDwnAcademicYearClass" ng-model="formData.academicYearClassId" ng-options="clazz.classId as clazz.className for clazz in classes" required>
+					                      	<option value="">--- Select Class ---</option>
+					                    </select>
+				                 	 </div>
+				                 	 
+		                 	      	 <div class="form-group">
+					                    <label >Date of Birth <span class="color-red">*</span></label>
+					                    <div class="form-group input-group " id="requiredDOB">
+											<input id="admissionDOB" type="text" ng-model="formData.dobStr" class="form-control" required>
+											<span class="input-group-btn">
+												  <button class="btn btn-default" type="button" ng-click="ctrl.openDatePicker()">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span> 
+										</div>
+				                     </div>
+				                      <div class="form-group">
+					                    <label >Admission Category</label>
+					                    <select id="drpDwnStudentCategory" ng-model="formData.studentCategoryId" class="form-control" ng-options="category.id as category.name for category in categories">
+					                      <option value="">--- Select Category ---</option>
+					                    </select>
+					                  </div>
+                				</div>
+                				
+                				
+                			</div>
+                		</div>
+                </div>
+      		</div>
+      		<div class="col-sm-3 col-md-3">
+      			<div class="panel panel-default">
+                	<div class="panel-heading"> <i class="fa fa-bus" aria-hidden="true"></i> Bus Stop</div>
+                		<div class="panel-body">
+                			<div class="form-group">
+						        <label >Bus Stop</label>
+						        <select id="drpDwnBusStop" ng-model="formData.busStopId" class="form-control" ng-options="busStop.id as busStop.name for busStop in busStops" ng-change="ctrl.getPickupDropPoints()">
+						           <option value="">--- Select Bus Stop ---</option>
+						        </select>
+                 			</div>
+                 			<div class="form-group">
+						        <label >Pickup Point</label>
+						        <select id="drpDwnBusStop" ng-model="formData.pickupPointId" class="form-control" ng-options="pickupPoint.id as pickupPoint.name for pickupPoint in busStopDetail.pickupPoints">
+						           <option value="">--- Select Pickup Point ---</option>
+						        </select>
+                 			</div>
+                 			<div class="form-group">
+						        <label >Drop Point</label>
+						        <select id="drpDwnBusStop" ng-model="formData.dropPointId" class="form-control" ng-options="dropPoint.id as dropPoint.name for dropPoint in busStopDetail.dropPoints">
+						           <option value="">--- Select Drop Point ---</option>
+						        </select>
+                 			</div>
+                		</div>
+                	</div>	
+      		</div>
+      </div>
+       <!-- // Admission Information -->
+       
+      <div class="row">
+      		<div class="col-md-12">
+      			<div class="row">
+	      			<div class="col-md-6">
+	      					<div class="panel panel-default">
+				                <div class="panel-heading"> <i class="fa fa-address-card" aria-hidden="true"></i> Address </div>
+				                <div class="panel-body">
+				                  <div class="row">
+				                  		
+				                  		<div class="col-md-6">
+				                  			<div class="form-group">
+							                    <label >Address</label>
+							                    <textarea style="height: 108px" class="form-control" ng-model="formData.line1"></textarea>
+				                  			</div>
+				                  			 <div class="form-group">
+							                    <label >Village/Town/Area</label>
+							                    <input type="text" ng-model="formData.line2" class="form-control" >
+				                 			 </div>
+				                 
+				                  		</div>
+				                  		
+				                  		<div class="col-md-6">
+				                  			<div class="form-group">
+							                    <label >City</label>
+							                    <input type="text" ng-model="formData.city" class="form-control" >
+				                  			</div>
+				                  			<div class="form-group">
+							                    <label >State</label>
+							                    <select class="form-control" id="drpDwnState" ng-model="formData.stateId" ng-options="state.id as state.name for state in states">
+							                      	<option value="">--- Select State ---</option>
+							                    </select>
+				                  			</div>
+							                 <div class="form-group">
+							                    <label >Zip Code</label>
+							                    <input type="text" ng-model="formData.zipCode" class="form-control" >
+							                 </div>
+				                  		</div>
+				                  		
+				                  </div>
+				                </div>
+             				 </div>
+	      			</div>
+	      			
+	      			<div class="col-md-6">
+			              <div class="panel panel-default">
+			                <div class="panel-heading"> <i class="fa fa-users" aria-hidden="true"></i> &nbsp; Parents Information </div>
+			                <div class="panel-body">
+			                   <div class="row">
+			                   		<div class="col-md-6">
+			                   			<div class="form-group">
+						                    <label >Father's Name (Mr.)</label>
+						                    <input type="text" ng-model="formData.fatherName" class="form-control" >
+						                 </div>
+						                  <div class="form-group">
+						                    <label >Father's Contact No#</label>
+						                    <input type="text" ng-model="formData.fatherContact1" class="form-control" >
+						                  </div>
+						                  <div class="form-group">
+						                    <label >Father's Occupation</label>
+						                    <input type="text" ng-model="formData.fatherOccupation" class="form-control" >
+						                  </div>
+						                 
+						                  
+			                   		</div>
+			                   		<div class="col-md-6">
+			                   			<div class="form-group">
+						                    <label >Mother's Name (Mrs.)</label>
+						                    <input type="text" ng-model="formData.motherName" class="form-control" >
+						                 </div>
+						                  <div class="form-group">
+						                    <label >Mother's Contact No#</label>
+						                    <input type="text" ng-model="formData.motherContact1" class="form-control" >
+						                  </div>
+						                 
+						                  <div class="form-group">
+						                    <label >Mother's Occupation</label>
+						                    <input type="text" ng-model="formData.motherOccupation" class="form-control" >
+						                  </div>
+			                   		</div>
+			                   </div>
+			                  
+			                </div>
+			              </div>
+           			</div>
+            
+                    <!--  <div class="col-md-3">
+			              <div class="panel panel-default">
+			                <div class="panel-heading"> <span class="glyphicon glyphicon-user"></span> &nbsp; Other information </div>
+			                <div class="panel-body">
+			                  
+			                  <div class="form-group">
+			                    <label >Samagra Id</label>
+			                    <input type="text" class="form-control" ng-model="formData.samagraId" >
+			                  </div>
+			                </div>
+			              </div>
+            		</div> -->
+	      			
+      			</div>
+      		</div>
+      </div>
+      
+      <div class="row" id="alert-error" style="display:none">
+   		<div class="col-md-12">
+	   		<div class="alert alert-danger" >
+			  <span class="glyphicon glyphicon-warning-sign"></span>
+			  <strong>Opps Error !!! </strong> Mandatory fields are not filled up by you. Please fill all mandatory fields (*) before you register student.
+			</div>
+		</div>
+	 </div>
+	
+      <div class="row">
+        <div class="col-md-12 text-center">
+        	<a class="btn btn-default" href="#/admissions/studentview/4/null"><span class="glyphicon glyphicon-arrow-left" ></span> Cancel</a>
+        	<button type="submit" class="btn btn-primary" ng-disabled="admissionForm.$invalid" ng-submit="ctrl.submitForm()"><span class="glyphicon glyphicon-save"></span> Register</button>
+        </div>
+      </div>
+      
+</form>
+
+	<!-- Modal -->
+	<div class="modal" id="modalRegistrationSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      
+	      <div class="modal-body">
+	        <span class="glyphicon glyphicon-user"></span> Student '<span id="plcHorderStudentName"></span>' registered successfully with id '<span id="plcHorderStudentId"></span>'
+	        
+	        <br/>
+	        <br/>
+	        <br/>
+	        <h3>What do you want to do now?</h3>
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" ng-click="ctrl.resetForm()">New Admission</button>
+	        <button type="button" class="btn btn-primary" ng-click="ctrl.payFee()">Pay Fee</button>
+	        <button type="button" class="btn btn-primary" ng-click="ctrl.stayHere()">Stay Here</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal" id="modalEnqMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      
+	      <div class="modal-body">
+	        	<h4>Student is already registered with given form number</h4>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok !! Got It</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>  
+	  
+ <div style="height: 20px;">&nbsp;</div>	 
+ <new-admission/>   
+</div>
+<script type="text/javascript">
+
+$(function() {
+
+    
+$( "#admissionDOB" ).datepicker({
+		dateFormat:'d-M-yy',
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "1960:2030"
+		
+	})
+
+})    
+</script>
+    

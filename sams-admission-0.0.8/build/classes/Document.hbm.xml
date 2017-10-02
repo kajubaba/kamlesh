@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.Document" table="document">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="docCategory" column="document_category"/>
+		<property name="mandatory" column="is_mandatory" />
+		<property name="lastModifiedOn" column="last_modified_date_time"/>
+		<many-to-one name="lastUpdatedBy" class="com.narendra.sams.core.domain.UserView" column="last_modified_by_user_id" />
+		<many-to-one name="admissionType" class="com.narendra.sams.core.domain.AdmissionType" column="for_admission_type" />
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" />
+		
+	</class> 
+</hibernate-mapping>

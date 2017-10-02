@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.academics.domain.GradeScale" table="exam_grade_scale">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" not-null="true"/>
+		<property name="isSystemGradeScale" column="is_system_grade"/>
+		<set name="gradeScalePoints" lazy="true" cascade="save-update" inverse="true">
+			<key column="grade_scale_id" />
+			<one-to-many class="com.narendra.sams.academics.domain.GradeScalePoint"/>
+		</set>
+	</class> 
+</hibernate-mapping>

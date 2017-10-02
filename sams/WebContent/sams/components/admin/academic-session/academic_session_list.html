@@ -1,0 +1,28 @@
+<div ng-controller="academicsession.list.controller as ctrl"
+	 ng-init="ctrl.init()">
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><span class="glyphicon glyphicon-flag"></span> Academic Session(s)</div>
+			<div class="font-sm">
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 20px">
+			<div class="col-md-12 padding-right-none">
+				<a href="#/admin/academicsession/new" class="btn btn-primary btn-sm pull-right"> <span class="glyphicon glyphicon-plus-sign"></span> New Academic Session</a>
+			</div>
+		</div>
+		<div class="row">
+			<div ui-grid="gridOptions" 
+				ui-grid-exporter 
+				ui-grid-pagination
+				ui-grid-move-columns 
+				ui-grid-resize-columns 
+				class="myGrid">
+			</div>
+		</div>
+
+</div>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.StudentGaurdian" table="student_gaurdian">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="name" column="name"/>
+		<property name="gender" column="gender"/>
+		<property name="dob" column="dob"/>
+		<property name="contactNo1" column="contact_1"/>
+		<property name="contactNo2" column="contact_2"/>
+		<property name="relationWithStudent" column="rltn_with_student"/>
+		<property name="occupation" column="occupation"/>
+		<property name="annualIncome" column="annual_income"/>
+		<property name="lasUpdatedDateTime" column="last_updated_date_time" />
+		
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true"/>
+		<many-to-one name="lastUpdatedBy" class="com.narendra.sams.core.domain.UserView" column="last_updated_by_user_id" />
+		
+		<set name="addresses" lazy="true" cascade="save-update,delete">
+			<key column="gaurdian_id" />
+			<one-to-many class="com.narendra.sams.admission.domain.GaurdianAddress"/>
+		</set>
+		
+	</class> 
+</hibernate-mapping>

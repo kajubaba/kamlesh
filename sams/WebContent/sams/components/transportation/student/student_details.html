@@ -1,0 +1,223 @@
+<div>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+			<h3 class="page-header">
+				<div class="row">
+					<div class="col-md-12">Student Information</div>
+
+					<div class="clearfix visible-sm-block visible-md-block"></div>
+				</div>
+			</h3>
+		</div>
+	</div>
+
+
+	<div ng-controller="transportation.student.detail.controller as studCtrl" ng-init="studCtrl.getStudentDetails()">
+
+		<div>
+
+
+			<!-- Row -2 -->
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<div id="studentId" style="display: none"
+							ng-bind="studentDetails.id"></div>
+
+						<div class="panel-heading panel-header-large">
+							<i class="fa fa-info-circle"></i> <span
+								ng-bind="studentDetails.name"></span>
+
+							<div class="pull-right">
+								
+								<div class="btn-group">
+									<button type="button"
+										class="btn btn-default btn-xs dropdown-toggle btn-panel-default"
+										data-toggle="dropdown">
+										Transportation View&nbsp;<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu pull-right" role="menu">
+										<li><a href="#/fee/studentfee/{{studentDetails.id}}/null">Fee
+												Detail View</a></li>
+										<li><a href="#/admissions/studentdetails/{{studentDetails.id}}">Personal Information View</a></li>
+										
+										<li
+											has-any-permission="ROLE_CHANGE_STUD_CLASS | ROLE_CHANGE_STUD_BUS_STOP | ROLE_CHANGE_STUD_ADMN_SCHEME"><a
+											href="#/student/activityview/{{studentDetails.id}}">Update
+												View</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-2">
+
+									<a href="javascript:void(0)" id="std_image"> <img
+										id="studentImage"
+										class="img-circle img-thumbnail img-responsive profile-img"
+										src="sams/assets/img/student_icon.png" alt=""
+										style="width: 170px; height: 170px">
+
+									</a> &nbsp;&nbsp;&nbsp;
+								</div>
+								<div class="col-md-5">
+									<form class="form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-6 text-right-align">ID :</label>
+											<div class="col-sm-6" ng-bind="studentDetails.studentId"></div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-6 text-right-align">Current
+												class :</label>
+											<div class="col-sm-6">{{studentDetails.currentClass}} (Section : {{studentDetails.classSection}})</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-6 text-right-align">Academic Session :</label>
+											<div class="col-sm-6"
+												ng-bind="studentDetails.academicYear"></div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-6 text-right-align">Admission
+												Status :</label>
+											<div class="col-sm-6" ng-bind="studentDetails.studentStatus"></div>
+										</div>
+
+
+
+									</form>
+								</div>
+								<div class="col-md-5">
+									<form class="form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-6 text-right-align">Gender :</label>
+											<div class="col-sm-6" ng-bind="studentDetails.gender"></div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-6 text-right-align">Father's
+												Name :</label>
+											<div class="col-sm-6" ng-bind="studentDetails.fatherName"></div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-6 text-right-align">Current Bus
+												Stop :</label>
+											<div class="col-sm-6" ng-bind="studentDetails.busStop"></div>
+										</div>
+										<div class="form-group">
+											<!-- <label class="col-sm-6 text-right-align">Admission
+												Scheme :</label>
+											<div class="col-sm-6"
+												ng-bind="studentDetails.admissionScheme"></div> -->
+										</div>
+
+									</form>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+			<!-- Row -3 -->
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+						
+
+						<div class="panel-heading panel-header-large">
+							<i class="fa fa-info-circle"></i> 
+							Arrival Route
+						</div>
+					
+						<div class="panel-body">
+							<div class="list-group">
+								<span class="list-group-item"> 
+									<i class="fa fa-minus-square"></i> Pickup Point <span class="pull-right text-muted small"><em>
+										
+										<select class="dropdown-white" ng-model="studentDetails.arrivalInfo.pointId" ng-options="point.id as point.name for point in studentDetails.pickupPoints" ng-change="studCtrl.updateStudentPickupPoint()">
+                  							<option value="">--- Please Select ---</option>				
+                  						</select>
+										</em> </span> 
+              					</span>
+								<span class="list-group-item"> 
+									<i class="fa fa-bus"></i> Bus <span class="pull-right text-muted small"><em><a href="#/transportation/bus/{{studentDetails.arrivalInfo.academicYearVehicleId}}/students/arrival">{{studentDetails.arrivalInfo.bus}}</a></em> </span> 
+              					</span> 
+              					<span class="list-group-item"> 
+									<i class="fa fa-bus"></i> Bus No <span class="pull-right text-muted small"><em>
+									
+										{{studentDetails.arrivalInfo.busNo}}
+									
+									</em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<i class="fa fa-minus-square"></i> Route <span class="pull-right text-muted small"><em><a href="#/transportation/route/plan/{{studentDetails.arrivalInfo.academicYearRouteId}}">{{studentDetails.arrivalInfo.routeName}}</a></em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<span class="glyphicon glyphicon-user"></span> Driver <span class="pull-right text-muted small"><em>{{studentDetails.arrivalInfo.driverName}}</em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<i class="fa fa-mobile" aria-hidden="true"></i> Driver Mobile <span class="pull-right text-muted small"><em>{{studentDetails.arrivalInfo.driverContactNo}}</em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<i class="fa fa-minus-square"></i> Stop Time <span class="pull-right text-muted small"><em>{{studentDetails.arrivalInfo.stopTime}}</em> </span> 
+              					</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+						
+
+						<div class="panel-heading panel-header-large">
+							<i class="fa fa-info-circle"></i> 
+							Departure Route
+						</div>
+					
+						<div class="panel-body">
+							<div class="list-group">
+								<span class="list-group-item"> 
+									<i class="fa fa-minus-square"></i> Drop Point <span class="pull-right text-muted small"><em>
+									
+									<select class="dropdown-white" ng-model="studentDetails.departureInfo.pointId" ng-options="point.id as point.name for point in studentDetails.dropPoints" ng-change="studCtrl.updateStudentDropPoint()">
+                  							<option value="">--- Please Select ---</option>				
+                  						</select>
+									</em> </span> 
+              					</span>
+								<span class="list-group-item"> 
+									<i class="fa fa-bus"></i> Bus <span class="pull-right text-muted small"><em><a href="#/transportation/bus/{{studentDetails.arrivalInfo.academicYearVehicleId}}/students/departure">{{studentDetails.departureInfo.bus}}</a></</em> </span> 
+              					</span> 
+              					<span class="list-group-item"> 
+									<i class="fa fa-bus"></i> Bus No <span class="pull-right text-muted small"><em>{{studentDetails.departureInfo.busNo}}</em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<i class="fa fa-minus-square"></i> Route <span class="pull-right text-muted small"><em><a href="#/transportation/route/plan/{{studentDetails.departureInfo.academicYearRouteId}}">{{studentDetails.departureInfo.routeName}}</a></em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<span class="glyphicon glyphicon-user"></span> Driver <span class="pull-right text-muted small"><em>{{studentDetails.departureInfo.driverName}}</em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<i class="fa fa-mobile" aria-hidden="true"></i> Driver Mobile <span class="pull-right text-muted small"><em>{{studentDetails.departureInfo.driverContactNo}}</em> </span> 
+              					</span>
+              					<span class="list-group-item"> 
+									<i class="fa fa-minus-square"></i> Stop Time <span class="pull-right text-muted small"><em>{{studentDetails.departureInfo.stopTime}}</em> </span> 
+              					</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

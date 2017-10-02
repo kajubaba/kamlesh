@@ -1,0 +1,149 @@
+<div ng-controller="academics.exam.co-scholastic.controller as ctrl" ng-init="ctrl.getStudentCoScholasticScore()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+              	 <div class="row">
+                <div class="col-md-10">
+              		Co-Scholastic Score  <small>Collection</small>
+	            </div>
+	            <div class="col-md-2">
+              		<select class="form-control" ng-model="selectedTerm" ng-change="ctrl.changeTerm(selectedTerm)">
+						<option ng-repeat="term in CoScholasticEvalTerms" value="{{term.id}}">{{term.displayName}}</option>
+					</select>	
+	            </div>
+              
+
+			</div>  
+          </h3>
+        </div>
+      </div>
+     
+     
+     
+     
+     
+     <div ng-include="'sams/components/academics/exam/student_brief_info.html'"></div>
+     <form name="scoreCollectionForm">
+     <div class="alert alert-danger"  ng-show="!scoreCollectionForm.$valid">
+			  						<span class="glyphicon glyphicon-warning-sign"></span>
+								  <strong>Opps Error !!! </strong> Some of the entered values are not valid. Please correct invalid values.
+								</div>
+     <div ng-repeat="activity in studCoScholasticAssessment.activities">
+	     <div class="panel panel-default">
+	      	<div class="panel-heading"> 
+	           	{{activity.displayName}}
+	        </div>
+	        <div class="panel-body">
+	        		
+	        		<div ng-if="activity.subActivities.length > 0">
+	        			<div ng-repeat="subActivity in activity.subActivities">
+						     <div class="panel panel-default">
+						      	<div class="panel-heading"> 
+						           	{{subActivity.displayName}}
+						        </div>
+						        <div class="panel-body">
+						        	<div ng-repeat="skill in subActivity.skills">
+	        			
+					        			<div style="margin-bottom: 25px;font-size: 17px;color: #999">
+					        				{{$index+1}}. {{skill.displayName}}
+					        			</div>
+					        			
+					        			<div class="dataTable_wrapper" style="margin-left: 300px">
+						        			<table  class="table table-striped table-bordered table-hover">
+						        				
+						        				<thead>
+						        				<tr>
+						        					<th style="width: 5%"> S.No. </th>
+						        					<th style="width: 50%"> Aspect </th>
+						        					<th> 
+						        						Score
+						        						<span ng-if="studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'MARKS_BASED'">
+						        							(out of {{studCoScholasticAssessment.assessmentTypeVO.maxMarks}})
+						        						</span> 
+						        					
+						        					</th>
+						        				</tr>
+						        				</thead>
+						        				<tbody>
+						        					<tr ng-repeat="criteria in skill.assessmentCriterias">
+						        						<td>{{$index+1}}</td>
+						        						<td>{{criteria.displayName}} </td>
+						        						<td ng-if="studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'MARKS_BASED'">
+						        							<!-- <input type="text" ng-model="criteria.score" max-value="5" allow-integer> -->
+						        							<input type="number" ng-model="criteria.score" max="{{studCoScholasticAssessment.assessmentTypeVO.maxMarks}}" min="0">
+						        						</td>
+						        						<td ng-if="studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'GRADE_BASED' || studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'GRADE_TO_INDICATOR_BASED'">
+						        							<div ng-if="skill.isAdditional == false">
+							        							<select ng-model="criteria.gradeScalePointId" ng-options="grade.id as grade.grade for grade in studCoScholasticAssessment.gradeScalePointVOs">
+							        								<option value="">-- Select Grade --</option>
+							        							</select>
+						        							</div>
+						        							<div ng-if="skill.isAdditional == true">
+						        								<input type="text" ng-model="criteria.freeTextValue" />
+						        							</div>
+						        						</td>
+						        					</tr>
+						        				</tbody>
+						        			</table>
+					        			</div>
+					        		</div>
+						        </div>
+	        			</div>
+	        		</div>
+	        		</div>
+	        		
+	        		<div ng-repeat="skill in activity.skills">
+	        			
+	        			<div style="margin-bottom: 25px;font-size: 17px;color: #999"">
+	        				{{$index+1}}. {{skill.displayName}}
+	        			</div>
+	        			
+	        			<div class="dataTable_wrapper" style="margin-left: 300px">
+		        			<table  class="table table-striped table-bordered table-hover">
+		        				
+		        				<thead>
+		        				<tr>
+		        					<th style="width: 5%"> S.No. </th>
+		        					<th style="width: 50%"> Aspect </th>
+		        					<th> 
+		        						Score
+		        						<span ng-if="studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'MARKS_BASED'">
+						        							(out of {{studCoScholasticAssessment.assessmentTypeVO.maxMarks}})
+						        		</span> 
+		        					</th>
+		        				</tr>
+		        				</thead>
+		        				<tbody>
+		        					<tr ng-repeat="criteria in skill.assessmentCriterias">
+						        						<td>{{$index+1}}</td>
+						        						<td>{{criteria.displayName}}</td>
+						        						<td ng-if="studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'MARKS_BASED'">
+						        							<input type="number" ng-model="criteria.score" max="{{studCoScholasticAssessment.assessmentTypeVO.maxMarks}}" min="0">
+						        						</td>
+						        						<td ng-if="studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'GRADE_BASED' || studCoScholasticAssessment.assessmentTypeVO.scoringMethod == 'GRADE_TO_INDICATOR_BASED'">
+						        							 <div ng-if="skill.isAdditional == false">
+							        							<select ng-model="criteria.gradeScalePointId" ng-options="grade.id as grade.grade for grade in studCoScholasticAssessment.gradeScalePointVOs">
+							        								<option value="">-- Select Grade --</option>
+							        							</select>
+						        							</div>
+						        							<div ng-if="skill.isAdditional == true">
+						        								<input type="text" ng-model="criteria.freeTextValue" />
+						        							</div>
+						        						</td>
+						        					</tr>
+		        				</tbody>
+		        			</table>
+	        			</div>
+	        		</div>
+	        		
+	        		
+	        </div>
+	      </div>       
+     </div>
+     
+     <div class="pull-right" style="margin-bottom: 10px">
+     	<button has-permission='ROLE_ACADEMICS_EXAM_MARKS_COLLECTION' type="button" class="btn btn-primary" ng-disabled="scoreCollectionForm.$invalid" ng-click="ctrl.saveCoScholasticScore()"> <i class="glyphicon glyphicon-plus-sign"></i> Save Score</button>
+     </div>
+     </form>
+</div>

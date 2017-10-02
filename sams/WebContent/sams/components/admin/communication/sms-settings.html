@@ -1,0 +1,72 @@
+<div ng-controller="sms.settings.controller as ctrl" ng-init="ctrl.init()">
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-mobile" aria-hidden="true"></i> SMS Settings</div>
+			<div class="font-sm">Setup SMS settings</div>
+		</div>
+
+			<div class="row admin-sub-setting-header">SMS Provider</div>
+			
+			<table class="table-responsive table">
+				<tbody>
+					<tr>
+						<td class="col-md-1" style="border: 0px">
+							Name :
+						</td>
+						<td class="col-md-4" style="border: 0px">
+							<input type="text" ng-model="smsProviderForm.smsProviderName" disabled="disabled" size="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-1" style="border: 0px">
+							Host :
+						</td>
+						<td class="col-md-4" style="border: 0px">
+							<input type="text" ng-model="smsProviderForm.url" size="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-1" style="border: 0px">
+							Authetication Key :
+						</td>
+						<td class="col-md-4" style="border: 0px">
+							<input type="text" ng-model="smsProviderForm.authKey" size="50"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-1" style="border: 0px">
+							Sender ID :
+						</td>
+						<td class="col-md-1" style="border: 0px">
+							<input type="text" ng-model="smsProviderForm.senderId" size="50"/>
+						</td>
+					</tr>	
+			</table>
+			<div class="row admin-sub-setting-header"><input type="checkbox" ng-model="feeCollectionSettingForm.isEnabled"/> On Fee Collection</div>
+			
+			<div>
+				<input type="checkbox" ng-model="feeCollectionSettingForm.sendToStudent"/> Send SMS to Student
+			</div>
+			<div>
+				<input type="checkbox" ng-model="feeCollectionSettingForm.sendToFather"/> Send SMS to Father
+			</div>
+			<div>	
+				<input type="checkbox" ng-model="feeCollectionSettingForm.sendToMother"/> Send SMS to Mother
+			</div>	
+			<div class="row admin-sub-setting-header"><input type="checkbox" ng-model="birthDaySettingForm.isEnabled"/> On Birthday</div>
+			
+			<div>
+				<input type="checkbox" ng-model="birthDaySettingForm.sendToStudent"/> Send SMS to Student
+			</div>
+			<div>
+				<input type="checkbox" ng-model="birthDaySettingForm.sendToFather"/> Send SMS to Father
+			</div>
+			<div>	
+				<input type="checkbox" ng-model="birthDaySettingForm.sendToMother"/> Send SMS to Mother
+			</div>	
+			<div class="pull-right"><button class="btn btn-primary btn-sm" ng-click="ctrl.saveSMSSetting()"> Save</button></div>
+
+	</div>
+</div>

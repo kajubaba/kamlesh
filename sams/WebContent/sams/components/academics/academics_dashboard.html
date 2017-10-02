@@ -1,0 +1,234 @@
+
+      <div ng-controller="sams.admission.dashboard.controller">
+	  <!-- Row -1 -->
+      <div class="row" ng-controller="student.quick.search.controller as searchCtrl" ng-init="searchCtrl.init()">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row" ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()">
+              <div class="col-sm-6 col-md-8" >
+              		<i class="fa fa-dashboard"></i> <span ng-bind="admissionAcademicYear"> </span> Academic <small>Dashboard</small> 
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="row">
+
+					<div class="col-md-12">
+						 <div class="dropdown pull-right">
+							  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+								<span class="glyphicon glyphicon-tasks"></span>
+							  </button>
+							   <ul  class="dropdown-menu dropdwon-left" aria-labelledby="dropdownMenu1">
+									<li has-permission='ROLE_ACADEMICS_ASSIGN_SECTION_TO_STUDENT'><a href="#/academics/mgstudsctn/{{admissionAcademicYearId}}">Manage Student Section</a></li>
+									<li has-permission='ROLE_ACADEMICS_EXAM_MARKS_COLLECTION'><a href="#/academics/assessment/sch/{{admissionAcademicYearId}}">CCE Assessment </a></li>
+									<li has-any-permission="ROLE_ACADEMICS_MANAGE_CLASS_SUBJECTS | ROLE_ACADEMICS_MANAGE_CLASS_SECTION | ROLE_ACADEMICS_SETUP_EXAMINATION"><a href="#/academics/settings/{{admissionAcademicYearId}}"><i class="fa fa-gear fa-fw"></i> Settings </a></li>
+									<li><a href="#/academics/attendance/{{admissionAcademicYearId}}/null/null/null/null">Attendance </a></li>
+									<li><a href="#/academics/rollno/{{admissionAcademicYearId}}/null/null/null">Manage Roll No </a></li>
+									<li><a href="#/academics/print/reportcard/{{admissionAcademicYearId}}/null/null/null/null"><span class="glyphicon glyphicon-print"></span> Print Report Card</a></li>
+							   </ul>
+						</div>
+					</div>
+					<div class="clearfix visible-sm-block visible-md-block"></div>
+				</div>
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+     
+	  <!-- Row -2 -->
+      <div class="row">
+        <div class="col-sm-6 col-md-3" block-ui="block-cnfadmn">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <span class="glyphicon glyphicon-user fa-5x"></span> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge" id="confirmAdmissionCount1"></div>
+                  <div>Confirm Admissions !</div>
+                </div>
+              </div>
+            </div>
+            <a href="#/academics/studentview/5/null">
+            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+            </a> 
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="panel panel-green" block-ui="block-newadmn">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <i class="glyphicon glyphicon-plus-sign fa-5x"></i> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge" id="newAdmissionCount"></div>
+                  <div>New Admissions !</div>
+                </div>
+              </div>
+            </div>
+            <a href="#/academics/studentview/new/null"">
+            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+            </a> 
+          </div>
+        </div>
+		<div class="clearfix visible-sm-block"></div>
+        <div class="col-sm-6 col-md-3">
+          <div class="panel panel-yellow">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <i class="glyphicon glyphicon-eye-open fa-5x"></i> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge">NA</div>
+                  <div>Queue Admissions !</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="panel panel-red">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-2 col-md-3"> <i class="fa fa-support fa-5x"></i> </div>
+                <div class="col-sm-10 col-md-9 text-right">
+                  <div class="huge" id="schemeAdmissionCount"></div>
+                  <div>Under Scheme Admissions !</div>
+                </div>
+              </div>
+            </div>
+            <!-- <a href="#/admission/underscheme/5/null"> -->
+            <div class="panel-footer"> <span class="pull-left">View Details</span> <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+            <!-- </a> --> </div>
+        </div>
+      <div class="clearfix visible-sm-block"></div>
+	  <div class="clearfix visible-md-block"></div>
+	  </div>
+      <!-- // Row -2 -->
+      
+	  <!-- Row -3 -->
+      <div class="row">
+        <div class="col-sm-7 col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-bar-chart-o fa-fw"></i> Class wise Admissions graph 
+			<div class="pull-right">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default " data-toggle="dropdown"><span id="admissionType">Confirm Admissions</span> &nbsp; <span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="javascript:void(0)" onclick="updateClassWiseChart(1)">Cancelled Admissions</a> </li>
+                    <li><a href="javascript:void(0)" onclick="updateClassWiseChart(5)">Confirm Admissions</a> </li>
+                    <li><a href="javascript:void(0)" onclick="updateClassWiseChart(3)">Degree Awarded</a> </li>
+                    <li><a href="javascript:void(0)" onclick="updateClassWiseChart('new')">New Admissions</a> </li>
+                    <li><a href="javascript:void(0)" onclick="updateClassWiseChart(4)">New Registrations</a> </li>
+                    <li><a href="javascript:void(0)" onclick="updateClassWiseChart(6)">Renewed Admissions</a> </li>
+                  </ul>
+                </div>
+                
+              </div>
+		
+			</div>
+            <div class="panel-body">
+            	Chart will be displayed here
+              <div id="classwiseChartContainer"></div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading" > <i class="fa fa-birthday-cake" aria-hidden="true"></i> &nbsp; Today's Birthdays </div>
+            <div class="panel-body" ng-controller="academics.student.birthday.controller as birthdaCtrl" ng-init="birthdaCtrl.todaysBirthday()">
+            	 <div class="list-group">
+            	 	<div class="list-group-item" ng-repeat="birthdayStudent in todaysBirthdays">
+            	 		<div class="row">
+            	 			<div class="col-md-3">
+            	 					<img class="img-circle img-thumbnail img-responsive profile-img" src="{{birthdayStudent.imageURL}}" style="width: 60px;height: 60px">
+            	 			</div>	
+            	 			<div class="col-md-9">
+            	 				<div>
+            	 					{{birthdayStudent.studentName}} 
+            	 				</div>
+            	 				<div>
+            	 					<em>Class : {{birthdayStudent.currentClass}}</em>
+            	 				</div>
+            	 				<div>
+            	 					<em>Born On : {{birthdayStudent.bornOn}}</em>
+            	 				</div>
+            	 			</div>
+            	 		</div>
+            	 	
+            	 		
+            	 		
+            	 	</div> 
+            	 </div>
+            	 <div class="pull-right">
+            	 	<a href="#/academics/birthdaylist/todays">View Details</a>
+            	 </div>	
+ 				
+            </div>
+          </div>
+        </div>
+      <div class="clearfix visible-sm-block visible-md-block"></div>
+	  </div>
+      <!-- // Row -3 -->	
+	 </div>
+<script>
+/* 
+var classwiseChart = new FusionCharts(_appContextPath+'/sams/assets/libs/fusion-charts/FCF_Column3D.swf', "classwiseChart", "800", "250");
+
+function renderClasswiseChart(){
+	 $.ajax({
+		type : 'GET',
+		url : _appContextPath+"/ws/admission/dashboard/academics/classwisexml/5",
+		success : renderClasswiseChartSuccess
+	});	
+}
+
+function renderClasswiseChartSuccess(response){
+	classwiseChart.setDataXML(response); 
+	classwiseChart.render("classwiseChartContainer");
+}
+
+function updateClassWiseChart(studStatus){
+	 
+	if(studStatus == 5){
+		$("#admissionType").html("Confirm Admissions");
+	}else if(studStatus == 4){
+		$("#admissionType").html("New Registrations");
+	}else if(studStatus == 6){
+		$("#admissionType").html("Rennew Admissions");
+	}else if(studStatus == 1){
+		$("#admissionType").html("Cancelled Admissions");
+	}else if(studStatus == 3){
+		$("#admissionType").html("Degree Awarded");
+	}
+	
+	
+	
+	$.ajax({
+		type : 'GET',
+		url : _appContextPath+"/ws/admission/dashboard/academics/classwisexml/"+studStatus,
+		success : updateClassWiseChartSuccess
+	});
+	 
+}
+
+function updateClassWiseChartSuccess(response){
+	 updateChartXML("classwiseChart",response);
+}
+
+$(function() {
+	renderClasswiseChart();
+});
+
+ */
+</script>
+ 

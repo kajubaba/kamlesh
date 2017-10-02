@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ScoreCard_subreport_footer" pageWidth="555" pageHeight="110" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4903b5c3-775b-4a35-a4d5-85423637396f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="lblResult" class="java.lang.String"/>
+	<parameter name="lblSessionBeginOn" class="java.lang.String"/>
+	<parameter name="sessionBeginOn" class="java.lang.String"/>
+	<parameter name="lblNote" class="java.lang.String"/>
+	<parameter name="result" class="java.lang.String"/>
+	<parameter name="lblStudent" class="java.lang.String"/>
+	<parameter name="lblClassTeacher" class="java.lang.String"/>
+	<parameter name="lblPrincipal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="110" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="70" height="20" uuid="cf1e83fe-d336-4056-aa68-e6ae58c4c75c"/>
+				<textElement>
+					<font size="9" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblResult}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="328" height="20" uuid="8a5e0114-9660-4c15-8c2a-a577b24abdaf"/>
+				<textElement>
+					<font size="9" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{result}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="19" width="116" height="20" uuid="fe6b1328-88d1-439e-9e13-59326378e142"/>
+				<textFieldExpression><![CDATA[$P{lblSessionBeginOn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="19" width="100" height="20" uuid="99b28bb3-9a14-47f5-9444-be31e47ee563"/>
+				<textFieldExpression><![CDATA[$P{sessionBeginOn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="37" y="43" width="508" height="29" uuid="574e6d9b-d23d-44b2-a622-7059d5768db7"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lblNote}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="89" width="90" height="20" uuid="039f87ae-c919-4250-a390-d4f76f4fc254"/>
+				<textFieldExpression><![CDATA[$P{lblStudent}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="89" width="100" height="20" uuid="fa156b5d-f676-4b25-9950-dfc268aab495"/>
+				<textFieldExpression><![CDATA[$P{lblClassTeacher}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="89" width="90" height="20" uuid="a3719804-1e96-4582-9c56-5883da4b998f"/>
+				<textFieldExpression><![CDATA[$P{lblPrincipal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="42" width="34" height="20" uuid="8cc45bdf-f611-478c-80f7-0a638f4664f2"/>
+				<textElement>
+					<font pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Note :]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,91 @@
+<div ng-controller="academics.manage.student.section.controller as mngSctnCtrl" ng-init="mngSctnCtrl.init()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" ng-model="academicYear.selectedAcademicYear" ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" ng-change="mngSctnCtrl.changeAcademicYear(academicYear.selectedAcademicYear)"></select>
+              	Classwise  <small>Students</small>  
+              </div>
+             
+       
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row" >
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	  		
+            	  			<i class="fa fa-bar-chart-o fa-fw"></i>
+            	  		
+            	  		
+				  		<div class="col-md-3">
+					  		 
+					  		<select ng-model="filterCrt.auId" ng-options="affiliationAuthority.id as affiliationAuthority.displayName for affiliationAuthority in affiliationAuthorities" ng-change="mngSctnCtrl.fetchActiveClasses()">
+							   <option value="">--- Select Affiliation Authority ---</option>
+							</select>
+				  		</div>
+				  		<div class="col-md-3">
+				  				 
+				  		   Class : <select ng-model="filterCrt.classId" ng-options="clazz.classId as clazz.className for clazz in classes" ng-change="mngSctnCtrl.filterStudentsByClass()">
+						               <option value="">--- Select Class ---</option>
+						           </select>	
+				  		</div>
+				  		<div class="col-md-3">
+				  				Section : 
+				  				<select ng-model="filterCrt.sectionId" ng-options="section.id as section.sectionName for section in SectionList" ng-change="mngSctnCtrl.filterStudentsByClass()">
+						               <option value="">--- Select Section ---</option>
+						        </select>	
+				  		</div>
+				  		
+				 		
+            </div>
+            <div class="panel-body">
+            	<div class="pull-right" has-permission='ROLE_ACADEMICS_ASSIGN_SECTION_TO_STUDENT'>
+            		<a id="btnChangeSection" class="btn btn-primary btn-sm disabled" href="javascript:void(0)" ng-click="mngSctnCtrl.openChangeSectionModal()">
+					<i class="fa fa-pencil-square-o"></i> Change Section</a>
+            	</div>
+            		
+            	<div style="margin-top: 40px" ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-selection ui-grid-resize-columns class="myGrid" >
+             
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <div class="modal" id="modalChangeSection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			
+        			 Change/Assign Section
+        		</h4>
+      		</div>
+	      <div class="modal-body">
+	       
+	      
+	         New Section : 
+				  				<select ng-model="changeSectionForm.newSectionId" ng-options="section.id as section.sectionName for section in SectionList" ng-change="mngSctnCtrl.toggleUpdateSectionButton()">
+						               <option value="">--- Select Section ---</option>
+						        </select>
+          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="mngSctnCtrl.closeChangeSectionModal()">Cancel</button>
+	         <button id="btnUpdateSection" type="button" class="btn btn-primary disabled"  ng-click="mngSctnCtrl.changeStduentClassSection()"><span class="glyphicon glyphicon-plus-sign" ></span> Update Section</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	  
+	  <!-- // Row -2 -->
+	  </div>
+</div>  

@@ -1,0 +1,123 @@
+<div ng-controller="fee.reports.duefee.controller as dueFeeRepotCtrl" ng-init="dueFeeRepotCtrl.getDueFeeReport()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+              	<select class="dropdown-in-page-header" 
+              			ng-model="academicYear.selectedAcademicYear" 
+              			ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears" 
+              			ng-change="dueFeeRepotCtrl.getAcademicYearDueFeeReport(academicYear.selectedAcademicYear)" >
+              	</select>
+              	
+              	
+              	Due Fee <small>Class wise</small>  
+              </div>
+      
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row"  block-ui="block-all-fee-tr-section">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> 
+            	  <i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;&nbsp;
+            	  Due Date :                 
+                <select id="dueDate" 
+                		ng-model="dueDate" 
+                		ng-options="dueDate.dueDate as dueDate.dueDate for dueDate in dueDates" 
+                		ng-change="dueFeeRepotCtrl.filterDueFeeReportByDueDate(dueDate)">
+                	
+                </select>
+                
+                &nbsp;&nbsp;
+                Admission Status : 
+                <select ng-model="studentStatus" ng-options="studentStatus.statusName for studentStatus in activeStudentStatusList track by studentStatus.statusId" ng-change="dueFeeRepotCtrl.filterDueFeeReportByStatus(studentStatus.statusId)">
+                </select>
+                
+                <div class="pull-right">
+	                <div class="btn-group">
+	                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default" data-toggle="dropdown"> Class View &nbsp;<span class="caret"></span> </button>
+	                  <ul class="dropdown-menu pull-right" role="menu">
+	                    <li><a href="#/fee/duestudents/{{selectedAcademicYear}}/{{dueDate}}/{{studentStatus.statusId}}">Student View</a></li>
+	                  </ul> 
+	                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="dataTable_wrapper">
+                <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="table table-striped table-bordered table-hover" id="dt-due-fee-report">
+                  <thead>
+                    <tr>
+                      <th>Class</th>
+                      <th>Payable ( <i class="fa fa-inr"></i> )</th>
+                      <th>Paid ( <i class="fa fa-inr"></i> )</th>
+                      <th>Unpaid ( <i class="fa fa-inr"></i> )</th>
+                      <th>Paid Before Due Date ( <i class="fa fa-inr"></i> )</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                  <tfoot>
+                  	<tr>
+                      <th>Total</th>
+                      <th ng-bind="dueFeeSum.totalFee"></th>
+                      <th ng-bind="dueFeeSum.paid"></th>
+                      <th ng-bind="dueFeeSum.unPaid"></th>
+                      <th ng-bind="dueFeeSum.paidBeforeDueDate"></th>
+                    </tr>
+                  </tfoot>
+                  
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	  </div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+     $(document).ready(function() {
+    	 
+    	 $( ".date-picker" ).datepicker({
+ 			dateFormat:'d-M-yy',
+ 			buttonImageOnly: true,
+ 			changeMonth: true,
+ 			changeYear: true
+ 		})
+    	 
+    	 
+        $('#dt-due-fee-report').DataTable({
+                responsive: true,
+                "bPaginate": false,
+                "order": [[ 3, "desc" ]],
+                "columns": [
+								
+								{ "data": "className"},
+								{ "data": "projectedFee"},
+								{ "data": "paidFee"},
+								 { "data": "unpaidFee","render" : function(data, type, row, meta){
+								        return $('<a>').attr('href', "#/fee/reports/duefee/duestudents/"+row['academicYearId']+"/"+row['courseYearId']+"/"+row['dueDate']+"/"+row['admissionStatus']).text(data).wrap('<div></div>').parent().html();
+									} },
+								{ "data": "paidAdvance"}
+								
+								
+	                        ]
+        });
+    }); 
+	
+    </script>	  

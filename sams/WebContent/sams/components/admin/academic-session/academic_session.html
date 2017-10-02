@@ -1,0 +1,121 @@
+<div ng-controller="academicsession.manage.controller as ctrl"
+	 ng-init="ctrl.getAcademicSession()">
+	
+	<div ng-include="'sams/components/admin/header.html'"></div>
+	<div ng-include="'sams/components/admin/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><span class="glyphicon glyphicon-flag"></span> Academic Session</div>
+			<div class="font-sm">Please fill all mandatory fields (<span class="color-red">*</span>) before you Save
+			</div>
+		</div>
+		<form name="Academic_Session_Form">
+		
+		<div class="alert alert-danger"  ng-show="isDuplicateName">
+			 <span class="glyphicon glyphicon-warning-sign"></span>
+			 <strong>Opps Error !!! </strong> Academic Session name already exists. Please choose another name
+		</div>
+		
+		<div class="alert alert-success"  ng-show="showSuccessMessage">
+			 <span class="glyphicon glyphicon-ok"></span> Changes Saved Successfully
+		</div>
+	
+		<div ng-show="!isActionNew" class="pull-right"><a href="#/admin/academicsession/{{academicSessionForm.id}}/setup/classes"><i class="fa fa-gear fa-fw"></i></a></div>
+	
+		<table class="table-responsive table tbl-profile">
+			<tbody>
+				<tr>
+					<td class="profile-label col-md-2"><span class="color-red">*</span> From : </td>
+					<td class="col-md-3">
+						<input type="hidden" ng-model="academicSessionForm.id" />
+						
+						<div class="form-group input-group">
+							<input type="text" class="form-control dt-picker" ng-model="academicSessionForm.from" required readonly="readonly"/>
+							<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<span class="glyphicon glyphicon-calendar"></span> 
+									</button>
+							</span>
+						</div>	
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				<tr>
+					<td class="profile-label col-md-2"><span class="color-red">*</span> To : </td>
+					<td class="col-md-3">
+						<div class="form-group input-group">
+							<input type="text" class="form-control dt-picker" ng-model="academicSessionForm.to" required readonly="readonly"/>
+							<span class="input-group-btn">
+										<button class="btn btn-default" type="button">
+											<span class="glyphicon glyphicon-calendar"></span> 
+										</button>
+							</span>
+						</div>	
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				<tr>
+					<td class="profile-label col-md-2">Name <span class="color-red">*</span></td>
+					<td class="col-md-3">
+						<input type="text" class="form-control" ng-model="academicSessionForm.name" ng-trim="true" ng-maxlength="128" required/>
+						<div class="font-sm">(Max 128 chars)</div>
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				<tr>
+					<td class="profile-label col-md-2">Order No <span class="color-red">*</span></td>
+					<td class="col-md-3">
+						<input type="number" class="form-control" ng-model="academicSessionForm.orderNo" required/>
+						
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+				 <tr ng-show="isActionNew">
+					<td class="profile-label col-md-2">Import Setting From</td>
+					<td class="col-md-3">
+						<select class="form-control" ng-model="academicSessionForm.importSettingsFrom" ng-options="academicSession.id as academicSession.name for academicSession in academicSessions">
+							<option value="">--- Select Academic Session ---</option>
+						</select>
+						
+					</td>
+					<td class="col-md-7">
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		<div style="padding-left: 200px">
+			<span style="margin-right: 10px">
+				<a class="btn btn-default btn-sm" href="#/admin/academicsession/list"><span class="glyphicon glyphicon-circle-arrow-left"></span> Cancel</a>
+			</span>						    			
+			<span>
+				<button class="btn btn-primary btn-sm" ng-click="ctrl.saveAcademicSession()" ng-disabled="Academic_Session_Form.$invalid">
+					<span class="glyphicon glyphicon-save"></span> Save
+				</button>
+				<button ng-if="academicSessionStatus != ACADEMIC_SESSION_STATUS_PUBLISHED" class="btn btn-primary btn-sm" ng-click="ctrl.publishAcademicSession()" ng-disabled="Academic_Session_Form.$invalid">
+					<span class="glyphicon glyphicon-save"></span> Publish
+				</button>
+			</span>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+
+$(function() {	
+	
+	$(".dt-picker" ).datepicker({
+		dateFormat:'d-M-yy',
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "1960:2030"
+	})
+
+}) 
+	
+</script>

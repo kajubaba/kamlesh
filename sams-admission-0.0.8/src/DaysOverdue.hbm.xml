@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.DaysOverdue" table="student_fee_days_overdue">
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true"/>
+		<many-to-one name="feeAcademicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<many-to-one name="installment" class="com.narendra.sams.core.domain.Installment" column="installment_id" not-null="true"/>
+		<property name="daysOverdue" column="days_overdue" />
+		<property name="discount" column="discount" />
+		<property name="calculate" column="calculate" />
+		<property name="modifiedDateTime" column="modified_datetime" />
+		<property name="comments" column="comments" />
+		<many-to-one name="modifiedBy" class="com.narendra.sams.core.domain.UserView" column="modified_by_user_id" />
+		<many-to-one name="academicYearFeeInstallment" class="com.narendra.sams.core.domain.AcademicYearFeeInstallment" column="fee_installment_id" />
+		<many-to-one name="customizeInstallment" class="com.narendra.sams.admission.domain.CustomizeInstallment" column="cust_installment_id" />
+		
+	</class> 
+</hibernate-mapping>

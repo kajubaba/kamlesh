@@ -1,0 +1,74 @@
+<div ng-controller="academics.student.controller as ctrl" ng-init="ctrl.getStudentScoreCard()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+              <div class="row">
+                <div class="col-sm-6 col-md-8">
+              	Student <small>Scorecard</small>  
+              </div>
+              
+              <div class="col-sm-6 col-md-4">
+    
+              </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>  
+          </h3>
+        </div>
+      </div>
+      
+    
+    <div ng-include="'sams/components/academics/exam/student_brief_info.html'"></div>
+    
+    <div class="panel panel-default">
+    	<div class="panel-heading panel-header-large">
+    		Academics Information 
+    		
+    	</div>
+    	<div class="panel-body">
+    		<ul class="nav nav-tabs">
+				<li class="active">
+					<a data-toggle="tab"  href="javascript:void(0)" >Scholastic</a>
+				</li>
+				<li>
+					<a data-toggle="tab"  href="javascript:void(0)" >Co-Scholastic</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade in active" style="padding-top: 25px">
+					
+					
+                  	<div class="col-md-2">
+						<div class="form-group">
+					   		<label >Term</label> 
+					   		<select class="form-control" ng-model="selectedTerm" ng-options="evaluationTerm.id as evaluationTerm.displayName for evaluationTerm in evaluationTerms" ng-change=ctrl.changeScoecard();>
+					             <option value="" selected="selected">--- All Terms ---</option>
+					       </select>
+                  		</div>
+                  	</div>
+                  	<div class="col-md-8">
+						<a class="pull-right btn btn-primary btn-sm" href="javascript:void(0)" ng-click="ctrl.printReportCard()"> <i class="glyphicon glyphicon-print"></i> Print Scorecard	</a>
+                  	</div>
+                  	<div class="col-md-2">
+						<a class="pull-right btn btn-primary btn-sm" href="javascript:void(0)" ng-click="ctrl.printFullReportCard()"> <i class="glyphicon glyphicon-print"></i> Full Scorecard	</a>
+                  	</div>
+					
+					<div id="full-scorecard" ng-include="'sams/components/academics/templates/blank_scholastic_scorecard.html'"></div>
+					<div id="partial-scorecard" ng-include="'sams/components/academics/templates/scholastic_scorecard_one_term.html'" style="display: none;"></div>
+							
+					<!-- <div ng-include="'sams/components/academics/templates/blank_scholastic_scorecard_gurukul.html'"></div> -->
+				</div>
+				
+			</div>
+    		
+    		<!-- <div ng-include="'sams/components/academics/templates/co_scholastic_scorecard.html'"></div> -->
+    	</div>
+    </div>
+    
+
+    
+    
+    
+    
+    
+</div>

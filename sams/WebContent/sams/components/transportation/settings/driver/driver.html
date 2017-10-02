@@ -1,0 +1,73 @@
+<div ng-controller="tran.manage.driver.controller as ctrl" ng-init="ctrl.getDriver()">
+	
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-bus"></i> Driver/Conductor</div>
+			<div class="font-sm">Please fill all mandatory fields (<span class="color-red">*</span>) before you Save
+			</div>
+		</div>
+		<form name="route_Form">
+		
+		<div class="alert alert-success"  ng-show="showSuccessMessage">
+			 <span class="glyphicon glyphicon-ok"></span> Saved Successfully
+		</div>
+	
+		<div class="row">
+			<div class="col-md-3">
+				<img id="studentImage" class="img-circle img-thumbnail img-responsive profile-img" src="sams/assets/img/student_icon.png" alt="" style="width: 170px; height: 170px">
+			</div>
+			<div class="col-md-4">
+                					<div class="form-group">
+					                    <label >Name <span class="color-red">*</span></label>
+					                    <input type="text" class="form-control" ng-model="driverForm.name" required>
+		                  			</div>
+		                  			<div class="form-group">
+					                    <label >Driver or Conductor? <span class="color-red">*</span></label>
+					                    
+					                    <select class="form-control" ng-model="driverForm.role" required>
+								              <option selected="selected" value="Driver">Driver</option>
+								              <option value="Conductor">Conductor</option>
+							            </select>
+		                  			</div>
+		                  			
+                  					<div class="form-group">
+						                <label >Primary Contact Number</label>  <i class="fa fa-phone" aria-hidden="true"></i>
+						                <input type="text" class="form-control" ng-model="driverForm.primaryContact">
+                  					</div>
+		                  			<div class="form-group">
+					                    <label >Alternate Contact Number</label> <i class="fa fa-phone" aria-hidden="true"></i>
+					                    <input type="text" class="form-control" ng-model="driverForm.secondaryContact">
+					                 </div>
+					                 
+                				</div>
+               
+                			<div class="col-md-4">
+                					
+		                  			<div class="form-group">
+						                <label >Driver License Number</label>  (If Driver)
+						                <input type="text" class="form-control" ng-model="driverForm.licenseNo">
+                  					</div>
+		                  			<div class="form-group">
+						                <label >Address</label>
+						                <textarea ng-model="driverForm.address" class="form-control" rows="8"></textarea>
+						                
+                  					</div>
+		                  			
+                  					
+					                 
+                				</div>							
+		</div>
+		
+		<div>
+			<span style="margin-right: 10px">
+				<a class="btn btn-default btn-sm" href="#/transportation/driver/list"><span class="glyphicon glyphicon-circle-arrow-left"></span> Cancel</a>
+			</span>						    			
+			<span>
+				<button class="btn btn-primary btn-sm" ng-click="ctrl.saveDriver()" ng-disabled="route_Form.$invalid"><span class="glyphicon glyphicon-save"></span> Save</button>
+			</span>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,94 @@
+<div ng-controller="transportation.academicyearvehicle.controller as vehicleCtrl" ng-init="vehicleCtrl.getAcademicYearVehicles()">
+	  
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	  
+	  
+	 <div id="page-wrapper">
+		<div class="row admin-setting-header">
+			
+			<div class="col-sm-6 col-md-8" ng-controller="sams.academicsession.controller as asCtrl" ng-init="asCtrl.getCurrentAdmissionAcademicYear()"> 
+              	<i class="fa fa-bus"></i> <span ng-bind="admissionAcademicYear"></span> Active 
+              	<small>Buses</small> 
+              </div>
+			 <div class="pull-right">
+					<button type="button" class="btn btn-primary btn-sm pull-right" ng-click="vehicleCtrl.openImportVehicleModal()"> <span class="glyphicon glyphicon-plus-sign"></span> Add Vehicles</button>
+			</div>
+			
+		</div>
+        
+            <div class="row">
+				<div ui-grid="gridOptions" ui-grid-exporter ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="myGrid">
+			</div>
+		</div>
+    </div>  
+    
+     
+	  
+	  <div class="modal" id="modalImportVehicle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			
+        			 Import Vehicle(s)
+        		</h4>
+      		</div>
+	      <div class="modal-body">
+	       
+	       <div class="dataTable_wrapper">
+					<table class="table-responsive table table-bordered">
+						<thead>
+							<th></th>
+							<th>Vehicle No</th>
+							<th>Vehicle Name</th>
+							<th>Available seats</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="vehicle in vehiclesToBeAssigned">
+								<td> <input type="checkbox" value="{{vehicle.id}}" ng-model="vehicle.checked" ng-change="vehicleCtrl.selectedVehicle()"> </td>
+								<td ng-bind="vehicle.vehicleId"></td>
+								<td ng-bind="vehicle.vehicleName"></td>
+								<td ng-bind="vehicle.vehicleSeatCapacity"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+	         
+          
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="vehicleCtrl.closeImportVehicleModal()">Cancel</button>
+	         <button type="button" class="btn btn-primary"  ng-click="vehicleCtrl.import()"><span class="glyphicon glyphicon-plus-sign" ></span> Import</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+	  </div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+     $(document).ready(function() {
+        $('#dt-vehicle-list').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 0, "asc" ]],
+                "columns": [
+                            
+                            { "data": "vehicleName" },
+                            { "data": "vehicleType" },
+                            { "data": "vehicleId" },
+                            { "data": "manufacturer" },
+                            { "data": "vehicleSeatCapacity" }
+                        ]
+        });
+    }); 
+	
+    </script>	  

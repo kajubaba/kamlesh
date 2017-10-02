@@ -1,0 +1,164 @@
+<div ng-controller="transportation.vehicle.controller as ctrl" ng-init="ctrl.getVehicle()">
+	
+	<div ng-include="'sams/components/transportation/settings/header.html'"></div>
+	<div ng-include="'sams/components/transportation/settings/left_nav.html'"></div>
+	
+	<div id="page-wrapper">
+		<div class="row admin-setting-header">
+			<div><i class="fa fa-bus"></i> Vehicle</div>
+			<div class="font-sm">Please fill all mandatory fields (<span class="color-red">*</span>) before you Save
+			</div>
+		</div>
+		<form name="vehicle_Form">
+		
+		<div class="alert alert-success"  ng-show="showSuccessMessage">
+			 <span class="glyphicon glyphicon-ok"></span> Saved Successfully
+		</div>
+	
+		
+		<div class="row">
+			<div class="col-md-4">
+                					<div class="form-group">
+					                    <label >Vehicle Name/Number <span class="color-red">*</span></label>
+					                    <input type="text" ng-model="vehicleFormData.vehicleName" class="form-control" required>
+		                  			</div>
+		                  			<div class="form-group">
+					                    <label >Vehicle Type</label>
+					                    <input type="text" ng-model="vehicleFormData.vehicleType" class="form-control">
+		                  			</div>
+		                  			<div class="form-group">
+						                <label >Make</label>
+						                <input type="text" ng-model="vehicleFormData.manufacturer" class="form-control" >
+                  					</div>
+                  					<div class="form-group">
+						                <label >Model</label>
+						                <input type="text" ng-model="vehicleFormData.manufacturingYear" class="form-control" >
+                  					</div>
+		                  			<div class="form-group">
+					                    <label >Registration Number</label>
+					                    <input type="text" class="form-control" ng-model="vehicleFormData.vehicleId">
+					                 </div>
+					                 
+                				</div>
+               <div class="col-md-4">
+                					<div class="form-group">
+					                    <label >Chassis Number</label>
+					                    <input type="text" class="form-control" ng-model="vehicleFormData.chassisNo">
+		                  			</div>
+		                  			<div class="form-group">
+					                    <label >Engine Number</label>
+					                    <input type="text" class="form-control"  ng-model="vehicleFormData.engineNo">
+					                 </div>
+					                 <div class="form-group">
+						                <label >Passed with Seats</label>
+						                <input type="text" ng-model="vehicleFormData.vehicleSeatCapacity" class="form-control" >
+                  					</div>
+                  					<div class="form-group">
+					                    <label >Registration Date</label>
+					                    <div class="form-group input-group">
+					                    	<input type="text" class="form-control date-box"  ng-model="vehicleFormData.registrationDate"  readonly="readonly">
+					                    	<span class="input-group-btn">
+												  <button class="btn btn-default" type="button">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span>
+					                    </div>
+		                  			</div>
+		                  			<div class="form-group">
+					                    <label >Transfer Date</label>
+					                    <div class="form-group input-group">
+					                    	<input type="text" class="form-control date-box"  ng-model="vehicleFormData.transferDate"  readonly="readonly">
+					                    	<span class="input-group-btn">
+												  <button class="btn btn-default" type="button">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span>
+					                    </div>	
+					                 </div>
+                				</div>
+                				<div class="col-md-4">
+                					<div class="form-group">
+					                    <label >PUC Due Date</label>
+					                    <div class="form-group input-group">
+					                    	<input type="text" class="form-control date-box"  ng-model="vehicleFormData.pucDueDate"  readonly="readonly">
+					                    	<span class="input-group-btn">
+												  <button class="btn btn-default" type="button">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span>
+					                    </div>	
+		                  			</div>
+		                  			<div class="form-group">
+					                    <label >Fitness Due Date</label>
+					                    <div class="form-group input-group">
+					                    	<input type="text" class="form-control date-box"   ng-model="vehicleFormData.fitnessDueDate"  readonly="readonly">
+					                    	<span class="input-group-btn">
+												  <button class="btn btn-default" type="button">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span>
+					                    </div>	
+					                 </div>
+					                 <div class="form-group">
+					                    <label >Road Tax Due Date</label>
+					                    <div class="form-group input-group">
+					                    	<input type="text" class="form-control date-box"  ng-model="vehicleFormData.roadTaxDueDate"  readonly="readonly">
+					                    	<span class="input-group-btn">
+												  <button class="btn btn-default" type="button">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span>
+					                    </div>	
+		                  			</div>
+		                  			<div class="form-group">
+					                    <label >Permit Due Date</label>
+					                    <div class="form-group input-group">
+					                    	<input type="text" class="form-control date-box"  ng-model="vehicleFormData.permitDueDate" readonly="readonly">
+					                    	<span class="input-group-btn">
+												  <button class="btn btn-default" type="button">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span>
+					                    </div>	
+					                 </div>
+					                 <div class="form-group">
+					                    <label >Insurance Due Date</label>
+					                    <div class="form-group input-group">
+					                    	<input type="text" class="form-control date-box"  ng-model="vehicleFormData.insuranceDueDate"  readonly="readonly">
+					                    	<span class="input-group-btn">
+												  <button class="btn btn-default" type="button">
+												  	<span class="glyphicon glyphicon-calendar"></span> 
+												  </button>
+											</span>
+					                    </div>	
+					                 </div>
+                				</div> 				
+		</div>
+		
+		<div>
+			<span style="margin-right: 10px">
+				<a class="btn btn-default btn-sm" href="#/transportation/vehicle/list"><span class="glyphicon glyphicon-circle-arrow-left"></span> Cancel</a>
+			</span>						    			
+			<span>
+				<button class="btn btn-primary btn-sm" ng-click="ctrl.saveVehicle()" ng-disabled="vehicle_Form.$invalid"><span class="glyphicon glyphicon-save"></span> Save</button>
+			</span>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+
+$(function() {
+
+    
+$( ".date-box" ).datepicker({
+		dateFormat:'d-M-yy',
+		buttonImageOnly: true,
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "1960:2030"
+		
+	})
+
+})    
+</script>

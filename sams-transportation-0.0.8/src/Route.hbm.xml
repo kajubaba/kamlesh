@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.transportation.domain.Route" table="trans_academic_year_route">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		
+		<property name="name" column="route_name"/>
+		<property name="from" column="route_from"/>
+		<property name="to" column="route_to"/>
+		<property name="type" column="route_type"/>
+		<property name="plannedStudents" column="planned_students"/>
+		
+		
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<property name="createdDateTime" column="created_date_time"/>
+		<property name="lastUpdatedDateTime" column="last_updated_date_time"/>
+		<many-to-one name="createdBy" class="com.narendra.sams.core.domain.UserView" column="created_by_user_id" not-null="true"/>
+		<many-to-one name="lastUpdatedBy" class="com.narendra.sams.core.domain.UserView" column="last_updated_by_user_id" not-null="true"/>
+		<many-to-one name="academicYearVehicle" class="com.narendra.sams.transportation.domain.AcademicYearVehicle" column="vehicle_id"/>
+		
+		<set name="busStops" lazy="true" cascade="save-update,delete">
+			<key column="academic_year_route_id" />
+			<one-to-many class="com.narendra.sams.transportation.domain.RouteBusStop"/>
+		</set>
+		
+	</class> 
+</hibernate-mapping>

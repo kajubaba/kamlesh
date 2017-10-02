@@ -1,0 +1,119 @@
+<div ng-controller="transportation.student.pickupdroppoint.controller as ctrl" ng-init="ctrl.getStudentsWithPickDropPoint()">
+	  <!-- Row -1 -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12"> <i class="fa fa-bus"></i> Manage Student Pickup/Drop Points </div>
+
+			</div>
+          </h3>
+        </div>
+      </div>
+      <!-- // Row -1 -->
+      <!-- Row -2 -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-list-ul"></i>&nbsp;&nbsp;<div class="btn-group">
+                 <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default " data-toggle="dropdown"> 
+                  	<span id="selectedBusStop"></span>  &nbsp;
+                  	<span class="caret"></span> 
+                  </button>
+                  <ul class="dropdown-menu scrollable-menu" role="menu" id="busStopList">
+                  </ul>
+                  
+                </div>
+              <div class="pull-right">
+                
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-panel-default " data-toggle="dropdown"> Bus Stop View &nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#/transportation/students/busadopted/busstopwisecount">Bus Stop View</a></li>
+                    <li><a href="#/transportation/students/busadopted/classwisecount">Class View</a></li>
+                    <li><a href="#/transportation/students/busadopted/list">Student View</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover" id="dt-busstopwise-student-list">
+                  <thead>
+                    <tr>
+                      <th>Student ID#</th>
+                      <th>Student Name</th>
+                      <th>Current Class</th>
+                      <th>Pickup Point</th>
+                      <th>Drop Point</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  		<tr ng-repeat="student in students">
+                  			<td><a href="#/transportation/student/{{student.studentId}}">{{student.studentUniqueId}}</a></td>
+                  			<td>{{student.studentName}}</td>
+                  			<td>{{student.currentClassName}}</td>
+                  			<td>
+                  				<select class="dropdown-white" ng-model="student.pickupPointId" ng-options="pickupPoint.id as pickupPoint.name for pickupPoint in pickupPoints" ng-change="ctrl.updateStudentPickupPoint({{student.studentId}},{{selectedBusStopId}}, student.pickupPointId)">
+                  					<option value="">-----------------------------</option>
+                  				</select>
+                  			</td>
+                  			<td>
+                  				<select class="dropdown-white" ng-model="student.dropPointId" ng-options="dropPoint.id as dropPoint.name for dropPoint in dropPoints" ng-change="ctrl.updateStudentDropPoint({{student.studentId}},{{selectedBusStopId}}, student.dropPointId)">
+                  					<option value="">-----------------------------</option>
+                  				</select>
+                  			</td>
+                  		
+                  		</tr>
+                  </tbody>
+                  
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+	  <!-- // Row -2 -->
+	  </div>
+<script>
+     
+     
+     
+   
+     
+     
+     
+     /* $(document).ready(function() {
+        $('#dt-busstopwise-student-list').DataTable({
+                responsive: true,
+                "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                "order": [[ 1, "asc" ]],
+                "columns": [
+                            
+                            { "data": "studentUniqueId", 
+                            	"render" : function(data, type, row, meta){
+    								
+    						        return $('<a>').attr('href', "#/admissions/studentdetails/"+row['id']).text(data).wrap('<div></div>').parent().html();
+    							}
+                            },
+                            { "data": "studentName" },
+                            { "data": "currentClassName" },
+                            { 
+                              "data": "pickupPointName",
+							  "render" : function(data, type, row, meta){
+    								if(data == null){
+    									return "---";
+    								}
+    							}
+                            },
+                            { "data": "dropPointName" }
+                            
+                           
+                        ]
+        });
+    });  */
+	
+    </script>	  

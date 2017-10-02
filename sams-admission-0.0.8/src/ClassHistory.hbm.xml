@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.narendra.sams.admission.domain.ClassHistory" table="student_class_history">
+		
+		<id name="id">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="academicYear" class="com.narendra.sams.core.domain.AcademicYear" column="academic_year_id" not-null="true"/>
+		<many-to-one name="academicYearClass" class="com.narendra.sams.core.domain.AcademicYearClass" column="academic_year_class_id" not-null="true"/>
+		<many-to-one name="student" class="com.narendra.sams.admission.domain.Student" column="student_id" not-null="true"/>
+		<many-to-one name="user" class="com.narendra.sams.core.domain.UserView" column="user_id" />
+		<property name="modifiedDate" column="modified_datetime" />
+		<property name="createdDate" column="created_datetime" />
+		<property name="admissionConfirmDateTime" column="admn_confirm_datetime" />
+		<property name="lastRegistrationDate" column="last_registration_date" />
+		<property name="admissionConfirmed" column="admission_confirmed" />
+		<many-to-one name="busStop" class="com.narendra.sams.core.domain.BusStop" column="bus_stop_id" />
+		<property name="admissionFormNo" column="admission_form_no" />
+		<many-to-one name="admissionType" class="com.narendra.sams.core.domain.AdmissionType" column="admission_type_id"/>
+		<property name="activeClass" column="active_class" />
+		<many-to-one name="studentStatus" class="com.narendra.sams.core.domain.StudentStatus" column="student_status_id" />
+		<property name="changeStatusComments" column="status_cmt" />
+		<many-to-one name="statusChangedBy" class="com.narendra.sams.core.domain.UserView" column="status_changed_by" />
+		
+		<many-to-one name="admissionScheme" class="com.narendra.sams.core.domain.AdmissionScheme" column="admission_scheme" />
+		<many-to-one name="classSection" class="com.narendra.sams.admission.domain.ClassSection" column="class_section_id" />
+		
+	</class> 
+</hibernate-mapping>

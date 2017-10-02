@@ -1,0 +1,151 @@
+<div ng-controller="academics.print.marksheet.controller as ctrl" ng-init="ctrl.init()">
+	
+	<div class="row" ng-controller="sams.academicsession.controller as academicSeasonCtrl">
+		<div class="col-md-12" >
+			<h3 class="page-header">
+				
+				<span class="glyphicon glyphicon-print"></span> 
+				<select class="dropdown-in-page-header"
+								ng-model="academicYear.selectedAcademicYear"
+								ng-options="academicYear.academicYearId as academicYear.academicYearName for academicYear in academicYear.academicYears"
+								ng-change="ctrl.changeAcademicYear(academicYear.selectedAcademicYear)">
+				 </select>
+				 Print <small>Report Card</small>
+			</h3>
+		</div>
+	</div>
+
+
+
+				<!-- //End of row-1 -->
+				<div class="panel panel-default">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-search"></span> Select Class, Section & Term
+							</div>
+							<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Affiliation Authority</label> 
+								<select class="form-control" 
+										ng-model="filterCrt.auId"
+										ng-change="ctrl.selectAU()">
+									<option value="">--- Select Affiliation Authority ---</option>
+									<option ng-repeat="affiliationAuthority in affiliationAuthorities" value="{{affiliationAuthority.id}}">{{affiliationAuthority.displayName}}</option>
+									
+									
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Class</label> 
+									<select class="form-control"
+											ng-model="filterCrt.classId"
+											ng-change="ctrl.selectClass()">
+										<option value="">--- Select Class ---</option>
+										<option ng-repeat="clazz in classes" value="{{clazz.classId}}">{{clazz.className}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Class Section</label> 
+								<select class="form-control"
+										ng-model="filterCrt.sectionId"
+										ng-change="ctrl.reloadPage()">
+									<option value="">--- Select	Section ---</option>
+									<option ng-repeat="section in sectionList" value="{{section.id}}">{{section.sectionName}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Term</label> 
+								<select class="form-control"
+										ng-model="filterCrt.evaluationTermId"
+										ng-change="ctrl.reloadPage()">
+									<option value="-1">Final Scorecard</option>
+									<option ng-repeat="evaluationTerm in evaluationTerms" value="{{evaluationTerm.id}}">{{evaluationTerm.name}}</option>
+									
+								</select>
+							</div>
+						</div>
+				
+						
+					</div>
+				</div>
+				<!-- //End of row-1 -->
+				
+</div>
+</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-list"></span> Student(s)
+										<div class="pull-right" ng-show="showSaveButton">
+									<button id="btnSaveAttendance" 
+											class="btn btn-primary btn-xs"
+											ng-click="ctrl.printMarksheets()"
+											
+											> 
+											
+											<span class="glyphicon glyphicon-print"></span>  Print
+											
+									</button>
+								</div>
+							</div>
+							<div class="panel-body">
+								<form name="attendanceCollectionForm">
+								
+								<div class="dataTable_wrapper">
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												
+												<th>Student ID</th>
+												<th>Student Name</th>
+												<th>Father Name</th>
+												<th>Gender</th>
+												<th>Section</th>
+												
+												
+											</tr>
+										</thead>
+										<tbody>
+					
+											<tr ng-repeat="student in students">
+												
+												<td><a href="#/academics/student/scorecard/{{student.studentDBId}}">{{student.studentId}}</a></td>
+												<td ng-bind="student.studentName"></td>
+												<td ng-bind="student.fatherName"></td>
+												<td ng-bind="student.studentGender"></td>
+												<td ng-bind="student.studentSection"></td>
+												
+												
+											</tr>
+					
+										</tbody>
+										
+					
+									</table>
+								</div>
+								
+					
+					
+							</div>
+							</form>
+							
+	</div>
+		</div>		
+			</div>
+		
+	
+</div>

@@ -1,0 +1,188 @@
+ <div ng-controller="duefee.notice.controller as dueFeeNoticeCtrl">
+ 	 
+ 	 <div>
+	        <a id="btnGenerateDueFeeNotice" class="btn btn-primary btn-sm pull-right disabled" href="javascript:void(0)" ng-click="dueFeeNoticeCtrl.openGenerateDueFeeNoticePopup()">
+			<i class="fa fa-file-excel-o"></i> Generate Due Fee Notice</a>
+	  </div>
+ 	 
+ 	 <div class="modal" id="modalGenerateDueFeeNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title">  
+        		<span class="glyphicon glyphicon-download-alt"></span>
+        			Generate Due Fee Notice
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Generates due fee notice in .xlsx format. After downloading notice you can format it as per your print requirements. 
+        			Click <a href="javascript:void(0)"><span class="glyphicon glyphicon-pencil"></span></a> to modify default notice information.
+        		</div>
+      		</div>
+	      <div class="modal-body">
+	       		
+	       		<form id="generateDueFeeNoticeForm" action="./ws/duefee/notice/export" method="post">
+              		<input type="hidden" id="studentIds" name="studentIds" />
+              		<input type="hidden" id="dueDateStr" name="dueDateStr" />
+              		<input type="hidden" id="academicYearId"  name="academicYearId" />
+              		<input type="hidden" id="noticeHeader" name="noticeHeader" />
+              		<input type="hidden" id="noticeSubHeader" name="noticeSubHeader" />
+              		<input type="hidden" id="noticeName" name="noticeName" />
+              		<input type="hidden" id="noticeMessage" name="noticeMessage" />
+              		<input type="hidden" id="addressedBy" name="addressedBy" />
+              		<input type="hidden" id="noticeGenerationDate" name="noticeGenerationDate" />
+              		<input type="hidden" id="noticeType" name="noticeType" />
+              </form> 
+	       		
+	       		<table class="table-responsive table tbl-profile">
+	       			
+	       			
+	       			
+	       			<tbody>
+						
+						<tr>
+							<td colspan="2">
+								<div>
+									<input type="radio" ng-model="noticeInfo.noticeType" value="installment"> Notice (Installment wise): 
+									<div style="font-size: 12px;margin-top: 10px">
+										Generates due fee notice installment wise
+									</div>
+								</div>
+								<div>
+									<input type="radio" ng-model="noticeInfo.noticeType" value="fee head"> Notice (fee head wise): 
+								<div style="font-size: 12px;margin-top: 10px">
+									Generates due fee notice fee head wise
+								</div>	
+								</div>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td colspan="2">Notice Header : 
+								<div style="font-size: 12px;margin-top: 10px">
+									<div id="roNoticeHeader">
+										<span ng-bind="noticeInfo.noticeHeader"></span>&nbsp;&nbsp;
+										<a href="javascript:void(0)" ng-click="dueFeeNoticeCtrl.editNoticeHeader()">
+	          								<span class="glyphicon glyphicon-pencil"></span>
+	        							</a>
+									</div>
+									<div id="editNoticeHeader" style="display: none">
+									 	<input type="text" class="form-control" ng-model="noticeInfo.noticeHeader" ng-blur="dueFeeNoticeCtrl.saveNoticeHeader()"/>
+									 </div>
+									
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td colspan="2">Notice Sub Header : 
+								<div style="font-size: 12px;margin-top: 10px">
+									<div id="roSubHeader">
+										<span ng-bind="noticeInfo.noticeSubHeader"></span>&nbsp;&nbsp; 
+										<a href="javascript:void(0)" ng-click="dueFeeNoticeCtrl.editSubHeader()">
+	          								<span class="glyphicon glyphicon-pencil"></span>
+	        							</a>
+									</div>
+									<div id="editSubHeader" style="display: none">
+									 	<input type="text" class="form-control" ng-model="noticeInfo.noticeSubHeader" ng-blur="dueFeeNoticeCtrl.saveSubHeader()"/>
+									 </div>
+								</div>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td colspan="2">Notice Name :
+								<div style="font-size: 12px;margin-top: 10px">
+									<div id="roNoticeName">
+										<span ng-bind="noticeInfo.noticeName"></span>&nbsp;&nbsp;
+										<a href="javascript:void(0)" ng-click="dueFeeNoticeCtrl.editNoticeName()">
+          									<span class="glyphicon glyphicon-pencil"></span>
+        								</a>
+									</div>
+									 <div id="editNoticeName" style="display: none">
+									 	<input type="text" class="form-control" ng-model="noticeInfo.noticeName" ng-blur="dueFeeNoticeCtrl.saveNoticeName()"/>
+									 </div>
+									
+									
+									
+								</div>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td colspan="2">Addressed By :
+								<div style="font-size: 12px;margin-top: 10px">
+									<div id="roAddressedBy">
+										<span ng-bind="noticeInfo.addressedBy"></span>&nbsp;&nbsp; 
+										<a href="javascript:void(0)" ng-click="dueFeeNoticeCtrl.editAddressedBy()">
+	          								<span class="glyphicon glyphicon-pencil"></span>
+	        							</a>
+									</div>
+									<div id="editAddressedBy" style="display: none">&nbsp;&nbsp;
+										<input type="text" class="form-control" ng-model="noticeInfo.addressedBy" ng-blur="dueFeeNoticeCtrl.saveAddressedBy()"/>
+									</div>
+									
+								</div>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td colspan="2"> Notice Message : 
+								<div style="font-size: 12px;margin-top: 10px">
+									<div id="roNoiceMessage">
+										<span ng-bind="noticeInfo.noticeMessage"></span>&nbsp;&nbsp;
+										<a href="javascript:void(0)" ng-click="dueFeeNoticeCtrl.editNoiceMessage()">
+	          								<span class="glyphicon glyphicon-pencil"></span>
+	        							</a>
+									</div>
+									
+        							<div id="editNoiceMessage" style="display: none">
+										<input type="text" class="form-control" ng-model="noticeInfo.noticeMessage" ng-blur="dueFeeNoticeCtrl.saveNoiceMessage()"/>
+									</div>
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td colspan="2"> Notice Date :
+								<div id="roNoticeDate">
+									<div style="font-size: 12px;margin-top: 10px">
+										<span ng-bind="noticeInfo.noticeGenerationDate"></span>&nbsp;&nbsp;
+									
+										<a href="javascript:void(0)" ng-click="dueFeeNoticeCtrl.editNoticeDate()">
+		          							<span class="glyphicon glyphicon-pencil"></span>
+		        						</a>
+	        						</div>
+								</div>
+								<div id="editNoticeDate" style="display: none">
+										<input type="text" class="form-control" ng-model="noticeInfo.noticeGenerationDate" ng-blur="dueFeeNoticeCtrl.saveNoticeDate()"/>
+								</div>
+							</td>
+							
+						</tr>
+						
+						
+						
+						
+						
+					</tbody>	
+	       		</table>
+	       
+	          
+	        </div> 
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="dueFeeNoticeCtrl.canceGenerateDueFeeNoticePopup()">Cancel</button>
+	         <button type="button" id="button-renew-admission" class="btn btn-primary"  ng-click="dueFeeNoticeCtrl.generateDueFeeNotice()"><i class="fa fa-file-excel-o"></i> Generate Notice</button>
+	      </div>
+	    
+	   
+	  </div>
+	</div> 
+ </div> 
+</div>
+
+

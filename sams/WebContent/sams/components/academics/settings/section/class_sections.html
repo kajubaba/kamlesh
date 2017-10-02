@@ -1,0 +1,93 @@
+<div ng-controller="sams.academics.settings.controller as settingsCtrl" ng-init="settingsCtrl.init()">
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper"
+		ng-controller="acad.manage.class.section.controller as secCtrl"
+		ng-init="secCtrl.getClassSections()">
+		<div class="row admin-setting-header">
+			<div class="col-md-8">Class Sections</div>
+			<div class="col-md-4">
+				<span has-permission='ROLE_ACADEMICS_MANAGE_CLASS_SECTION'>
+					<button type="button" class="btn btn-info btn-sm pull-right" ng-click="secCtrl.openAddUpdateSectionModal()"> <i class="glyphicon glyphicon-plus-sign"></i> New Section</button>
+				</span>	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover"
+						id="datatable-classwise-sections">
+						<thead>
+							<tr>
+								<th>Section</th>
+								<th>Code #</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="classSection in classSections">
+								<td>
+									<a href="javascript:void(0)" ng-click="secCtrl.openPopupToUpdateSection(classSection.id, classSection.sectionName, classSection.sectionCode)">
+										{{classSection.sectionName}}
+									</a>
+								</td>
+								<td>{{classSection.sectionCode}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	<div class="modal" id="modalAddUpdateClassSection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			<span ng-show="isAdd">Add New</span>
+        			<span ng-show="isUpdate">Update</span>
+        			 Section
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update section
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Section Name :</label>
+	            <input type="text" class="form-control" ng-model="formData.sectionName" ng-change="secCtrl.enableDisableSaveButton()">
+	          </div>
+	          <div class="form-group">
+	            <label>Section Code :</label>
+	            <input type="text" class="form-control" ng-model="formData.sectionCode" ng-change="secCtrl.enableDisableSaveButton()">
+	          </div>
+	         
+	      </div>
+	      
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="secCtrl.closeAddUpdateSectionModal()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary disabled"  ng-click="secCtrl.addSection()"><span class="glyphicon glyphicon-plus-sign" ></span> Save Section</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+
+	</div>
+</div>
+<script>
+/* $(document).ready(function() {
+    $('#datatable-classwise-sections').DataTable({
+            responsive: true,
+            "bPaginate": false,
+            "order": [[ 0, "asc" ]],
+            "columns": [
+                        
+                         {"data": "sectionName"},
+	                     { "data": "sectionCode"}
+                       
+                    ]
+    });
+});  */
+</script>

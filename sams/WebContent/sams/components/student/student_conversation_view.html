@@ -1,0 +1,20 @@
+<div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h3 class="page-header">
+            <div class="row">
+              <div class="col-md-12"> Student Conversation(s) </div>
+            <div class="clearfix visible-sm-block visible-md-block"></div>
+			</div>
+          </h3>
+        </div>
+      </div>
+      
+      <div ng-controller="student.controller as studCtrl" ng-init="studCtrl.fetchStudentDetails()">
+	      <input type="file" file-model="myFile" style="display: none"/>
+	      <div ng-include="'sams/components/student/student_info_section.html'"></div>
+	      <div ng-include="'sams/components/student/student_conversation_section.html'"></div>
+      </div>
+       <new-admission/>   
+</div>
+ 

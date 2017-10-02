@@ -1,0 +1,96 @@
+<div ng-controller="sams.academics.settings.controller as settingsCtrl" ng-init="settingsCtrl.init()">
+	<div ng-include="'sams/components/academics/settings/header.html'"></div>
+	<div ng-include="'sams/components/academics/settings/left_nav.html'"></div>
+	<div id="page-wrapper"
+		ng-controller="academics.manage.subject.controller as ctrl" ng-init="ctrl.getClassSubjects()">
+		<div class="row admin-setting-header">
+			<div class="col-md-8">Class Subjects</div>
+			<div class="col-md-4">
+				<!-- <button type="button" class="btn btn-info btn-sm pull-right"
+					ng-click="secCtrl.openSectionModal()">
+					<i class="glyphicon glyphicon-plus-sign"></i> New Section
+				</button> -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover"
+						id="datatable-classwise-subjects">
+						<thead>
+							<tr>
+								<th>Subject</th>
+                     			<th>Subject Code</th>
+                     			<th>Display Order</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="subject in classSubjects">
+								<td> <a href="javascript:void(0)" ng-click="ctrl.openPopupToUpdateSubject(subject.id, subject.subjectName, subject.subjectCode, subject.displaySequenceNo)"> {{subject.subjectName}}</a></td>
+								<td>{{subject.subjectCode}}</td>
+								<td>{{subject.displaySequenceNo}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		 <div class="modal" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <form>
+	    <div class="modal-content">
+	       <div class="modal-header">
+        		<h4 class="modal-title"> <span class="glyphicon glyphicon-plus-sign"></span> 
+        			
+        			Update Subject
+        		</h4>
+        		<div style="font-size: 12px;margin-top: 5px">
+        			Please fill mandatory fields (<span class="color-red">*</span>) to add/update subject
+        		</div>
+      		</div>
+      		
+	      <div class="modal-body">
+	          
+	          <div class="form-group">
+	            <label><span class="color-red">*</span> Subject Name :</label>
+	            <input type="text" class="form-control" ng-model="formData.subjectName" ng-change="ctrl.enableDisableUpdateButton()">
+	          </div>
+	          <div class="form-group">
+	            <label>Subject Code :</label>
+	            <input type="text" class="form-control" ng-model="formData.subjectCode">
+	          </div>
+	          <div class="form-group">
+	            <label>Display Order :</label>
+	            <input type="text" class="form-control" ng-model="formData.displaySequenceNo">
+	          </div>
+	      </div>
+	      
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-default" ng-click="ctrl.closeSubjectModal()">Cancel</button>
+	         <button type="button" id="saveBtn" class="btn btn-primary"  ng-click="ctrl.updateSubject()"><span class="glyphicon glyphicon-plus-sign" ></span> Save</button>
+	      </div>
+	    </div>
+	    </form>
+	  </div>
+	</div> 
+
+
+	</div>
+</div>
+<script>
+/* $(document).ready(function() {
+    $('#datatable-classwise-subjects').DataTable({
+            responsive: true,
+            "bPaginate": false,
+            "order": [[ 0, "asc" ]],
+            "columns": [
+                        
+                         {"data": "subjectName"},
+	                     { "data": "subjectCode"},
+	                     { "data": "displaySequenceNo"}
+                       
+                    ]
+    });
+});  */
+</script>
